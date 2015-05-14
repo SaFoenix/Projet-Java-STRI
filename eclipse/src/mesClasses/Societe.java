@@ -28,7 +28,7 @@ public class Societe {
 	 */
 	public Societe(String nom) {
 		this.nom = nom;
-		Local locaux=new Local();
+		locaux=new ArrayList<Local>();
 	}	
 	
 	public void ajouterLocal(String nomL){
