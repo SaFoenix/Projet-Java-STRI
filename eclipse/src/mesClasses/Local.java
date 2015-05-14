@@ -21,7 +21,7 @@ public class Local {
 	 */
 	private Integer idLocal; 
 	
-	
+	private String nom;
 	/**
 	 * La liste des salles qui sont disponibles dans le local
 	 * Elle est modifiable
@@ -29,5 +29,15 @@ public class Local {
 	 * @see Salle
 	 */
 	private ArrayList<Salle> salles;
+	
+	/**
+	 * @param nom
+	 */
+	public Local(String nom) {
+		this.nom = nom;
+		salles=new ArrayList<Salle>();
+	}
+	
+	
 
 }
