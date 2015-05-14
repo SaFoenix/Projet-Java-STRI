@@ -21,10 +21,6 @@ public class Local {
 	 */
 	private Integer idLocal; 
 	
-	/**
-	 * Le nom du local.
-	 */
-	private Integer nom;
 	
 	/**
 	 * La liste des salles qui sont disponibles dans le local

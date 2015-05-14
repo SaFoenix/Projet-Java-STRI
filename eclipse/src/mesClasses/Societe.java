@@ -20,6 +20,24 @@ import java.util.ArrayList;
 public class Societe {
 	private Integer idSociete; 
 	private String nom;
-	private ArrayList<Local> locaux;	
+	private ArrayList<Local> locaux;
+	
+	/**
+	 * @param nom
+	 * @param locaux
+	 */
+	public Societe(String nom) {
+		this.nom = nom;
+		Local locaux=new Local();
+	}	
+	
+	public void ajouterLocal(String nomL){
+		Local nLocal=new Local(nomL);
+		locaux.add(nLocal);
+	}
+	
+	public void ajouterSalle(String nomL, String nomS){
+		
+	}
 	
 }
