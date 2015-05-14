@@ -13,7 +13,7 @@ public class Salle {
 	private Integer idSalle;
 	private Integer numero;
 	private Integer etage;
-	private Integer nombreOdinateur;
+	private Integer nombreOrdinateur;
 	private ArrayList<Equipement> equipements;
 	
 	/**
@@ -22,15 +22,13 @@ public class Salle {
 	 * @param etage
 	 * @param nombreOdinateur
 	 */
-	public Salle(Integer idSalle, Integer numero, Integer etage,
-			Integer nombreOdinateur) {
-		this.idSalle = idSalle;
+	public Salle(Integer numero, Integer etage,Integer nombreOrdinateur) {
 		this.numero = numero;
 		this.etage = etage;
-		this.nombreOdinateur = nombreOdinateur;
+		this.nombreOrdinateur = nombreOrdinateur;
 		equipements=new ArrayList<Equipement>();
 	}
-
+	
 	/**
 	 * @return the numero
 	 */
@@ -48,15 +46,15 @@ public class Salle {
 	/**
 	 * @return the nombreOdinateur
 	 */
-	public Integer getNombreOdinateur() {
-		return nombreOdinateur;
+	public Integer getNombreOrdinateur() {
+		return nombreOrdinateur;
 	}
 
 	/**
-	 * @param nombreOdinateur the nombreOdinateur to set
+	 * @param nombreOrdinateur the nombreOrdinateur to set
 	 */
-	public void setNombreOdinateur(Integer nombreOdinateur) {
-		this.nombreOdinateur = nombreOdinateur;
+	public void setNombreOrdinateur(Integer nombreOrdinateur) {
+		this.nombreOrdinateur = nombreOrdinateur;
 	}
 
 	/**
@@ -72,5 +70,17 @@ public class Salle {
 	public Integer getEtage() {
 		return etage;
 	}
-		
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str="Salle ["+ etage + numero +"]\n";
+		str+="\tnombreOrdinateur=" + nombreOrdinateur+"\n";
+		for(Equipement equi: equipements){
+			str+=equi.toString();
+		}
+		return str;
+	}
 }
