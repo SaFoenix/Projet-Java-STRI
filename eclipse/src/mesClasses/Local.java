@@ -3,7 +3,6 @@
  */
 package mesClasses;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +36,52 @@ public class Local {
 		this.nom = nom;
 		salles=new ArrayList<Salle>();
 	}
-	
-	
 
+	public Salle rechercherSalle(Integer numero,Integer etage){
+		for(Salle salleRech :salles){
+			if(salleRech.getEtage()==etage && salleRech.getNumero()==numero){
+				return salleRech;
+			}
+		}		
+		return null;
+	}
+	public void ajouterSalle(Integer numero,Integer nombreOrdi,Integer etage){
+		Salle sall=new Salle(numero, etage, nombreOrdi);
+		if(rechercherSalle(numero, etage)==null){
+			System.out.println("La salle, numero "+numero+", etage "+etage+", a été ajoutée au local "+nom+ ".");
+			salles.add(sall);
+		}
+		else 
+			System.out.println("La salle, numero "+numero+", etage "+etage+", existe déjà.");
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str;
+		str="Local: "+nom+"\n";
+		for(Salle sa : salles){
+			str+=sa.toString();
+		}
+		return str;
+	}
+
+	/**
+	 * @return the nom
+	 */
+	public String getNom() {
+		return nom;
+	}
+
+	/**
+	 * @param nom the nom to set
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	
 }
