@@ -14,7 +14,8 @@ public class Salle {
 	private Integer numero;
 	private Integer etage;
 	private Integer nombreOrdinateur;
-	private ArrayList<Equipement> equipements;
+	private ArrayList<Routeur> routeurs;
+	private ArrayList<BorneSansFil> bornes;
 	
 	/**
 	 * @param idSalle
@@ -26,7 +27,8 @@ public class Salle {
 		this.numero = numero;
 		this.etage = etage;
 		this.nombreOrdinateur = nombreOrdinateur;
-		equipements=new ArrayList<Equipement>();
+		routeurs=new ArrayList<Routeur>();
+		bornes=new ArrayList<BorneSansFil>();
 	}
 	
 	/**
@@ -34,13 +36,6 @@ public class Salle {
 	 */
 	public Integer getNumero() {
 		return numero;
-	}
-
-	/**
-	 * @param numero the numero to set
-	 */
-	public void setNumero(Integer numero) {
-		this.numero = numero;
 	}
 
 	/**
@@ -71,15 +66,11 @@ public class Salle {
 		return etage;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
 	public String toString() {
 		String str="Salle ["+ etage + numero +"]\n";
 		str+="\tnombreOrdinateur=" + nombreOrdinateur+"\n";
-		for(Equipement equi: equipements){
-			str+=equi.toString();
+		for(Routeur rout: routeurs){
+			str+=rout.toString();
 		}
 		return str;
 	}
