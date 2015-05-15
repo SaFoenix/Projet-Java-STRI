@@ -8,6 +8,7 @@ package mesClasses;
  *
  */
 public class Os {
+	private Integer idOs;
 	private String version;
 	private String nomOs;
 	

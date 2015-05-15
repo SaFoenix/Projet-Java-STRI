@@ -85,4 +85,19 @@ public class Societe {
 		return str;
 	}
 	
+	public void ajouterRouteurSalle(Routeur rout, Integer etage,Integer numero, String nomL){
+		Local loc=rechercherLocal(nomL);
+		if(loc != null){
+			loc.ajouterRouteurSalle(rout, numero, etage);
+		}
+		else System.out.println("Le local n'existe pas");
+	}
+	
+	public void connecterEquipARouteurSalle(Equipement equi,Integer etage,Integer numero,String macRout,String nomL){
+		Local loc=rechercherLocal(nomL);
+		if(loc != null){
+			loc.connecterEquipARouteurSalle(equi, numero, etage, macRout);
+		}
+		else System.out.println("Le local n'existe pas");
+	}
 }

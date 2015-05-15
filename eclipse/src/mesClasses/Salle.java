@@ -74,4 +74,27 @@ public class Salle {
 		}
 		return str;
 	}
+
+	public void ajouterRouteur(Routeur rout) {
+		routeurs.add(rout);
+	}
+	
+	public Routeur rechercherRouteur(String mac){
+		for(Routeur rout : routeurs){
+			if(rout.getMac()==mac){
+				return rout;
+			}
+		}	
+		return null;
+	}
+	
+	public void connecterEquipementARouteur(Equipement equi,String mac){
+		Routeur rout=rechercherRouteur(mac);
+		if(rout==null){
+			System.out.println("Le routeur n'existe pas.");
+		}
+		else{
+			rout.connecterOdinateur(equi);
+		}
+	}
 }

@@ -4,6 +4,7 @@
 package mesClasses;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author guigui
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Routeur extends Equipement {
 	private Integer nombrePorts;
-	private ArrayList<Ordinateur> ordinateurs;
+	private Equipement [] equipements; 	
 	
 	/**
 	 * @param mac
@@ -27,7 +28,7 @@ public class Routeur extends Equipement {
 			boolean power, Os os, Integer nombrePorts) {
 		super(mac, nom, connectique, marque, power, os);
 		this.nombrePorts = nombrePorts;
-		ordinateurs=new ArrayList<Ordinateur>();
+		equipements=new Equipement [nombrePorts];
 	}
 
 	/**
@@ -44,13 +45,31 @@ public class Routeur extends Equipement {
 		this.nombrePorts = nombrePorts;
 	}
 	
-	public boolean connecterOdinateur(Ordinateur ordi){
-		ordinateurs.add(ordi);
-		return true;
+	/**
+	 * 
+	 * @return le numero de port libre du routeur, -1 si aucun port 
+	 */
+	public Integer obtenirPortLibre(){
+		int i=0;
+		while(i<equipements.length){
+			if(equipements[i]==null){
+				return i;
+			}
+			i++;
+		}		
+		return -1;
+	}
+	
+	public void connecterOrdinateur(Ordinateur ordi){
+		int portLibre=obtenirPortLibre();
+		if(portLibre!=-1){
+			System.out.println("ajout de l'ordinateur "+ordi.getNom() +" sur le routeur "+ this.getNom()+" sur le port "+ portLibre+".");
+			equipements[portLibre]=ordi;
+		}
+		else System.out.println("Le routeur n'a pas de port de libre.");
 	}	
 	
-	public boolean deconnecterOrdinateur(Ordinateur ordi){
-		ordinateurs.remove(ordi);
-		return true;
+	public void deconnecterEquipement(Integer numeroPort){
+		equipements[numeroPort]=null;
 	}
 }

@@ -83,5 +83,20 @@ public class Local {
 		this.nom = nom;
 	}
 	
+	public void ajouterRouteurSalle(Routeur rout,Integer numero, Integer etage){
+		Salle salle=rechercherSalle(numero, etage);
+		if(salle!=null){
+			salle.ajouterRouteur(rout);
+		}
+		else{
+			System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter le routeur.");
+		}
+	}	
 	
+	public void connecterEquipARouteurSalle(Equipement equi,Integer numero,Integer etage,String macRout){
+		Salle salle=rechercherSalle(numero, etage);
+		if(salle!=null)
+			salle.connecterEquipementARouteur(equi,macRout);
+		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter l'equipement.");
+	}
 }

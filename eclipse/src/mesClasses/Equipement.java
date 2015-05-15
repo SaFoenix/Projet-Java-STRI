@@ -48,6 +48,16 @@ public abstract class Equipement {
 		this.os=os;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Equipement [mac=" + mac + ", nom=" + nom + ", connectique="
+				+ connectique + ", marque=" + marque + ", power=" + power
+				+ ", os=" + os + "]";
+	}
+
 	public String getMac() {
 		return mac;
 	}
