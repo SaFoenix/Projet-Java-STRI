@@ -87,6 +87,7 @@ public class Local {
 	public void supprimerSalle(Integer numero, Integer etage){
 		Salle sal=rechercherSalle(numero, etage);
 		if(sal!=null){
+			System.out.println("La salle numero "+numero+" etage "+etage+" a été supprimée.");
 			salles.remove(sal);
 		}
 		else System.out.println("La salle numero "+numero+" etage "+etage+" n'existe pas.");
@@ -102,10 +103,10 @@ public class Local {
 		}
 	}	
 	
-	public void connecterEquipARouteurSalle(Ordinateur ordi,Integer numero,Integer etage,String macRout){
+	public void connecterOrdinateur(Ordinateur ordi,Integer numero,Integer etage,String macRout){
 		Salle salle=rechercherSalle(numero, etage);
 		if(salle!=null)
-			salle.connecterEquipementARouteur(ordi,macRout);
+			salle.connecterOrdinateur(ordi,macRout);
 		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter l'equipement.");
 	}
 	

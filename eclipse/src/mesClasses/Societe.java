@@ -102,10 +102,10 @@ public class Societe {
 		else System.out.println("Le local n'existe pas");
 	}
 	
-	public void connecterEquipARouteurSalle(Ordinateur ordi,Integer etage,Integer numero,String macRout,String nomL){
+	public void connecterOrdinateur(Ordinateur ordi,Integer etage,Integer numero,String macRout,String nomL){
 		Local loc=rechercherLocal(nomL);
 		if(loc != null){
-			loc.connecterEquipARouteurSalle(ordi, numero, etage, macRout);
+			loc.connecterOrdinateur(ordi, numero, etage, macRout);
 		}
 		else System.out.println("Le local n'existe pas");
 	}

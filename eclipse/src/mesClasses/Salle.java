@@ -82,6 +82,7 @@ public class Salle {
 				return;
 			}				
 		}		
+		System.out.println("Le routeur "+rout.getMac()+" a été ajouté.");
 		routeurs.add(rout);		
 	}
 	
@@ -94,7 +95,7 @@ public class Salle {
 		return null;
 	}
 	
-	public void connecterEquipementARouteur(Ordinateur ordi,String mac){
+	public void connecterOrdinateur(Ordinateur ordi,String mac){
 		Routeur rout=rechercherRouteur(mac);
 		if(rout==null){
 			System.out.println("Le routeur n'existe pas.");
