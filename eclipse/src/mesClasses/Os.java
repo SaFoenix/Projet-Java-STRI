@@ -47,7 +47,5 @@ public class Os {
 	 */
 	public void setNomOs(String nomOs) {
 		this.nomOs = nomOs;
-	}
-	
-	
+	}	
 }

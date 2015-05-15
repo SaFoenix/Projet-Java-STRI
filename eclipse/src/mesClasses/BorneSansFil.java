@@ -10,25 +10,18 @@ import java.util.ArrayList;
  *
  */
 public class BorneSansFil extends Equipement {
-	/**
-	 * definit le nombre d'appareil connectés à la borne 
-	 * à la construction est égale à zero
-	 */
-	private Integer nombreConnexion;
 	private ArrayList<Tablette> tablettes;
 
 	/**
 	 * @param mac
 	 * @param nom
-	 * @param connectique
 	 * @param marque
 	 * @param power
 	 * @param os
 	 */
-	public BorneSansFil(String mac, String nom, String connectique,
+	public BorneSansFil(String mac, String nom,
 			String marque, boolean power,Os os) {
-		super(mac, nom, connectique, marque, power,os);
-		nombreConnexion=0;
+		super(mac, nom, marque, power,os);
 		tablettes=new ArrayList<Tablette>();
 	}
 	

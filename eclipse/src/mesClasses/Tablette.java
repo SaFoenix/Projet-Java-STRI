@@ -28,16 +28,15 @@ public class Tablette extends Equipement {
 	/**
 	 * @param mac
 	 * @param nom
-	 * @param connectique
 	 * @param marque
 	 * @param power
 	 * @param os
 	 * @param capacite
 	 * @param modele
 	 */
-	public Tablette(String mac, String nom, String connectique, String marque,
+	public Tablette(String mac, String nom, String marque,
 			boolean power, Os os, String capacite, Integer modele) {
-		super(mac, nom, connectique, marque, power, os);
+		super(mac, nom, marque, power, os);
 		this.capacite = capacite;
 		this.modele = modele;
 	}

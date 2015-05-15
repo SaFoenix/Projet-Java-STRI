@@ -26,10 +26,10 @@ public class Ordinateur extends Equipement {
 	 * @param gpu
 	 * @param hdd
 	 */
-	public Ordinateur(String mac, String nom, String connectique,
+	public Ordinateur(String mac, String nom,
 			String marque, boolean power,Os os, String ram, String cpu, String gpu,
 			String hdd) {
-		super(mac, nom, connectique, marque, power,os);
+		super(mac, nom, marque, power,os);
 		this.ram = ram;
 		this.cpu = cpu;
 		this.gpu = gpu;

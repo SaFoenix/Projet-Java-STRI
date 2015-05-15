@@ -76,7 +76,13 @@ public class Salle {
 	}
 
 	public void ajouterRouteur(Routeur rout) {
-		routeurs.add(rout);
+		for(Routeur obj : routeurs){
+			if(obj.getMac()==rout.getMac()){
+				System.out.println("Le retour "+rout.getMac()+" est déjà connecté dans la salle.");
+				return;
+			}				
+		}		
+		routeurs.add(rout);		
 	}
 	
 	public Routeur rechercherRouteur(String mac){
@@ -88,13 +94,13 @@ public class Salle {
 		return null;
 	}
 	
-	public void connecterEquipementARouteur(Equipement equi,String mac){
+	public void connecterEquipementARouteur(Ordinateur ordi,String mac){
 		Routeur rout=rechercherRouteur(mac);
 		if(rout==null){
 			System.out.println("Le routeur n'existe pas.");
 		}
 		else{
-			rout.connecterOdinateur(equi);
+			rout.connecterOrdinateur(ordi);
 		}
 	}
 }

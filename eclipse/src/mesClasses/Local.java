@@ -19,7 +19,7 @@ public class Local {
 	 * L'id du local, créé à la contuction du local, ne peut plus être modifié.
 	 */
 	private Integer idLocal; 
-	
+	private String localisation;
 	private String nom;
 	/**
 	 * La liste des salles qui sont disponibles dans le local
@@ -32,8 +32,9 @@ public class Local {
 	/**
 	 * @param nom
 	 */
-	public Local(String nom) {
+	public Local(String nom,String localisation) {
 		this.nom = nom;
+		this.localisation=localisation;
 		salles=new ArrayList<Salle>();
 	}
 
@@ -83,6 +84,14 @@ public class Local {
 		this.nom = nom;
 	}
 	
+	public void supprimerSalle(Integer numero, Integer etage){
+		Salle sal=rechercherSalle(numero, etage);
+		if(sal!=null){
+			salles.remove(sal);
+		}
+		else System.out.println("La salle numero "+numero+" etage "+etage+" n'existe pas.");
+	}
+	
 	public void ajouterRouteurSalle(Routeur rout,Integer numero, Integer etage){
 		Salle salle=rechercherSalle(numero, etage);
 		if(salle!=null){
@@ -93,10 +102,14 @@ public class Local {
 		}
 	}	
 	
-	public void connecterEquipARouteurSalle(Equipement equi,Integer numero,Integer etage,String macRout){
+	public void connecterEquipARouteurSalle(Ordinateur ordi,Integer numero,Integer etage,String macRout){
 		Salle salle=rechercherSalle(numero, etage);
 		if(salle!=null)
-			salle.connecterEquipementARouteur(equi,macRout);
+			salle.connecterEquipementARouteur(ordi,macRout);
 		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter l'equipement.");
+	}
+	
+	public int nombreDeSalle(){
+		return salles.size();
 	}
 }

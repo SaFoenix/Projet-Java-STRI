@@ -20,14 +20,16 @@ import java.util.ArrayList;
 public class Societe {
 	private Integer idSociete; 
 	private String nom;
+	private String localisation;
 	private ArrayList<Local> locaux;
 	
 	/**
 	 * @param nom
 	 * @param locaux
 	 */
-	public Societe(String nom) {
+	public Societe(String nom,String localisation) {
 		this.nom = nom;
+		this.localisation=localisation;
 		locaux=new ArrayList<Local>();
 	}	
 		
@@ -40,7 +42,7 @@ public class Societe {
 		locRech.ajouterSalle(numero, nombreOrdi, etage);
 	}
 	
-	public Local rechercherLocal(String nomL){
+	private Local rechercherLocal(String nomL){
 		
 		for(Local locRech : locaux){
 			if(nomL==locRech.getNom()){
@@ -49,8 +51,8 @@ public class Societe {
 		}
 		return null;
 	}
-	public void ajouterLocal(String nomL){
-		Local nouvLocal=new Local(nomL);
+	public void ajouterLocal(String nomL,String localisation){
+		Local nouvLocal=new Local(nomL,localisation);
 		for(Local loc : locaux){
 			if(loc.getNom()==nomL){
 				System.out.println("Le local "+nomL+" existe déjà.");
@@ -70,14 +72,21 @@ public class Societe {
 			System.out.println("Le local "+nomL+" n'existe pas.");
 		return;		
 	}
-
+	
+	public void supprimerSalle(String nomL,Integer etage,Integer numero){
+		Local loc=rechercherLocal(nomL);
+		if(loc!=null)
+			loc.supprimerSalle(etage,numero);
+		else System.out.println("Le local "+nomL+" n'existe pas");
+		
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		String str;
-		str="Société: "+nom+"\n";
+		str="Société: "+nom+" ["+localisation+"]\n";
 		for(Local loc:locaux){
 			str+=loc.toString();
 			str+="\n\n";
@@ -93,10 +102,10 @@ public class Societe {
 		else System.out.println("Le local n'existe pas");
 	}
 	
-	public void connecterEquipARouteurSalle(Equipement equi,Integer etage,Integer numero,String macRout,String nomL){
+	public void connecterEquipARouteurSalle(Ordinateur ordi,Integer etage,Integer numero,String macRout,String nomL){
 		Local loc=rechercherLocal(nomL);
 		if(loc != null){
-			loc.connecterEquipARouteurSalle(equi, numero, etage, macRout);
+			loc.connecterEquipARouteurSalle(ordi, numero, etage, macRout);
 		}
 		else System.out.println("Le local n'existe pas");
 	}
