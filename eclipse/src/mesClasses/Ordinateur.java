@@ -91,6 +91,5 @@ public class Ordinateur extends Equipement {
 	public void setHdd(String hdd) {
 		this.hdd = hdd;
 	}
-	
-	
+		
 }
