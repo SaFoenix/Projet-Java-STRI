@@ -33,7 +33,7 @@ public class BorneSansFil extends Equipement {
 		String str=super.toString();
 		int i=0;
 		for(Tablette tab:tablettes){
-			str+="-Tablette "+i+1+"\n";
+			str+="-Tablette "+(i+1)+"\n";
 			str+=tab.toString()+"\n";
 			i++;
 		}

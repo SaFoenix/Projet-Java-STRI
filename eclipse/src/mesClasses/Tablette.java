@@ -74,7 +74,9 @@ public class Tablette extends Equipement {
 	 */
 	@Override
 	public String toString() {
-		return "capacite=" + capacite + ", modele=" + modele;
+		String str=super.toString();
+		str+="capacite=" + capacite + ", modele=" + modele+"\n";
+		return str;
 	}
 	
 }

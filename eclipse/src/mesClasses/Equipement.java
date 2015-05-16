@@ -94,7 +94,7 @@ public abstract class Equipement {
 		String str="Nom: "+getNom()+"\n";
 		str+="Mac: "+getMac()+"\tMarque: "+getMarque()+"\n";
 		str+="power: ";
-		str+=isPower()?"on":"off";
+		str+=(isPower()?"on":"off");
 		str+="\n";
 		str+=os.toString()+"\n";
 		return str;
