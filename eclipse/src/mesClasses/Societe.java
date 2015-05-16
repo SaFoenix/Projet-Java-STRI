@@ -66,11 +66,12 @@ public class Societe {
 	
 	public void supprimerLocal(String nomL){
 		Local loc=rechercherLocal(nomL);		
-		if(loc!=null)
+		if(loc!=null){
+			System.out.println("Le local "+nomL+" a été supprimé.");
 			locaux.remove(loc);
+		}
 		else 
 			System.out.println("Le local "+nomL+" n'existe pas.");
-		return;		
 	}
 	
 	public void supprimerSalle(String nomL,Integer etage,Integer numero){
@@ -89,7 +90,7 @@ public class Societe {
 		str="Société: "+nom+" ["+localisation+"]\n";
 		for(Local loc:locaux){
 			str+=loc.toString();
-			str+="\n\n";
+			str+="\n";
 		}
 		return str;
 	}
@@ -121,6 +122,14 @@ public class Societe {
 		Local loc=rechercherLocal(nomL);
 		if(loc!=null){
 			loc.connecterTablette(tab, etage, numero,macBorne);
+		}
+		else System.out.println("Le local n'existe pas");
+	}
+	
+	public void desactiverAppareil(Equipement equi,String nomL,Integer numero,Integer etage){
+		Local loc=rechercherLocal(nomL);
+		if(loc!=null){
+			loc.desactiverAppareil(equi,numero,etage);
 		}
 		else System.out.println("Le local n'existe pas");
 	}

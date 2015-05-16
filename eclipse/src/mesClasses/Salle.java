@@ -136,4 +136,41 @@ public class Salle {
 		}
 		else System.out.println("Le borne n'existe pas.");
 	}
+
+	public void desactiverAppareil(Equipement equi) {
+		if(equi instanceof Routeur){
+			Routeur rout=rechercherRouteur(equi.getMac());
+			if(rout !=null){
+				rout.setPower(false);
+				rout.desactiverAppareil();//TODO ffff
+			}
+			else System.out.println("Le routeur non trouvé, impossible de le désactiver.");
+		}		
+		else if(equi instanceof BorneSansFil){
+			BorneSansFil bo=rechercherBorne(equi.getMac());
+			if(bo !=null){
+				bo.setPower(false);
+				bo.supprimerAppareil();
+			}
+			else System.out.println("La borne non trouvée, impossible de la désactiver.");
+		}
+		else if(equi instanceof Ordinateur){
+			for(Routeur rout :routeurs){
+				if(rout.chercherOrdinateur((Ordinateur)equi)){
+					rout.desactiverAppareil((Ordinateur)equi);
+					return;
+				}				
+			}
+			System.out.println("L'odinateur non trouvé, impossible de la désactiver.");
+		}
+		else if(equi instanceof Tablette){
+			for(BorneSansFil bo :bornes){
+				if(bo.chercherTablette((BorneSansFil)equi)){
+					bo.desactiverAppareil((BorneSansFil)equi);
+					return;
+				}				
+			}
+			System.out.println("La tablette non trouvée, impossible de couper la liaison wifi.");
+		}
+	}
 }

@@ -131,4 +131,17 @@ public class Local {
 		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter la tablette.");
 
 	}
+	
+	private void messageNonTrouve(Integer numero,Integer etage,String str){
+		System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, "+str);
+	}
+	
+	public void desactiverAppareil(Equipement equi, Integer numero,
+			Integer etage) {
+		Salle sal=rechercherSalle(numero, etage);
+		if(sal!=null){
+			sal.desactiverAppareil(equi);
+		}
+		else messageNonTrouve(numero, etage,"l'equipement ne peut pas être désactivé.");
+	}
 }
