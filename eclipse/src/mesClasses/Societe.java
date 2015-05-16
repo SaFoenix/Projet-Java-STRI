@@ -107,6 +107,21 @@ public class Societe {
 		if(loc != null){
 			loc.connecterOrdinateur(ordi, numero, etage, macRout);
 		}
+		else System.out.println("Le local n'existe pas, impossible d'ajouter l'ordinateur");
+	}
+	public void ajouterBorneSansFil(BorneSansFil borne,String nomL,Integer etage,Integer numero){
+		Local loc=rechercherLocal(nomL);
+		if(loc !=null){
+			loc.ajouterBorneSansFil( borne, etage, numero);
+		}
+		else System.out.println("Le local n'existe pas");
+	}
+	
+	public void connecterTablette(Tablette tab,String nomL,Integer etage,Integer numero,String macBorne){
+		Local loc=rechercherLocal(nomL);
+		if(loc!=null){
+			loc.connecterTablette(tab, etage, numero,macBorne);
+		}
 		else System.out.println("Le local n'existe pas");
 	}
 }

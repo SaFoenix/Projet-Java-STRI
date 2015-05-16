@@ -48,4 +48,12 @@ public class Os {
 	public void setNomOs(String nomOs) {
 		this.nomOs = nomOs;
 	}	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Os [version=" + version + ", nomOs=" + nomOs + "]";
+	}
 }

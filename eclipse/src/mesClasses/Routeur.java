@@ -62,4 +62,20 @@ public class Routeur extends Equipement {
 	public void deconnecterEquipement(Integer numeroPort){
 		ordinateurs[numeroPort]=null;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str=super.toString();
+		str+="nombre de ports: "+getNombrePorts()+"\n";
+		for(int i=0;i<ordinateurs.length;i++){
+			str+="[Port "+i+"]\n";
+			if(ordinateurs[i]!=null)
+				str+=ordinateurs[i].toString()+"\n";
+			else str+="Vide\n";
+		}
+		return str;
+	}
 }

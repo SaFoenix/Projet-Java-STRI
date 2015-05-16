@@ -91,5 +91,16 @@ public class Ordinateur extends Equipement {
 	public void setHdd(String hdd) {
 		this.hdd = hdd;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str=super.toString();
+		str+="ram=" + ram +", cpu=" + cpu + ", gpu=" + gpu
+				+ ", hdd=" + hdd + "\n";
+		return str;
+	}
 		
 }

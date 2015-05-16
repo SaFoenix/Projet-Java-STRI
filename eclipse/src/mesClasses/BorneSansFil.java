@@ -25,9 +25,24 @@ public class BorneSansFil extends Equipement {
 		tablettes=new ArrayList<Tablette>();
 	}
 	
-	public boolean connecterTablette(Tablette nouvelleTablette){
-		tablettes.add(nouvelleTablette);
-		return true;
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String str=super.toString();
+		int i=0;
+		for(Tablette tab:tablettes){
+			str+="-Tablette "+i+1+"\n";
+			str+=tab.toString()+"\n";
+			i++;
+		}
+		return str;
+	}
+	
+	
+	public void connecterTablette(Tablette nouvelleTablette){
+		tablettes.add(nouvelleTablette);		
 	}
 	public boolean deconnecter(Tablette suppTablette){
 		if(tablettes.contains(suppTablette)){

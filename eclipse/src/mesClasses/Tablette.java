@@ -68,5 +68,13 @@ public class Tablette extends Equipement {
 	public void setModele(Integer modele) {
 		this.modele = modele;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "capacite=" + capacite + ", modele=" + modele;
+	}
 	
 }

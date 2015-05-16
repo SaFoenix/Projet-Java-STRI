@@ -68,9 +68,14 @@ public class Salle {
 
 	public String toString() {
 		String str="Salle ["+ etage + numero +"]\n";
-		str+="\tnombreOrdinateur=" + nombreOrdinateur+"\n";
+		str+="\tnombreOrdinateur: " + nombreOrdinateur+"\n";
+		str+="[Routeur]\n";
 		for(Routeur rout: routeurs){
-			str+=rout.toString();
+			str+=rout.toString()+"\n";
+		}
+		str+="[Bornes Wifi]\n";
+		for(BorneSansFil bor:bornes){
+			str+=bor.toString()+"\n";
 		}
 		return str;
 	}
@@ -95,6 +100,14 @@ public class Salle {
 		return null;
 	}
 	
+	public BorneSansFil rechercherBorne(String mac){
+		for(BorneSansFil bo:bornes){
+			if(bo.getMac()==mac){
+				return bo;
+			}
+		}
+		return null;
+	}
 	public void connecterOrdinateur(Ordinateur ordi,String mac){
 		Routeur rout=rechercherRouteur(mac);
 		if(rout==null){
@@ -103,5 +116,24 @@ public class Salle {
 		else{
 			rout.connecterOrdinateur(ordi);
 		}
+	}
+
+	public void ajouterBorneSansFil(BorneSansFil borne) {
+		for(BorneSansFil bo: bornes){
+			if(bo.getMac()==borne.getMac()){
+				System.out.println("La borne est déjà dans la salle.");
+				return;
+			}
+		}
+		System.out.println("La borne est ajoutée dans la salle.");
+		bornes.add(borne);
+	}
+
+	public void connecterTablette(Tablette tab, String macBorne) {
+		BorneSansFil boRech=rechercherBorne(macBorne);
+		if(boRech!=null){
+			boRech.connecterTablette(tab);
+		}
+		else System.out.println("Le borne n'existe pas.");
 	}
 }

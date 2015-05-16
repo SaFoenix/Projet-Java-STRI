@@ -38,7 +38,7 @@ public class Local {
 		salles=new ArrayList<Salle>();
 	}
 
-	public Salle rechercherSalle(Integer numero,Integer etage){
+	private Salle rechercherSalle(Integer numero,Integer etage){
 		for(Salle salleRech :salles){
 			if(salleRech.getEtage()==etage && salleRech.getNumero()==numero){
 				return salleRech;
@@ -63,9 +63,9 @@ public class Local {
 	@Override
 	public String toString() {
 		String str;
-		str="Local: "+nom+"\n";
+		str="Local: "+nom+" ["+localisation+"]\n";
 		for(Salle sa : salles){
-			str+=sa.toString();
+			str+=sa.toString()+"\n";
 		}
 		return str;
 	}
@@ -107,10 +107,28 @@ public class Local {
 		Salle salle=rechercherSalle(numero, etage);
 		if(salle!=null)
 			salle.connecterOrdinateur(ordi,macRout);
-		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter l'equipement.");
+		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter l'ordinateur.");
 	}
 	
 	public int nombreDeSalle(){
 		return salles.size();
+	}
+
+	public void ajouterBorneSansFil(BorneSansFil borne, Integer etage,
+			Integer numero) {
+		Salle sal=rechercherSalle(numero, etage);
+		if(sal!=null){
+			sal.ajouterBorneSansFil(borne);
+		}
+		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter la borne.");
+	}
+
+	public void connecterTablette(Tablette tab, Integer etage, Integer numero,
+			String macBorne) {
+		Salle sal=rechercherSalle(numero, etage);
+		if(sal!=null)
+			sal.connecterTablette(tab,macBorne);
+		else System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, impossible d'ajouter la tablette.");
+
 	}
 }
