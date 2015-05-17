@@ -42,13 +42,41 @@ public class BorneSansFil extends Equipement {
 	
 	
 	public void connecterTablette(Tablette nouvelleTablette){
-		tablettes.add(nouvelleTablette);		
+		Tablette tab=rechercherTablette(nouvelleTablette.getMac());
+		if(tab==null){
+			System.out.println("La tablette est connecté à la borne Wifi.");
+			tablettes.add(nouvelleTablette);	
+		}
+		else System.out.println("La tablette est deja connecté à la borne Wifi.");
 	}
+	
 	public boolean deconnecter(Tablette suppTablette){
 		if(tablettes.contains(suppTablette)){
 			tablettes.remove(suppTablette);
 		}
 		return true;
 	}
+
+	public void activerDesactiverTablette(boolean power) {
+			for(Tablette tabl:tablettes)
+				tabl.activerDesactiverAppareil(power);
+	}
+
+	public Tablette rechercherTablette(String mac){
+		for(Tablette tab:tablettes){
+			if(tab.getMac().equalsIgnoreCase(mac)){
+				return tab;
+			}
+		}
+		return null;
+	}
+	public boolean activerDesactiverAppareil(String mac, boolean power) {
+		Tablette tab=rechercherTablette(mac);
+		if(tab!=null){
+			tab.activerDesactiverAppareil(power);
+			return true;
+		}
+		return false;
+	}	
 	
 }

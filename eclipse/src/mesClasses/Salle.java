@@ -82,7 +82,7 @@ public class Salle {
 
 	public void ajouterRouteur(Routeur rout) {
 		for(Routeur obj : routeurs){
-			if(obj.getMac()==rout.getMac()){
+			if(obj.getMac().equalsIgnoreCase(rout.getMac())){
 				System.out.println("Le retour "+rout.getMac()+" est déjà connecté dans la salle.");
 				return;
 			}				
@@ -93,7 +93,7 @@ public class Salle {
 	
 	public Routeur rechercherRouteur(String mac){
 		for(Routeur rout : routeurs){
-			if(rout.getMac()==mac){
+			if(rout.getMac().equalsIgnoreCase(mac)){
 				return rout;
 			}
 		}	
@@ -120,7 +120,7 @@ public class Salle {
 
 	public void ajouterBorneSansFil(BorneSansFil borne) {
 		for(BorneSansFil bo: bornes){
-			if(bo.getMac()==borne.getMac()){
+			if(bo.getMac().equalsIgnoreCase(borne.getMac())){
 				System.out.println("La borne est déjà dans la salle.");
 				return;
 			}
@@ -137,40 +137,32 @@ public class Salle {
 		else System.out.println("Le borne n'existe pas.");
 	}
 
-	public void desactiverAppareil(Equipement equi) {
-		if(equi instanceof Routeur){
-			Routeur rout=rechercherRouteur(equi.getMac());
+	public void activerDesactiverAppareil(String mac,boolean power) {
+			Routeur rout=rechercherRouteur(mac);
 			if(rout !=null){
-				rout.setPower(false);
-				rout.desactiverAppareil();//TODO ffff
+				rout.activerDesactiverAppareil(power);
+				rout.activerDesactiverOrdinateur(power);
+				return;
 			}
-			else System.out.println("Le routeur non trouvé, impossible de le désactiver.");
-		}		
-		else if(equi instanceof BorneSansFil){
-			BorneSansFil bo=rechercherBorne(equi.getMac());
-			if(bo !=null){
-				bo.setPower(false);
-				bo.supprimerAppareil();
-			}
-			else System.out.println("La borne non trouvée, impossible de la désactiver.");
-		}
-		else if(equi instanceof Ordinateur){
-			for(Routeur rout :routeurs){
-				if(rout.chercherOrdinateur((Ordinateur)equi)){
-					rout.desactiverAppareil((Ordinateur)equi);
+			else{
+				BorneSansFil bo=rechercherBorne(mac);
+				if(bo!=null){
+					bo.activerDesactiverAppareil(power);
+					bo.activerDesactiverTablette(power);
 					return;
-				}				
+				}
+				else{
+					for(Routeur routIterateur :routeurs){
+						boolean trouve=routIterateur.activerDesactiverAppareil(mac,power);
+						if(trouve) return;
+					}
+					
+					for(BorneSansFil boIte :bornes){
+							boolean trouve=boIte.activerDesactiverAppareil(mac,power);
+							if(trouve) return;				
+					}	
+					System.out.println("L'équipement non trouvé.");
+				}
 			}
-			System.out.println("L'odinateur non trouvé, impossible de la désactiver.");
-		}
-		else if(equi instanceof Tablette){
-			for(BorneSansFil bo :bornes){
-				if(bo.chercherTablette((BorneSansFil)equi)){
-					bo.desactiverAppareil((BorneSansFil)equi);
-					return;
-				}				
-			}
-			System.out.println("La tablette non trouvée, impossible de couper la liaison wifi.");
-		}
 	}
 }

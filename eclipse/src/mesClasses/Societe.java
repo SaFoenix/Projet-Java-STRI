@@ -45,7 +45,7 @@ public class Societe {
 	private Local rechercherLocal(String nomL){
 		
 		for(Local locRech : locaux){
-			if(nomL==locRech.getNom()){
+			if(locRech.getNom().equalsIgnoreCase(nomL)){
 				return locRech;
 			}
 		}
@@ -54,7 +54,7 @@ public class Societe {
 	public void ajouterLocal(String nomL,String localisation){
 		Local nouvLocal=new Local(nomL,localisation);
 		for(Local loc : locaux){
-			if(loc.getNom()==nomL){
+			if(loc.getNom().equalsIgnoreCase(nomL)){
 				System.out.println("Le local "+nomL+" existe déjà.");
 				return;
 			}
@@ -90,7 +90,6 @@ public class Societe {
 		str="Société: "+nom+" ["+localisation+"]\n";
 		for(Local loc:locaux){
 			str+=loc.toString();
-			str+="\n";
 		}
 		return str;
 	}
@@ -126,10 +125,10 @@ public class Societe {
 		else System.out.println("Le local n'existe pas");
 	}
 	
-	public void desactiverAppareil(Equipement equi,String nomL,Integer numero,Integer etage){
+	public void activerDesactiverAppareil(String mac,String nomL,Integer numero,Integer etage,boolean power){
 		Local loc=rechercherLocal(nomL);
 		if(loc!=null){
-			loc.desactiverAppareil(equi,numero,etage);
+			loc.activerDesactiverAppareil(mac,numero,etage,power);
 		}
 		else System.out.println("Le local n'existe pas");
 	}

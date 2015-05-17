@@ -136,11 +136,11 @@ public class Local {
 		System.out.println("La salle "+numero+" etage "+etage+" n'existe pas, "+str);
 	}
 	
-	public void desactiverAppareil(Equipement equi, Integer numero,
-			Integer etage) {
+	public void activerDesactiverAppareil(String mac, Integer numero,
+			Integer etage,boolean power) {
 		Salle sal=rechercherSalle(numero, etage);
 		if(sal!=null){
-			sal.desactiverAppareil(equi);
+			sal.activerDesactiverAppareil(mac,power);
 		}
 		else messageNonTrouve(numero, etage,"l'equipement ne peut pas être désactivé.");
 	}

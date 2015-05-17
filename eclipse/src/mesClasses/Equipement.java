@@ -99,4 +99,22 @@ public abstract class Equipement {
 		str+=os.toString()+"\n";
 		return str;
 	}
+	
+	public void activerDesactiverAppareil(boolean pow){
+		String str;
+		if(this instanceof Ordinateur){
+			str="L'ordinateur ";
+		}
+		else if(this instanceof Tablette){
+			str="La Tablette ";
+		}
+		else if(this instanceof Routeur){
+			str="Le routeur ";
+		}
+		else {
+			str="La borne Wifi ";
+		}
+		str+=(getNom()+" est "+(pow?"activé.":"désactivé."));		
+		System.out.println(str);
+	}
 }

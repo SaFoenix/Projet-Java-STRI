@@ -51,6 +51,11 @@ public class Routeur extends Equipement {
 	}
 	
 	public void connecterOrdinateur(Ordinateur ordi){
+		Ordinateur ordiRech=rechercherOrdinateur(ordi.getMac());
+		if(ordiRech!=null){
+			System.out.println("L'ordinateur est déjà dans la salle.");
+			return;
+		}		
 		int portLibre=obtenirPortLibre();
 		if(portLibre!=-1){
 			System.out.println("ajout de l'ordinateur "+ordi.getNom() +" sur le routeur "+ this.getNom()+" sur le port "+ portLibre+".");
@@ -59,14 +64,6 @@ public class Routeur extends Equipement {
 		else System.out.println("Le routeur n'a pas de port de libre.");
 	}	
 	
-	public void deconnecterEquipement(Integer numeroPort){
-		ordinateurs[numeroPort]=null;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
 	public String toString() {
 		String str=super.toString();
 		str+="nombre de ports: "+getNombrePorts()+"\n";
@@ -77,5 +74,31 @@ public class Routeur extends Equipement {
 			else str+="Vide\n";
 		}
 		return str;
+	}
+
+	public void activerDesactiverOrdinateur(boolean power) {
+				for(int i=0;i<ordinateurs.length;i++){
+					if(ordinateurs[i]!=null){
+						ordinateurs[i].activerDesactiverAppareil(power);
+					}
+				}
+	}	
+	
+	public Ordinateur rechercherOrdinateur(String mac){
+		for(int i=0;i<ordinateurs.length;i++){
+			if(ordinateurs[i]!=null && ordinateurs[i].getMac().equalsIgnoreCase(mac)){
+				return ordinateurs[i];
+			}
+		}
+		return null;
+	}
+	
+	public boolean activerDesactiverAppareil(String mac,boolean power){
+		Ordinateur ordiRech=rechercherOrdinateur(mac);
+		if(ordiRech!=null){
+			ordiRech.activerDesactiverAppareil(power);
+			return true;
+		}
+		return false;
 	}
 }
