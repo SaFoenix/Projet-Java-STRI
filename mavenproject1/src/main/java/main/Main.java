@@ -9,12 +9,12 @@ package main;
  *
  * @author guigui
  */
-public class java extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form java
      */
-    public java() {
+    public Main() {
         initComponents();
     }
 
@@ -60,20 +60,21 @@ public class java extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Main.util.logging.Logger.getLogger(Main.class.getName()).log(Main.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Main.util.logging.Logger.getLogger(Main.class.getName()).log(Main.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Main.util.logging.Logger.getLogger(Main.class.getName()).log(Main.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(java.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Main.util.logging.Logger.getLogger(Main.class.getName()).log(Main.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        Main.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new java().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }
