@@ -18,3 +18,4 @@ local.properties
 .externalToolBuilders/
 .classpath
 
+/mavenproject1/target/
