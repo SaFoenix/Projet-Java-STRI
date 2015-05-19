@@ -25,7 +25,7 @@ public class Societe {
 	
 	/**
 	 * @param nom
-	 * @param locaux
+	 * @param localisation
 	 */
 	public Societe(String nom,String localisation) {
 		this.nom = nom;

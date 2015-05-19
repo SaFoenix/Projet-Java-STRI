@@ -4,12 +4,12 @@
 package mesClasses;
 
 /**
- * La classe abstraite Equipement
+ * La classe Equipement
  * 
  * @author STRI_JAVA
  *
  */
-public abstract class Equipement {
+public class Equipement {
 	/**
 	 * L'adresse MAC de l'equipement, ne peut pas être modifée une fois l'equipement créé, est unique
 	 */
@@ -117,4 +117,14 @@ public abstract class Equipement {
 		str+=(getNom()+" est "+(pow?"activé.":"désactivé."));		
 		System.out.println(str);
 	}
+        
+        public void miseAJour(Os newOs){
+            if(newOs.getNomOs().equalsIgnoreCase(os.getNomOs()) && newOs.getVersion().equalsIgnoreCase(os.getVersion())){
+                System.out.println("L'os est le même, mise à jour inutile.");
+            }
+            else {
+                System.out.println("Mise a jour de l'equipement.");
+                this.setOs(newOs);
+            }
+        }
 }

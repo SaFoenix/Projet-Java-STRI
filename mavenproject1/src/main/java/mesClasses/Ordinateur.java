@@ -17,7 +17,6 @@ public class Ordinateur extends Equipement {
 	/**
 	 * @param mac
 	 * @param nom
-	 * @param connectique
 	 * @param marque
 	 * @param power
 	 * @param os

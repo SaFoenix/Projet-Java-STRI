@@ -31,6 +31,7 @@ public class Local {
 	
 	/**
 	 * @param nom
+         * @param localisation
 	 */
 	public Local(String nom,String localisation) {
 		this.nom = nom;
@@ -40,7 +41,7 @@ public class Local {
 
 	private Salle rechercherSalle(Integer numero,Integer etage){
 		for(Salle salleRech :salles){
-			if(salleRech.getEtage()==etage && salleRech.getNumero()==numero){
+			if((salleRech.getEtage()==etage) && (salleRech.getNumero()==numero)){
 				return salleRech;
 			}
 		}		

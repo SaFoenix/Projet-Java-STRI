@@ -3,9 +3,6 @@
  */
 package mesClasses;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * @author guigui
  *
@@ -20,7 +17,6 @@ public class Routeur extends Equipement {
 	 * @param power
 	 * @param os
 	 * @param nombrePorts
-	 * @param ordinateurs
 	 */
 	public Routeur(String mac, String nom, String marque,
 			boolean power, Os os, Integer nombrePorts) {
@@ -77,11 +73,11 @@ public class Routeur extends Equipement {
 	}
 
 	public void activerDesactiverOrdinateur(boolean power) {
-				for(int i=0;i<ordinateurs.length;i++){
-					if(ordinateurs[i]!=null){
-						ordinateurs[i].activerDesactiverAppareil(power);
-					}
-				}
+		for(int i=0;i<ordinateurs.length;i++){
+                    if(ordinateurs[i]!=null){
+			ordinateurs[i].activerDesactiverAppareil(power);
+                    }
+		}
 	}	
 	
 	public Ordinateur rechercherOrdinateur(String mac){
