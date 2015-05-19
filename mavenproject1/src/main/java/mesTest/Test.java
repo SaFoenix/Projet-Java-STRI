@@ -68,7 +68,7 @@ public class Test {
 			so.activerDesactiverAppareil("ff:ff:dd:ff", "Local1", 0, 1, false);
 			so.activerDesactiverAppareil("ff:ff:dd:ff", "Local1", 0, 1, true);
 			so.activerDesactiverAppareil("aaqq", "Local1", 0, 1, false);
-                        Os os2=new Os("Mate", "Linux")
+                        Os os2=new Os("Mate", "Linux");
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os);
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os2);
                         System.out.println(so.toString());

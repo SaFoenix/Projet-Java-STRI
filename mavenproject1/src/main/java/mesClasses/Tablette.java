@@ -69,10 +69,6 @@ public class Tablette extends Equipement {
 		this.modele = modele;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
 	public String toString() {
 		String str=super.toString();
 		str+="capacite=" + capacite + ", modele=" + modele+"\n";
