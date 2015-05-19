@@ -145,4 +145,12 @@ public class Local {
 		}
 		else messageNonTrouve(numero, etage,"l'equipement ne peut pas être désactivé.");
 	}
+        
+        public void miseAJour(Integer numero,Integer etage,String mac, Os newOs){
+            Salle sal=rechercherSalle(numero, etage);
+            if(sal!=null){
+                sal.miseAJour(mac, newOs);
+            }
+            else messageNonTrouve(numero, etage, "l'equipement ne peut pas mis à jour.");
+        }
 }

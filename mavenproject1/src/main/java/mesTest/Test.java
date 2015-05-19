@@ -61,13 +61,17 @@ public class Test {
 			so.connecterTablette(t5, "Local1", 1, 0, "efefef");
 			so.connecterTablette(t6, "Local2", 1, 0, "efefeeeeef");
 			
-			///System.out.println(so.toString());
+			
 			so.activerDesactiverAppareil("Mact1zef", "Local2", 0, 1, true);	
 			so.activerDesactiverAppareil("Mact1zef", "Local2", 0, 1, false);
 			so.activerDesactiverAppareil("efefeeeeef", "Local2", 0, 1, true);
 			so.activerDesactiverAppareil("ff:ff:dd:ff", "Local1", 0, 1, false);
 			so.activerDesactiverAppareil("ff:ff:dd:ff", "Local1", 0, 1, true);
 			so.activerDesactiverAppareil("aaqq", "Local1", 0, 1, false);
+                        Os os2=new Os("Mate", "Linux")
+                        so.miseAJour("Local2", 0, 1, "efefeeeeef", os);
+                        so.miseAJour("Local2", 0, 1, "efefeeeeef", os2);
+                        System.out.println(so.toString());
 	}
 
 }
