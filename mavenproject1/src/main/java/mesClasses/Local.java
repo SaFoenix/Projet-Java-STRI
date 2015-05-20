@@ -3,6 +3,7 @@
  */
 package mesClasses;
 
+import java.awt.Component;
 import java.util.ArrayList;
 
 /**
@@ -248,5 +249,12 @@ public class Local {
         } else {
             messageNonTrouve(numero, etage, "l'equipement ne peut pas mis à jour.");
         }
+    }
+/**
+ * retourne la localisation du local
+ * @return localisation
+ */
+    public String getlocalisation() {
+        return localisation;
     }
 }

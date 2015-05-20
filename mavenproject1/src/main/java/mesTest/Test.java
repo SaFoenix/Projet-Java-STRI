@@ -61,8 +61,7 @@ public class Test {
 			so.connecterTablette(t4, "Local1", 1, 0, "efefef");
 			so.connecterTablette(t5, "Local1", 1, 0, "efefef");
 			so.connecterTablette(t6, "Local2", 1, 0, "efefeeeeef");
-			
-			
+						
 			so.activerDesactiverAppareil("Mact1zef", "Local2", 0, 1, true);	
 			so.activerDesactiverAppareil("Mact1zef", "Local2", 0, 1, false);
 			so.activerDesactiverAppareil("efefeeeeef", "Local2", 0, 1, true);
