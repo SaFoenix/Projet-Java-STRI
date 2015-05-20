@@ -490,10 +490,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EtageSalleActionPerformed
 
     private void OngletSalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletSalleMouseClicked
-        AddRouter.setVisible(true);
-        AddComputer.setVisible(true);
-        AddBorne.setVisible(true);
-        AddTablet.setVisible(true);
+        AddRouter.setEnabled(true);
+        AddComputer.setEnabled(true);
+        AddBorne.setEnabled(true);
+        AddTablet.setEnabled(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_OngletSalleMouseClicked
 
