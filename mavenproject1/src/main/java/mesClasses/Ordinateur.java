@@ -102,6 +102,12 @@ public class Ordinateur extends Equipement {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
+
+    /**
+     *
+     * @return
+     */
+    
 	@Override
 	public String toString() {
 		String str=super.toString();

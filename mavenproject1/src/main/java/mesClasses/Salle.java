@@ -209,7 +209,6 @@ public class Salle {
      * Active ou désactive un equipement donc l'adresse Mac est donnée en
      * paramètre
      *
-     *
      * @param mac La mac de l'equipement
      * @param power true pour activer, false pour désactiver
      */
