@@ -73,9 +73,6 @@ public class Test {
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os);
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os2);
                         System.out.println(so.toString());
-                        MySql bdd = new MySql();
-                        bdd.Connection();
-                        bdd.AjoutSociete("TomZzy","Paris");
                         
 	}
 

@@ -25,16 +25,13 @@ public class MySql {
     }
     
     public void Connection(){
-         try {
+     
       Class.forName("com.mysql.jdbc.Driver");
       System.out.println("Driver O.K.");
       
       connection = DriverManager.getConnection(url, host, pwd);
       System.out.println("Connexion effective !");         
-      }
-      catch (Exception e) {
-      e.printStackTrace();
-    }     
+      
          
     }
     
