@@ -345,7 +345,6 @@ public class Main extends javax.swing.JFrame {
     private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
         AddRoom.setEnabled(true);      // TODO add your handling code here:     /* au clic sur un local, active le bouton ajouter salle */
     }//GEN-LAST:event_OngletLocalMouseClicked
-<<<<<<< HEAD
 
     private void AddRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddRoomMouseClicked
         SalleDialog.setVisible(true);                      // TODO add your handling code here:
@@ -387,8 +386,6 @@ public class Main extends javax.swing.JFrame {
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
-=======
->>>>>>> 3cce439f0110ad86f310772b037e0eff04fdd466
  
     /**
      * @param args the command line arguments
