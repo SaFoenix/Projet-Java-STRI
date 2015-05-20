@@ -48,11 +48,7 @@ public class Main extends javax.swing.JFrame {
         AddComputer = new javax.swing.JButton();
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
-<<<<<<< HEAD
         ongletLocal = new javax.swing.JTabbedPane();
-=======
-        OngletLocal = new javax.swing.JTabbedPane();
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -250,22 +246,15 @@ public class Main extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-<<<<<<< HEAD
                 .addComponent(ongletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE))
-=======
-                .addComponent(OngletLocal))
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
                     .addComponent(ongletLocal)
-=======
-                    .addComponent(OngletLocal)
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
+
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(STRI)
@@ -321,13 +310,9 @@ public class Main extends javax.swing.JFrame {
 
     private void LocalOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalOkMouseClicked
         JTabbedPane testlocal = new JTabbedPane();
-<<<<<<< HEAD
         Local loc=new Local(LocalName.getText(), LieuLocal.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         ongletLocal.addTab(loc.getNom()+"["+loc.getlocalisation()+"]", testlocal);
-=======
-        OngletLocal.addTab(LocalName.getText(), testlocal);
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
         LocalName.setText("");
         LocalDialog.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkMouseClicked
