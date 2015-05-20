@@ -173,7 +173,11 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <Component id="ongletLocal" pref="1147" max="32767" attributes="0"/>
+=======
+              <Component id="OngletLocal" max="32767" attributes="0"/>
+>>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
           </Group>
       </Group>
     </DimensionLayout>
@@ -182,7 +186,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Component id="ongletLocal" max="32767" attributes="0"/>
+=======
+                  <Component id="OngletLocal" max="32767" attributes="0"/>
+>>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="STRI" min="-2" max="-2" attributes="0"/>
@@ -202,7 +210,7 @@
                       <Component id="Update" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Disable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -213,6 +221,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="AddLocal">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Local"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -228,48 +239,101 @@
     </Component>
     <Component class="javax.swing.JButton" name="AddRoom">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Salle"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="AddRoomStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddRoomActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="/* Tous les boutons sauf &quot;ajouter local&quot; sont d&#xe9;sactiv&#xe9;s de base, et ne seront activ&#xe9;s que par interm&#xe9;diaire d&apos;&#xe9;v&#xe9;nement */&#xa;AddRoom.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="AddComputer">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Ordinateur"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddComputer.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="Disable">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="D&#xe9;sactiver"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DisableActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Disable.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="Update">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mettre &#xe0; jour"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Update.setEnabled(false);"/>
+      </AuxValues>
     </Component>
+<<<<<<< HEAD
     <Container class="javax.swing.JTabbedPane" name="ongletLocal">
+=======
+    <Container class="javax.swing.JTabbedPane" name="OngletLocal">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OngletLocalMouseClicked"/>
+      </Events>
+>>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
     </Container>
     <Component class="javax.swing.JButton" name="AddRouter">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Routeur"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddRouterActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddRouter.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="AddBorne">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Borne"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddBorne.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="AddTablet">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Tablette"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddTablet.setEnabled(false);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="STRI">
       <Properties>
