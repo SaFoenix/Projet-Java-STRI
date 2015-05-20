@@ -42,23 +42,12 @@ public class Main extends javax.swing.JFrame {
         CreationLocal = new javax.swing.JLabel();
         LieuLocal = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        SalleDialog = new javax.swing.JDialog();
-        CreationSalle = new javax.swing.JLabel();
-        NumeroSalle = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        SalleOk = new javax.swing.JButton();
-        SalleCancel = new javax.swing.JButton();
-        EtageSalle = new javax.swing.JTextField();
-        NombreOrdinateurSalle = new javax.swing.JTextField();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         OngletLocal = new javax.swing.JTabbedPane();
-        OngletSalle = new javax.swing.JTabbedPane();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -155,97 +144,6 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        SalleDialog.setMinimumSize(new java.awt.Dimension(420, 320));
-
-        CreationSalle.setText("Création Salle");
-
-        NumeroSalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumeroSalleActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("numéro");
-
-        jLabel3.setText("étage");
-
-        jLabel4.setText("nombre ordinateur");
-
-        SalleOk.setText("Valider");
-        SalleOk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalleOkMouseClicked(evt);
-            }
-        });
-
-        SalleCancel.setText("Annuler");
-        SalleCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalleCancelMouseClicked(evt);
-            }
-        });
-        SalleCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalleCancelActionPerformed(evt);
-            }
-        });
-
-        EtageSalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EtageSalleActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SalleDialogLayout = new javax.swing.GroupLayout(SalleDialog.getContentPane());
-        SalleDialog.getContentPane().setLayout(SalleDialogLayout);
-        SalleDialogLayout.setHorizontalGroup(
-            SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SalleDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SalleDialogLayout.createSequentialGroup()
-                        .addComponent(CreationSalle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(NumeroSalle)
-                    .addComponent(EtageSalle)
-                    .addComponent(NombreOrdinateurSalle))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalleDialogLayout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
-                .addComponent(SalleOk)
-                .addGap(40, 40, 40)
-                .addComponent(SalleCancel)
-                .addGap(81, 81, 81))
-        );
-        SalleDialogLayout.setVerticalGroup(
-            SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SalleDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CreationSalle)
-                .addGap(18, 18, 18)
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NumeroSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(EtageSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(NombreOrdinateurSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SalleCancel)
-                    .addComponent(SalleOk))
-                .addGap(24, 24, 24))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -276,11 +174,6 @@ public class Main extends javax.swing.JFrame {
                 AddRoomStateChanged(evt);
             }
         });
-        AddRoom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddRoomMouseClicked(evt);
-            }
-        });
         AddRoom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddRoomActionPerformed(evt);
@@ -306,13 +199,6 @@ public class Main extends javax.swing.JFrame {
                 OngletLocalMouseClicked(evt);
             }
         });
-
-        OngletSalle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OngletSalleMouseClicked(evt);
-            }
-        });
-        OngletLocal.addTab("TestLocal", OngletSalle);
 
         AddRouter.setBackground(new java.awt.Color(0, 204, 204));
         AddRouter.setText("Ajouter Routeur");
@@ -359,7 +245,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 1123, Short.MAX_VALUE))
+                .addComponent(OngletLocal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,7 +272,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 395, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -459,6 +345,7 @@ public class Main extends javax.swing.JFrame {
     private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
         AddRoom.setEnabled(true);      // TODO add your handling code here:     /* au clic sur un local, active le bouton ajouter salle */
     }//GEN-LAST:event_OngletLocalMouseClicked
+<<<<<<< HEAD
 
     private void AddRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddRoomMouseClicked
         SalleDialog.setVisible(true);                      // TODO add your handling code here:
@@ -500,6 +387,8 @@ public class Main extends javax.swing.JFrame {
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
+=======
+>>>>>>> 3cce439f0110ad86f310772b037e0eff04fdd466
  
     /**
      * @param args the command line arguments
@@ -545,27 +434,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton AddRouter;
     private javax.swing.JButton AddTablet;
     private javax.swing.JLabel CreationLocal;
-    private javax.swing.JLabel CreationSalle;
     private javax.swing.JButton Disable;
-    private javax.swing.JTextField EtageSalle;
     private javax.swing.JLabel LieuLocal;
     private javax.swing.JButton LocalCancel;
     private javax.swing.JDialog LocalDialog;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
     private javax.swing.JLabel NomLocal;
-    private javax.swing.JTextField NombreOrdinateurSalle;
-    private javax.swing.JTextField NumeroSalle;
     private javax.swing.JTabbedPane OngletLocal;
-    private javax.swing.JTabbedPane OngletSalle;
     private javax.swing.JLabel STRI;
-    private javax.swing.JButton SalleCancel;
-    private javax.swing.JDialog SalleDialog;
-    private javax.swing.JButton SalleOk;
     private javax.swing.JButton Update;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
