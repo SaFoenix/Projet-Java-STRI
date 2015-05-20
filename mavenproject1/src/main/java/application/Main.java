@@ -47,7 +47,7 @@ public class Main extends javax.swing.JFrame {
         AddComputer = new javax.swing.JButton();
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        OngletLocal = new javax.swing.JTabbedPane();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -147,6 +147,7 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
+        AddLocal.setBackground(new java.awt.Color(0, 204, 204));
         AddLocal.setText("Ajouter Local");
         AddLocal.setFocusable(false);
         AddLocal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -166,10 +167,23 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        AddRoom.setBackground(new java.awt.Color(0, 204, 204));
         AddRoom.setText("Ajouter Salle");
+        AddRoom.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                AddRoomStateChanged(evt);
+            }
+        });
+        AddRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddRoomActionPerformed(evt);
+            }
+        });
 
+        AddComputer.setBackground(new java.awt.Color(0, 204, 204));
         AddComputer.setText("Ajouter Ordinateur");
 
+        Disable.setBackground(new java.awt.Color(0, 204, 204));
         Disable.setText("Désactiver");
         Disable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,8 +191,16 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Update.setBackground(new java.awt.Color(0, 204, 204));
         Update.setText("Mettre à jour");
 
+        OngletLocal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OngletLocalMouseClicked(evt);
+            }
+        });
+
+        AddRouter.setBackground(new java.awt.Color(0, 204, 204));
         AddRouter.setText("Ajouter Routeur");
         AddRouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,8 +208,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        AddBorne.setBackground(new java.awt.Color(0, 204, 204));
         AddBorne.setText("Ajouter Borne");
 
+        AddTablet.setBackground(new java.awt.Color(0, 204, 204));
         AddTablet.setText("Ajouter Tablette");
 
         STRI.setText("STRI");
@@ -221,14 +245,14 @@ public class Main extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE))
+                .addComponent(OngletLocal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(OngletLocal)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(STRI)
@@ -248,9 +272,18 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 400, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        /* Tous les boutons sauf "ajouter local" sont désactivés de base, et ne seront activés que par intermédiaire d'événement */
+        AddRoom.setEnabled(false);
+        AddComputer.setEnabled(false);
+        Disable.setEnabled(false);
+        Update.setEnabled(false);
+        AddRouter.setEnabled(false);
+        AddBorne.setEnabled(false);
+        AddTablet.setEnabled(false);
 
         bindingGroup.bind();
 
@@ -275,7 +308,7 @@ public class Main extends javax.swing.JFrame {
 
     private void LocalOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalOkMouseClicked
         JTabbedPane testlocal = new JTabbedPane();
-        jTabbedPane1.addTab(LocalName.getText(), testlocal);
+        OngletLocal.addTab(LocalName.getText(), testlocal);
         LocalName.setText("");
         LocalDialog.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkMouseClicked
@@ -301,6 +334,18 @@ public class Main extends javax.swing.JFrame {
         LocalDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_LocalCancelMouseClicked
 
+    private void AddRoomStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AddRoomStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddRoomStateChanged
+
+    private void AddRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRoomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddRoomActionPerformed
+
+    private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
+        AddRoom.setEnabled(true);      // TODO add your handling code here:     /* au clic sur un local, active le bouton ajouter salle */
+    }//GEN-LAST:event_OngletLocalMouseClicked
+ 
     /**
      * @param args the command line arguments
      */
@@ -352,12 +397,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
     private javax.swing.JLabel NomLocal;
+    private javax.swing.JTabbedPane OngletLocal;
     private javax.swing.JLabel STRI;
     private javax.swing.JButton Update;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
