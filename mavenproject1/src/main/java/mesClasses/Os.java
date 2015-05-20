@@ -4,17 +4,33 @@
 package mesClasses;
 
 /**
- * @author guigui
+ * La classe OS permet de definir une systeme d'exploitation
+ * informations:
+ *  L'identifiant de l'os
+ *  La version de l'os
+ *  Le nom de l'os
+ * 
+ * @author STRI_JAVA
  *
  */
 public class Os {
+    /**
+     * L'identifiant de l'os
+     */
 	private Integer idOs;
+        /**
+         * La version de l'os
+         */
 	private String version;
+        /**
+         * Le nom de l'os
+         */
 	private String nomOs;
 	
 	/**
-	 * @param version
-	 * @param nomOs
+         * Le constructeur OS
+	 * @param version la version de l'os
+	 * @param nomOs Le nom de l'os
 	 */
 	public Os(String version, String nomOs) {
 		this.version = version;
