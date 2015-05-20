@@ -5,19 +5,8 @@
  */
 package application;
 
-      import javax.swing.JFrame;
-
-	import javax.swing.JLabel;
-
-	import javax.swing.JPanel;
-
-	import javax.swing.JTabbedPane;
-
-	import javax.swing.JButton;
-
-	import javax.swing.*;
-
-	import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 
 
 
@@ -341,6 +330,7 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Main().setVisible(true);
             }

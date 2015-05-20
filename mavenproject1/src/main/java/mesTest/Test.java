@@ -2,6 +2,7 @@
  * 
  */
 package mesTest;
+import java.sql.SQLException;
 import mesClasses.*;
 /**
  * @author STRI_JAVA
@@ -12,7 +13,7 @@ public class Test {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
 			Societe so=new Societe("So1", "Bordeaux");
 			Societe so1=new Societe("So2", "Bordeaux");
@@ -72,6 +73,7 @@ public class Test {
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os);
                         so.miseAJour("Local2", 0, 1, "efefeeeeef", os2);
                         System.out.println(so.toString());
+                        
 	}
 
 }
