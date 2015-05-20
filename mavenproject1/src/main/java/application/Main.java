@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package application;
-import mesClasses.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,13 +16,12 @@ import java.awt.*;
  * @author guigui
  */
 public class Main extends javax.swing.JFrame {
-     Societe so;
+
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        so=new Societe("STRI", "Toulouse");
     }
 
     /**
@@ -48,7 +47,7 @@ public class Main extends javax.swing.JFrame {
         AddComputer = new javax.swing.JButton();
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
-        ongletLocal = new javax.swing.JTabbedPane();
+        OngletLocal = new javax.swing.JTabbedPane();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -110,7 +109,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(LocalDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(NomLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                             .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -246,15 +245,14 @@ public class Main extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(ongletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE))
+                .addComponent(OngletLocal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ongletLocal)
-
+                    .addComponent(OngletLocal)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(STRI)
@@ -310,9 +308,7 @@ public class Main extends javax.swing.JFrame {
 
     private void LocalOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalOkMouseClicked
         JTabbedPane testlocal = new JTabbedPane();
-        Local loc=new Local(LocalName.getText(), LieuLocal.getText());
-        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        ongletLocal.addTab(loc.getNom()+"["+loc.getlocalisation()+"]", testlocal);
+        OngletLocal.addTab(LocalName.getText(), testlocal);
         LocalName.setText("");
         LocalDialog.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkMouseClicked
@@ -408,7 +404,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTabbedPane ongletLocal;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

@@ -173,11 +173,7 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <Component id="ongletLocal" pref="1147" max="32767" attributes="0"/>
-=======
               <Component id="OngletLocal" max="32767" attributes="0"/>
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
           </Group>
       </Group>
     </DimensionLayout>
@@ -186,11 +182,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                  <Component id="ongletLocal" max="32767" attributes="0"/>
-=======
                   <Component id="OngletLocal" max="32767" attributes="0"/>
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="STRI" min="-2" max="-2" attributes="0"/>
@@ -288,14 +280,10 @@
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Update.setEnabled(false);"/>
       </AuxValues>
     </Component>
-<<<<<<< HEAD
-    <Container class="javax.swing.JTabbedPane" name="ongletLocal">
-=======
     <Container class="javax.swing.JTabbedPane" name="OngletLocal">
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OngletLocalMouseClicked"/>
       </Events>
->>>>>>> 276ad00ac78e4ee0f04b3b3939dbccc2cf1da309
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
     </Container>
