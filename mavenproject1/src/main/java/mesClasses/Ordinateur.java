@@ -4,7 +4,14 @@
 package mesClasses;
 
 /**
+ * La classe Ordinateur definit un ordinateur, classe derivée de Equipement
+ * informations:
+ *  La ram
+ *  CPU
+ *  GPU
+ *  HDD
  * 
+ * @see Equipement
  * @author STRI_JAVA
  *
  */
@@ -15,15 +22,16 @@ public class Ordinateur extends Equipement {
 	private String hdd;
 
 	/**
-	 * @param mac
-	 * @param nom
-	 * @param marque
-	 * @param power
-	 * @param os
-	 * @param ram
-	 * @param cpu
-	 * @param gpu
-	 * @param hdd
+         * Le constructeur de Ordinateur
+	 * @param mac l'adresse mac de l'ordinateir
+	 * @param nom le nom de l'ordinateur
+	 * @param marque la marque de l'ordinateur
+	 * @param power l'etat de l'ordinateur
+	 * @param os L'os de l'ordinatuer
+	 * @param ram la ram de l' ordinateur
+	 * @param cpu le cpu de l'ordinatuer 
+	 * @param gpu le gpu de l'ordinateur
+	 * @param hdd le disque dur de l'ordinateur
 	 */
 	public Ordinateur(String mac, String nom,
 			String marque, boolean power,Os os, String ram, String cpu, String gpu,
