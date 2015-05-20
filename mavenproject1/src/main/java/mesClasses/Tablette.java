@@ -4,7 +4,7 @@
 package mesClasses;
 
 /**
- * La classe permet de définir un tablette, elle est une sous classe d'appareil
+ * La classe permet de définir un tablette, elle est une classe dérivée de Equipement
  * On y trouve comme informations:
  * la capacité de stockage de l'appareil
  * le modele de l'appareil
@@ -26,13 +26,14 @@ public class Tablette extends Equipement {
 	private Integer modele;
 
 	/**
-	 * @param mac
+         * Le constructeur de Tablette
+	 * @param mac 
 	 * @param nom
 	 * @param marque
 	 * @param power
 	 * @param os
-	 * @param capacite
-	 * @param modele
+	 * @param capacite la capacité de la tablette
+	 * @param modele le modele de la tablette
 	 */
 	public Tablette(String mac, String nom, String marque,
 			boolean power, Os os, String capacite, Integer modele) {
@@ -49,24 +50,10 @@ public class Tablette extends Equipement {
 	}
 
 	/**
-	 * @param capacite the capacite to set
-	 */
-	public void setCapacite(String capacite) {
-		this.capacite = capacite;
-	}
-
-	/**
 	 * @return the modele
 	 */
 	public Integer getModele() {
 		return modele;
-	}
-
-	/**
-	 * @param modele the modele to set
-	 */
-	public void setModele(Integer modele) {
-		this.modele = modele;
 	}
 
 	public String toString() {

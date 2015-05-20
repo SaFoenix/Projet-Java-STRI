@@ -6,10 +6,12 @@ package mesClasses;
 import java.util.ArrayList;
 
 /**
- * La classe société permet de définir une société. On y trouve les
- * informationssuivantes: L'id de la société qui unique et non modifiable Le nom
- * de la société La ville où elle est domiciliée. La liste de locaux qu'elle
- * possède.
+ * La classe société permet de définir une société. 
+ * On y trouve les informationssuivantes: 
+ * L'id de la société qui unique et non modifiable 
+ * Le nom de la société 
+ * La ville où elle est domiciliée. 
+ * La liste de locaux qu'elle possède.
  *
  * @author STRI_JAVA
  */

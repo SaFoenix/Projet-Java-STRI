@@ -6,9 +6,14 @@ package mesClasses;
 import java.util.ArrayList;
 
 /**
- * La classe Salle permet de définir une salle informations: Identifiant de la
- * salle L'etage de la salle Le numero de la salle Le nombre d'ordinateur que
- * peut contenir la salle La liste des routeurs La liste des bornes Wifi
+ * La classe Salle permet de définir une salle
+ * informations: 
+ * Identifiant de la salle 
+ * L'etage de la salle
+ * Le numero de la salle 
+ * Le nombre d'ordinateur que peut contenir la salle 
+ * La liste des routeurs 
+ * La liste des bornes Wifi
  *
  * @author STRI_JAVA
  *

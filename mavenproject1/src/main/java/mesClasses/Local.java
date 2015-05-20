@@ -6,9 +6,10 @@ package mesClasses;
 import java.util.ArrayList;
 
 /**
- * La classe Local permet de definir un local d'une société elle est definie par
- * un identifiant unique attribuée définitivement elle a un nom qui peut être
- * modifiée elle a un nom de la ville elle a une liste de salles
+ * La classe Local permet de definir un local d'une société 
+ * elle est definie par un identifiant unique attribuée définitivement 
+ * elle a un nom qui peut être modifiée 
+ * elle a un nom de la ville elle a une liste de salles
  *
  * @author STRI_JAVA
  *
