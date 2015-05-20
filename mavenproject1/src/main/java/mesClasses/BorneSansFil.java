@@ -6,8 +6,8 @@ package mesClasses;
 import java.util.ArrayList;
 
 /**
+ * 
  * @author STRI_JAVA
- *
  */
 public class BorneSansFil extends Equipement {
 	private ArrayList<Tablette> tablettes;
