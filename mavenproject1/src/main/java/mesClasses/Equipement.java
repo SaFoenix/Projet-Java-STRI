@@ -54,45 +54,55 @@ public class Equipement {
         this.power = power;
         this.os = os;
     }
-/**
- * 
- * @return  la mac de l'equipement
- */
+
+    /**
+     *
+     * @return la mac de l'equipement
+     */
     public String getMac() {
         return mac;
     }
-/**
- * retourne le nom de l'equipement
- * @return Le nom de l'equipement
- */
+
+    /**
+     * retourne le nom de l'equipement
+     *
+     * @return Le nom de l'equipement
+     */
     public String getNom() {
         return nom;
     }
-/**
- * modifie le nom de l'equipement
- * @param nom le nouveau nom de l'equipement
- */
+
+    /**
+     * modifie le nom de l'equipement
+     *
+     * @param nom le nouveau nom de l'equipement
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
+
     /**
-     * 
+     *
      * @return la marque de l'equipement
      */
     public String getMarque() {
         return marque;
     }
-/**
- * retourne l'etat de l'equipement
- * @return l'etat de l'equipement
- */
+
+    /**
+     * retourne l'etat de l'equipement
+     *
+     * @return l'etat de l'equipement
+     */
     public boolean isPower() {
         return power;
     }
-/**
- * modifie l'etat de l'equipement
- * @param power nouvel etat de l'equipement
- */
+
+    /**
+     * modifie l'etat de l'equipement
+     *
+     * @param power nouvel etat de l'equipement
+     */
     public void setPower(boolean power) {
         this.power = power;
     }
@@ -126,6 +136,11 @@ public class Equipement {
         return str;
     }
 
+     /**
+     * Active ou désactive un equipement donc l'adresse Mac est donnée en
+     * paramètre
+     * @param pow  true pour activer, false pour désactiver
+     */
     public void activerDesactiverAppareil(boolean pow) {
         String str;
         if (this instanceof Ordinateur) {
@@ -141,6 +156,10 @@ public class Equipement {
         System.out.println(str);
     }
 
+    /**
+     * Mise à jour d'un equipement dont l'adresse Mac est donnée en paramètre
+     * @param newOs Le nouvelle OS à installer sur l'equipement
+     */
     public void miseAJour(Os newOs) {
         if (newOs.getNomOs().equalsIgnoreCase(os.getNomOs()) && newOs.getVersion().equalsIgnoreCase(os.getVersion())) {
             System.out.println("L'os est le même, mise à jour inutile.");
