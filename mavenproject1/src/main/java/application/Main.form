@@ -112,6 +112,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="SalleDialog">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[420, 320]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -137,9 +142,9 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="58" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="SalleOk" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="SalleCancel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -166,8 +171,8 @@
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SalleCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SalleOk" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
@@ -200,20 +205,27 @@
             <Property name="text" type="java.lang.String" value="nombre ordinateur"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="SalleOk">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valider"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SalleOkMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="SalleCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Annuler"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SalleCancelMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SalleCancelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="EtageSalle">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EtageSalleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="NombreOrdinateurSalle">
         </Component>
@@ -397,6 +409,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="OngletSalle">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OngletSalleMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="TestLocal">

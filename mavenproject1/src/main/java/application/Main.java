@@ -48,8 +48,8 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SalleOk = new javax.swing.JButton();
+        SalleCancel = new javax.swing.JButton();
         EtageSalle = new javax.swing.JTextField();
         NombreOrdinateurSalle = new javax.swing.JTextField();
         AddLocal = new javax.swing.JButton();
@@ -155,6 +155,8 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        SalleDialog.setMinimumSize(new java.awt.Dimension(420, 320));
+
         CreationSalle.setText("Création Salle");
 
         NumeroSalle.addActionListener(new java.awt.event.ActionListener() {
@@ -169,14 +171,30 @@ public class Main extends javax.swing.JFrame {
 
         jLabel4.setText("nombre ordinateur");
 
-        jButton1.setText("Valider");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        SalleOk.setText("Valider");
+        SalleOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                SalleOkMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Annuler");
+        SalleCancel.setText("Annuler");
+        SalleCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SalleCancelMouseClicked(evt);
+            }
+        });
+        SalleCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalleCancelActionPerformed(evt);
+            }
+        });
+
+        EtageSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EtageSalleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SalleDialogLayout = new javax.swing.GroupLayout(SalleDialog.getContentPane());
         SalleDialog.getContentPane().setLayout(SalleDialogLayout);
@@ -199,9 +217,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalleDialogLayout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(SalleOk)
                 .addGap(40, 40, 40)
-                .addComponent(jButton2)
+                .addComponent(SalleCancel)
                 .addGap(81, 81, 81))
         );
         SalleDialogLayout.setVerticalGroup(
@@ -223,8 +241,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(NombreOrdinateurSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(SalleCancel)
+                    .addComponent(SalleOk))
                 .addGap(24, 24, 24))
         );
 
@@ -286,6 +304,12 @@ public class Main extends javax.swing.JFrame {
         OngletLocal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OngletLocalMouseClicked(evt);
+            }
+        });
+
+        OngletSalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OngletSalleMouseClicked(evt);
             }
         });
         OngletLocal.addTab("TestLocal", OngletSalle);
@@ -437,19 +461,45 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_OngletLocalMouseClicked
 
     private void AddRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddRoomMouseClicked
-            SalleDialog.setVisible(true);                      // TODO add your handling code here:
+        SalleDialog.setVisible(true);                      // TODO add your handling code here:
     }//GEN-LAST:event_AddRoomMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
         JPanel testsalle = new JPanel();
         OngletSalle.addTab(NumeroSalle.getText(), testsalle);
         NumeroSalle.setText("");
+        EtageSalle.setText("");
+        NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_SalleOkMouseClicked
 
     private void NumeroSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroSalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSalleActionPerformed
+
+    private void SalleCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleCancelMouseClicked
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        NombreOrdinateurSalle.setText("");
+        SalleDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleCancelMouseClicked
+
+    private void EtageSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EtageSalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EtageSalleActionPerformed
+
+    private void OngletSalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletSalleMouseClicked
+        AddRouter.setVisible(true);
+        AddComputer.setVisible(true);
+        AddBorne.setVisible(true);
+        AddTablet.setVisible(true);
+            // TODO add your handling code here:
+    }//GEN-LAST:event_OngletSalleMouseClicked
+
+    private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleCancelActionPerformed
  
     /**
      * @param args the command line arguments
@@ -509,10 +559,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane OngletLocal;
     private javax.swing.JTabbedPane OngletSalle;
     private javax.swing.JLabel STRI;
+    private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
+    private javax.swing.JButton SalleOk;
     private javax.swing.JButton Update;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
