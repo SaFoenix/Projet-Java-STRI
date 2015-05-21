@@ -17,9 +17,11 @@ public class Test {
 	public static void main(String[] args){
                        ArrayList societe = new ArrayList();
                        MySql bdd = new MySql();
-                     
+                      
                        bdd.Connexion();
-                       societe=bdd.SocieteLocal("Latelec");
+                       //societe=bdd.RecupererSociete();
+                       bdd.RecupererIdSociete("Latelec");
+                       //societe=bdd.SocieteLocal();
                        System.out.println(societe);
 	}
 

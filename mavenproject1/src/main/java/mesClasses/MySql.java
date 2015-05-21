@@ -35,6 +35,7 @@ public class MySql {
       System.out.println("Connexion effective !");         
       }
       catch (ClassNotFoundException | SQLException e) {
+          System.out.println("Erreur connexion!");           
     }     
          
     }
@@ -60,7 +61,7 @@ public class MySql {
     
     public void AjoutLocal(String nomL, String lieux){
 
-        Statement st=null;
+        Statement st;
         int idMax = 0;
         try {
             st = connexion.createStatement();
@@ -110,8 +111,8 @@ public class MySql {
         try {
             st=connexion.createStatement();
         
-        resultat = st.executeQuery( "SELECT  IdSociete, Nom,Lieux  FROM Societe;" );
-             System.out.println( "Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !" );
+            resultat = st.executeQuery( "SELECT  IdSociete, Nom,Lieux  FROM Societe;" );
+            System.out.println( "Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !" );
              
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
@@ -127,22 +128,18 @@ public class MySql {
         return societe;
     }
     
-    public ArrayList SocieteLocal(String nom){
+    public ArrayList SocieteLocal(){
         
-        ResultSet resultat = null;
-        ResultSet query = null;
+        ResultSet resultat;
         Statement st;
         String Lieux;
         String Nom;
-        int IdSociete;
+        int Id;
         ArrayList societe = new ArrayList();
+        
         try {
             st=connexion.createStatement();
-        
-            query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
-            IdSociete = query.getInt( "IdSociete" );
-            System.out.println("La societe a l'ID : "+IdSociete);
-            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal) ;;" );
+            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete=1 AND L.IdLocal=IdLocal) ;" );
             System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
              
         /* Récupération des données du résultat de la requête de lecture */
@@ -157,6 +154,25 @@ public class MySql {
         }
         return societe;     
     }
+    
+    public ArrayList RecupererIdSociete(String nom){
+        ResultSet resultat;
+        Statement st;
+        ArrayList Id= new ArrayList();
+        try {
+            st=connexion.createStatement();
+            resultat = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='Latelec';" );
+            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+        /* Récupération des données du résultat de la requête de lecture */
+           while ( resultat.next() ){ int numero = resultat.getInt( "IdSociete" );
+            Id.add(numero);
+           }
+        
+   } catch (SQLException e) {System.out.println( "Erreur Recuperation Id");
+        }
+        return Id;     
+    }
+    
     public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         
         Statement st;
