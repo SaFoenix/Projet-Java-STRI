@@ -28,7 +28,7 @@
                                   <Component id="LocalCancel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="LocalName" alignment="1" pref="154" max="32767" attributes="0"/>
-                              <Component id="jTextField2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="LocalLieu" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -52,7 +52,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LocalLieu" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="LieuLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -104,9 +104,9 @@
             <Property name="text" type="java.lang.String" value="Lieu"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="LocalLieu">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LocalLieuActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

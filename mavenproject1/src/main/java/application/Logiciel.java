@@ -9,19 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import mesClasses.*;
 /**
  *
  * @author guigui
  */
-public class Main extends javax.swing.JFrame {
+public class Logiciel extends javax.swing.JFrame {
     
     Map<String, javax.swing.JTabbedPane> tabsalle = new HashMap<>();
-
+    Societe so;
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Logiciel() {
+        so=new Societe("Stri", "Toulouse");
         initComponents();
     }
 
@@ -42,7 +43,7 @@ public class Main extends javax.swing.JFrame {
         NomLocal = new javax.swing.JLabel();
         CreationLocal = new javax.swing.JLabel();
         LieuLocal = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        LocalLieu = new javax.swing.JTextField();
         SalleDialog = new javax.swing.JDialog();
         CreationSalle = new javax.swing.JLabel();
         NumeroSalle = new javax.swing.JTextField();
@@ -105,9 +106,9 @@ public class Main extends javax.swing.JFrame {
 
         LieuLocal.setText("Lieu");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        LocalLieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                LocalLieuActionPerformed(evt);
             }
         });
 
@@ -129,7 +130,7 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(LocalCancel))
                             .addComponent(LocalName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(LocalLieu, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(LocalDialogLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(CreationLocal)))
@@ -146,7 +147,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(NomLocal))
                 .addGap(18, 18, 18)
                 .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LocalLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LieuLocal))
                 .addGap(18, 18, 18)
                 .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -414,13 +415,15 @@ public class Main extends javax.swing.JFrame {
         LocalDialog.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_AddLocalMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void LocalLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalLieuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_LocalLieuActionPerformed
 
     private void LocalOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalOkMouseClicked
         JTabbedPane testlocal = new JTabbedPane();
+        Local loc =new Local(LocalName.getText(), LocalLieu.getName());
         OngletLocal.addTab(LocalName.getText(), testlocal);
+        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         LocalName.setText("");
         LocalDialog.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkMouseClicked
@@ -520,21 +523,22 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Logiciel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Logiciel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Logiciel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Logiciel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Main().setVisible(true);
+                new Logiciel().setVisible(true);
             }
         });
     }
@@ -553,6 +557,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel LieuLocal;
     private javax.swing.JButton LocalCancel;
     private javax.swing.JDialog LocalDialog;
+    private javax.swing.JTextField LocalLieu;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
     private javax.swing.JLabel NomLocal;
@@ -570,7 +575,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField2;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
