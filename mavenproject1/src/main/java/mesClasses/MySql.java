@@ -121,7 +121,6 @@ public class MySql {
             societe.add(IdSociete);
             societe.add (Nom);
             societe.add (Lieux);
-            societe.add ("\n");
             }
    } catch (SQLException e) {
         }
@@ -141,14 +140,14 @@ public class MySql {
             st=connexion.createStatement();
         
             query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
-            IdSociete = resultat.getInt( "IdSociete" );
+            IdSociete = query.getInt( "IdSociete" );
             System.out.println("La societe a l'ID : "+IdSociete);
-            resultat = st.executeQuery( "SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+IdSociete+"' AND L.IdLocal=IdLocal ;" );
+            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal) ;;" );
             System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
              
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
-            Nom = resultat.getString( "Nom" );
+            Nom = resultat.getString( "NomLocal" );
             Lieux = resultat.getString( "Lieux" );
             societe.add (Nom);
             societe.add (Lieux);
