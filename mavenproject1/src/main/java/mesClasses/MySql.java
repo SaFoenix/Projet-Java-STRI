@@ -26,13 +26,13 @@ public class MySql {
     
     public void Connection(){
      
-      Class.forName("com.mysql.jdbc.Driver");
+/*      Class.forName("com.mysql.jdbc.Driver");
       System.out.println("Driver O.K.");
       
       connection = DriverManager.getConnection(url, host, pwd);
       System.out.println("Connexion effective !");         
       
-         
+       */  
     }
     
     public void AjoutSociete(String nom,String lieux) throws SQLException{
