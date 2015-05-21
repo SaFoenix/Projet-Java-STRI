@@ -28,9 +28,10 @@ public class Logiciel extends javax.swing.JFrame {
         initComponents();
         creationOngletLocal();   
     }
-    
+        
     public void initialisationSociete(){
         bdd=new MySql();
+        /*supprimer à la fin test*/
         so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
@@ -537,7 +538,6 @@ public class Logiciel extends javax.swing.JFrame {
             ArrayList<Salle> salles=loc.getSalles();
             for (Salle sa : salles) {
                 JPanel testsalle = new JPanel();
-                //OngletLocal.addTab("|Etage:"+sa.getEtage()+"|numero:"+sa.getNumero()+"]", salleOnglet);
                 String nomlocal = loc.getNom();
                 if (!tabsalle.containsKey(nomlocal)) {
                     JTabbedPane o = new JTabbedPane();
