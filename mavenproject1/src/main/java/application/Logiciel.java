@@ -406,8 +406,8 @@ public class Logiciel extends javax.swing.JFrame {
 
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         JTabbedPane testlocal = new JTabbedPane();
-        Local loc =new Local(LocalName.getText(), LocalLieu.getName());
-        OngletLocal.addTab(LocalName.getText(), testlocal);
+        Local loc =new Local(LocalName.getText(), LocalLieu.getText());
+        OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         LocalName.setText("");
         LocalLieu.setText("");

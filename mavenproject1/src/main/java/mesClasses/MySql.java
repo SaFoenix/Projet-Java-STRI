@@ -58,24 +58,22 @@ public class MySql {
         }
     }
     
-    public void AjoutLocal(String nomL , String lieux){
-        
+    public void AjoutLocal(String nomL, String lieux) {
+
         Statement st = null;
-        int idMax=0;
+        int idMax = 0;
         try {
-            st=connexion.createStatement();
-        
-        ResultSet resultat2 = st.executeQuery( "SELECT  max(idLocal)  FROM Local;" );
-            while ( resultat2.next() ) {
-            idMax = resultat2.getInt("max(idLocal)");
-            idMax+=1;
+            st = connexion.createStatement();
+
+            ResultSet resultat2 = st.executeQuery("SELECT  max(idLocal)  FROM Local;");
+            while (resultat2.next()) {
+                idMax = resultat2.getInt("max(idLocal)");
+                idMax += 1;
             }
-               
-        
-        String sql="INSERT INTO Local VALUES ('"+idMax+"','"+nomL+"','"+lieux+"')";
+
+            String sql = "INSERT INTO Local VALUES ('" + idMax + "','" + nomL + "','" + lieux + "')";
             st.executeUpdate(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     
