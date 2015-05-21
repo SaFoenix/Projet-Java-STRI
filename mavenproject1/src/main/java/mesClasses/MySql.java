@@ -79,7 +79,7 @@ public class MySql {
         }
     }
     
-    public void AjoutSalle(int numero , int nbOrdi , int etage){
+    public void AjoutSalle(String nomL,int numero , int nbOrdi , int etage){
         
         Statement st;
         int idMax=0;

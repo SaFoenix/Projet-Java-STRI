@@ -450,7 +450,8 @@ public class Logiciel extends javax.swing.JFrame {
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-        tabsalle.get(nomlocal).addTab(NumeroSalle.getText(), testsalle);
+         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -526,15 +527,23 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
     }
+    
     public void creationOngletLocal(){
         ArrayList <Local>locaux=so.getLocaux();
         for(Local loc : locaux){
             JTabbedPane localOnglet = new JTabbedPane();
             OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", localOnglet);
             ArrayList<Salle> salles=loc.getSalles();
-            for(Salle sa:salles){
-                JTabbedPane salleOnglet = new JTabbedPane();
-                OngletLocal.addTab("|Etage:"+sa.getEtage()+"|numero:"+sa.getNumero()+"]", salleOnglet);
+            for (Salle sa : salles) {
+                JPanel testsalle = new JPanel();
+                //OngletLocal.addTab("|Etage:"+sa.getEtage()+"|numero:"+sa.getNumero()+"]", salleOnglet);
+                String nomlocal = loc.getNom();
+                if (!tabsalle.containsKey(nomlocal)) {
+                    JTabbedPane o = new JTabbedPane();
+                    ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+                    tabsalle.put(nomlocal, o);
+                }
+                tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
             }
         }
     }
