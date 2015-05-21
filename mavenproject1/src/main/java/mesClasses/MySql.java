@@ -5,7 +5,9 @@
  */
 package mesClasses;
 
+
 import java.sql.*;
+import java.util.*;
 
 /**
  *
@@ -70,6 +72,8 @@ public class MySql {
 
             String sql = "INSERT INTO Local VALUES ('" + idMax + "','" + nomL + "','" + lieux + "')";
             st.executeUpdate(sql);
+            String sql2 ="INSERT INTO Contenir VALUES (1,'"+idMax+"')";
+            st.executeUpdate(sql2);
             
       } catch (SQLException e) {
         }
@@ -95,6 +99,65 @@ public class MySql {
         }
     }
     
+    public ArrayList RecupererSociete(){
+        ResultSet resultat = null;
+        Statement st;
+        int idMax=0;
+        String Lieux;
+        String Nom;
+        int IdSociete;
+        ArrayList societe = new ArrayList();
+        try {
+            st=connexion.createStatement();
+        
+        resultat = st.executeQuery( "SELECT  IdSociete, Nom,Lieux  FROM Societe;" );
+             System.out.println( "Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !" );
+             
+        /* Récupération des données du résultat de la requête de lecture */
+        while ( resultat.next() ) {
+            IdSociete = resultat.getInt( "IdSociete" );
+            Nom = resultat.getString( "Nom" );
+            Lieux = resultat.getString( "Lieux" );
+            societe.add(IdSociete);
+            societe.add (Nom);
+            societe.add (Lieux);
+            societe.add ("\n");
+            }
+   } catch (SQLException e) {
+        }
+        return societe;
+    }
+    
+    public ArrayList SocieteLocal(String nom){
+        
+        ResultSet resultat = null;
+        ResultSet query = null;
+        Statement st;
+        String Lieux;
+        String Nom;
+        int IdSociete;
+        ArrayList societe = new ArrayList();
+        try {
+            st=connexion.createStatement();
+        
+            query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
+            IdSociete = resultat.getInt( "IdSociete" );
+            System.out.println("La societe a l'ID : "+IdSociete);
+            resultat = st.executeQuery( "SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+IdSociete+"' AND L.IdLocal=IdLocal ;" );
+            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+             
+        /* Récupération des données du résultat de la requête de lecture */
+        while ( resultat.next() ) {
+            Nom = resultat.getString( "Nom" );
+            Lieux = resultat.getString( "Lieux" );
+            societe.add (Nom);
+            societe.add (Lieux);
+            societe.add ("\n");
+            }
+   } catch (SQLException e) {
+        }
+        return societe;     
+    }
     public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         
         Statement st;
