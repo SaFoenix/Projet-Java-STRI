@@ -248,4 +248,12 @@ public class Societe {
             System.out.println("Le local n'existe pas.");
         }
     }
+    
+    /**
+     * Retourne la liste des locaux
+     * @return Locaux le liste des locaux
+     */
+    public ArrayList<Local> getLocaux() {
+        return locaux;
+    }
 }
