@@ -108,7 +108,14 @@ public class Local {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+    
+    /**
+     * Retourne la liste des salles du local
+     * @return salles
+     */
+    public ArrayList<Salle> getSalles(){
+        return salles;
+    }
     /**
      * Supprimer une salle
      *

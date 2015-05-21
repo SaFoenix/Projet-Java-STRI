@@ -32,6 +32,9 @@ public class Logiciel extends javax.swing.JFrame {
     public void initialisationSociete(){
         bdd=new MySql();
         so=new Societe("Stri", "Toulouse");
+        so.ajouterLocal("local1", "bordeaux");
+        so.ajouterSalle("local1", 0, 1, 15);
+        so.ajouterSalle("local1", 0, 2, 20);
         bdd.Connexion();
     }
     /**
@@ -526,8 +529,13 @@ public class Logiciel extends javax.swing.JFrame {
     public void creationOngletLocal(){
         ArrayList <Local>locaux=so.getLocaux();
         for(Local loc : locaux){
-            JTabbedPane testlocal = new JTabbedPane();
-            OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
+            JTabbedPane localOnglet = new JTabbedPane();
+            OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", localOnglet);
+            ArrayList<Salle> salles=loc.getSalles();
+            for(Salle sa:salles){
+                JTabbedPane salleOnglet = new JTabbedPane();
+                OngletLocal.addTab("|Etage:"+sa.getEtage()+"|numero:"+sa.getNumero()+"]", salleOnglet);
+            }
         }
     }
     
