@@ -23,6 +23,7 @@ public class BorneSansFil extends Equipement {
 	 * @param marque
 	 * @param power
 	 * @param os
+         * @see Equipement
 	 */
 	public BorneSansFil(String mac, String nom,
 			String marque, boolean power,Os os) {

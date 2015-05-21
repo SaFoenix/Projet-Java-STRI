@@ -9,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
-
 /**
  *
  * @author guigui
