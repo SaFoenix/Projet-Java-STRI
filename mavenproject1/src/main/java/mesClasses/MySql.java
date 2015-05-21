@@ -32,15 +32,14 @@ public class MySql {
       connexion = DriverManager.getConnection(url, host, pwd);
       System.out.println("Connexion effective !");         
       }
-      catch (Exception e) {
-      e.printStackTrace();
+      catch (ClassNotFoundException | SQLException e) {
     }     
          
     }
     
     public void AjoutSociete(String nom,String lieux){
         
-        Statement st = null;
+        Statement st;
         int idMax=0;
         try {
             st=connexion.createStatement();
@@ -54,17 +53,15 @@ public class MySql {
         String sql="INSERT INTO societe VALUES ('"+idMax+"','"+nom+"','"+lieux+"')";
             st.executeUpdate(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     
-    public void AjoutLocal(String nomL, String lieux) {
+    public void AjoutLocal(String nomL, String lieux){
 
-        Statement st = null;
+        Statement st=null;
         int idMax = 0;
         try {
             st = connexion.createStatement();
-
             ResultSet resultat2 = st.executeQuery("SELECT  max(idLocal)  FROM Local;");
             while (resultat2.next()) {
                 idMax = resultat2.getInt("max(idLocal)");
@@ -73,13 +70,14 @@ public class MySql {
 
             String sql = "INSERT INTO Local VALUES ('" + idMax + "','" + nomL + "','" + lieux + "')";
             st.executeUpdate(sql);
-        } catch (SQLException e) {
+            
+      } catch (SQLException e) {
         }
     }
     
     public void AjoutSalle(int numero , int nbOrdi , int etage){
         
-        Statement st = null;
+        Statement st;
         int idMax=0;
         try {
             st=connexion.createStatement();
@@ -94,13 +92,12 @@ public class MySql {
         String sql="INSERT INTO Salle VALUES ('"+idMax+"','"+numero+"','"+nbOrdi+",'"+etage+"')";
             st.executeUpdate(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     
     public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         
-        Statement st = null;
+        Statement st;
         int idMax=0;
         try {
             st=connexion.createStatement();
@@ -116,7 +113,6 @@ public class MySql {
             st.executeUpdate(sqlOrdinateur);
         } 
         catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }
