@@ -53,125 +53,124 @@ public class MySql {
             idMax+=1;
             }
                
-        String sql="INSERT INTO societe VALUES ('"+idMax+"','"+nom+"','"+lieux+"')";
+        String sql="INSERT INTO societe VALUES ("+idMax+",'"+nom+"','"+lieux+"')";
             st.executeUpdate(sql);
         } catch (SQLException e) {
         }
     }
     
-    public void AjoutLocal(String nomL, String lieux){
+    public void AjoutLocal(String Societe, String nomL, String lieux){
 
         Statement st;
+        ResultSet resultat2;
+        ResultSet resultat1;
         int idMax = 0;
+        int IdSociete=0;
         try {
             st = connexion.createStatement();
-            ResultSet resultat2 = st.executeQuery("SELECT  max(idLocal)  FROM Local;");
+            resultat2 = st.executeQuery("SELECT  max(idLocal)  FROM Local;");
             while (resultat2.next()) {
                 idMax = resultat2.getInt("max(idLocal)");
                 idMax += 1;
             }
 
-            String sql = "INSERT INTO Local VALUES ('" + idMax + "','" + nomL + "','" + lieux + "')";
+            String sql = "INSERT INTO Local VALUES (" + idMax + ",'" + nomL + "','" + lieux + "')";
             st.executeUpdate(sql);
-            String sql2 ="INSERT INTO Contenir VALUES (1,'"+idMax+"')";
+            resultat1 = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='"+Societe+"'" );
+            //System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+            while (resultat1.next()){
+            IdSociete=resultat1.getInt("IdSociete");
+            }
+            String sql2 ="INSERT INTO Contenir VALUES ("+IdSociete+","+idMax+")";
             st.executeUpdate(sql2);
             
-      } catch (SQLException e) {
+      } catch (SQLException e) {System.out.println("Erreur AjoutLocal");
         }
     }
     
-    public void AjoutSalle(int numero , int nbOrdi , int etage){
-        
+    public void AjoutSalle(String nomL ,int numero , int nbOrdi , int etage){
+        ResultSet resultat2;
         Statement st;
         int idMax=0;
         try {
             st=connexion.createStatement();
         
-        ResultSet resultat2 = st.executeQuery( "SELECT  max(idSalle)  FROM Salle;" );
+            resultat2 = st.executeQuery( "SELECT  max(idSalle)  FROM Salle;" );
             while ( resultat2.next() ) {
             idMax = resultat2.getInt("max(idSalle)");
             idMax+=1;
             }
-               
-        
-        String sql="INSERT INTO Salle VALUES ('"+idMax+"','"+numero+"','"+nbOrdi+",'"+etage+"')";
+              
+            String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
             st.executeUpdate(sql);
-        } catch (SQLException e) {
+        } catch (SQLException e) 
+        {
+            System.out.println("Erreur Ajout Salle");
         }
     }
     
-    public ArrayList RecupererSociete(){
+    public Societe RecupererSociete() {
         ResultSet resultat = null;
         Statement st;
-        int idMax=0;
+        Societe so = null;
         String Lieux;
         String Nom;
         int IdSociete;
-        ArrayList societe = new ArrayList();
         try {
-            st=connexion.createStatement();
-        
-            resultat = st.executeQuery( "SELECT  IdSociete, Nom,Lieux  FROM Societe;" );
-            System.out.println( "Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !" );
-             
-        /* Récupération des données du résultat de la requête de lecture */
-        while ( resultat.next() ) {
-            IdSociete = resultat.getInt( "IdSociete" );
-            Nom = resultat.getString( "Nom" );
-            Lieux = resultat.getString( "Lieux" );
-            societe.add(IdSociete);
-            societe.add (Nom);
-            societe.add (Lieux);
+            st = connexion.createStatement();
+            resultat = st.executeQuery("SELECT  IdSociete, Nom,Lieux  FROM Societe;");
+            System.out.println("Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !");
+
+            /* Récupération des données du résultat de la requête de lecture */
+            while (resultat.next()) {
+                IdSociete = resultat.getInt("IdSociete");
+                Nom = resultat.getString("Nom");
+                Lieux = resultat.getString("Lieux");
+                so = new Societe(Nom, Lieux);
+                so.setIdSociete(IdSociete);
+                System.out.println(so);
             }
-   } catch (SQLException e) {
+        } catch (SQLException e) {
         }
-        return societe;
+        return so;
     }
     
-    public ArrayList SocieteLocal(){
+    public Local SocieteLocal(String nom){
         
         ResultSet resultat;
+        ResultSet resultat1;
+        Local lo = null;
         Statement st;
         String Lieux;
         String Nom;
-        int Id;
+        int IdSociete=0;
         ArrayList societe = new ArrayList();
         
         try {
             st=connexion.createStatement();
-            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete=1 AND L.IdLocal=IdLocal) ;" );
-            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+            resultat1 = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='"+nom+"'" );
+            //System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+            while (resultat1.next()){
+            IdSociete=resultat1.getInt("IdSociete");
+            }
+  
+           /*************************************************************************************************************************/
+            st=connexion.createStatement();
+            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete="+IdSociete+" AND L.IdLocal=IdLocal) ;" );
              
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
             Nom = resultat.getString( "NomLocal" );
             Lieux = resultat.getString( "Lieux" );
-            societe.add (Nom);
-            societe.add (Lieux);
-            societe.add ("\n");
+                lo = new Local(Nom,Lieux);
+                //lo.setIdLocal(IdSociete);
+                System.out.println(lo);
             }
    } catch (SQLException e) {
         }
-        return societe;     
+        return lo;     
     }
     
-    public ArrayList RecupererIdSociete(String nom){
-        ResultSet resultat;
-        Statement st;
-        ArrayList Id= new ArrayList();
-        try {
-            st=connexion.createStatement();
-            resultat = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='Latelec';" );
-            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
-        /* Récupération des données du résultat de la requête de lecture */
-           while ( resultat.next() ){ int numero = resultat.getInt( "IdSociete" );
-            Id.add(numero);
-           }
-        
-   } catch (SQLException e) {System.out.println( "Erreur Recuperation Id");
-        }
-        return Id;     
-    }
     
     public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         

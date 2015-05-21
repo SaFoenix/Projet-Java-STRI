@@ -28,14 +28,20 @@ public class Logiciel extends javax.swing.JFrame {
         initComponents();
         creationOngletLocal();   
     }
-    
+   
     public void initialisationSociete(){
         bdd=new MySql();
-        so=new Societe("Stri", "Toulouse");
+        /*A tester*/
+        bdd.Connexion();
+        
+        so=bdd.RecupererSociete();
+        System.out.println(so);
+        /*supprimer à la fin test*/
+        //so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
         so.ajouterSalle("local1", 0, 2, 20);
-        bdd.Connexion();
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -417,7 +423,7 @@ public class Logiciel extends javax.swing.JFrame {
         LocalDialog.setVisible(false);
         AddRoom.setEnabled(true);
         // OngletLocal.setToolTipText("LocalLieu");
-        bdd.AjoutLocal(loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void AddRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouterActionPerformed
@@ -450,7 +456,9 @@ public class Logiciel extends javax.swing.JFrame {
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-        tabsalle.get(nomlocal).addTab(NumeroSalle.getText(), testsalle);
+         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
+        bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -526,15 +534,22 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
     }
+    
     public void creationOngletLocal(){
         ArrayList <Local>locaux=so.getLocaux();
         for(Local loc : locaux){
             JTabbedPane localOnglet = new JTabbedPane();
             OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", localOnglet);
             ArrayList<Salle> salles=loc.getSalles();
-            for(Salle sa:salles){
-                JTabbedPane salleOnglet = new JTabbedPane();
-                OngletLocal.addTab("|Etage:"+sa.getEtage()+"|numero:"+sa.getNumero()+"]", salleOnglet);
+            for (Salle sa : salles) {
+                JPanel testsalle = new JPanel();
+                String nomlocal = loc.getNom();
+                if (!tabsalle.containsKey(nomlocal)) {
+                    JTabbedPane o = new JTabbedPane();
+                    ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+                    tabsalle.put(nomlocal, o);
+                }
+                tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
             }
         }
     }
