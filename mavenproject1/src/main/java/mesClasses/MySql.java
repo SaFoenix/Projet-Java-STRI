@@ -58,7 +58,7 @@ public class MySql {
         }
     }
     
-    public void AjoutLocal(int numero , String lieux){
+    public void AjoutLocal(String nomL , String lieux){
         
         Statement st = null;
         int idMax=0;
@@ -72,7 +72,7 @@ public class MySql {
             }
                
         
-        String sql="INSERT INTO Local VALUES ('"+idMax+"','"+numero+"','"+lieux+"')";
+        String sql="INSERT INTO Local VALUES ('"+idMax+"','"+nomL+"','"+lieux+"')";
             st.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
