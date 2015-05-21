@@ -17,7 +17,7 @@ import mesClasses.*;
 public class Logiciel extends javax.swing.JFrame {
     
     Map<String, javax.swing.JTabbedPane> tabsalle = new HashMap<>();
-    Societe so;
+    private Societe so;
     /**
      * Creates new form Main
      */
@@ -68,26 +68,19 @@ public class Logiciel extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
+        LocalDialog.setBackground(new java.awt.Color(0, 255, 255));
         LocalDialog.setMinimumSize(new java.awt.Dimension(420, 320));
 
+        LocalOk.setBackground(new java.awt.Color(0, 255, 0));
         LocalOk.setText("Valider");
-        LocalOk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LocalOkMouseClicked(evt);
-            }
-        });
         LocalOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LocalOkActionPerformed(evt);
             }
         });
 
+        LocalCancel.setBackground(new java.awt.Color(255, 0, 0));
         LocalCancel.setText("Annuler");
-        LocalCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LocalCancelMouseClicked(evt);
-            }
-        });
         LocalCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LocalCancelActionPerformed(evt);
@@ -172,6 +165,7 @@ public class Logiciel extends javax.swing.JFrame {
 
         jLabel4.setText("nombre ordinateur");
 
+        SalleOk.setBackground(new java.awt.Color(51, 255, 51));
         SalleOk.setText("Valider");
         SalleOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -184,12 +178,8 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
 
+        SalleCancel.setBackground(new java.awt.Color(255, 0, 0));
         SalleCancel.setText("Annuler");
-        SalleCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalleCancelMouseClicked(evt);
-            }
-        });
         SalleCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalleCancelActionPerformed(evt);
@@ -277,11 +267,6 @@ public class Logiciel extends javax.swing.JFrame {
                 AddRoomStateChanged(evt);
             }
         });
-        AddRoom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddRoomMouseClicked(evt);
-            }
-        });
         AddRoom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddRoomActionPerformed(evt);
@@ -302,6 +287,7 @@ public class Logiciel extends javax.swing.JFrame {
         Update.setBackground(new java.awt.Color(0, 204, 204));
         Update.setText("Mettre à jour");
 
+        OngletLocal.setToolTipText("");
         OngletLocal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OngletLocalMouseClicked(evt);
@@ -353,7 +339,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 1123, Short.MAX_VALUE))
+                .addComponent(OngletLocal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +366,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 395, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -410,18 +396,17 @@ public class Logiciel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LocalLieuActionPerformed
 
-    private void LocalOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalOkMouseClicked
+    private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         JTabbedPane testlocal = new JTabbedPane();
         Local loc =new Local(LocalName.getText(), LocalLieu.getName());
         OngletLocal.addTab(LocalName.getText(), testlocal);
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         LocalName.setText("");
         LocalLieu.setText("");
-        LocalDialog.setVisible(false); // TODO add your handling code here:
-    }//GEN-LAST:event_LocalOkMouseClicked
-
-    private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
-        // TODO add your handling code here:
+        LocalDialog.setVisible(false);
+        AddRoom.setEnabled(true);
+        // OngletLocal.setToolTipText("LocalLieu");
+                // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void AddRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouterActionPerformed
@@ -433,29 +418,18 @@ public class Logiciel extends javax.swing.JFrame {
     }//GEN-LAST:event_LocalNameActionPerformed
 
     private void LocalCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalCancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LocalCancelActionPerformed
-
-    private void LocalCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LocalCancelMouseClicked
         LocalName.setText("");
+        LocalLieu.setText("");
         LocalDialog.setVisible(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_LocalCancelMouseClicked
+    }//GEN-LAST:event_LocalCancelActionPerformed
 
     private void AddRoomStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AddRoomStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_AddRoomStateChanged
 
     private void AddRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRoomActionPerformed
-        // TODO add your handling code here:
+        SalleDialog.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_AddRoomActionPerformed
-
-    private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
-        AddRoom.setEnabled(true);      // TODO add your handling code here:     /* au clic sur un local, active le bouton ajouter salle */
-    }//GEN-LAST:event_OngletLocalMouseClicked
-
-    private void AddRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddRoomMouseClicked
-        SalleDialog.setVisible(true);                      // TODO add your handling code here:
-    }//GEN-LAST:event_AddRoomMouseClicked
 
     private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
         JPanel testsalle = new JPanel();
@@ -465,38 +439,45 @@ public class Logiciel extends javax.swing.JFrame {
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-        
         tabsalle.get(nomlocal).addTab(NumeroSalle.getText(), testsalle);
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
-        SalleDialog.setVisible(false);        
-        
+        SalleDialog.setVisible(false);                
     }//GEN-LAST:event_SalleOkMouseClicked
 
     private void NumeroSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroSalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
-    private void SalleCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleCancelMouseClicked
-        NumeroSalle.setText("");
-        EtageSalle.setText("");
-        NombreOrdinateurSalle.setText("");
-        SalleDialog.setVisible(false);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SalleCancelMouseClicked
-
     private void EtageSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EtageSalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EtageSalleActionPerformed
 
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
-        // TODO add your handling code here:
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        NombreOrdinateurSalle.setText("");
+        SalleDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-        // TODO add your handling code here:
+        AddComputer.setEnabled(true);
+        Disable.setEnabled(true);
+        Update.setEnabled(true);
+        AddRouter.setEnabled(true);
+        AddBorne.setEnabled(true);
+        AddTablet.setEnabled(true);        // TODO add your handling code here:
     }//GEN-LAST:event_SalleOkActionPerformed
+
+    private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
+        AddComputer.setEnabled(false);
+        Disable.setEnabled(false);
+        Update.setEnabled(false);
+        AddRouter.setEnabled(false);
+        AddBorne.setEnabled(false);
+        AddTablet.setEnabled(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_OngletLocalMouseClicked
 
     /**
      * @param args the command line arguments
