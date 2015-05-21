@@ -99,32 +99,29 @@ public class MySql {
         }
     }
     
-    public ArrayList RecupererSociete(){
+    public void RecupererSociete(Societe so) {
         ResultSet resultat = null;
         Statement st;
-        int idMax=0;
+        int idMax = 0;
         String Lieux;
         String Nom;
         int IdSociete;
-        ArrayList societe = new ArrayList();
         try {
-            st=connexion.createStatement();
-        
-        resultat = st.executeQuery( "SELECT  IdSociete, Nom,Lieux  FROM Societe;" );
-             System.out.println( "Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !" );
-             
-        /* Récupération des données du résultat de la requête de lecture */
-        while ( resultat.next() ) {
-            IdSociete = resultat.getInt( "IdSociete" );
-            Nom = resultat.getString( "Nom" );
-            Lieux = resultat.getString( "Lieux" );
-            societe.add(IdSociete);
-            societe.add (Nom);
-            societe.add (Lieux);
+            st = connexion.createStatement();
+
+            resultat = st.executeQuery("SELECT  IdSociete, Nom,Lieux  FROM Societe;");
+            System.out.println("Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !");
+
+            /* Récupération des données du résultat de la requête de lecture */
+            while (resultat.next()) {
+                IdSociete = resultat.getInt("IdSociete");
+                Nom = resultat.getString("Nom");
+                Lieux = resultat.getString("Lieux");
+                so = new Societe(Nom, Lieux);
+                so.setIdSociete(IdSociete);
             }
-   } catch (SQLException e) {
+        } catch (SQLException e) {
         }
-        return societe;
     }
     
     public ArrayList SocieteLocal(String nom){

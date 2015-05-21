@@ -28,9 +28,11 @@ public class Logiciel extends javax.swing.JFrame {
         initComponents();
         creationOngletLocal();   
     }
-        
+   
     public void initialisationSociete(){
         bdd=new MySql();
+        /*A tester*/
+        //bdd.RecupererSociete(so);
         /*supprimer à la fin test*/
         so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
