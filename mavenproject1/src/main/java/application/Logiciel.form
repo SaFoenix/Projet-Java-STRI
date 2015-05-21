@@ -346,7 +346,6 @@
         <BindingProperty name="selected" source="AddLocal" sourcePath="${componentPopupMenu.componentPopupMenu}" target="AddLocal" targetPath="selected" updateStrategy="0" immediately="false"/>
       </BindingProperties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AddLocalMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddLocalActionPerformed"/>
       </Events>
     </Component>

@@ -264,11 +264,6 @@ public class Logiciel extends javax.swing.JFrame {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, AddLocal, org.jdesktop.beansbinding.ELProperty.create("${componentPopupMenu.componentPopupMenu}"), AddLocal, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
 
-        AddLocal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AddLocalMouseClicked(evt);
-            }
-        });
         AddLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLocalActionPerformed(evt);
@@ -404,16 +399,12 @@ public class Logiciel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLocalActionPerformed
-        // TODO add your handling code here:
+        LocalDialog.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_AddLocalActionPerformed
 
     private void DisableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DisableActionPerformed
-
-    private void AddLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddLocalMouseClicked
-        LocalDialog.setVisible(true);    // TODO add your handling code here:
-    }//GEN-LAST:event_AddLocalMouseClicked
 
     private void LocalLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalLieuActionPerformed
         // TODO add your handling code here:
@@ -425,6 +416,7 @@ public class Logiciel extends javax.swing.JFrame {
         OngletLocal.addTab(LocalName.getText(), testlocal);
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         LocalName.setText("");
+        LocalLieu.setText("");
         LocalDialog.setVisible(false); // TODO add your handling code here:
     }//GEN-LAST:event_LocalOkMouseClicked
 
