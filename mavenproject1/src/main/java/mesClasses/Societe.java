@@ -256,4 +256,11 @@ public class Societe {
     public ArrayList<Local> getLocaux() {
         return locaux;
     }
+    /**
+     * Retourne le nom de la socièté
+     * @return le nom de la société
+     */
+    public String getNom() {
+        return nom;
+    }
 }
