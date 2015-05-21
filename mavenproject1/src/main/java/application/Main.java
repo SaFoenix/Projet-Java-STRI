@@ -7,15 +7,16 @@ package application;
 
 import javax.swing.*;
 import java.awt.*;
-
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author guigui
  */
 public class Main extends javax.swing.JFrame {
+    
+    Map<String, javax.swing.JTabbedPane> tabsalle = new HashMap<>();
 
     /**
      * Creates new form Main
@@ -58,7 +59,6 @@ public class Main extends javax.swing.JFrame {
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         OngletLocal = new javax.swing.JTabbedPane();
-        OngletSalle = new javax.swing.JTabbedPane();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -175,6 +175,11 @@ public class Main extends javax.swing.JFrame {
         SalleOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SalleOkMouseClicked(evt);
+            }
+        });
+        SalleOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalleOkActionPerformed(evt);
             }
         });
 
@@ -307,13 +312,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        OngletSalle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OngletSalleMouseClicked(evt);
-            }
-        });
-        OngletLocal.addTab("TestLocal", OngletSalle);
-
         AddRouter.setBackground(new java.awt.Color(0, 204, 204));
         AddRouter.setText("Ajouter Routeur");
         AddRouter.addActionListener(new java.awt.event.ActionListener() {
@@ -413,7 +411,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_DisableActionPerformed
 
     private void AddLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddLocalMouseClicked
-            LocalDialog.setVisible(true);    // TODO add your handling code here:
+        LocalDialog.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_AddLocalMouseClicked
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -466,11 +464,19 @@ public class Main extends javax.swing.JFrame {
 
     private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
         JPanel testsalle = new JPanel();
-        OngletSalle.addTab(NumeroSalle.getText(), testsalle);
+        String nomlocal = OngletLocal.getTitleAt(OngletLocal.getSelectedIndex());
+        if (!tabsalle.containsKey(nomlocal)) {
+            JTabbedPane o = new JTabbedPane();
+            ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+            tabsalle.put(nomlocal, o);
+        }
+        
+        tabsalle.get(nomlocal).addTab(NumeroSalle.getText(), testsalle);
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
-        SalleDialog.setVisible(false);        // TODO add your handling code here:
+        SalleDialog.setVisible(false);        
+        
     }//GEN-LAST:event_SalleOkMouseClicked
 
     private void NumeroSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroSalleActionPerformed
@@ -489,18 +495,14 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EtageSalleActionPerformed
 
-    private void OngletSalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletSalleMouseClicked
-        AddRouter.setEnabled(true);
-        AddComputer.setEnabled(true);
-        AddBorne.setEnabled(true);
-        AddTablet.setEnabled(true);
-            // TODO add your handling code here:
-    }//GEN-LAST:event_OngletSalleMouseClicked
-
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
- 
+
+    private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleOkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -557,7 +559,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
     private javax.swing.JTabbedPane OngletLocal;
-    private javax.swing.JTabbedPane OngletSalle;
     private javax.swing.JLabel STRI;
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
