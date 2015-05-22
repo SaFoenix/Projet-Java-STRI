@@ -18,7 +18,7 @@ public class MySql {
     private String pwd;
     private String url;
     private Connection connexion;
-            
+    /*Ca marche*/
     public MySql(){
         
     this.host="root";
@@ -88,9 +88,11 @@ public class MySql {
         }
     }
     
-    public void AjoutSalle(String nomL ,int numero , int nbOrdi , int etage){
+    public void AjoutSalle(String Local ,int numero , int nbOrdi , int etage){
         ResultSet resultat2;
+        ResultSet resultat1;
         Statement st;
+        int IdLocal = 0 ; 
         int idMax=0;
         try {
             st=connexion.createStatement();
@@ -103,12 +105,51 @@ public class MySql {
               
             String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
             st.executeUpdate(sql);
+            
+            resultat1 = st.executeQuery( "SELECT IdLocal FROM Local WHERE nomLocal='"+Local+"'" );
+            while (resultat1.next()){
+            IdLocal=resultat1.getInt("IdLocal");
+            }
+            String sql2 ="INSERT INTO Contenirsalle VALUES ("+idMax+","+IdLocal+")";
+            st.executeUpdate(sql2);
         } catch (SQLException e) 
         {
             System.out.println("Erreur Ajout Salle");
         }
     }
     
+    public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
+        ResultSet resultat2;
+        ResultSet resultat1;
+        Statement st;
+        int idSalle=0;
+        int idMax=0;
+        try {
+            st=connexion.createStatement();
+        
+            resultat2 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat2.next() ) {
+            idMax = resultat2.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+        String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+            
+        String sqlOrdinateur="INSERT INTO ordinateur VALUES ("+idMax+",'"+ram+"','"+cpu+"','"+gpu+"','"+hdd+"')";
+            st.executeUpdate(sqlOrdinateur);
+            
+        resultat1 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat1.next()){
+            idSalle=resultat1.getInt("IdSalle");
+            }
+            String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
+            st.executeUpdate(sql2);
+        } 
+        catch (SQLException e) {
+            System.out.println("Erreur Ajout ordinateur");
+        }
+    }
+   
     public Societe RecupererSociete(String nomSociete) {
         ResultSet resultat = null;
         Statement st;
@@ -119,7 +160,6 @@ public class MySql {
         try {
             st = connexion.createStatement();
             resultat = st.executeQuery("SELECT  IdSociete, Nom,Lieux  FROM Societe WHERE Nom='"+nomSociete+"';");
-            System.out.println("Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !");
             /* Récupération des données du résultat de la requête de lecture */
             while (resultat.next()) {
                 IdSociete = resultat.getInt("IdSociete");
@@ -129,11 +169,12 @@ public class MySql {
                 so.setIdSociete(IdSociete);
             }
         } catch (SQLException e) {
+            System.out.println("Erreur Recuperer Societe!");
         }
         return so;
     }
     
-    public Local SocieteLocal(String nom){
+    public ArrayList<Local> SocieteLocal(String nom){
         
         ResultSet resultat;
         ResultSet query;
@@ -142,48 +183,63 @@ public class MySql {
         String Lieux;
         String Nom;
         int IdSociete=0;
-        ArrayList societe = new ArrayList();
+        ArrayList<Local> locaux;
+        locaux = new ArrayList<>();
         
         try {
             st=connexion.createStatement();
             query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
+            while(query.next()){
             IdSociete = query.getInt( "IdSociete" );
-            System.out.println("La societe a l'ID : "+IdSociete);
-            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal) ;;" );
-            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
-             
+            }  
+            
+        resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+IdSociete+"' AND L.IdLocal=IdLocal) ;;" );   
+        
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
             Nom = resultat.getString( "NomLocal" );
             Lieux = resultat.getString( "Lieux" );
                lo = new Local(Nom,Lieux);
-                //lo.setIdLocal(IdSociete);
-                System.out.println(lo);
+               locaux.add(lo);
             }
    } catch (SQLException e) {
+       System.out.println("Erreur SocieteLocal" );
         }
-        return lo;     
+        return locaux;     
     }
-    
-    
-    public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
+      
+    public ArrayList<Salle> LocalSalle(String nom){
         
+        ResultSet resultat;
+        ResultSet query;
         Statement st;
-        int idMax=0;
+        int numero;
+        int etage;
+        int nbPc;
+        int IdLocal=0;
+        ArrayList<Salle> salles;
+        salles = new ArrayList<>();
         try {
             st=connexion.createStatement();
-        
-        ResultSet resultat2 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
-            while ( resultat2.next() ) {
-            idMax = resultat2.getInt("max(idEquipement)");
-            idMax+=1;
+            query = st.executeQuery( "SELECT  IdLocal FROM Local WHERE NomLocal='"+nom+"';" );
+            while(query.next()){
+            IdLocal = query.getInt( "IdLocal" );
             }
-        String sql="INSERT INTO equipement VALUES ('"+idMax+"','"+nom+"','"+mac+"','"+marque+"',"+power+");";
-            st.executeUpdate(sql);
-        String sqlOrdinateur="INSERT INTO ordinateur VALUES ('"+idMax+"','"+ram+"','"+cpu+"','"+gpu+"','"+hdd+"')";
-            st.executeUpdate(sqlOrdinateur);
-        } 
-        catch (SQLException e) {
+            resultat = st.executeQuery( "SELECT numero , etage, NombreOrdinateur FROM Salle S  WHERE IdSalle = (SELECT IdSalle FROM ContenirSalle WHERE IdLocal='"+IdLocal+"' AND S.IdSalle=IdSalle) ;" );
+             
+        /* Récupération des données du résultat de la requête de lecture */
+        while ( resultat.next() ) {
+            numero = resultat.getInt( "numero" );
+            etage = resultat.getInt( "etage" );
+            nbPc = resultat.getInt( "NombreOrdinateur" );
+            salles.add(new Salle (numero,etage,nbPc));
+            }
+   } catch (SQLException e) {
+                    System.out.println( "Erreur LocalSalle !" );
         }
+        return salles;     
     }
+    
+ 
+
 }
