@@ -8,6 +8,8 @@ package fenetrePrincipale;
 import java.awt.*;
 import java.util.*;
 import mesClasses.*;
+import fenetreLocal.*;
+import static java.awt.SystemColor.desktop;
 
 /**
  *
@@ -37,7 +39,8 @@ public class Bureau extends javax.swing.JFrame {
         setLayout(new GridLayout(locaux.size(),1));
         for(Local loc:locaux){
             System.out.println(loc);
-            add(new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]"));
+            Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+            add(boutonLocal);
         }      
     }
     /**
@@ -223,6 +226,16 @@ public class Bureau extends javax.swing.JFrame {
         LocalDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_LocalCancelActionPerformed
 
+    private void boutonLocalActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    frame1 f = new frame1();
+    desktop.add(f);
+    f.setVisible(true);
+    
+    // TODO add your handling code here:
+    }                                        
+    
+    
+    
     private void LocalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LocalNameActionPerformed
