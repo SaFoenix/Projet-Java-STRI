@@ -24,13 +24,8 @@ public class Logiciel extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Logiciel() {
-<<<<<<< HEAD
-        so=new Societe("Stri", "Toulouse");
-         so.ajouterLocal("local11", "Toulouse");
-         so.ajouterLocal("local1", "bordeaux");
-=======
+
         initialisationSociete();
->>>>>>> 316b9ad061d74b4a6d832f744704814e66dcc706
         initComponents();
         creationOngletLocal();   
     }
@@ -77,18 +72,26 @@ public class Logiciel extends javax.swing.JFrame {
         SalleCancel = new javax.swing.JButton();
         EtageSalle = new javax.swing.JTextField();
         NombreOrdinateurSalle = new javax.swing.JTextField();
+        RouteurDialog = new javax.swing.JDialog();
+        CreationRouteur = new javax.swing.JLabel();
+        NomRouteurT = new javax.swing.JTextField();
+        NomRouteur = new javax.swing.JLabel();
+        MacRouteur = new javax.swing.JLabel();
+        MarqueRouteur = new javax.swing.JLabel();
+        OsRouteur = new javax.swing.JLabel();
+        PortsRouteur = new javax.swing.JLabel();
+        MacRouteurT = new javax.swing.JTextField();
+        MarqueRouteurT = new javax.swing.JTextField();
+        OsRouteurT = new javax.swing.JTextField();
+        PortsRouteurT = new javax.swing.JTextField();
+        OkRouteur = new javax.swing.JButton();
+        CancelRouteur = new javax.swing.JButton();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         OngletLocal = new javax.swing.JTabbedPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -271,6 +274,100 @@ public class Logiciel extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        CreationRouteur.setText("Création Routeur");
+
+        NomRouteur.setText("Nom");
+
+        MacRouteur.setText("MAC");
+
+        MarqueRouteur.setText("Marque");
+
+        OsRouteur.setText("OS");
+
+        PortsRouteur.setText("Nombre de ports");
+
+        OkRouteur.setBackground(new java.awt.Color(0, 255, 0));
+        OkRouteur.setText("Valider");
+        OkRouteur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkRouteurActionPerformed(evt);
+            }
+        });
+
+        CancelRouteur.setBackground(new java.awt.Color(255, 0, 0));
+        CancelRouteur.setText("Annuler");
+
+        javax.swing.GroupLayout RouteurDialogLayout = new javax.swing.GroupLayout(RouteurDialog.getContentPane());
+        RouteurDialog.getContentPane().setLayout(RouteurDialogLayout);
+        RouteurDialogLayout.setHorizontalGroup(
+            RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RouteurDialogLayout.createSequentialGroup()
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RouteurDialogLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(CreationRouteur))
+                    .addGroup(RouteurDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(RouteurDialogLayout.createSequentialGroup()
+                                .addComponent(PortsRouteur)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PortsRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RouteurDialogLayout.createSequentialGroup()
+                                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MarqueRouteur)
+                                    .addComponent(OsRouteur))
+                                .addGap(54, 54, 54)
+                                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(OsRouteurT)
+                                    .addComponent(MarqueRouteurT)))
+                            .addGroup(RouteurDialogLayout.createSequentialGroup()
+                                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MacRouteur)
+                                    .addComponent(NomRouteur))
+                                .addGap(68, 68, 68)
+                                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NomRouteurT, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                    .addComponent(MacRouteurT)))))
+                    .addGroup(RouteurDialogLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(OkRouteur)
+                        .addGap(66, 66, 66)
+                        .addComponent(CancelRouteur)))
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+        RouteurDialogLayout.setVerticalGroup(
+            RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RouteurDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CreationRouteur)
+                .addGap(18, 18, 18)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomRouteur))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MacRouteur)
+                    .addComponent(MacRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MarqueRouteur)
+                    .addComponent(MarqueRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OsRouteur)
+                    .addComponent(OsRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PortsRouteur)
+                    .addComponent(PortsRouteurT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(RouteurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OkRouteur)
+                    .addComponent(CancelRouteur))
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -323,69 +420,6 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Routeur 1");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(245, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel5.setText("Borne 1");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(318, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(287, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(285, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("salle", jPanel1);
-
-        OngletLocal.addTab("local", jTabbedPane1);
-
         AddRouter.setBackground(new java.awt.Color(0, 204, 204));
         AddRouter.setText("Ajouter Routeur");
         AddRouter.addActionListener(new java.awt.event.ActionListener() {
@@ -431,7 +465,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 991, Short.MAX_VALUE))
+                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,7 +492,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 238, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -556,6 +590,7 @@ public class Logiciel extends javax.swing.JFrame {
     }//GEN-LAST:event_SalleCancelActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
+        SalleDialog.setVisible(false);
         AddComputer.setEnabled(true);
         Disable.setEnabled(true);
         Update.setEnabled(true);
@@ -565,6 +600,7 @@ public class Logiciel extends javax.swing.JFrame {
     }//GEN-LAST:event_SalleOkActionPerformed
 
     private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
+        AddRoom.setEnabled(true);
         AddComputer.setEnabled(false);
         Disable.setEnabled(false);
         Update.setEnabled(false);
@@ -572,7 +608,40 @@ public class Logiciel extends javax.swing.JFrame {
         AddBorne.setEnabled(false);
         AddTablet.setEnabled(false);  
     }//GEN-LAST:event_OngletLocalMouseClicked
+/*
+    private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
+        JPanel testrouteur = new JPanel();
+        
+        String nomsalle = o.getTitleAt(o.getSelectedIndex());
+                
+                
+         String nomlocal = OngletLocal.getTitleAt(OngletLocal.getSelectedIndex());
+        if (!tabsalle.containsKey(nomlocal)) {
+            JTabbedPane o = new JTabbedPane();
+            ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+            tabsalle.put(nomlocal, o);
+        }
 
+// TODO add your handling code here:
+    }//GEN-LAST:event_OkRouteurActionPerformed
+*/                            
+           private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
+/*
+        AddComputer.setEnabled(true);
+        Disable.setEnabled(true);
+        Update.setEnabled(true);
+        AddRouter.setEnabled(true);
+        AddBorne.setEnabled(true);
+        AddTablet.setEnabled(true);    // TODO add your handling code here:
+               // TODO add your handling code here: */
+    }                                         
+                          
+  
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -636,7 +705,9 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton AddRoom;
     private javax.swing.JButton AddRouter;
     private javax.swing.JButton AddTablet;
+    private javax.swing.JButton CancelRouteur;
     private javax.swing.JLabel CreationLocal;
+    private javax.swing.JLabel CreationRouteur;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JButton Disable;
     private javax.swing.JTextField EtageSalle;
@@ -646,27 +717,33 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JTextField LocalLieu;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
+    private javax.swing.JLabel MacRouteur;
+    private javax.swing.JTextField MacRouteurT;
+    private javax.swing.JLabel MarqueRouteur;
+    private javax.swing.JTextField MarqueRouteurT;
     private javax.swing.JLabel NomLocal;
+    private javax.swing.JLabel NomRouteur;
+    private javax.swing.JTextField NomRouteurT;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
+    private javax.swing.JButton OkRouteur;
     private javax.swing.JTabbedPane OngletLocal;
+    private javax.swing.JLabel OsRouteur;
+    private javax.swing.JTextField OsRouteurT;
+    private javax.swing.JLabel PortsRouteur;
+    private javax.swing.JTextField PortsRouteurT;
+    private javax.swing.JDialog RouteurDialog;
     private javax.swing.JLabel STRI;
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
     private javax.swing.JButton Update;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
