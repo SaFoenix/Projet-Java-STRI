@@ -4,6 +4,7 @@
 package mesClasses;
 
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  * La classe Salle permet de définir une salle
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @author STRI_JAVA
  *
  */
-public class Salle {
+public class Salle extends JPanel {
 
     /**
      * L'identifiant de la salle

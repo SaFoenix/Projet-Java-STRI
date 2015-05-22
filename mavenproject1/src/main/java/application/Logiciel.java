@@ -18,6 +18,7 @@ import mesClasses.*;
 public class Logiciel extends javax.swing.JFrame {
     
     Map<String, javax.swing.JTabbedPane> tabsalle = new HashMap<>();
+    Map<String, javax.swing.JPanel> tabtest = new HashMap<>();
     private static Societe so;
     private static MySql bdd;
     /**
@@ -106,6 +107,34 @@ public class Logiciel extends javax.swing.JFrame {
         HddComp = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        BorneDialog = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        NomBorne = new javax.swing.JTextField();
+        MarqueBorne = new javax.swing.JTextField();
+        MacBorne = new javax.swing.JTextField();
+        OsBorne = new javax.swing.JTextField();
+        OkBorne = new javax.swing.JButton();
+        CancelBorne = new javax.swing.JButton();
+        TabletDialog = new javax.swing.JDialog();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
@@ -503,6 +532,169 @@ public class Logiciel extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        BorneDialog.setMinimumSize(new java.awt.Dimension(450, 325));
+
+        jLabel13.setText("Ajouter Borne");
+
+        jLabel14.setText("Nom");
+
+        jLabel15.setText("Marque");
+
+        jLabel16.setText("OS");
+
+        jLabel17.setText("MAC");
+
+        OkBorne.setBackground(new java.awt.Color(0, 255, 0));
+        OkBorne.setText("Valider");
+
+        CancelBorne.setBackground(new java.awt.Color(255, 0, 0));
+        CancelBorne.setText("Annuler");
+
+        javax.swing.GroupLayout BorneDialogLayout = new javax.swing.GroupLayout(BorneDialog.getContentPane());
+        BorneDialog.getContentPane().setLayout(BorneDialogLayout);
+        BorneDialogLayout.setHorizontalGroup(
+            BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BorneDialogLayout.createSequentialGroup()
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BorneDialogLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel13))
+                    .addGroup(BorneDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16))
+                        .addGap(62, 62, 62)
+                        .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(OsBorne, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(MacBorne)
+                            .addComponent(MarqueBorne)
+                            .addComponent(NomBorne)))
+                    .addGroup(BorneDialogLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(OkBorne)
+                        .addGap(70, 70, 70)
+                        .addComponent(CancelBorne)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        BorneDialogLayout.setVerticalGroup(
+            BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BorneDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(NomBorne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(MarqueBorne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(MacBorne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(OsBorne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(BorneDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OkBorne)
+                    .addComponent(CancelBorne))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jButton4.setBackground(new java.awt.Color(0, 255, 0));
+        jButton4.setText("Valider");
+
+        jButton5.setBackground(new java.awt.Color(255, 0, 0));
+        jButton5.setText("Annuler");
+
+        jLabel18.setText("Nom");
+
+        jLabel19.setText("MAC");
+
+        jLabel20.setText("Marque");
+
+        jLabel21.setText("OS");
+
+        jLabel22.setText("Capacité");
+
+        jLabel23.setText("Modèle");
+
+        jLabel24.setText("Ajout Tablette");
+
+        javax.swing.GroupLayout TabletDialogLayout = new javax.swing.GroupLayout(TabletDialog.getContentPane());
+        TabletDialog.getContentPane().setLayout(TabletDialogLayout);
+        TabletDialogLayout.setHorizontalGroup(
+            TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TabletDialogLayout.createSequentialGroup()
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TabletDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23))
+                        .addGap(43, 43, 43)
+                        .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(TabletDialogLayout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(53, 53, 53)
+                                .addComponent(jButton5))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1)))
+                    .addGroup(TabletDialogLayout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel24)))
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+        TabletDialogLayout.setVerticalGroup(
+            TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TabletDialogLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(TabletDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addGap(28, 28, 28))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -570,9 +762,19 @@ public class Logiciel extends javax.swing.JFrame {
 
         AddBorne.setBackground(new java.awt.Color(0, 204, 204));
         AddBorne.setText("Ajouter Borne");
+        AddBorne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBorneActionPerformed(evt);
+            }
+        });
 
         AddTablet.setBackground(new java.awt.Color(0, 204, 204));
         AddTablet.setText("Ajouter Tablette");
+        AddTablet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddTabletActionPerformed(evt);
+            }
+        });
 
         STRI.setText("STRI");
 
@@ -605,7 +807,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
+                .addComponent(OngletLocal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,7 +834,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 238, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -671,7 +873,6 @@ public class Logiciel extends javax.swing.JFrame {
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
         AddRoom.setEnabled(true);
-        // OngletLocal.setToolTipText("LocalLieu");
         bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
     }//GEN-LAST:event_LocalOkActionPerformed
 
@@ -721,9 +922,11 @@ public class Logiciel extends javax.swing.JFrame {
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
         bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
+        
+        
         
 
 // TODO add your handling code here:
@@ -766,6 +969,16 @@ public class Logiciel extends javax.swing.JFrame {
         ComputerDialog.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_AddComputerActionPerformed
+
+    private void AddBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBorneActionPerformed
+        BorneDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddBorneActionPerformed
+
+    private void AddTabletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTabletActionPerformed
+        TabletDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddTabletActionPerformed
 /**/                            
            private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
 /*
@@ -777,7 +990,8 @@ public class Logiciel extends javax.swing.JFrame {
         AddTablet.setEnabled(true);    // TODO add your handling code here:
                // TODO add your handling code here: */
     }                                         
-                          
+      
+ 
   
     
     
@@ -847,6 +1061,8 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton AddRoom;
     private javax.swing.JButton AddRouter;
     private javax.swing.JButton AddTablet;
+    private javax.swing.JDialog BorneDialog;
+    private javax.swing.JButton CancelBorne;
     private javax.swing.JButton CancelRouteur;
     private javax.swing.JDialog ComputerDialog;
     private javax.swing.JTextField CpuComp;
@@ -863,20 +1079,25 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JTextField LocalLieu;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
+    private javax.swing.JTextField MacBorne;
     private javax.swing.JTextField MacComp;
     private javax.swing.JLabel MacRouteur;
     private javax.swing.JTextField MacRouteurT;
+    private javax.swing.JTextField MarqueBorne;
     private javax.swing.JTextField MarqueComp;
     private javax.swing.JLabel MarqueRouteur;
     private javax.swing.JTextField MarqueRouteurT;
+    private javax.swing.JTextField NomBorne;
     private javax.swing.JTextField NomComp;
     private javax.swing.JLabel NomLocal;
     private javax.swing.JLabel NomRouteur;
     private javax.swing.JTextField NomRouteurT;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
+    private javax.swing.JButton OkBorne;
     private javax.swing.JButton OkRouteur;
     private javax.swing.JTabbedPane OngletLocal;
+    private javax.swing.JTextField OsBorne;
     private javax.swing.JTextField OsComp;
     private javax.swing.JLabel OsRouteur;
     private javax.swing.JTextField OsRouteurT;
@@ -888,14 +1109,29 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
+    private javax.swing.JDialog TabletDialog;
     private javax.swing.JButton Update;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -906,6 +1142,12 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

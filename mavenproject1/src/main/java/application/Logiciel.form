@@ -594,6 +594,288 @@
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JDialog" name="BorneDialog">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[450, 325]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="OsBorne" alignment="0" pref="222" max="32767" attributes="0"/>
+                              <Component id="MacBorne" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MarqueBorne" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NomBorne" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="OkBorne" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="CancelBorne" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NomBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="MarqueBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="MacBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="OsBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="OkBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CancelBorne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajouter Borne"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nom"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Marque"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="OS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel17">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MAC"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="NomBorne">
+        </Component>
+        <Component class="javax.swing.JTextField" name="MarqueBorne">
+        </Component>
+        <Component class="javax.swing.JTextField" name="MacBorne">
+        </Component>
+        <Component class="javax.swing.JTextField" name="OsBorne">
+        </Component>
+        <Component class="javax.swing.JButton" name="OkBorne">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Valider"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="CancelBorne">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Annuler"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="TabletDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jTextField6" alignment="0" pref="220" max="32767" attributes="0"/>
+                              <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="85" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="jButton4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Valider"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton5">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Annuler"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel18">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nom"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel19">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MAC"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Marque"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="OS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Capacit&#xe9;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel23">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mod&#xe8;le"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField1">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField2">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField3">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField4">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField5">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField6">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel24">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajout Tablette"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -656,7 +938,7 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="OngletLocal" pref="968" max="32767" attributes="0"/>
+              <Component id="OngletLocal" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -685,7 +967,7 @@
                       <Component id="Update" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Disable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="238" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -796,6 +1078,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Borne"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddBorneActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddBorne.setEnabled(false);"/>
       </AuxValues>
@@ -807,6 +1092,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ajouter Tablette"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddTabletActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AddTablet.setEnabled(false);"/>
       </AuxValues>
