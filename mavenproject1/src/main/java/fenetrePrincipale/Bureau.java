@@ -10,6 +10,8 @@ import java.util.*;
 import mesClasses.*;
 import fenetreLocal.*;
 import static java.awt.SystemColor.desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -18,7 +20,7 @@ import static java.awt.SystemColor.desktop;
 public class Bureau extends javax.swing.JFrame {
     private static Societe so;
     private static MySql bdd;
-    
+    private GridLayout grilleLocal;
     /**
      * Creates new form Bureau
      */
@@ -33,16 +35,28 @@ public class Bureau extends javax.swing.JFrame {
         initComponents();
         initialiseInterface();
     }
-
+    
     public void initialiseInterface(){        
         ArrayList<Local> locaux=so.getLocaux();
-        setLayout(new GridLayout(locaux.size(),1));
+        grilleLocal=new GridLayout(locaux.size(),1);
+        setLayout(grilleLocal);
         for(Local loc:locaux){
-            System.out.println(loc);
-            Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+            //System.out.println(loc);
+            final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+            boutonLocal.setName(loc.getNom());
+            boutonLocal.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent arg0){  
+                    System.out.println(boutonLocal.getName());
+                    Local loc=so.rechercherLocal(boutonLocal.getName());
+                    frame1 f=new frame1(loc);
+                    add(f);
+                    f.setVisible(true);
+                }
+                });
             add(boutonLocal);
         }      
     }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +127,7 @@ public class Bureau extends javax.swing.JFrame {
                     .addGroup(LocalDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NomLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
                             .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -200,11 +214,6 @@ public class Bureau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_MenuQuitterActionPerformed
     
    
     
@@ -213,8 +222,23 @@ public class Bureau extends javax.swing.JFrame {
     }//GEN-LAST:event_AjouterLocalActionPerformed
 
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
-        
-        add(new Button(LocalName.getText() + " " + "[" + LocalLieu.getText() + "]"));
+        Local loc=new Local(LocalName.getText(), LocalLieu.getText());
+        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
+        //bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        grilleLocal.setRows(so.getLocaux().size());        
+        final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+          boutonLocal.setName(loc.getNom());
+            boutonLocal.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent arg0){  
+                    System.out.println(boutonLocal.getName());
+                    Local loc=so.rechercherLocal(boutonLocal.getName());
+                    frame1 f=new frame1(loc);
+                    Bureau bureau=new Bureau();
+                    add(f);
+                    f.setVisible(true);
+                }
+                });
+            add(boutonLocal);
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
@@ -227,9 +251,9 @@ public class Bureau extends javax.swing.JFrame {
     }//GEN-LAST:event_LocalCancelActionPerformed
 
     private void boutonLocalActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    frame1 f = new frame1();
+    /*frame1 f = new frame1();
     desktop.add(f);
-    f.setVisible(true);
+    f.setVisible(true);*/
     
     // TODO add your handling code here:
     }                                        
@@ -243,6 +267,11 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LocalLieuActionPerformed
+
+    private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_MenuQuitterActionPerformed
 
     /**
      * @param args the command line arguments

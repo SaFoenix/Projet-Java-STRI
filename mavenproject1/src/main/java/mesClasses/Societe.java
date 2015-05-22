@@ -75,7 +75,7 @@ public class Societe {
      * @param nomL Le nom du local à rechercher
      * @return Le local recherché ou null si non trouvé
      */
-    private Local rechercherLocal(String nomL) {
+    public Local rechercherLocal(String nomL) {
 
         for (Local locRech : locaux) {
             if (locRech.getNom().equalsIgnoreCase(nomL)) {
