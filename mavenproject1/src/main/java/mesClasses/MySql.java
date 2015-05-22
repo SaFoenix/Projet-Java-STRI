@@ -135,7 +135,6 @@ public class MySql {
         ArrayList societe = new ArrayList();
         try {
             st=connexion.createStatement();
-        
             query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
             IdSociete = query.getInt( "IdSociete" );
             System.out.println("La societe a l'ID : "+IdSociete);
