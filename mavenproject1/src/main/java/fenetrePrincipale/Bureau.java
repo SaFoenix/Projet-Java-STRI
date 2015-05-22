@@ -28,7 +28,7 @@ public class Bureau extends javax.swing.JFrame {
     public Bureau() {
         bdd=new MySql();
         bdd.Connexion();
-        bdd.RecupererSociete("STRI");
+        so=bdd.RecupererSociete("STRI");
         so.setLocaux(bdd.SocieteLocal("STRI"));
         /*so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
