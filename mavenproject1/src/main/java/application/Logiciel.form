@@ -983,7 +983,7 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="OngletLocal" max="32767" attributes="0"/>
+              <Component id="OngletLocal" pref="980" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1012,7 +1012,7 @@
                       <Component id="Update" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Disable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="252" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

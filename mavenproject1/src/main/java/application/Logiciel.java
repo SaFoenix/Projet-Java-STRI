@@ -200,7 +200,7 @@ public class Logiciel extends javax.swing.JFrame {
                     .addGroup(LocalDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(NomLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                             .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -849,7 +849,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(STRI)))
                 .addGap(12, 12, 12)
-                .addComponent(OngletLocal))
+                .addComponent(OngletLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -876,7 +876,7 @@ public class Logiciel extends javax.swing.JFrame {
                         .addComponent(Update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Disable)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 252, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

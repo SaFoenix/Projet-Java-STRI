@@ -199,6 +199,9 @@ public class frame1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SalleOkActionPerformed
 
+    
+    
+    
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
         NumeroSalle.setText("");
         EtageSalle.setText("");
