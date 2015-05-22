@@ -26,7 +26,7 @@ public class Bureau extends javax.swing.JFrame {
      */
     public Bureau() {
         bdd=new MySql();
-        bdd.Connexion();
+       // bdd.Connexion();
         so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
@@ -44,6 +44,7 @@ public class Bureau extends javax.swing.JFrame {
             //System.out.println(loc);
             final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
             boutonLocal.setName(loc.getNom());
+            add(boutonLocal);
             boutonLocal.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());
@@ -53,7 +54,7 @@ public class Bureau extends javax.swing.JFrame {
                     f.setVisible(true);
                 }
                 });
-            add(boutonLocal);
+            
         }      
     }
    
@@ -228,17 +229,17 @@ public class Bureau extends javax.swing.JFrame {
         grilleLocal.setRows(so.getLocaux().size());        
         final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
           boutonLocal.setName(loc.getNom());
+          add(boutonLocal);
             boutonLocal.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());
                     Local loc=so.rechercherLocal(boutonLocal.getName());
                     frame1 f=new frame1(loc);
-                    Bureau bureau=new Bureau();
                     add(f);
                     f.setVisible(true);
                 }
                 });
-            add(boutonLocal);
+            
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
