@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
+import fenetrePrincipale.Bureau;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import mesClasses.*;
 import java.util.*;
 /**
@@ -12,14 +15,21 @@ import java.util.*;
  * @author guigui
  */
 public class frame1 extends javax.swing.JInternalFrame {
+    private static Societe so;
     private Local local;
     private ArrayList<Salle> salles;
+    private GridLayout grilleSalle;
+
     /**
      * Creates new form frame1
      */
     public frame1(Local loc) {
         local=loc;
         initComponents();
+    }
+
+    private frame1(Salle sal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void initialisationMenuSalle(){
@@ -86,12 +96,6 @@ public class frame1 extends javax.swing.JInternalFrame {
         SalleCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalleCancelActionPerformed(evt);
-            }
-        });
-
-        EtageSalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EtageSalleActionPerformed(evt);
             }
         });
 
@@ -191,30 +195,36 @@ public class frame1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
+        
+        
+
+  /*          public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+                });
+        
         add(new Button(NumeroSalle.getText() + " " + "[" + EtageSalle.getText() + "]"));
         NombreOrdinateurSalle.setText("");
         NumeroSalle.setText("");
         EtageSalle.setText("");
         SalleDialog.setVisible(false);
-        // TODO add your handling code here:
+        // TODO add your handling code here:*/
     }//GEN-LAST:event_SalleOkActionPerformed
+
+    
+    
+    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        SalleDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
-        SalleDialog.setVisible(false);        
-        // TODO add your handling code here:
+        SalleDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
-
-    private void EtageSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EtageSalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EtageSalleActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        SalleDialog.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
