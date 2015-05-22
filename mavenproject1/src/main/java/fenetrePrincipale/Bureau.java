@@ -37,7 +37,7 @@ public class Bureau extends javax.swing.JFrame {
         setLayout(new GridLayout(locaux.size(),1));
         for(Local loc:locaux){
             System.out.println(loc);
-            add(new Button(loc.getNom()));
+            add(new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]"));
         }      
     }
     /**
@@ -211,7 +211,7 @@ public class Bureau extends javax.swing.JFrame {
 
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         
-        add(new Button(LocalName.getText()));
+        add(new Button(LocalName.getText() + " " + "[" + LocalLieu.getText() + "]"));
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
