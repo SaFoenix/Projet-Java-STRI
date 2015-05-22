@@ -32,13 +32,16 @@ public class Logiciel extends javax.swing.JFrame {
     public void initialisationSociete(){
         bdd=new MySql();
         /*A tester*/
-        //bdd.RecupererSociete(so);
+        bdd.Connexion();
+        
+       // so=bdd.RecupererSociete("STRI");
+        System.out.println(so);
         /*supprimer à la fin test*/
         so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
         so.ajouterSalle("local1", 0, 2, 20);
-        bdd.Connexion();
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -420,7 +423,7 @@ public class Logiciel extends javax.swing.JFrame {
         LocalDialog.setVisible(false);
         AddRoom.setEnabled(true);
         // OngletLocal.setToolTipText("LocalLieu");
-        bdd.AjoutLocal(loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void AddRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouterActionPerformed
