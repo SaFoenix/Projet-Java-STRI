@@ -49,7 +49,14 @@ public class Bureau extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        LocalDialog = new javax.swing.JDialog();
+        LocalOk = new javax.swing.JButton();
+        LocalCancel = new javax.swing.JButton();
+        LocalName = new javax.swing.JTextField();
+        NomLocal = new javax.swing.JLabel();
+        CreationLocal = new javax.swing.JLabel();
+        LieuLocal = new javax.swing.JLabel();
+        LocalLieu = new javax.swing.JTextField();
         AfficheLocaux = new javax.swing.JPanel();
         BarreMenu = new javax.swing.JMenuBar();
         MenuFile = new javax.swing.JMenu();
@@ -57,15 +64,85 @@ public class Bureau extends javax.swing.JFrame {
         MenuAjouter = new javax.swing.JMenu();
         AjouterLocal = new javax.swing.JMenuItem();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        LocalDialog.setBackground(new java.awt.Color(0, 255, 255));
+        LocalDialog.setMinimumSize(new java.awt.Dimension(420, 320));
+
+        LocalOk.setBackground(new java.awt.Color(0, 255, 0));
+        LocalOk.setText("Valider");
+        LocalOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalOkActionPerformed(evt);
+            }
+        });
+
+        LocalCancel.setBackground(new java.awt.Color(255, 0, 0));
+        LocalCancel.setText("Annuler");
+        LocalCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalCancelActionPerformed(evt);
+            }
+        });
+
+        LocalName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalNameActionPerformed(evt);
+            }
+        });
+
+        NomLocal.setText("Nom");
+
+        CreationLocal.setText("Création Local");
+
+        LieuLocal.setText("Lieu");
+
+        LocalLieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalLieuActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LocalDialogLayout = new javax.swing.GroupLayout(LocalDialog.getContentPane());
+        LocalDialog.getContentPane().setLayout(LocalDialogLayout);
+        LocalDialogLayout.setHorizontalGroup(
+            LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LocalDialogLayout.createSequentialGroup()
+                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LocalDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NomLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(LocalDialogLayout.createSequentialGroup()
+                                .addComponent(LocalOk)
+                                .addGap(18, 18, 18)
+                                .addComponent(LocalCancel))
+                            .addComponent(LocalName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(LocalLieu, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(LocalDialogLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(CreationLocal)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        LocalDialogLayout.setVerticalGroup(
+            LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LocalDialogLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(CreationLocal)
+                .addGap(18, 18, 18)
+                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LocalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomLocal))
+                .addGap(18, 18, 18)
+                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LocalLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LieuLocal))
+                .addGap(18, 18, 18)
+                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LocalCancel)
+                    .addComponent(LocalOk))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,11 +151,11 @@ public class Bureau extends javax.swing.JFrame {
         AfficheLocaux.setLayout(AfficheLocauxLayout);
         AfficheLocauxLayout.setHorizontalGroup(
             AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 1132, Short.MAX_VALUE)
         );
         AfficheLocauxLayout.setVerticalGroup(
             AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGap(0, 583, Short.MAX_VALUE)
         );
 
         MenuFile.setText("Menu");
@@ -132,6 +209,32 @@ public class Bureau extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AjouterLocalActionPerformed
 
+    private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
+        JTabbedPane testlocal = new JTabbedPane();
+        Local loc =new Local(LocalName.getText(), LocalLieu.getText());
+        OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
+        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
+        LocalName.setText("");
+        LocalLieu.setText("");
+        LocalDialog.setVisible(false);
+        AddRoom.setEnabled(true);
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+    }//GEN-LAST:event_LocalOkActionPerformed
+
+    private void LocalCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalCancelActionPerformed
+        LocalName.setText("");
+        LocalLieu.setText("");
+        LocalDialog.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_LocalCancelActionPerformed
+
+    private void LocalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LocalNameActionPerformed
+
+    private void LocalLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalLieuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LocalLieuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,9 +274,16 @@ public class Bureau extends javax.swing.JFrame {
     private javax.swing.JPanel AfficheLocaux;
     private javax.swing.JMenuItem AjouterLocal;
     private javax.swing.JMenuBar BarreMenu;
+    private javax.swing.JLabel CreationLocal;
+    private javax.swing.JLabel LieuLocal;
+    private javax.swing.JButton LocalCancel;
+    private javax.swing.JDialog LocalDialog;
+    private javax.swing.JTextField LocalLieu;
+    private javax.swing.JTextField LocalName;
+    private javax.swing.JButton LocalOk;
     private javax.swing.JMenu MenuAjouter;
     private javax.swing.JMenu MenuFile;
     private javax.swing.JMenuItem MenuQuitter;
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel NomLocal;
     // End of variables declaration//GEN-END:variables
 }
