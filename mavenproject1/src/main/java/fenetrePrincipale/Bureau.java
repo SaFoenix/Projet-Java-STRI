@@ -232,7 +232,7 @@ public class Bureau extends javax.swing.JFrame {
           add(boutonLocal);
             boutonLocal.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent arg0){  
-                    System.out.println(boutonLocal.getName());
+                    System.out.println(boutonLocal.getName());;
                     Local loc=so.rechercherLocal(boutonLocal.getName());
                     frame1 f=new frame1(loc);
                     add(f);
