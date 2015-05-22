@@ -141,6 +141,8 @@ public class Logiciel extends javax.swing.JFrame {
         Disable = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         OngletLocal = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         AddRouter = new javax.swing.JButton();
         AddBorne = new javax.swing.JButton();
         AddTablet = new javax.swing.JButton();
@@ -752,6 +754,10 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
 
+        jTabbedPane1.addTab("tab1", jTabbedPane2);
+
+        OngletLocal.addTab("tab1", jTabbedPane1);
+
         AddRouter.setBackground(new java.awt.Color(0, 204, 204));
         AddRouter.setText("Ajouter Routeur");
         AddRouter.addActionListener(new java.awt.event.ActionListener() {
@@ -1142,6 +1148,8 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
