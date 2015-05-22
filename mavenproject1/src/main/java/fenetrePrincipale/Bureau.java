@@ -27,12 +27,13 @@ public class Bureau extends javax.swing.JFrame {
      */
     public Bureau() {
         bdd=new MySql();
-       // bdd.Connexion();
-        so=new Societe("Stri", "Toulouse");
+        bdd.Connexion();
+        bdd.RecupererSociete("STRI");
+        /*so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
-        so.ajouterSalle("local1", 0, 2, 20);
+        so.ajouterSalle("local1", 0, 2, 20);*/
         initComponents();
         initialiseInterface();
     }
@@ -230,7 +231,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        //bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         grilleLocal.setRows(so.getLocaux().size());        
         final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
           boutonLocal.setName(loc.getNom());

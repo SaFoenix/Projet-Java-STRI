@@ -152,7 +152,7 @@ public class MySql {
         }
     }
     
-    /*public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
+    public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
         ResultSet resultat1;
         ResultSet resultat2;
         ResultSet resultat3;
@@ -176,7 +176,7 @@ public class MySql {
         String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
             st.executeUpdate(sql);
             
-        String sqlRouteur="INSERT INTO ordinateur VALUES ("+idMax+","+nombrePort+")";
+        String sqlRouteur="INSERT INTO routeur VALUES ("+idMax+","+nombrePort+")";
             st.executeUpdate(sqlRouteur);
             
         resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
@@ -191,15 +191,17 @@ public class MySql {
             System.out.println("Erreur Ajout Routeur");
         }
         
-    }*/
+    }
     
     public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
-        ResultSet resultat2;
         ResultSet resultat1;
+        ResultSet resultat2;
+        ResultSet resultat3;
         ResultSet verif;
         Statement st;
         int idSalle=0;
         int idMax=0;
+        int idRouteur=0;
         boolean verification;
         try {
             st=connexion.createStatement();
@@ -207,9 +209,9 @@ public class MySql {
             if(verification!=true){
                 System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
             }else{
-            resultat2 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
-            while ( resultat2.next() ) {
-            idMax = resultat2.getInt("max(idEquipement)");
+            resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat1.next() ) {
+            idMax = resultat1.getInt("max(idEquipement)");
             idMax+=1;
             }
         String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
@@ -218,12 +220,19 @@ public class MySql {
         String sqlOrdinateur="INSERT INTO ordinateur VALUES ("+idMax+",'"+ram+"','"+cpu+"','"+gpu+"','"+hdd+"')";
             st.executeUpdate(sqlOrdinateur);
             
-        resultat1 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
-            while (resultat1.next()){
-            idSalle=resultat1.getInt("IdSalle");
+        resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat2.next()){
+            idSalle=resultat2.getInt("IdSalle");
             }
             String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
             st.executeUpdate(sql2);
+            
+        resultat3 = st.executeQuery( "SELECT IdRouteur FROM routeur r WHERE IdRouteur IN (SELECT IdRouteur FROM contenirequipement WHERE IdSalle='"+idSalle+"' AND r.IdRouteur=IdRouteur)  " );    
+        while (resultat3.next()){
+            idRouteur=resultat3.getInt("IdRouteur");
+            }
+            String sql3 ="INSERT INTO connecter VALUES ("+idRouteur+","+idMax+")";
+            st.executeUpdate(sql3);
         }
         } 
         catch (SQLException e) {
@@ -274,7 +283,7 @@ public class MySql {
             IdSociete = query.getInt( "IdSociete" );
             }  
             
-        resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+IdSociete+"' AND L.IdLocal=IdLocal) ;;" );   
+        resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal IN (SELECT IdLocal FROM Contenir WHERE IdSociete='"+IdSociete+"' AND L.IdLocal=IdLocal) ;;" );   
         
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
@@ -306,7 +315,7 @@ public class MySql {
             while(query.next()){
             IdLocal = query.getInt( "IdLocal" );
             }
-            resultat = st.executeQuery( "SELECT numero , etage, NombreOrdinateur FROM Salle S  WHERE IdSalle = (SELECT IdSalle FROM ContenirSalle WHERE IdLocal='"+IdLocal+"' AND S.IdSalle=IdSalle) ;" );
+            resultat = st.executeQuery( "SELECT numero , etage, NombreOrdinateur FROM Salle S  WHERE IdSalle IN (SELECT IdSalle FROM ContenirSalle WHERE IdLocal='"+IdLocal+"' AND S.IdSalle=IdSalle) ;" );
              
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
