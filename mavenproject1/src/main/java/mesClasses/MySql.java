@@ -152,6 +152,47 @@ public class MySql {
         }
     }
     
+    public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
+        ResultSet resultat1;
+        ResultSet resultat2;
+        ResultSet resultat3;
+        ResultSet verif;
+        Statement st;
+        int idSalle=0;
+        int idMax=0;
+        boolean verification;
+        try {
+            st=connexion.createStatement();
+            verification=VerifierEquipement(mac);
+            if(verification!=true){
+                System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
+            }else{
+            resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat1.next() ) {
+            idMax = resultat1.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+            
+        String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+            
+        String sqlRouteur="INSERT INTO ordinateur VALUES ("+idMax+","+nombrePort+")";
+            st.executeUpdate(sqlRouteur);
+            
+        resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat2.next()){
+            idSalle=resultat2.getInt("IdSalle");
+            }
+        String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
+            st.executeUpdate(sql2);        
+        }
+        } 
+        catch (SQLException e) {
+            System.out.println("Erreur Ajout Routeur");
+        }
+        
+    }
+    
     public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         ResultSet resultat2;
         ResultSet resultat1;
