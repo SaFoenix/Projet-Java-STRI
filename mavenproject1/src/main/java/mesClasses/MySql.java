@@ -64,6 +64,7 @@ public class MySql {
         Statement st;
         ResultSet resultat2;
         ResultSet resultat1;
+        ResultSet verif;
         int idMax = 0;
         int IdSociete=0;
         try {
@@ -73,24 +74,41 @@ public class MySql {
                 idMax = resultat2.getInt("max(idLocal)");
                 idMax += 1;
             }
+            
+            verif=st.executeQuery("SELECT  NomLocal  FROM Local WHERE NomLocal='"+nomL+"';");
+            if (verif!=null)
+                {
+                int nbLignes = 0;
+                while (verif.next()) 
+                { 
+                nbLignes ++;  
+                } 
 
+                if (nbLignes == 0) 
+                {
             String sql = "INSERT INTO Local VALUES (" + idMax + ",'" + nomL + "','" + lieux + "')";
             st.executeUpdate(sql);
             resultat1 = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='"+Societe+"'" );
-            //System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
             while (resultat1.next()){
             IdSociete=resultat1.getInt("IdSociete");
             }
             String sql2 ="INSERT INTO Contenir VALUES ("+IdSociete+","+idMax+")";
             st.executeUpdate(sql2);
-            
-      } catch (SQLException e) {System.out.println("Erreur AjoutLocal");
+                }else{System.out.println("Le local "+nomL+" existe deja.");}
+                }
+                else
+                {System.out.println("res est null");
+                }
+      } 
+        catch (SQLException e) {
+            System.out.println("Erreur AjoutLocal");
         }
     }
     
     public void AjoutSalle(String Local ,int numero , int nbOrdi , int etage){
         ResultSet resultat2;
         ResultSet resultat1;
+        ResultSet verif;
         Statement st;
         int IdLocal = 0 ; 
         int idMax=0;
@@ -102,31 +120,93 @@ public class MySql {
             idMax = resultat2.getInt("max(idSalle)");
             idMax+=1;
             }
-              
-            String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
-            st.executeUpdate(sql);
-            
             resultat1 = st.executeQuery( "SELECT IdLocal FROM Local WHERE nomLocal='"+Local+"'" );
             while (resultat1.next()){
             IdLocal=resultat1.getInt("IdLocal");
             }
-            String sql2 ="INSERT INTO Contenirsalle VALUES ("+idMax+","+IdLocal+")";
-            st.executeUpdate(sql2);
+            verif=st.executeQuery("SELECT  numero FROM Salle S WHERE IdSalle=(SELECT IdSalle FROM contenirsalle WHERE IdLocal="+IdLocal+" AND S.IdSalle=IdSalle)");
+            if (verif!=null)
+                {
+                int nbLignes = 0;
+                while (verif.next()) 
+                { 
+                nbLignes ++;  
+                } 
+
+                if (nbLignes == 0) 
+                {
+                    String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
+                    st.executeUpdate(sql);
+                    String sql2 ="INSERT INTO Contenirsalle VALUES ("+IdLocal+","+idMax+")";
+                    st.executeUpdate(sql2);
+                }else{System.out.println("La Salle "+numero+" existe deja dans le Local "+Local+".");}
+                }
+                else
+                {System.out.println("res est null");
+                }
+              
+            
         } catch (SQLException e) 
         {
             System.out.println("Erreur Ajout Salle");
         }
     }
     
-    public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
-        ResultSet resultat2;
+    public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
         ResultSet resultat1;
+        ResultSet resultat2;
+        ResultSet resultat3;
+        ResultSet verif;
         Statement st;
         int idSalle=0;
         int idMax=0;
+        boolean verification;
         try {
             st=connexion.createStatement();
+            verification=VerifierEquipement(mac);
+            if(verification!=true){
+                System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
+            }else{
+            resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat1.next() ) {
+            idMax = resultat1.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+            
+        String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+            
+        String sqlRouteur="INSERT INTO ordinateur VALUES ("+idMax+","+nombrePort+")";
+            st.executeUpdate(sqlRouteur);
+            
+        resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat2.next()){
+            idSalle=resultat2.getInt("IdSalle");
+            }
+        String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
+            st.executeUpdate(sql2);        
+        }
+        } 
+        catch (SQLException e) {
+            System.out.println("Erreur Ajout Routeur");
+        }
         
+    }
+    
+    public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
+        ResultSet resultat2;
+        ResultSet resultat1;
+        ResultSet verif;
+        Statement st;
+        int idSalle=0;
+        int idMax=0;
+        boolean verification;
+        try {
+            st=connexion.createStatement();
+            verification=VerifierEquipement(mac);
+            if(verification!=true){
+                System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
+            }else{
             resultat2 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
             while ( resultat2.next() ) {
             idMax = resultat2.getInt("max(idEquipement)");
@@ -144,6 +224,7 @@ public class MySql {
             }
             String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
             st.executeUpdate(sql2);
+        }
         } 
         catch (SQLException e) {
             System.out.println("Erreur Ajout ordinateur");
@@ -240,6 +321,34 @@ public class MySql {
         return salles;     
     }
     
- 
+    public boolean VerifierEquipement(String mac){
+    ResultSet verif= null;
+    Statement st;
+    int equipementok =0 ; 
+    
+    try{
+        st=connexion.createStatement();
+        verif=st.executeQuery("SELECT MAC FROM equipement WHERE MAC='"+mac+"'");
+        if(verif!=null){
+        int nbLignes = 0;
+                while (verif.next()) 
+                {nbLignes ++;
+                }
+        if (nbLignes == 0){
+            return true;
+        }
+         else{
+                return false;
+             }
+    }else{
+            System.out.println("Erreur verifierEquipemet");
+    }
+    }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    return false;
+    }
 
+        
+        
 }
