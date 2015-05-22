@@ -27,7 +27,8 @@ public class frame1 extends javax.swing.JInternalFrame {
         MenuSalle.setLayout(new GridLayout(salles.size(),1));
         for(Salle sa:salles){
               System.out.println(sa);
-              add(new Button(sa.getNumero()+ " " + "[" + sa.getEtage()+ "]"));
+              Button boutonSalle = new Button(sa.getNumero()+ " " + "[" + sa.getEtage()+ "]"); 
+              add(boutonSalle);
         }
     }
     /**
@@ -39,7 +40,110 @@ public class frame1 extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SalleDialog = new javax.swing.JDialog();
+        CreationSalle = new javax.swing.JLabel();
+        NumeroSalle = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        SalleOk = new javax.swing.JButton();
+        SalleCancel = new javax.swing.JButton();
+        EtageSalle = new javax.swing.JTextField();
+        NombreOrdinateurSalle = new javax.swing.JTextField();
         MenuSalle = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        SalleDialog.setMinimumSize(new java.awt.Dimension(420, 320));
+
+        CreationSalle.setText("Création Salle");
+
+        NumeroSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroSalleActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("numéro");
+
+        jLabel3.setText("étage");
+
+        jLabel4.setText("nombre ordinateur");
+
+        SalleOk.setBackground(new java.awt.Color(51, 255, 51));
+        SalleOk.setText("Valider");
+        SalleOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalleOkActionPerformed(evt);
+            }
+        });
+
+        SalleCancel.setBackground(new java.awt.Color(255, 0, 0));
+        SalleCancel.setText("Annuler");
+        SalleCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalleCancelActionPerformed(evt);
+            }
+        });
+
+        EtageSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EtageSalleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SalleDialogLayout = new javax.swing.GroupLayout(SalleDialog.getContentPane());
+        SalleDialog.getContentPane().setLayout(SalleDialogLayout);
+        SalleDialogLayout.setHorizontalGroup(
+            SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SalleDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SalleDialogLayout.createSequentialGroup()
+                        .addComponent(CreationSalle)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(NumeroSalle)
+                    .addComponent(EtageSalle)
+                    .addComponent(NombreOrdinateurSalle))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalleDialogLayout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addComponent(SalleOk)
+                .addGap(40, 40, 40)
+                .addComponent(SalleCancel)
+                .addGap(81, 81, 81))
+        );
+        SalleDialogLayout.setVerticalGroup(
+            SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SalleDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CreationSalle)
+                .addGap(18, 18, 18)
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NumeroSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(EtageSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(NombreOrdinateurSalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(SalleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SalleCancel)
+                    .addComponent(SalleOk))
+                .addGap(24, 24, 24))
+        );
 
         setClosable(true);
 
@@ -53,16 +157,82 @@ public class frame1 extends javax.swing.JInternalFrame {
         );
         MenuSalleLayout.setVerticalGroup(
             MenuSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 522, Short.MAX_VALUE)
         );
 
         getContentPane().add(MenuSalle, java.awt.BorderLayout.LINE_START);
 
+        jMenu1.setText("Menu");
+
+        jMenuItem2.setText("Exit");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Ajouter");
+
+        jMenuItem1.setText("Ajouter salle");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void NumeroSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroSalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroSalleActionPerformed
+
+    private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
+        add(new Button(NumeroSalle.getText() + " " + "[" + EtageSalle.getText() + "]"));
+        NombreOrdinateurSalle.setText("");
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        SalleDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleOkActionPerformed
+
+    private void SalleCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleCancelActionPerformed
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        NombreOrdinateurSalle.setText("");
+        SalleDialog.setVisible(false);        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleCancelActionPerformed
+
+    private void EtageSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EtageSalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EtageSalleActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        SalleDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CreationSalle;
+    private javax.swing.JTextField EtageSalle;
     private javax.swing.JPanel MenuSalle;
+    private javax.swing.JTextField NombreOrdinateurSalle;
+    private javax.swing.JTextField NumeroSalle;
+    private javax.swing.JButton SalleCancel;
+    private javax.swing.JDialog SalleDialog;
+    private javax.swing.JButton SalleOk;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
