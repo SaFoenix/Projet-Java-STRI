@@ -19,17 +19,36 @@ public class Logiciel extends javax.swing.JFrame {
     
     Map<String, javax.swing.JTabbedPane> tabsalle = new HashMap<>();
     private static Societe so;
+    private static MySql bdd;
     /**
      * Creates new form Main
      */
     public Logiciel() {
+<<<<<<< HEAD
         so=new Societe("Stri", "Toulouse");
          so.ajouterLocal("local11", "Toulouse");
          so.ajouterLocal("local1", "bordeaux");
+=======
+        initialisationSociete();
+>>>>>>> 316b9ad061d74b4a6d832f744704814e66dcc706
         initComponents();
-        creationOngletLocal();       
+        creationOngletLocal();   
     }
-
+   
+    public void initialisationSociete(){
+        bdd=new MySql();
+        /*A tester*/
+        bdd.Connexion();
+        
+       // so=bdd.RecupererSociete("STRI");
+        System.out.println(so);
+        /*supprimer à la fin test*/
+        so=new Societe("Stri", "Toulouse");
+        so.ajouterLocal("local1", "bordeaux");
+        so.ajouterSalle("local1", 0, 1, 15);
+        so.ajouterSalle("local1", 0, 2, 20);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -471,15 +490,15 @@ public class Logiciel extends javax.swing.JFrame {
 
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         JTabbedPane testlocal = new JTabbedPane();
-        Local loc =new Local(LocalName.getText(), LocalLieu.getName());
-        OngletLocal.addTab(LocalName.getText(), testlocal);
+        Local loc =new Local(LocalName.getText(), LocalLieu.getText());
+        OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
         AddRoom.setEnabled(true);
         // OngletLocal.setToolTipText("LocalLieu");
-                // TODO add your handling code here:
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void AddRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouterActionPerformed
@@ -512,7 +531,9 @@ public class Logiciel extends javax.swing.JFrame {
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-        tabsalle.get(nomlocal).addTab(NumeroSalle.getText(), testsalle);
+         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
+        bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -549,7 +570,7 @@ public class Logiciel extends javax.swing.JFrame {
         Update.setEnabled(false);
         AddRouter.setEnabled(false);
         AddBorne.setEnabled(false);
-        AddTablet.setEnabled(false);        // TODO add your handling code here:
+        AddTablet.setEnabled(false);  
     }//GEN-LAST:event_OngletLocalMouseClicked
 
     /**
@@ -588,15 +609,26 @@ public class Logiciel extends javax.swing.JFrame {
             }
         });
     }
+    
     public void creationOngletLocal(){
         ArrayList <Local>locaux=so.getLocaux();
-        System.out.println("............"+so.getNom()+"...................");
         for(Local loc : locaux){
-            System.out.println("test :"+loc.toString());
-            JTabbedPane testlocal = new JTabbedPane();
-            OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
+            JTabbedPane localOnglet = new JTabbedPane();
+            OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", localOnglet);
+            ArrayList<Salle> salles=loc.getSalles();
+            for (Salle sa : salles) {
+                JPanel testsalle = new JPanel();
+                String nomlocal = loc.getNom();
+                if (!tabsalle.containsKey(nomlocal)) {
+                    JTabbedPane o = new JTabbedPane();
+                    ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+                    tabsalle.put(nomlocal, o);
+                }
+                tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
+            }
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBorne;
     private javax.swing.JButton AddComputer;

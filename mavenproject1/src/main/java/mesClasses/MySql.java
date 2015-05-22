@@ -5,7 +5,9 @@
  */
 package mesClasses;
 
+
 import java.sql.*;
+import java.util.*;
 
 /**
  *
@@ -15,7 +17,7 @@ public class MySql {
     private String host;
     private String pwd;
     private String url;
-    private Connection connection;
+    private Connection connexion;
             
     public MySql(){
         
@@ -24,23 +26,164 @@ public class MySql {
     this.url= "jdbc:mysql://localhost:3306/java?zeroDateTimeBehavior=convertToNull";
     }
     
-    public void Connection(){
-     
-/*      Class.forName("com.mysql.jdbc.Driver");
+    public void Connexion(){
+         try {
+      Class.forName("com.mysql.jdbc.Driver");
       System.out.println("Driver O.K.");
       
-      connection = DriverManager.getConnection(url, host, pwd);
+      connexion = DriverManager.getConnection(url, host, pwd);
       System.out.println("Connexion effective !");         
-      
-       */  
+      }
+      catch (ClassNotFoundException | SQLException e) {
+          System.out.println("Erreur connexion!");           
+    }     
+         
     }
     
-    public void AjoutSociete(String nom,String lieux) throws SQLException{
+    public void AjoutSociete(String nom,String lieux){
         
         Statement st;
-        st=connection.createStatement();
-        String sql="INSERT INTO societe VALUES ('','"+nom+"','"+lieux+"')";
-        st.executeUpdate(sql);
+        int idMax=0;
+        try {
+            st=connexion.createStatement();
+        
+         ResultSet resultat2 = st.executeQuery( "SELECT  max(idSociete)  FROM societe;" );
+            while ( resultat2.next() ) {
+            idMax = resultat2.getInt( "max(idSociete)" );
+            idMax+=1;
+            }
+               
+        String sql="INSERT INTO societe VALUES ("+idMax+",'"+nom+"','"+lieux+"')";
+            st.executeUpdate(sql);
+        } catch (SQLException e) {
+        }
     }
     
+    public void AjoutLocal(String Societe, String nomL, String lieux){
+
+        Statement st;
+        ResultSet resultat2;
+        ResultSet resultat1;
+        int idMax = 0;
+        int IdSociete=0;
+        try {
+            st = connexion.createStatement();
+            resultat2 = st.executeQuery("SELECT  max(idLocal)  FROM Local;");
+            while (resultat2.next()) {
+                idMax = resultat2.getInt("max(idLocal)");
+                idMax += 1;
+            }
+
+            String sql = "INSERT INTO Local VALUES (" + idMax + ",'" + nomL + "','" + lieux + "')";
+            st.executeUpdate(sql);
+            resultat1 = st.executeQuery( "SELECT IdSociete FROM Societe WHERE nom='"+Societe+"'" );
+            //System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+            while (resultat1.next()){
+            IdSociete=resultat1.getInt("IdSociete");
+            }
+            String sql2 ="INSERT INTO Contenir VALUES ("+IdSociete+","+idMax+")";
+            st.executeUpdate(sql2);
+            
+      } catch (SQLException e) {System.out.println("Erreur AjoutLocal");
+        }
+    }
+    
+    public void AjoutSalle(String nomL ,int numero , int nbOrdi , int etage){
+        ResultSet resultat2;
+        Statement st;
+        int idMax=0;
+        try {
+            st=connexion.createStatement();
+        
+            resultat2 = st.executeQuery( "SELECT  max(idSalle)  FROM Salle;" );
+            while ( resultat2.next() ) {
+            idMax = resultat2.getInt("max(idSalle)");
+            idMax+=1;
+            }
+              
+            String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
+            st.executeUpdate(sql);
+        } catch (SQLException e) 
+        {
+            System.out.println("Erreur Ajout Salle");
+        }
+    }
+    
+    public Societe RecupererSociete(String nomSociete) {
+        ResultSet resultat = null;
+        Statement st;
+        Societe so=null;
+        String Lieux;
+        String Nom;
+        int IdSociete;
+        try {
+            st = connexion.createStatement();
+            resultat = st.executeQuery("SELECT  IdSociete, Nom,Lieux  FROM Societe WHERE Nom='"+nomSociete+"';");
+            System.out.println("Requête \"SELECT  IdSociete, Nom,Lieux  FROM Societe;\" effectuée !");
+            /* Récupération des données du résultat de la requête de lecture */
+            while (resultat.next()) {
+                IdSociete = resultat.getInt("IdSociete");
+                Nom = resultat.getString("Nom");
+                Lieux = resultat.getString("Lieux");
+                so=new Societe(Nom,Lieux);
+                so.setIdSociete(IdSociete);
+            }
+        } catch (SQLException e) {
+        }
+        return so;
+    }
+    
+    public Local SocieteLocal(String nom){
+        
+        ResultSet resultat;
+        ResultSet query;
+        Local lo = null;
+        Statement st;
+        String Lieux;
+        String Nom;
+        int IdSociete=0;
+        ArrayList societe = new ArrayList();
+        
+        try {
+            st=connexion.createStatement();
+            query = st.executeQuery( "SELECT  IdSociete FROM Societe WHERE Nom='"+nom+"';" );
+            IdSociete = query.getInt( "IdSociete" );
+            System.out.println("La societe a l'ID : "+IdSociete);
+            resultat = st.executeQuery( "SELECT NomLocal , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdLocal FROM Contenir WHERE IdSociete='"+nom+"' AND L.IdLocal=IdLocal) ;;" );
+            System.out.println( "Requête \"resultat = st.executeQuery( \"SELECT Nom , Lieux  FROM Local L  WHERE IdLocal = (SELECT IdSociete, IdLocal FROM Contenir WHERE IdSociete='\"+nom+\"' AND L.IdLocal=IdLocal ;\" );\" effectuée !" );
+             
+        /* Récupération des données du résultat de la requête de lecture */
+        while ( resultat.next() ) {
+            Nom = resultat.getString( "NomLocal" );
+            Lieux = resultat.getString( "Lieux" );
+               lo = new Local(Nom,Lieux);
+                //lo.setIdLocal(IdSociete);
+                System.out.println(lo);
+            }
+   } catch (SQLException e) {
+        }
+        return lo;     
+    }
+    
+    
+    public void AjoutOrdinateur(String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
+        
+        Statement st;
+        int idMax=0;
+        try {
+            st=connexion.createStatement();
+        
+        ResultSet resultat2 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat2.next() ) {
+            idMax = resultat2.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+        String sql="INSERT INTO equipement VALUES ('"+idMax+"','"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+        String sqlOrdinateur="INSERT INTO ordinateur VALUES ('"+idMax+"','"+ram+"','"+cpu+"','"+gpu+"','"+hdd+"')";
+            st.executeUpdate(sqlOrdinateur);
+        } 
+        catch (SQLException e) {
+        }
+    }
 }

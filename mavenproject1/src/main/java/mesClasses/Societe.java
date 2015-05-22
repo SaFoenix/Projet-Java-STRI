@@ -45,7 +45,13 @@ public class Societe {
         this.localisation = localisation;
         locaux = new ArrayList<Local>();
     }
-
+    /**
+     * modifie l'identifiant de la société pour la bdd
+     * @param idSociete l'identifiant de la societe
+     */
+    public void setIdSociete(int idSociete){
+        this.idSociete=idSociete;
+    }
     /**
      * ajoute une salle à un local
      *
