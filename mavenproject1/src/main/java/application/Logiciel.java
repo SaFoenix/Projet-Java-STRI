@@ -31,9 +31,9 @@ public class Logiciel extends javax.swing.JFrame {
     }
    
     public void initialisationSociete(){
-        bdd=new MySql();
+        //bdd=new MySql();
         /*A tester*/
-        bdd.Connexion();
+        //bdd.Connexion();
         
        // so=bdd.RecupererSociete("STRI");
         System.out.println(so);
@@ -560,12 +560,13 @@ public class Logiciel extends javax.swing.JFrame {
     private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
         JPanel testsalle = new JPanel();
         String nomlocal = OngletLocal.getTitleAt(OngletLocal.getSelectedIndex());
+        System.out.println("nom du local: "+nomlocal);
         if (!tabsalle.containsKey(nomlocal)) {
             JTabbedPane o = new JTabbedPane();
             ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
             tabsalle.put(nomlocal, o);
         }
-         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
         bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
         NumeroSalle.setText("");
@@ -608,9 +609,9 @@ public class Logiciel extends javax.swing.JFrame {
         AddBorne.setEnabled(false);
         AddTablet.setEnabled(false);  
     }//GEN-LAST:event_OngletLocalMouseClicked
-/*
+
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
-        JPanel testrouteur = new JPanel();
+        /*JPanel testrouteur = new JPanel();
         
         String nomsalle = o.getTitleAt(o.getSelectedIndex());
                 
@@ -622,26 +623,19 @@ public class Logiciel extends javax.swing.JFrame {
             tabsalle.put(nomlocal, o);
         }
 
-// TODO add your handling code here:
+// TODO add your handling code here:*/
     }//GEN-LAST:event_OkRouteurActionPerformed
-*/                            
-           private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
-/*
+                 
+       private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
         AddComputer.setEnabled(true);
         Disable.setEnabled(true);
         Update.setEnabled(true);
         AddRouter.setEnabled(true);
         AddBorne.setEnabled(true);
         AddTablet.setEnabled(true);    // TODO add your handling code here:
-               // TODO add your handling code here: */
-    }                                         
+               // TODO add your handling code here: 
+    }                                  
                           
-  
-    
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */
