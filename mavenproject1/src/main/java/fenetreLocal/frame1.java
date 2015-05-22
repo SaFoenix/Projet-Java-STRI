@@ -9,15 +9,18 @@ package fenetreLocal;
  *
  * @author guigui
  */
-public class SalleFenetre extends javax.swing.JInternalFrame {
-    private String nomLocal;
+public class frame1 extends javax.swing.JInternalFrame {
+
     /**
-     * Creates new form SalleFenetre
+     * Creates new form frame1
      */
-    public SalleFenetre() {
+    public frame1() {
         initComponents();
     }
 
+    public void initialisationMenuSalle(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,28 +30,30 @@ public class SalleFenetre extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
+        MenuSalle = new javax.swing.JPanel();
 
         setClosable(true);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+        MenuSalle.setBackground(new java.awt.Color(204, 255, 255));
+
+        javax.swing.GroupLayout MenuSalleLayout = new javax.swing.GroupLayout(MenuSalle);
+        MenuSalle.setLayout(MenuSalleLayout);
+        MenuSalleLayout.setHorizontalGroup(
+            MenuSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+        MenuSalleLayout.setVerticalGroup(
+            MenuSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
+
+        getContentPane().add(MenuSalle, java.awt.BorderLayout.LINE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel MenuSalle;
     // End of variables declaration//GEN-END:variables
 }
