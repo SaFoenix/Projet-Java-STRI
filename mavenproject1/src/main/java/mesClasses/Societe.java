@@ -269,4 +269,12 @@ public class Societe {
     public String getNom() {
         return nom;
     }
+    
+    /**
+     * 
+     * @param locaux 
+     */
+    public void setLocaux(ArrayList<Local> locaux){
+        this.locaux=locaux;
+    }
 }
