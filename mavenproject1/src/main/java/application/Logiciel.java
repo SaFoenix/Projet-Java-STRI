@@ -27,7 +27,7 @@ public class Logiciel extends javax.swing.JFrame {
 
         initialisationSociete();
         initComponents();
-        creationOngletLocal();   
+        creationOngletLocal();
     }
    
     public void initialisationSociete(){
@@ -86,6 +86,26 @@ public class Logiciel extends javax.swing.JFrame {
         PortsRouteurT = new javax.swing.JTextField();
         OkRouteur = new javax.swing.JButton();
         CancelRouteur = new javax.swing.JButton();
+        ComputerDialog = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        NomComp = new javax.swing.JTextField();
+        MacComp = new javax.swing.JTextField();
+        OsComp = new javax.swing.JTextField();
+        MarqueComp = new javax.swing.JTextField();
+        RamComp = new javax.swing.JTextField();
+        CpuComp = new javax.swing.JTextField();
+        GpuComp = new javax.swing.JTextField();
+        HddComp = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
@@ -274,6 +294,8 @@ public class Logiciel extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        RouteurDialog.setMinimumSize(new java.awt.Dimension(420, 320));
+
         CreationRouteur.setText("Création Routeur");
 
         NomRouteur.setText("Nom");
@@ -368,6 +390,119 @@ public class Logiciel extends javax.swing.JFrame {
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
+        ComputerDialog.setMinimumSize(new java.awt.Dimension(420, 320));
+
+        jLabel1.setText("Ajout Ordinateur");
+
+        jLabel5.setText("Nom");
+
+        jLabel6.setText("MAC");
+
+        jLabel7.setText("OS");
+
+        jLabel8.setText("Marque");
+
+        jLabel9.setText("RAM");
+
+        jLabel10.setText("CPU");
+
+        jLabel11.setText("GPU");
+
+        jLabel12.setText("HDD");
+
+        OsComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OsCompActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 255, 0));
+        jButton1.setText("Valider");
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setText("Annuler");
+
+        javax.swing.GroupLayout ComputerDialogLayout = new javax.swing.GroupLayout(ComputerDialog.getContentPane());
+        ComputerDialog.getContentPane().setLayout(ComputerDialogLayout);
+        ComputerDialogLayout.setHorizontalGroup(
+            ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ComputerDialogLayout.createSequentialGroup()
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ComputerDialogLayout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel1))
+                    .addGroup(ComputerDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(99, 99, 99)
+                        .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(HddComp, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(GpuComp)
+                            .addComponent(CpuComp)
+                            .addComponent(RamComp)
+                            .addComponent(MarqueComp)
+                            .addComponent(OsComp)
+                            .addComponent(MacComp)
+                            .addComponent(NomComp)))
+                    .addGroup(ComputerDialogLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton1)
+                        .addGap(89, 89, 89)
+                        .addComponent(jButton2)))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        ComputerDialogLayout.setVerticalGroup(
+            ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ComputerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(NomComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(MacComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(OsComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(MarqueComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(RamComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(CpuComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(GpuComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(HddComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ComputerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -401,6 +536,11 @@ public class Logiciel extends javax.swing.JFrame {
 
         AddComputer.setBackground(new java.awt.Color(0, 204, 204));
         AddComputer.setText("Ajouter Ordinateur");
+        AddComputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddComputerActionPerformed(evt);
+            }
+        });
 
         Disable.setBackground(new java.awt.Color(0, 204, 204));
         Disable.setText("Désactiver");
@@ -536,6 +676,7 @@ public class Logiciel extends javax.swing.JFrame {
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void AddRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRouterActionPerformed
+        RouteurDialog.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_AddRouterActionPerformed
 
@@ -557,7 +698,7 @@ public class Logiciel extends javax.swing.JFrame {
         SalleDialog.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_AddRoomActionPerformed
 
-    private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
+    private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {                                     
         JPanel testsalle = new JPanel();
         String nomlocal = OngletLocal.getTitleAt(OngletLocal.getSelectedIndex());
         System.out.println("nom du local: "+nomlocal);
@@ -573,7 +714,7 @@ public class Logiciel extends javax.swing.JFrame {
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);                
-    }//GEN-LAST:event_SalleOkMouseClicked
+    }                                    
 
     private void NumeroSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroSalleActionPerformed
         // TODO add your handling code here:
@@ -591,13 +732,19 @@ public class Logiciel extends javax.swing.JFrame {
     }//GEN-LAST:event_SalleCancelActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-        SalleDialog.setVisible(false);
-        AddComputer.setEnabled(true);
-        Disable.setEnabled(true);
-        Update.setEnabled(true);
-        AddRouter.setEnabled(true);
-        AddBorne.setEnabled(true);
-        AddTablet.setEnabled(true);        // TODO add your handling code here:
+        JPanel testsalle = new JPanel();
+        String nomlocal = OngletLocal.getTitleAt(OngletLocal.getSelectedIndex());
+        if (!tabsalle.containsKey(nomlocal)) {
+            JTabbedPane o = new JTabbedPane();
+            ((JTabbedPane) OngletLocal.getSelectedComponent()).add(o);
+            tabsalle.put(nomlocal, o);
+        }
+         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
+        bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
+        
+
+// TODO add your handling code here:
     }//GEN-LAST:event_SalleOkActionPerformed
 
     private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
@@ -624,17 +771,46 @@ public class Logiciel extends javax.swing.JFrame {
         }
 
 // TODO add your handling code here:*/
-    }//GEN-LAST:event_OkRouteurActionPerformed
+    }                                         
                  
        private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
+        RouteurDialog.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OkRouteurActionPerformed
+/*
+    private void SalleOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalleOkMouseClicked
+        NombreOrdinateurSalle.setText("");
+        AddComputer.setEnabled(true);
+        Disable.setEnabled(false);
+        Update.setEnabled(false);
+        AddRouter.setEnabled(true);
+        AddBorne.setEnabled(true);
+        AddTablet.setEnabled(true);
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        SalleDialog.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_SalleOkMouseClicked
+*/
+    private void OsCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OsCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OsCompActionPerformed
+
+    private void AddComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddComputerActionPerformed
+        ComputerDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddComputerActionPerformed
+                          
+    //   private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
+/*
         AddComputer.setEnabled(true);
         Disable.setEnabled(true);
         Update.setEnabled(true);
         AddRouter.setEnabled(true);
         AddBorne.setEnabled(true);
         AddTablet.setEnabled(true);    // TODO add your handling code here:
-               // TODO add your handling code here: 
-    }                                  
+               // TODO add your handling code here: */
+   // }                                  
                           
     /**
      * @param args the command line arguments
@@ -700,21 +876,28 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton AddRouter;
     private javax.swing.JButton AddTablet;
     private javax.swing.JButton CancelRouteur;
+    private javax.swing.JDialog ComputerDialog;
+    private javax.swing.JTextField CpuComp;
     private javax.swing.JLabel CreationLocal;
     private javax.swing.JLabel CreationRouteur;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JButton Disable;
     private javax.swing.JTextField EtageSalle;
+    private javax.swing.JTextField GpuComp;
+    private javax.swing.JTextField HddComp;
     private javax.swing.JLabel LieuLocal;
     private javax.swing.JButton LocalCancel;
     private javax.swing.JDialog LocalDialog;
     private javax.swing.JTextField LocalLieu;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
+    private javax.swing.JTextField MacComp;
     private javax.swing.JLabel MacRouteur;
     private javax.swing.JTextField MacRouteurT;
+    private javax.swing.JTextField MarqueComp;
     private javax.swing.JLabel MarqueRouteur;
     private javax.swing.JTextField MarqueRouteurT;
+    private javax.swing.JTextField NomComp;
     private javax.swing.JLabel NomLocal;
     private javax.swing.JLabel NomRouteur;
     private javax.swing.JTextField NomRouteurT;
@@ -722,19 +905,32 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JTextField NumeroSalle;
     private javax.swing.JButton OkRouteur;
     private javax.swing.JTabbedPane OngletLocal;
+    private javax.swing.JTextField OsComp;
     private javax.swing.JLabel OsRouteur;
     private javax.swing.JTextField OsRouteurT;
     private javax.swing.JLabel PortsRouteur;
     private javax.swing.JTextField PortsRouteurT;
+    private javax.swing.JTextField RamComp;
     private javax.swing.JDialog RouteurDialog;
     private javax.swing.JLabel STRI;
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
     private javax.swing.JButton Update;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
