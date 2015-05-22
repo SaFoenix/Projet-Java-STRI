@@ -34,7 +34,7 @@ public class Bureau extends javax.swing.JFrame {
 
     public void initialiseInterface(){        
         ArrayList<Local> locaux=so.getLocaux();
-        setLayout(new GridLayout(locaux.size(),0));
+        setLayout(new GridLayout(locaux.size(),1));
         for(Local loc:locaux){
             System.out.println(loc);
             add(new Button(loc.getNom()));

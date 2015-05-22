@@ -137,6 +137,7 @@ public class Logiciel extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jDialog1 = new javax.swing.JDialog();
         jDialog2 = new javax.swing.JDialog();
+        jDialog3 = new javax.swing.JDialog();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
@@ -721,6 +722,17 @@ public class Logiciel extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -1138,6 +1150,7 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
