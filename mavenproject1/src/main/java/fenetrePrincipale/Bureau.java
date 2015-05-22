@@ -12,6 +12,7 @@ import fenetreLocal.*;
 import static java.awt.SystemColor.desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -26,12 +27,14 @@ public class Bureau extends javax.swing.JFrame {
      */
     public Bureau() {
         bdd=new MySql();
-       // bdd.Connexion();
-        so=new Societe("Stri", "Toulouse");
+        bdd.Connexion();
+        bdd.RecupererSociete("STRI");
+        so.setLocaux(bdd.SocieteLocal("STRI"));
+        /*so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
-        so.ajouterSalle("local1", 0, 2, 20);
+        so.ajouterSalle("local1", 0, 2, 20);*/
         initComponents();
         initialiseInterface();
     }
@@ -169,11 +172,11 @@ public class Bureau extends javax.swing.JFrame {
         AfficheLocaux.setLayout(AfficheLocauxLayout);
         AfficheLocauxLayout.setHorizontalGroup(
             AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1132, Short.MAX_VALUE)
+            .addGap(0, 1141, Short.MAX_VALUE)
         );
         AfficheLocauxLayout.setVerticalGroup(
             AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         MenuFile.setText("Menu");
@@ -206,11 +209,15 @@ public class Bureau extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AfficheLocaux, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(AfficheLocaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AfficheLocaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(AfficheLocaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -225,7 +232,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        //bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         grilleLocal.setRows(so.getLocaux().size());        
         final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
           boutonLocal.setName(loc.getNom());
@@ -250,16 +257,6 @@ public class Bureau extends javax.swing.JFrame {
         LocalLieu.setText("");
         LocalDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_LocalCancelActionPerformed
-
-    private void boutonLocalActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    /*frame1 f = new frame1();
-    desktop.add(f);
-    f.setVisible(true);*/
-    
-    // TODO add your handling code here:
-    }                                        
-    
-    
     
     private void LocalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalNameActionPerformed
         // TODO add your handling code here:
@@ -308,7 +305,7 @@ public class Bureau extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheLocaux;
     private javax.swing.JMenuItem AjouterLocal;
