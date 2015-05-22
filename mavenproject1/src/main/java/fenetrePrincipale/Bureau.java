@@ -206,19 +206,15 @@ public class Bureau extends javax.swing.JFrame {
    
     
     private void AjouterLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterLocalActionPerformed
-        // TODO add your handling code here:
+        LocalDialog.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_AjouterLocalActionPerformed
 
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
-        JTabbedPane testlocal = new JTabbedPane();
-        Local loc =new Local(LocalName.getText(), LocalLieu.getText());
-        OngletLocal.addTab(loc.getNom()+" ["+loc.getlocalisation()+"]", testlocal);
-        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
+        
+        add(new Button(LocalName.getText()));
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
-        AddRoom.setEnabled(true);
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
     }//GEN-LAST:event_LocalOkActionPerformed
 
     private void LocalCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalCancelActionPerformed
