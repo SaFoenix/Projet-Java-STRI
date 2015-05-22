@@ -135,6 +135,8 @@ public class Logiciel extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
         AddLocal = new javax.swing.JButton();
         AddRoom = new javax.swing.JButton();
         AddComputer = new javax.swing.JButton();
@@ -197,7 +199,7 @@ public class Logiciel extends javax.swing.JFrame {
                     .addGroup(LocalDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NomLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
                             .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -697,6 +699,28 @@ public class Logiciel extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 730));
 
@@ -930,23 +954,10 @@ public class Logiciel extends javax.swing.JFrame {
         }
         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         tabsalle.get(nomlocal).addTab("etage:"+sa.getEtage()+"|numero:"+sa.getNumero(), testsalle);
-        bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());
-        
-        
-        
+        bdd.AjoutSalle(nomlocal,sa.getNumero(),sa.getNombreOrdinateur(),sa.getEtage());  
 
 // TODO add your handling code here:
     }//GEN-LAST:event_SalleOkActionPerformed
-
-    private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
-        AddRoom.setEnabled(true);
-        AddComputer.setEnabled(false);
-        Disable.setEnabled(false);
-        Update.setEnabled(false);
-        AddRouter.setEnabled(false);
-        AddBorne.setEnabled(false);
-        AddTablet.setEnabled(false);  
-    }//GEN-LAST:event_OngletLocalMouseClicked
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
         RouteurDialog.setVisible(false);
@@ -985,6 +996,16 @@ public class Logiciel extends javax.swing.JFrame {
         TabletDialog.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_AddTabletActionPerformed
+
+    private void OngletLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OngletLocalMouseClicked
+        AddRoom.setEnabled(true);
+        AddComputer.setEnabled(false);
+        Disable.setEnabled(false);
+        Update.setEnabled(false);
+        AddRouter.setEnabled(false);
+        AddBorne.setEnabled(false);
+        AddTablet.setEnabled(false);
+    }//GEN-LAST:event_OngletLocalMouseClicked
 /**/                            
            private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {                                                  
 /*
@@ -998,12 +1019,6 @@ public class Logiciel extends javax.swing.JFrame {
     }                                         
       
  
-  
-    
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -1121,6 +1136,8 @@ public class Logiciel extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

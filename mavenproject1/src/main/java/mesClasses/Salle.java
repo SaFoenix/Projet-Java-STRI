@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * @author STRI_JAVA
  *
  */
-public class Salle extends JPanel {
+public class Salle{
 
     /**
      * L'identifiant de la salle
