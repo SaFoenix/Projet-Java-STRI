@@ -280,4 +280,12 @@ public class Salle{
             }
         }
     }
+
+    public ArrayList<Routeur> getRouteurs() {
+        return routeurs;
+    }
+
+    public ArrayList<BorneSansFil> getBornes() {
+        return bornes;
+    }
 }
