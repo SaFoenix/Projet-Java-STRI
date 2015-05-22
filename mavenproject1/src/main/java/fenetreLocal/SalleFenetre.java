@@ -4,20 +4,33 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
-
+import java.awt.*;
+import mesClasses.*;
+import java.util.*;
+import javax.swing.JTable;
 /**
  *
  * @author guigui
  */
 public class SalleFenetre extends javax.swing.JInternalFrame {
-    private String nomLocal;
+    private Salle salle;
+    private ArrayList<Routeur> routeurs;
+    private ArrayList<BorneSansFil> bornes;
+    
     /**
      * Creates new form SalleFenetre
+     * @param salle
      */
-    public SalleFenetre() {
+    public SalleFenetre(Salle salle) {
+        this.salle=salle;
+        routeurs=salle.getRouteurs();
+        bornes=salle.getBornes();
         initComponents();
     }
-
+    public void initialiseSalleFenetre(){
+        
+        //JTable tableauRouteur=new Jtable(donnees,entetes)  ;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,20 +41,32 @@ public class SalleFenetre extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        fenetreSalle = new javax.swing.JPanel();
 
         jMenuItem1.setText("jMenuItem1");
 
         setClosable(true);
 
+        javax.swing.GroupLayout fenetreSalleLayout = new javax.swing.GroupLayout(fenetreSalle);
+        fenetreSalle.setLayout(fenetreSalleLayout);
+        fenetreSalleLayout.setHorizontalGroup(
+            fenetreSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 708, Short.MAX_VALUE)
+        );
+        fenetreSalleLayout.setVerticalGroup(
+            fenetreSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+            .addComponent(fenetreSalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addComponent(fenetreSalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -49,6 +74,7 @@ public class SalleFenetre extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel fenetreSalle;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

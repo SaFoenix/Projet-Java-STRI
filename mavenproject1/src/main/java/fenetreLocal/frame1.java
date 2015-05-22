@@ -4,22 +4,31 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
-
+import java.awt.*;
+import mesClasses.*;
+import java.util.*;
 /**
  *
  * @author guigui
  */
 public class frame1 extends javax.swing.JInternalFrame {
-
+    private Local local;
+    private ArrayList<Salle> salles;
     /**
      * Creates new form frame1
      */
-    public frame1() {
+    public frame1(Local loc) {
+        local=loc;
         initComponents();
     }
 
     public void initialisationMenuSalle(){
-        
+        ArrayList<Salle> salles=local.getSalles();
+        MenuSalle.setLayout(new GridLayout(salles.size(),1));
+        for(Salle sa:salles){
+              System.out.println(sa);
+              add(new Button(sa.getNumero()+ " " + "[" + sa.getEtage()+ "]"));
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
