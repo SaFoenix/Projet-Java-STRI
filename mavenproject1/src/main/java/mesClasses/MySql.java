@@ -152,7 +152,7 @@ public class MySql {
         }
     }
     
-    public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
+    /*public void AjoutRouteur(int numeroSalle, String nom , String mac , String marque, boolean power, int nombrePort){
         ResultSet resultat1;
         ResultSet resultat2;
         ResultSet resultat3;
@@ -191,7 +191,7 @@ public class MySql {
             System.out.println("Erreur Ajout Routeur");
         }
         
-    }
+    }*/
     
     public void AjoutOrdinateur(int numeroSalle , String nom , String mac , String marque, boolean power, String ram, String cpu , String gpu , String hdd){
         ResultSet resultat2;
