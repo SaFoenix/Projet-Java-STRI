@@ -26,62 +26,51 @@ public class Tableau extends javax.swing.JPanel {
      * @param ordinateurs
      */
     public Tableau(Ordinateur [] ordinateurs) {
-        initComponents();
-        this.ordinateurs=ordinateurs;        
+       //initComponents();
+       this.ordinateurs=ordinateurs;        
         data=new String [ordinateurs.length][columns.length];
         //System.out.println("ligne: "+ordinateurs.length+" colonne: "+columns.length);
+        initialiseTableau();
         tableau=new JTable(data,columns){
             public boolean isCellEditable(int date,int colums){
                 return false;
             }            
         };
-        initialiseTableau();
-        tableau.setPreferredScrollableViewportSize(new Dimension(450,63));
+        tableau.setPreferredScrollableViewportSize(new Dimension(600,100));
         tableau.setFillsViewportHeight(true);
+        add(tableau);
         JScrollPane jps=new JScrollPane(tableau);
         add(jps);
     }   
     
     public void initialiseTableau(){
         int i=0;
-        for(Ordinateur ordi:ordinateurs){
-            System.out.println("ORdinateur tab: "+ordi.toString());
-            if(ordi!=null){
-                int j=0;
-                data[i][j]=ordi.getNom();
-                 System.out.println(data[i][j]);
+        for(Ordinateur ordi:ordinateurs){         
+            // System.out.println("ORdinateur tab: "+ordi.toString());
+            if (ordi != null) {
+                int j = 0;
+                data[i][j] = ordi.getNom();
                 j++;
-               
-                data[i][j]=ordi.getMac();
-                 System.out.println(data[i][j]);
+                data[i][j] = ordi.getMac();
                 j++;
-                data[i][j]=ordi.getMarque();
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=(ordi.isPower()?"on":"off");
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=ordi.getRam();
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=ordi.getCpu();
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=ordi.getGpu();
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=ordi.getHdd();
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=(ordi.getOs().getNomOs());
-                 System.out.println(data[i][j]);
-                 j++;
-                data[i][j]=(ordi.getOs().getVersion());
-                 System.out.println(data[i][j]);
+                data[i][j] = ordi.getMarque();
+                j++;
+                data[i][j] = (ordi.isPower() ? "on" : "off");
+                j++;
+                data[i][j] = ordi.getRam();
+                j++;
+                data[i][j] = ordi.getCpu();
+                j++;
+                data[i][j] = ordi.getGpu();
+                j++;
+                data[i][j] = ordi.getHdd();
+                j++;
+                data[i][j] = (ordi.getOs().getNomOs());
+                j++;
+                data[i][j] = (ordi.getOs().getVersion());
                 i++;
             }
-        }
-        
+        }        
     }
     /**
      * This method is called from within the constructor to initialize the form.

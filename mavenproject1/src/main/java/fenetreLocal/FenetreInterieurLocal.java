@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import fenetrePrincipale.Bureau;
 import fenetrePrincipale.FenetreSecondaire;
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import mesClasses.*;
 import java.util.*;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
  *
@@ -34,18 +36,19 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         this.loc=loc;
         salles=loc.getSalles();
         initComponents();
+        setSize(1350,750);
         AfficheListeSalle.setBackground(Color.red);
         AfficheListeSalle.setLayout(new GridBagLayout());
         gbc.insets=new Insets(5, 5, 5, 5);
         gbc.gridx=0;
         gbc.gridy=0;
         initialisationMenuSalle();
-        FenetreDynamique.setBackground(Color.blue);
-        FenetreRouteur.setBackground(Color.yellow);
+        //fenetreDynamique.setBackground(Color.blue);
+        fenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
         add(AfficheListeSalle,BorderLayout.WEST); 
-        add(FenetreDynamique,BorderLayout.CENTER);
-        add(FenetreRouteur,BorderLayout.NORTH);
+        //add(FenetreDynamique,BorderLayout.CENTER);
+        add(fenetreRouteur,BorderLayout.NORTH);
     }
     
     public void initialisationMenuSalle(){      
@@ -62,9 +65,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (rout != null) {
                         Ordinateur[] ordi = (rout.retournerOrdinateurs());
                         System.out.println("ordi= " + ordi.length);
-                        if (rout.getOrdinateurPresent()!=0) {
-                            Tableau tab = new Tableau(ordi);
-                            FenetreDynamique.add(tab);
+                        if (rout.getOrdinateurPresent()!=0) {                          
+                            Tableau tab = new Tableau(ordi);                            
+                            add(tab,BorderLayout.CENTER);
+                            setVisible(false);
+                            setVisible(true);
                          }
                     }
                 }
@@ -92,8 +97,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         EtageSalle = new javax.swing.JTextField();
         NombreOrdinateurSalle = new javax.swing.JTextField();
         AfficheListeSalle = new javax.swing.JPanel();
-        FenetreDynamique = new javax.swing.JPanel();
-        FenetreRouteur = new javax.swing.JPanel();
+        fenetreRouteur = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
         barMenuAjouter = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -192,38 +196,23 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         );
         AfficheListeSalleLayout.setVerticalGroup(
             AfficheListeSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
 
         getContentPane().add(AfficheListeSalle, java.awt.BorderLayout.LINE_START);
 
-        FenetreDynamique.setAutoscrolls(true);
-
-        javax.swing.GroupLayout FenetreRouteurLayout = new javax.swing.GroupLayout(FenetreRouteur);
-        FenetreRouteur.setLayout(FenetreRouteurLayout);
-        FenetreRouteurLayout.setHorizontalGroup(
-            FenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1012, Short.MAX_VALUE)
+        javax.swing.GroupLayout fenetreRouteurLayout = new javax.swing.GroupLayout(fenetreRouteur);
+        fenetreRouteur.setLayout(fenetreRouteurLayout);
+        fenetreRouteurLayout.setHorizontalGroup(
+            fenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1112, Short.MAX_VALUE)
         );
-        FenetreRouteurLayout.setVerticalGroup(
-            FenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        fenetreRouteurLayout.setVerticalGroup(
+            fenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout FenetreDynamiqueLayout = new javax.swing.GroupLayout(FenetreDynamique);
-        FenetreDynamique.setLayout(FenetreDynamiqueLayout);
-        FenetreDynamiqueLayout.setHorizontalGroup(
-            FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FenetreRouteur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        FenetreDynamiqueLayout.setVerticalGroup(
-            FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FenetreDynamiqueLayout.createSequentialGroup()
-                .addComponent(FenetreRouteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 420, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(FenetreDynamique, java.awt.BorderLayout.CENTER);
+        getContentPane().add(fenetreRouteur, java.awt.BorderLayout.PAGE_START);
 
         barMenuAjouter.setText("Ajouter");
 
@@ -288,8 +277,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JPanel AfficheListeSalle;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
-    private javax.swing.JPanel FenetreDynamique;
-    private javax.swing.JPanel FenetreRouteur;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
     private javax.swing.JButton SalleCancel;
@@ -297,6 +284,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton SalleOk;
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JMenu barMenuAjouter;
+    private javax.swing.JPanel fenetreRouteur;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

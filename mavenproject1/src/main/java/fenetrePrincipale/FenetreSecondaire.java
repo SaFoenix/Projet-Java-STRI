@@ -18,9 +18,11 @@ public class FenetreSecondaire extends javax.swing.JFrame{
      */
     public FenetreSecondaire(Local loc) {
         initComponents();
+        setTitle(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+        setSize(1360,760);
         FenetreInterieurLocal f=new FenetreInterieurLocal(loc);
         bureau.add(f);
-        setTitle(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+        
         f.setVisible(true);
     }
 
