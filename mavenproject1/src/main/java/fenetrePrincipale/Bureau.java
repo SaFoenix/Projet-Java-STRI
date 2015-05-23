@@ -5,59 +5,106 @@
  */
 package fenetrePrincipale;
 
-import java.awt.*;
-import java.util.*;
-import mesClasses.*;
-import fenetreLocal.*;
-import static java.awt.SystemColor.desktop;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import mesClasses.Local;
+import mesClasses.Societe;
 
 /**
  *
  * @author guigui
  */
 public class Bureau extends javax.swing.JFrame {
-    private static Societe so;
-    private static MySql bdd;
-    private GridLayout grilleLocal;
+   private Societe so;
+   private ArrayList<Local> locaux;
+    JButton localButton;
+    JPanel afficheLesLocaux,jp2;
+    GridBagConstraints gbc=new GridBagConstraints();
+    int positionX=0;
+    int positionY=0;
     /**
      * Creates new form Bureau
      */
     public Bureau() {
-        bdd=new MySql();
+   
+        //bdd=new MySql();
         /*bdd.Connexion();
         so=bdd.RecupererSociete("STRI");
         so.setLocaux(bdd.SocieteLocal("STRI"));*/
         so=new Societe("Stri", "Toulouse");
+        locaux=so.getLocaux();
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
+        so.ajouterLocal("local3", "bordeaux");
+        so.ajouterLocal("local4", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
         so.ajouterSalle("local1", 0, 2, 20);
-        initComponents();
+       // initComponents();
+        /*init fenetre principale */
+        setTitle("Societe "+so.getNom());
+        setSize(960,960);
+        setVisible(true);    
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+         /*init bar menu*/  
+        JMenuBar menuBar =new JMenuBar();
+        setJMenuBar(menuBar);
+        JMenu ajouter=new JMenu("Ajouter");
+        menuBar.add(ajouter);
+        JMenuItem ajouterLocal=new JMenuItem("ajouter Local");
+        ajouter.add(ajouterLocal);
+        
+        ajouterLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalDialog.setVisible(true);
+            }
+        });
+        
+        /*init menu local*/
+        afficheLesLocaux=new JPanel();
+        afficheLesLocaux.setBackground(Color.red);
+        afficheLesLocaux.setLayout(new GridBagLayout());
+        gbc.insets=new Insets(5, 5, 5, 5);
+        gbc.gridx=0;
+        gbc.gridy=0;
         initialiseInterface();
+        add(afficheLesLocaux,BorderLayout.WEST);
+  
     }
     
-    public void initialiseInterface(){        
-        ArrayList<Local> locaux=so.getLocaux();
-        grilleLocal=new GridLayout(locaux.size(),1);
-        setLayout(grilleLocal);
+    public void initialiseInterface(){ 
         for(Local loc:locaux){
             //System.out.println(loc);
-            final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
-            boutonLocal.setName(loc.getNom());
-            add(boutonLocal);
-            boutonLocal.addActionListener(new ActionListener(){
+            final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+            localButton2.setName(loc.getNom());
+            gbc.gridy=positionY;
+            afficheLesLocaux.add(localButton2,gbc);
+            positionY++;
+            localButton2.addActionListener(new ActionListener(){
+                @Override
                 public void actionPerformed(ActionEvent arg0){  
-                    System.out.println(boutonLocal.getName());
-                    Local loc=so.rechercherLocal(boutonLocal.getName());
+                    System.out.println(localButton2.getName());
+                    Local loc=so.rechercherLocal(localButton2.getName());
                     FenetreSecondaire f=new FenetreSecondaire(loc);
                     f.setVisible(true);
                 }
                 });
             
-        }      
+        }   
     }
    
     /**
@@ -77,12 +124,6 @@ public class Bureau extends javax.swing.JFrame {
         CreationLocal = new javax.swing.JLabel();
         LieuLocal = new javax.swing.JLabel();
         LocalLieu = new javax.swing.JTextField();
-        AfficheLocaux = new javax.swing.JPanel();
-        BarreMenu = new javax.swing.JMenuBar();
-        MenuFile = new javax.swing.JMenu();
-        MenuQuitter = new javax.swing.JMenuItem();
-        MenuAjouter = new javax.swing.JMenu();
-        AjouterLocal = new javax.swing.JMenuItem();
 
         LocalDialog.setBackground(new java.awt.Color(0, 255, 255));
         LocalDialog.setMinimumSize(new java.awt.Dimension(420, 320));
@@ -167,81 +208,37 @@ public class Bureau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout AfficheLocauxLayout = new javax.swing.GroupLayout(AfficheLocaux);
-        AfficheLocaux.setLayout(AfficheLocauxLayout);
-        AfficheLocauxLayout.setHorizontalGroup(
-            AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1141, Short.MAX_VALUE)
-        );
-        AfficheLocauxLayout.setVerticalGroup(
-            AfficheLocauxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
-        );
-
-        MenuFile.setText("Menu");
-
-        MenuQuitter.setText("Exit");
-        MenuQuitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuQuitterActionPerformed(evt);
-            }
-        });
-        MenuFile.add(MenuQuitter);
-
-        BarreMenu.add(MenuFile);
-
-        MenuAjouter.setText("Ajouter");
-
-        AjouterLocal.setText("Ajouter Local");
-        AjouterLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjouterLocalActionPerformed(evt);
-            }
-        });
-        MenuAjouter.add(AjouterLocal);
-
-        BarreMenu.add(MenuAjouter);
-
-        setJMenuBar(BarreMenu);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(AfficheLocaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 1141, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(AfficheLocaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 630, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-   
-    
-    private void AjouterLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterLocalActionPerformed
-        LocalDialog.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_AjouterLocalActionPerformed
-
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
-        Local loc=new Local(LocalName.getText(), LocalLieu.getText());
+      Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
        // bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
-        grilleLocal.setRows(so.getLocaux().size());        
-        final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
-          boutonLocal.setName(loc.getNom());
-          add(boutonLocal);
-            boutonLocal.addActionListener(new ActionListener(){
+        
+        final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+            localButton2.setName(loc.getNom());
+            gbc.gridy=positionY;
+            afficheLesLocaux.add(localButton2,gbc);
+            positionY++;
+            localButton2.addActionListener(new ActionListener(){
+                @Override
                 public void actionPerformed(ActionEvent arg0){  
-                    System.out.println(boutonLocal.getName());;
-                    Local loc=so.rechercherLocal(boutonLocal.getName());
+                    System.out.println(localButton2.getName());
+                    Local loc=so.rechercherLocal(localButton2.getName());
                     FenetreSecondaire f=new FenetreSecondaire(loc);
-                    f.setVisible(true);                    
+                    f.setVisible(true);
                 }
                 });
             
@@ -263,11 +260,6 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalLieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalLieuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LocalLieuActionPerformed
-
-    private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_MenuQuitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,15 +291,12 @@ public class Bureau extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bureau().setVisible(true);
+                new Bureau();
             }
         });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AfficheLocaux;
-    private javax.swing.JMenuItem AjouterLocal;
-    private javax.swing.JMenuBar BarreMenu;
     private javax.swing.JLabel CreationLocal;
     private javax.swing.JLabel LieuLocal;
     private javax.swing.JButton LocalCancel;
@@ -315,9 +304,6 @@ public class Bureau extends javax.swing.JFrame {
     private javax.swing.JTextField LocalLieu;
     private javax.swing.JTextField LocalName;
     private javax.swing.JButton LocalOk;
-    private javax.swing.JMenu MenuAjouter;
-    private javax.swing.JMenu MenuFile;
-    private javax.swing.JMenuItem MenuQuitter;
     private javax.swing.JLabel NomLocal;
     // End of variables declaration//GEN-END:variables
 }

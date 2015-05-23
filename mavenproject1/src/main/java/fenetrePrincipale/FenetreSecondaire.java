@@ -17,7 +17,7 @@ import javax.swing.JFrame;
  *
  * @author guigui
  */
-public class FenetreSecondaire extends javax.swing.JFrame {
+public class FenetreSecondaire extends javax.swing.JFrame{
     /**
      * Creates new form FenetreSecondaire
      * @param loc
@@ -39,7 +39,16 @@ public class FenetreSecondaire extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         bureau = new javax.swing.JDesktopPane();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         javax.swing.GroupLayout bureauLayout = new javax.swing.GroupLayout(bureau);
         bureau.setLayout(bureauLayout);
@@ -49,7 +58,7 @@ public class FenetreSecondaire extends javax.swing.JFrame {
         );
         bureauLayout.setVerticalGroup(
             bureauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
+            .addGap(0, 455, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -69,5 +78,8 @@ public class FenetreSecondaire extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane bureau;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,49 +5,60 @@
  */
 package fenetreLocal;
 import fenetrePrincipale.Bureau;
+import fenetrePrincipale.FenetreSecondaire;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import mesClasses.*;
 import java.util.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 /**
  *
  * @author guigui
  */
 public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
-    private static Societe so;
-    private Local local;
+    private Local loc;
     private ArrayList<Salle> salles;
-    GridBagLayout layout=new GridBagLayout();
-    SalleFenetre salle;
-
+    private ArrayList<Routeur> routeurs;
+    
+    JPanel afficheLesSalle,AfficheLesEquipements;
+    GridBagConstraints gbc=new GridBagConstraints();
+    int positionX=0;
+    int positionY=0;
     /**
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
-        local=loc;
-        salles=local.getSalles();
+        this.loc=loc;
+        salles=loc.getSalles();
         initComponents();
+        AfficheListeSalle.setBackground(Color.red);
+        AfficheListeSalle.setLayout(new GridBagLayout());
+        gbc.insets=new Insets(5, 5, 5, 5);
+        gbc.gridx=0;
+        gbc.gridy=0;
+        initialisationMenuSalle();
+        add(AfficheListeSalle,BorderLayout.WEST);
+        
     }
-
-    private FenetreInterieurLocal(Salle sal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void initialisationMenuSalle(){        
-        MenuSalle.setLayout(new GridLayout(salles.size(),1));
-        for(Salle sa:salles){
-              System.out.println(sa);
-              Button boutonSalle = new Button(sa.getNumero()+ " " + "[" + sa.getEtage()+ "]"); 
-              add(boutonSalle);
-              salle=new SalleFenetre(sa);
-              fenetreDynamique.setLayout(layout);
-              GridBagConstraints G=new GridBagConstraints();
-              G.gridx=0;
-              G.gridy=0;
-              fenetreDynamique.add(salle,0);
-              salle.setVisible(true);
-        }
+    
+    public void initialisationMenuSalle(){      
+       for(Salle sa:salles){
+            System.out.println(sa);
+            final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
+            localButton2.setName(loc.getNom());
+            gbc.gridy=positionY;
+            AfficheListeSalle.add(localButton2,gbc);
+            positionY++;
+            localButton2.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent arg0){  
+                    
+                }
+                });
+            
+        }   
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,8 +79,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         SalleCancel = new javax.swing.JButton();
         EtageSalle = new javax.swing.JTextField();
         NombreOrdinateurSalle = new javax.swing.JTextField();
-        MenuSalle = new javax.swing.JPanel();
-        fenetreDynamique = new javax.swing.JPanel();
+        AfficheListeSalle = new javax.swing.JPanel();
+        FenetreDynamique = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
         barMenuAjouter = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -158,35 +169,36 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        MenuSalle.setBackground(new java.awt.Color(204, 255, 255));
+        AfficheListeSalle.setBackground(new java.awt.Color(153, 255, 255));
+        AfficheListeSalle.setAutoscrolls(true);
 
-        javax.swing.GroupLayout MenuSalleLayout = new javax.swing.GroupLayout(MenuSalle);
-        MenuSalle.setLayout(MenuSalleLayout);
-        MenuSalleLayout.setHorizontalGroup(
-            MenuSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout AfficheListeSalleLayout = new javax.swing.GroupLayout(AfficheListeSalle);
+        AfficheListeSalle.setLayout(AfficheListeSalleLayout);
+        AfficheListeSalleLayout.setHorizontalGroup(
+            AfficheListeSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        MenuSalleLayout.setVerticalGroup(
-            MenuSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(MenuSalle, java.awt.BorderLayout.LINE_START);
-
-        fenetreDynamique.setBackground(new java.awt.Color(153, 255, 255));
-
-        javax.swing.GroupLayout fenetreDynamiqueLayout = new javax.swing.GroupLayout(fenetreDynamique);
-        fenetreDynamique.setLayout(fenetreDynamiqueLayout);
-        fenetreDynamiqueLayout.setHorizontalGroup(
-            fenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1012, Short.MAX_VALUE)
-        );
-        fenetreDynamiqueLayout.setVerticalGroup(
-            fenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        AfficheListeSalleLayout.setVerticalGroup(
+            AfficheListeSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        getContentPane().add(fenetreDynamique, java.awt.BorderLayout.CENTER);
+        getContentPane().add(AfficheListeSalle, java.awt.BorderLayout.LINE_START);
+
+        FenetreDynamique.setAutoscrolls(true);
+
+        javax.swing.GroupLayout FenetreDynamiqueLayout = new javax.swing.GroupLayout(FenetreDynamique);
+        FenetreDynamique.setLayout(FenetreDynamiqueLayout);
+        FenetreDynamiqueLayout.setHorizontalGroup(
+            FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1012, Short.MAX_VALUE)
+        );
+        FenetreDynamiqueLayout.setVerticalGroup(
+            FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(FenetreDynamique, java.awt.BorderLayout.CENTER);
 
         barMenuAjouter.setText("Ajouter");
 
@@ -210,12 +222,25 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-        add(new Button(NumeroSalle.getText() + " " + "[" + EtageSalle.getText() + "]"));
-        NombreOrdinateurSalle.setText("");
+       
+        Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
+        //bdd.ajouterLocal(so.getNom(),loc.getNom(), loc.getlocalisation());        
+        final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
+          localButton2.setName(loc.getNom());
+            gbc.gridy=positionY;
+            AfficheListeSalle.add(localButton2,gbc);
+            positionY++;
+            localButton2.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent arg0){  
+                   // FenetreDynamique
+                }
+                });            
         NumeroSalle.setText("");
         EtageSalle.setText("");
+        NombreOrdinateurSalle.setVisible(false);
         SalleDialog.setVisible(false);
-        // TODO add your handling code here:*/
     }//GEN-LAST:event_SalleOkActionPerformed
 
     
@@ -235,9 +260,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AfficheListeSalle;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
-    private javax.swing.JPanel MenuSalle;
+    private javax.swing.JPanel FenetreDynamique;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
     private javax.swing.JButton SalleCancel;
@@ -245,7 +271,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton SalleOk;
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JMenu barMenuAjouter;
-    private javax.swing.JPanel fenetreDynamique;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
