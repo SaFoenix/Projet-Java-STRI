@@ -4,18 +4,15 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
-
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import mesClasses.*;
-import java.lang.*;
 /**
  *
  * @author guigui
  */
-public class Tableau extends javax.swing.JPanel {
+public class TableauOrdinateur extends javax.swing.JPanel {
     JTable tableau;
     private Ordinateur [] ordinateurs;
     private String[] columns={"Nom","Mac","Marque","Power","RAM","CPU","GPU","HDD","NomOS","Version"};
@@ -25,7 +22,7 @@ public class Tableau extends javax.swing.JPanel {
      * Creates new form Tableau
      * @param ordinateurs
      */
-    public Tableau(Ordinateur [] ordinateurs) {
+    public TableauOrdinateur(Ordinateur [] ordinateurs) {
        //initComponents();
        this.ordinateurs=ordinateurs;        
         data=new String [ordinateurs.length][columns.length];

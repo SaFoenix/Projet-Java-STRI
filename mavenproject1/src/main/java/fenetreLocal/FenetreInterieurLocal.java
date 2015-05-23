@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
-import fenetrePrincipale.Bureau;
-import fenetrePrincipale.FenetreSecondaire;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import mesClasses.*;
 import java.util.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 /**
  *
  * @author guigui
@@ -66,7 +61,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                         Ordinateur[] ordi = (rout.retournerOrdinateurs());
                         System.out.println("ordi= " + ordi.length);
                         if (rout.getOrdinateurPresent()!=0) {                          
-                            Tableau tab = new Tableau(ordi);                            
+                            TableauOrdinateur tab = new TableauOrdinateur(ordi);                            
                             add(tab,BorderLayout.CENTER);
                             setVisible(false);
                             setVisible(true);
