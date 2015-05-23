@@ -105,7 +105,7 @@ public class Salle{
     }
 
     public String toString() {
-        String str = "Salle [" + etage + numero + "]\n";
+        String str = "Salle [Numero:" + numero+ " Salle : "+ etage + "]\n";
         str += "\tnombreOrdinateur: " + nombreOrdinateur + "\n";
         str += "[Routeur]\n";
         for (Routeur rout : routeurs) {
