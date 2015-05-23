@@ -16,21 +16,21 @@ public class Test {
 	 */
 	public static void main(String[] args){
                        Societe societe;
-                       boolean TestOrdinateur;
+                       boolean TestOs;
                        ArrayList<Local> locaux = new ArrayList<>();
                        ArrayList<Salle> salle = new ArrayList<>();
                        MySql bdd = new MySql();
                        bdd.Connexion();
                        //bdd.AjoutSociete("Stri","Toulouse");
-                       //bdd.AjoutLocal("STRI","Amphi","Toulouse");
-                       //bdd.AjoutSalle("Salle 8",4,20,1);
-                       //bdd.AjoutOrdinateur(1,"Test","2001::00:FF" ,"Asus" ,true, "500", "400", "300", "1TO");
-                       //bdd.AjoutRouteur(1, "Routeur1" , "10.0.0.1" , "Cisco" , true ,10);
+                       //bdd.AjoutLocal("STRI","U2","Toulouse");
+                       //bdd.AjoutSalle("U2",202,1,15);
+                       //bdd.AjoutRouteur(202, "RouteurSalle2" , "192.255.0.0" , "Cisco" ,"Linux","1.2.2", true ,5);
+                       //bdd.AjoutOrdinateur(1,"Pierre","FF80::1" ,"Apple","Apple","Pro.2",true, "500", "400", "300", "500Go");
                        societe=bdd.RecupererSociete("STRI");
                        System.out.println(societe);
-                       locaux=bdd.SocieteLocal("STRI");
+                       locaux=bdd.RecupererLocal("STRI");
                        System.out.println(locaux);
-                       salle=bdd.LocalSalle("Amphi");
+                       salle=bdd.RecupererSalle("Amphi");
                        System.out.println(salle);
                        System.out.println(societe);
                        
