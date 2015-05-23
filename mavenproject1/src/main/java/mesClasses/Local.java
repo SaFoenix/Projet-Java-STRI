@@ -55,7 +55,7 @@ public class Local {
      * @param etage l'etage de la salle
      * @return le salle recherchée ou null si non trouvée
      */
-    private Salle rechercherSalle(Integer numero, Integer etage) {
+    public Salle rechercherSalle(Integer numero, Integer etage) {
         for (Salle salleRech : salles) {
             if ((salleRech.getEtage() == etage) && (salleRech.getNumero() == numero)) {
                 return salleRech;

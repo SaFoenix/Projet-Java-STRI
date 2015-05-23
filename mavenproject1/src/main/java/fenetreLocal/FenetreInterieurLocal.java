@@ -42,9 +42,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         FenetreDynamique.setBackground(Color.blue);
         FenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
-        //routeurs=salles.getRouteurs();
-        //Ordinateur[] ordinateurs=routeur
-       // Tableau tab=new Tableau(ordinateurs);
         add(AfficheListeSalle,BorderLayout.WEST); 
         add(FenetreDynamique,BorderLayout.CENTER);
         add(FenetreRouteur,BorderLayout.NORTH);
