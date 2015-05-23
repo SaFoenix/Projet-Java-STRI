@@ -26,6 +26,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import mesClasses.Local;
+import mesClasses.Ordinateur;
+import mesClasses.Os;
+import mesClasses.Routeur;
 import mesClasses.Societe;
 import static sun.security.krb5.Config.refresh;
 import sun.security.krb5.KrbException;
@@ -150,7 +153,11 @@ public class Bureau extends javax.swing.JFrame {
         so.ajouterLocal("local4", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
         so.ajouterSalle("local1", 0, 2, 20);
-        
+        Os os=new Os("Widows",".1");
+        Routeur rout=new Routeur("fff", "routeur", "marqueRouter", true, os, 5);
+        so.ajouterRouteurSalle(rout,2,0, "local1");
+       Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);

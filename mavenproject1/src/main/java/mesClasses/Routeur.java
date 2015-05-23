@@ -128,4 +128,11 @@ public class Routeur extends Equipement {
         }
         return false;
     }
+    /**
+     * Retourne les ordinateurs du routeur
+     * @return ordinateurs
+     */
+    public Ordinateur [] retournerOrdinateurs(){
+        return ordinateurs;
+    }
 }

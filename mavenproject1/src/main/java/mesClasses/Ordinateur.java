@@ -114,6 +114,5 @@ public class Ordinateur extends Equipement {
 		str+="ram=" + ram +", cpu=" + cpu + ", gpu=" + gpu
 				+ ", hdd=" + hdd + "\n";
 		return str;
-	}
-		
+	}		
 }

@@ -42,7 +42,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         FenetreDynamique.setBackground(Color.blue);
         FenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
-        add(AfficheListeSalle,BorderLayout.WEST);
+        //routeurs=salles.getRouteurs();
+        //Ordinateur[] ordinateurs=routeur
+       // Tableau tab=new Tableau(ordinateurs);
+        add(AfficheListeSalle,BorderLayout.WEST); 
         add(FenetreDynamique,BorderLayout.CENTER);
         add(FenetreRouteur,BorderLayout.NORTH);
     }
@@ -60,10 +63,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 public void actionPerformed(ActionEvent arg0){  
                     
                 }
-                });
-            
+                });            
         }   
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -262,7 +265,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(true);
     }//GEN-LAST:event_SalleOkActionPerformed
  
-    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         SalleDialog.setVisible(true);
         // TODO add your handling code here:
@@ -274,7 +276,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
