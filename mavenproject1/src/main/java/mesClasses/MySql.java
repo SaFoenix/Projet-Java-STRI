@@ -226,12 +226,15 @@ try {
         ResultSet resultat2;
         ResultSet resultat3;
         ResultSet resultat4;
+        ResultSet resultat5;
+        ResultSet resultat6;
         ResultSet verif;
         Statement st;
         int idSalle=0;
         int idMax=0;
         int idMaxOs=0;
         int idRouteur=0;
+        int numeroPort=0;
         int idOs=0;
         boolean verification;
         boolean verificationOs;
@@ -241,7 +244,7 @@ try {
             if(verification!=true){
                 System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
             }else{
-            resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+        resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
             while ( resultat1.next() ) {
             idMax = resultat1.getInt("max(idEquipement)");
             idMax+=1;
@@ -263,26 +266,31 @@ try {
         while (resultat3.next()){
             idRouteur=resultat3.getInt("IdRouteur");
             }
-            String sql3 ="INSERT INTO connecter VALUES ("+idRouteur+","+idMax+")";
+        resultat4 = st.executeQuery( "SELECT max(NumeroPort) FROM connecter WHERE IdRouteur="+idRouteur+"");
+        while (resultat4.next()){
+            numeroPort=resultat4.getInt("max(NumeroPort)");
+            numeroPort+=1;
+            }
+            String sql3 ="INSERT INTO connecter VALUES ("+idRouteur+","+idMax+","+numeroPort+")";
             st.executeUpdate(sql3);
             
             verificationOs=VerifierOs(os,versionOs);
-        resultat3 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
-            while ( resultat3.next() ) {
-            idMaxOs = resultat3.getInt("max(IdOs)");
+        resultat5 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
+            while ( resultat5.next() ) {
+            idMaxOs = resultat5.getInt("max(IdOs)");
             idMaxOs+=1;
             }
         if(verificationOs!=true){
-            resultat4=st.executeQuery("SELECT IdOs FROM os WHERE NomOs='"+os+"'AND Version='"+versionOs+"'");
-            while(resultat4.next()){
-               idOs = resultat4.getInt("IdOs");
+        resultat6=st.executeQuery("SELECT IdOs FROM os WHERE NomOs='"+os+"'AND Version='"+versionOs+"'");
+            while(resultat6.next()){
+               idOs = resultat6.getInt("IdOs");
            }    
-            String sql4 = "INSERT INTO estinstaller VALUES ("+idMax+","+idOs+")";
+        String sql4 = "INSERT INTO estinstaller VALUES ("+idMax+","+idOs+")";
             st.executeUpdate(sql4);
        }else{
-            String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
+        String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
             st.executeUpdate(sql5);
-            String sql6 = "INSERT INTO estinstaller VALUES ("+idMax+","+idMaxOs+")";
+        String sql6 = "INSERT INTO estinstaller VALUES ("+idMax+","+idMaxOs+")";
             st.executeUpdate(sql6);
        }
         }
@@ -383,53 +391,25 @@ try {
         return salles;     
     }
     
-    public boolean VerifierEquipement(String mac){
-    ResultSet verif= null;
-    Statement st;
-    int equipementok =0 ; 
-    
-    try{
-        st=connexion.createStatement();
-        verif=st.executeQuery("SELECT MAC FROM equipement WHERE MAC='"+mac+"'");
-        if(verif!=null){
-        int nbLignes = 0;
-                while (verif.next()) 
-                {nbLignes ++;
-                }
-        if (nbLignes == 0){
-            return true;
-        }
-         else{
-                return false;
-             }
-    }else{
-            System.out.println("Erreur verifierEquipemet");
-    }
-    }catch (SQLException e){
-            System.out.println("VerifierOrdinateur!");
-        }
-    return false;
-    }
-
     public ArrayList<Ordinateur> RecupererOrdinateur(int numero){
-        
+        /*Information Equipement + Os*/
         ResultSet resultat;
         ResultSet query;
         Statement st;
         String Nom = null;
+        String NomEquipement;
+        String Mac;
+        String Marque;
+        boolean Power;
+        String NomOs;
+        String Version;
+        
+        /*Information ordinateur*/
         String GPU;
         String CPU;
         String HDD;
         String RAM;
-        String NomEquipement;
-        String Mac;
-        String Marque;
-        int IdEquipement;
-        int IdOs;
-        int IdOrdinateur;
-        boolean Power;
-        String NomOs;
-        String Version;
+        
         ArrayList<Ordinateur> ordinateur;
         ordinateur = new ArrayList<>();
         Os os;
@@ -442,7 +422,7 @@ try {
             while(query.next()){
             IdSalle = query.getInt( "IdSalle" );
             }
-            resultat = st.executeQuery( "SELECT * FROM ordinateur o, Equipement e, OS os  WHERE e.IdEquipement = o.IdOrdinateur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+" )" );
+            resultat = st.executeQuery( "SELECT * FROM ordinateur o, Equipement e, OS os  WHERE e.IdEquipement = o.IdOrdinateur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+") AND o.IdOrdinateur IN (SELECT IdOrdinateur FROM connecter)" );
         while ( resultat.next() ) {
             NomEquipement=resultat.getString("Nom");
             Mac=resultat.getString("MAC");
@@ -462,6 +442,54 @@ try {
         }
         return ordinateur;     
 }
+    
+    public ArrayList<Routeur> RecupererRouteur(int numero){
+        
+        /*Information Equipement + Os*/
+        ResultSet resultat;
+        ResultSet query;
+        Statement st;
+        String Nom = null;
+        String NomEquipement;
+        String Mac;
+        String Marque;
+        boolean Power;
+        String NomOs;
+        String Version;
+        
+        //Information routeur : 
+        int numeroPort;
+        int nbPort;
+        ArrayList<Routeur> routeur;
+        routeur = new ArrayList<>();
+        int IdSalle=0;
+        Os os;
+        
+        try {
+            st=connexion.createStatement();
+            query = st.executeQuery( "SELECT  IdSalle FROM Salle WHERE numero='"+numero+"';" );
+            while(query.next()){
+            IdSalle = query.getInt( "IdSalle" );
+            }
+            
+            
+        resultat=st.executeQuery("SELECT * FROM Equipement e , Routeur r , Os os WHERE e.power=1 AND e.IdEquipement=r.IdRouteur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle=3) ");
+           while ( resultat.next() ) {
+            NomEquipement=resultat.getString("Nom");
+            Mac=resultat.getString("MAC");
+            Marque=resultat.getString("Marque");
+            nbPort=resultat.getInt("NombreDePort");
+            Power=resultat.getBoolean("Power");
+            NomOs=resultat.getString("NomOs");
+            Version=resultat.getString("Version");
+            os = new Os (NomOs,Version);
+            routeur.add(new Routeur (NomEquipement,Mac,Marque,Power,os,nbPort));
+           }
+        } catch (SQLException e) {
+                    System.out.println( "Erreur Recuperation Ordinateur !" );
+        }
+    return routeur;
+    }
         
     public boolean VerifierOs(String nom, String version){
     ResultSet verif= null;
@@ -488,6 +516,34 @@ try {
             System.out.println("VerifierOs!");
         }
     System.out.println("On ne fais pas le test il y a une erreur.");
+    return false;
+    }
+    
+    public boolean VerifierEquipement(String mac){
+    ResultSet verif= null;
+    Statement st;
+    int equipementok =0 ; 
+    
+    try{
+        st=connexion.createStatement();
+        verif=st.executeQuery("SELECT MAC FROM equipement WHERE MAC='"+mac+"'");
+        if(verif!=null){
+        int nbLignes = 0;
+                while (verif.next()) 
+                {nbLignes ++;
+                }
+        if (nbLignes == 0){
+            return true;
+        }
+         else{
+                return false;
+             }
+    }else{
+            System.out.println("Erreur verifierEquipemet");
+    }
+    }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
     return false;
     }
         
