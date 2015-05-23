@@ -23,6 +23,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import mesClasses.Local;
 import mesClasses.Societe;
@@ -46,6 +47,7 @@ public class Bureau extends javax.swing.JFrame {
      * Creates new form Bureau
      */
     public Bureau() {
+        /*config boite de dialogue*/
         LocalDialog = new javax.swing.JDialog();
         LocalOk = new javax.swing.JButton();
         LocalCancel = new javax.swing.JButton();
@@ -148,12 +150,13 @@ public class Bureau extends javax.swing.JFrame {
         so.ajouterLocal("local4", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
         so.ajouterSalle("local1", 0, 2, 20);
+        
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);
         setVisible(true);    
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
          /*init bar menu*/  
         JMenuBar menuBar =new JMenuBar();
         setJMenuBar(menuBar);
@@ -166,7 +169,8 @@ public class Bureau extends javax.swing.JFrame {
                 LocalDialogActionPerformed(evt);
             }
         });
-       
+        
+               
         /*init menu local*/
         afficheLesLocaux=new JPanel();
         afficheLesLocaux.setBackground(Color.red);
@@ -304,11 +308,11 @@ public class Bureau extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1141, Short.MAX_VALUE)
+            .addGap(0, 1094, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
         pack();
