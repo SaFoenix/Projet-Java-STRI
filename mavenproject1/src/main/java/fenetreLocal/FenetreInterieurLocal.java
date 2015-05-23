@@ -39,7 +39,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.gridx=0;
         gbc.gridy=0;
         initialisationMenuSalle();
+       
         add(AfficheListeSalle,BorderLayout.WEST);
+        add(FenetreDynamique,BorderLayout.EAST);
         
     }
     
@@ -239,11 +241,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 });            
         NumeroSalle.setText("");
         EtageSalle.setText("");
-        NombreOrdinateurSalle.setVisible(false);
+        NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);
     }//GEN-LAST:event_SalleOkActionPerformed
-
-    
+ 
     
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
