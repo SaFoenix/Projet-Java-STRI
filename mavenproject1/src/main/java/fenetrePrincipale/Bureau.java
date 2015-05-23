@@ -23,8 +23,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+<<<<<<< HEAD
 import mesClasses.Local;
 import mesClasses.MySql;
 import mesClasses.Ordinateur;
@@ -33,6 +33,10 @@ import mesClasses.Routeur;
 import mesClasses.Societe;
 import static sun.security.krb5.Config.refresh;
 import sun.security.krb5.KrbException;
+=======
+import mesClasses.*;
+
+>>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
 
 /**
  *
@@ -42,9 +46,8 @@ public class Bureau extends javax.swing.JFrame {
    private Societe so;
    private MySql bdd;
    private ArrayList<Local> locaux;
-   private JScrollPane scrollPane;
     JButton localButton;
-    JPanel afficheLesLocaux,jp2;
+    JPanel afficheLesLocaux;
     GridBagConstraints gbc=new GridBagConstraints();
     int positionX=0;
     int positionY=0;
@@ -143,6 +146,7 @@ public class Bureau extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+<<<<<<< HEAD
         bdd=new MySql();
         bdd.Connexion();
        // so=bdd.RecupererSociete("STRI");
@@ -150,16 +154,33 @@ public class Bureau extends javax.swing.JFrame {
         so=new Societe("Stri", "Toulouse");
         locaux=so.getLocaux();
         /*so.ajouterLocal("local1", "bordeaux");
+=======
+        //bdd=new MySql();
+        /*bdd.Connexion();
+        so=bdd.RecupererSociete("STRI");
+        /////Tom il manque loc=recupereLocal ????????????????????????
+        so.setLocaux(bdd.SocieteLocal("STRI"));*/
+        /*test*/
+        so=new Societe("Stri", "Toulouse");
+        so.ajouterLocal("local1", "bordeaux");
+>>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterLocal("local3", "bordeaux");
         so.ajouterLocal("local4", "bordeaux");
-        so.ajouterSalle("local1", 0, 1, 15);
-        so.ajouterSalle("local1", 0, 2, 20);
+        so.ajouterSalle("local1", 0, 1, 1);
+        so.ajouterSalle("local1", 0, 2, 2);
         Os os=new Os("Widows",".1");
-        Routeur rout=new Routeur("fff", "routeur", "marqueRouter", true, os, 5);
+    
+        Routeur rout=new Routeur("fff","routeur" , "marqueRouter", true, os, 5);
         so.ajouterRouteurSalle(rout,2,0, "local1");
+<<<<<<< HEAD
         Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
         so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");*/
+=======
+         Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
+        locaux=so.getLocaux();
+>>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);
@@ -194,7 +215,6 @@ public class Bureau extends javax.swing.JFrame {
     
     public void initialiseInterface(){ 
         for(Local loc:locaux){
-            //System.out.println(loc);
             final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
             localButton2.setName(loc.getNom());
             gbc.gridy=positionY;

@@ -173,7 +173,7 @@ public class Salle{
     public void connecterOrdinateur(Ordinateur ordi, String mac) {
         Routeur rout = rechercherRouteur(mac);
         if (rout == null) {
-            System.out.println("Le routeur n'existe pas.");
+            System.out.println("Le routeur n'existe pas dans la salle ");
         } else {
             rout.connecterOrdinateur(ordi);
         }
