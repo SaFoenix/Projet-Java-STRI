@@ -195,9 +195,7 @@ public class frame1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-        
-        
-
+      
   /*          public void actionPerformed(ActionEvent e) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }

@@ -27,14 +27,14 @@ public class Bureau extends javax.swing.JFrame {
      */
     public Bureau() {
         bdd=new MySql();
-        bdd.Connexion();
+        /*bdd.Connexion();
         so=bdd.RecupererSociete("STRI");
-        so.setLocaux(bdd.SocieteLocal("STRI"));
-        /*so=new Societe("Stri", "Toulouse");
+        so.setLocaux(bdd.SocieteLocal("STRI"));*/
+        so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 15);
-        so.ajouterSalle("local1", 0, 2, 20);*/
+        so.ajouterSalle("local1", 0, 2, 20);
         initComponents();
         initialiseInterface();
     }
@@ -52,8 +52,10 @@ public class Bureau extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());
                     Local loc=so.rechercherLocal(boutonLocal.getName());
-                    frame1 f=new frame1(loc);
+                    /*frame1 f=new frame1(loc);
                     add(f);
+                    f.setVisible(true);*/
+                    FenetreSecondaire f=new FenetreSecondaire(loc);
                     f.setVisible(true);
                 }
                 });
@@ -241,9 +243,10 @@ public class Bureau extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());;
                     Local loc=so.rechercherLocal(boutonLocal.getName());
-                    frame1 f=new frame1(loc);
+                   /* frame1 f=new frame1(loc);
                     add(f);
-                    f.setVisible(true);
+                    f.setVisible(true);*/
+                    
                 }
                 });
             
