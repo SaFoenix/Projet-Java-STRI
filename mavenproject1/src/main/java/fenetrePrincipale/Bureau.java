@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import mesClasses.Local;
+import mesClasses.MySql;
 import mesClasses.Ordinateur;
 import mesClasses.Os;
 import mesClasses.Routeur;
@@ -39,6 +40,7 @@ import sun.security.krb5.KrbException;
  */
 public class Bureau extends javax.swing.JFrame {
    private Societe so;
+   private MySql bdd;
    private ArrayList<Local> locaux;
    private JScrollPane scrollPane;
     JButton localButton;
@@ -141,13 +143,13 @@ public class Bureau extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        //bdd=new MySql();
-        /*bdd.Connexion();
-        so=bdd.RecupererSociete("STRI");
-        so.setLocaux(bdd.SocieteLocal("STRI"));*/
+        bdd=new MySql();
+        bdd.Connexion();
+       // so=bdd.RecupererSociete("STRI");
+       // so.setLocaux(bdd.RecupererLocal(so.getNom()));
         so=new Societe("Stri", "Toulouse");
         locaux=so.getLocaux();
-        so.ajouterLocal("local1", "bordeaux");
+        /*so.ajouterLocal("local1", "bordeaux");
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterLocal("local3", "bordeaux");
         so.ajouterLocal("local4", "bordeaux");
@@ -156,8 +158,8 @@ public class Bureau extends javax.swing.JFrame {
         Os os=new Os("Widows",".1");
         Routeur rout=new Routeur("fff", "routeur", "marqueRouter", true, os, 5);
         so.ajouterRouteurSalle(rout,2,0, "local1");
-       Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
+        Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");*/
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);
@@ -331,7 +333,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
       Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-       // bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         
         final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
             localButton2.setName(loc.getNom());

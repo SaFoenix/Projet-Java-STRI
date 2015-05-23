@@ -105,7 +105,7 @@ public class MySql {
         }
     }
     
-    public void AjoutSalle(String Local ,int numero , int nbOrdi , int etage){
+    public void AjoutSalle(String Local ,int numero , int etage, int nbOrdi){
         ResultSet resultat2;
         ResultSet resultat1;
         ResultSet resultatSalle;
