@@ -17,7 +17,8 @@ public class Routeur extends Equipement {
     /**
      * Tableau contenant les ordinateurs
      */
-	private Ordinateur [] ordinateurs; 	
+	private Ordinateur [] ordinateurs; 
+        private int ordinateurPresent;
 	
 	/**
          * constructeur de Routeur
@@ -30,8 +31,9 @@ public class Routeur extends Equipement {
 	 */ 
 	public Routeur(String mac, String nom, String marque,
 			boolean power, Os os, Integer nombrePorts) {
-		super(mac, nom, marque, power, os);
+		super(nom, mac, marque, power, os);
 		ordinateurs=new Ordinateur [nombrePorts];
+                ordinateurPresent=0;
 	}
 
 	/**
@@ -70,10 +72,17 @@ public class Routeur extends Equipement {
 		if(portLibre!=-1){
 			System.out.println("ajout de l'ordinateur "+ordi.getNom() +" sur le routeur "+ this.getNom()+" sur le port "+ portLibre+".");
 			ordinateurs[portLibre]=ordi;
+                        ordinateurPresent++;
 		}
 		else System.out.println("Le routeur n'a pas de port de libre.");
 	}	
-	
+	/**
+         * retourne le nombre d'ordinateur connecté au routeur
+         * @return ordinateurPresent
+         */
+        public int getOrdinateurPresent(){
+            return ordinateurPresent;
+        }
         @Override
 	public String toString() {
 		String str=super.toString();

@@ -48,8 +48,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }
     
     public void initialisationMenuSalle(){      
-       for(Salle sa:salles){
-            System.out.println(sa);
+       for(final Salle sa:salles){
             final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
             localButton2.setName(loc.getNom());
             gbc.gridy=positionY;
@@ -57,8 +56,16 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             positionY++;
             localButton2.addActionListener(new ActionListener(){
                 @Override
-                public void actionPerformed(ActionEvent arg0){  
-                    
+                public void actionPerformed(ActionEvent arg0) {
+                    Routeur rout = sa.rechercherRouteur("fff");
+                    if (rout != null) {
+                        Ordinateur[] ordi = (rout.retournerOrdinateurs());
+                        System.out.println("ordi= " + ordi.length);
+                        if (rout.getOrdinateurPresent()!=0) {
+                            Tableau tab = new Tableau(ordi);
+                            FenetreDynamique.add(tab);
+                         }
+                    }
                 }
                 });            
         }   

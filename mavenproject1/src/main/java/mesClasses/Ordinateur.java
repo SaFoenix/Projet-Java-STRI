@@ -20,7 +20,7 @@ public class Ordinateur extends Equipement {
 	private String cpu;
 	private String gpu;
 	private String hdd;
-
+      
 	/**
          * Le constructeur de Ordinateur
 	 * @param mac l'adresse mac de l'ordinateir
