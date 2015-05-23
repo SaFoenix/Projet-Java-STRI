@@ -108,9 +108,11 @@ public class MySql {
     public void AjoutSalle(String Local ,int numero , int nbOrdi , int etage){
         ResultSet resultat2;
         ResultSet resultat1;
+        ResultSet resultatSalle;
         ResultSet verif;
         Statement st;
         int IdLocal = 0 ; 
+        int IdSalle=0;
         int idMax=0;
         try {
             st=connexion.createStatement();
@@ -124,7 +126,11 @@ public class MySql {
             while (resultat1.next()){
             IdLocal=resultat1.getInt("IdLocal");
             }
-            verif=st.executeQuery("SELECT  numero FROM Salle S WHERE IdSalle=(SELECT IdSalle FROM contenirsalle WHERE IdLocal="+IdLocal+" AND S.IdSalle=IdSalle)");
+            resultatSalle = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero='"+numero+"'" );
+            while (resultatSalle.next()){
+            IdSalle=resultatSalle.getInt("IdSalle");
+            }
+            verif=st.executeQuery("SELECT  numero FROM Salle S WHERE IdSalle=(SELECT IdSalle FROM contenirsalle WHERE IdLocal="+IdLocal+" AND IdSalle="+IdSalle+")");
             if (verif!=null)
                 {
                 int nbLignes = 0;
@@ -135,7 +141,7 @@ public class MySql {
 
                 if (nbLignes == 0) 
                 {
-                    String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+nbOrdi+","+etage+")";
+                    String sql="INSERT INTO salle VALUES ("+idMax+","+numero+","+etage+","+nbOrdi+")";
                     st.executeUpdate(sql);
                     String sql2 ="INSERT INTO Contenirsalle VALUES ("+IdLocal+","+idMax+")";
                     st.executeUpdate(sql2);
@@ -253,7 +259,7 @@ try {
             String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
             st.executeUpdate(sql2);
             
-        resultat3 = st.executeQuery( "SELECT IdRouteur FROM routeur r WHERE IdRouteur IN (SELECT IdRouteur FROM contenirequipement WHERE IdSalle='"+idSalle+"' AND r.IdRouteur=IdRouteur)  " );    
+        resultat3 = st.executeQuery( "SELECT IdRouteur FROM routeur r WHERE IdRouteur IN (SELECT IdEquipement FROM contenirequipement WHERE IdSalle="+idSalle+" )  " );    
         while (resultat3.next()){
             idRouteur=resultat3.getInt("IdRouteur");
             }
