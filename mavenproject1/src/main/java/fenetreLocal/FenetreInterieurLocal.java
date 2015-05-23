@@ -14,31 +14,39 @@ import java.util.*;
  *
  * @author guigui
  */
-public class frame1 extends javax.swing.JInternalFrame {
+public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private static Societe so;
     private Local local;
     private ArrayList<Salle> salles;
-    private GridLayout grilleSalle;
+    GridBagLayout layout=new GridBagLayout();
+    SalleFenetre salle;
 
     /**
      * Creates new form frame1
      */
-    public frame1(Local loc) {
+    public FenetreInterieurLocal(Local loc) {
         local=loc;
+        salles=local.getSalles();
         initComponents();
     }
 
-    private frame1(Salle sal) {
+    private FenetreInterieurLocal(Salle sal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void initialisationMenuSalle(){
-        ArrayList<Salle> salles=local.getSalles();
+    public void initialisationMenuSalle(){        
         MenuSalle.setLayout(new GridLayout(salles.size(),1));
         for(Salle sa:salles){
               System.out.println(sa);
               Button boutonSalle = new Button(sa.getNumero()+ " " + "[" + sa.getEtage()+ "]"); 
               add(boutonSalle);
+              salle=new SalleFenetre(sa);
+              fenetreDynamique.setLayout(layout);
+              GridBagConstraints G=new GridBagConstraints();
+              G.gridx=0;
+              G.gridy=0;
+              fenetreDynamique.add(salle,0);
+              salle.setVisible(true);
         }
     }
     /**
@@ -61,10 +69,9 @@ public class frame1 extends javax.swing.JInternalFrame {
         EtageSalle = new javax.swing.JTextField();
         NombreOrdinateurSalle = new javax.swing.JTextField();
         MenuSalle = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        fenetreDynamique = new javax.swing.JPanel();
+        barMenu = new javax.swing.JMenuBar();
+        barMenuAjouter = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         SalleDialog.setMinimumSize(new java.awt.Dimension(420, 320));
@@ -166,14 +173,22 @@ public class frame1 extends javax.swing.JInternalFrame {
 
         getContentPane().add(MenuSalle, java.awt.BorderLayout.LINE_START);
 
-        jMenu1.setText("Menu");
+        fenetreDynamique.setBackground(new java.awt.Color(153, 255, 255));
 
-        jMenuItem2.setText("Exit");
-        jMenu1.add(jMenuItem2);
+        javax.swing.GroupLayout fenetreDynamiqueLayout = new javax.swing.GroupLayout(fenetreDynamique);
+        fenetreDynamique.setLayout(fenetreDynamiqueLayout);
+        fenetreDynamiqueLayout.setHorizontalGroup(
+            fenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1012, Short.MAX_VALUE)
+        );
+        fenetreDynamiqueLayout.setVerticalGroup(
+            fenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
 
-        jMenuBar1.add(jMenu1);
+        getContentPane().add(fenetreDynamique, java.awt.BorderLayout.CENTER);
 
-        jMenu2.setText("Ajouter");
+        barMenuAjouter.setText("Ajouter");
 
         jMenuItem1.setText("Ajouter salle");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -181,11 +196,11 @@ public class frame1 extends javax.swing.JInternalFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        barMenuAjouter.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu2);
+        barMenu.add(barMenuAjouter);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(barMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,12 +210,6 @@ public class frame1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-      
-  /*          public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-                });
-        
         add(new Button(NumeroSalle.getText() + " " + "[" + EtageSalle.getText() + "]"));
         NombreOrdinateurSalle.setText("");
         NumeroSalle.setText("");
@@ -234,13 +243,12 @@ public class frame1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
+    private javax.swing.JMenuBar barMenu;
+    private javax.swing.JMenu barMenuAjouter;
+    private javax.swing.JPanel fenetreDynamique;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

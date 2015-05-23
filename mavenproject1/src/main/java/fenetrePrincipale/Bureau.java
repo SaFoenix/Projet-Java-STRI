@@ -52,9 +52,6 @@ public class Bureau extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());
                     Local loc=so.rechercherLocal(boutonLocal.getName());
-                    /*frame1 f=new frame1(loc);
-                    add(f);
-                    f.setVisible(true);*/
                     FenetreSecondaire f=new FenetreSecondaire(loc);
                     f.setVisible(true);
                 }
@@ -234,7 +231,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+       // bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         grilleLocal.setRows(so.getLocaux().size());        
         final Button boutonLocal = new Button(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
           boutonLocal.setName(loc.getNom());
@@ -243,10 +240,8 @@ public class Bureau extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent arg0){  
                     System.out.println(boutonLocal.getName());;
                     Local loc=so.rechercherLocal(boutonLocal.getName());
-                   /* frame1 f=new frame1(loc);
-                    add(f);
-                    f.setVisible(true);*/
-                    
+                    FenetreSecondaire f=new FenetreSecondaire(loc);
+                    f.setVisible(true);                    
                 }
                 });
             
