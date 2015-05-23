@@ -39,10 +39,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.gridx=0;
         gbc.gridy=0;
         initialisationMenuSalle();
-       
+        FenetreDynamique.setBackground(Color.blue);
+        FenetreRouteur.setBackground(Color.yellow);
+        AfficheListeSalle.setBackground(Color.red);
         add(AfficheListeSalle,BorderLayout.WEST);
-        add(FenetreDynamique,BorderLayout.EAST);
-        
+        add(FenetreDynamique,BorderLayout.CENTER);
+        add(FenetreRouteur,BorderLayout.NORTH);
     }
     
     public void initialisationMenuSalle(){      
@@ -83,6 +85,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         NombreOrdinateurSalle = new javax.swing.JTextField();
         AfficheListeSalle = new javax.swing.JPanel();
         FenetreDynamique = new javax.swing.JPanel();
+        FenetreRouteur = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
         barMenuAjouter = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -172,7 +175,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setClosable(true);
 
         AfficheListeSalle.setBackground(new java.awt.Color(153, 255, 255));
-        AfficheListeSalle.setAutoscrolls(true);
 
         javax.swing.GroupLayout AfficheListeSalleLayout = new javax.swing.GroupLayout(AfficheListeSalle);
         AfficheListeSalle.setLayout(AfficheListeSalleLayout);
@@ -189,15 +191,28 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         FenetreDynamique.setAutoscrolls(true);
 
+        javax.swing.GroupLayout FenetreRouteurLayout = new javax.swing.GroupLayout(FenetreRouteur);
+        FenetreRouteur.setLayout(FenetreRouteurLayout);
+        FenetreRouteurLayout.setHorizontalGroup(
+            FenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1012, Short.MAX_VALUE)
+        );
+        FenetreRouteurLayout.setVerticalGroup(
+            FenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout FenetreDynamiqueLayout = new javax.swing.GroupLayout(FenetreDynamique);
         FenetreDynamique.setLayout(FenetreDynamiqueLayout);
         FenetreDynamiqueLayout.setHorizontalGroup(
             FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1012, Short.MAX_VALUE)
+            .addComponent(FenetreRouteur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         FenetreDynamiqueLayout.setVerticalGroup(
             FenetreDynamiqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(FenetreDynamiqueLayout.createSequentialGroup()
+                .addComponent(FenetreRouteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 420, Short.MAX_VALUE))
         );
 
         getContentPane().add(FenetreDynamique, java.awt.BorderLayout.CENTER);
@@ -243,9 +258,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);
+        setVisible(false);
+        setVisible(true);
     }//GEN-LAST:event_SalleOkActionPerformed
  
-    
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         SalleDialog.setVisible(true);
@@ -265,6 +281,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
     private javax.swing.JPanel FenetreDynamique;
+    private javax.swing.JPanel FenetreRouteur;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
     private javax.swing.JButton SalleCancel;
