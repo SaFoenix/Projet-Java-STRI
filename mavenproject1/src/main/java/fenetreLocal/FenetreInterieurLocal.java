@@ -241,6 +241,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
        
+        bdd=new MySql();
+        bdd.Connexion();
         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         bdd.AjoutSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());        

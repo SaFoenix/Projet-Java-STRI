@@ -24,19 +24,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-<<<<<<< HEAD
-import mesClasses.Local;
-import mesClasses.MySql;
-import mesClasses.Ordinateur;
-import mesClasses.Os;
-import mesClasses.Routeur;
-import mesClasses.Societe;
-import static sun.security.krb5.Config.refresh;
-import sun.security.krb5.KrbException;
-=======
+
 import mesClasses.*;
 
->>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
 
 /**
  *
@@ -146,24 +136,16 @@ public class Bureau extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
+
         bdd=new MySql();
         bdd.Connexion();
-       // so=bdd.RecupererSociete("STRI");
-       // so.setLocaux(bdd.RecupererLocal(so.getNom()));
-        so=new Societe("Stri", "Toulouse");
-        locaux=so.getLocaux();
-        /*so.ajouterLocal("local1", "bordeaux");
-=======
-        //bdd=new MySql();
-        /*bdd.Connexion();
         so=bdd.RecupererSociete("STRI");
-        /////Tom il manque loc=recupereLocal ????????????????????????
-        so.setLocaux(bdd.SocieteLocal("STRI"));*/
+        locaux = bdd.RecupererLocal(so.getNom());
+        so.setLocaux(locaux);
         /*test*/
-        so=new Societe("Stri", "Toulouse");
+        /*so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
->>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
+
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterLocal("local3", "bordeaux");
         so.ajouterLocal("local4", "bordeaux");
@@ -173,14 +155,11 @@ public class Bureau extends javax.swing.JFrame {
     
         Routeur rout=new Routeur("fff","routeur" , "marqueRouter", true, os, 5);
         so.ajouterRouteurSalle(rout,2,0, "local1");
-<<<<<<< HEAD
-        Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");*/
-=======
+
          Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
         so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
         locaux=so.getLocaux();
->>>>>>> fdf265bb008766bdc79b7095668297cd5924372f
+        */
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);
