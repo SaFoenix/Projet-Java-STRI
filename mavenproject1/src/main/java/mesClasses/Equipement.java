@@ -17,7 +17,7 @@ public class Equipement {
      * L'adresse MAC de l'equipement, ne peut pas être modifée une fois
      * l'equipement créé, est unique
      */
-    private String mac;
+    private final String mac;
     /**
      * Le nom de l'equipement, il peut être modifié
      */
@@ -26,7 +26,7 @@ public class Equipement {
     /**
      * la marque de l'appareil, ne peut pas être modifiée apres la creation
      */
-    private String marque;
+    private final String marque;
     /**
      * definit si l'equipement est allumé ou eteint
      */
@@ -47,9 +47,9 @@ public class Equipement {
      * @param power état de l'equipement, on ou off
      * @param os L'os de l'equipement
      */
-    public Equipement(String mac, String nom, String marque, boolean power, Os os) {
-        this.mac = mac;
+    public Equipement(String nom, String mac, String marque, boolean power, Os os) {
         this.nom = nom;
+        this.mac = mac;
         this.marque = marque;
         this.power = power;
         this.os = os;

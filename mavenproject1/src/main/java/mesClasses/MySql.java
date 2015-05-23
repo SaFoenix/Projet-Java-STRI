@@ -372,8 +372,9 @@ try {
         /* Récupération des données du résultat de la requête de lecture */
         while ( resultat.next() ) {
             numero = resultat.getInt( "numero" );
-            etage = resultat.getInt( "etage" );
             nbPc = resultat.getInt( "NombreOrdinateur" );
+            etage = resultat.getInt( "etage" );
+            
             salles.add(new Salle (numero,etage,nbPc));
             }
    } catch (SQLException e) {
@@ -410,12 +411,12 @@ try {
     return false;
     }
 
-    /*public ArrayList<Ordinateur> RecupererOrdinateur(int numero){
+    public ArrayList<Ordinateur> RecupererOrdinateur(int numero){
         
         ResultSet resultat;
         ResultSet query;
         Statement st;
-        
+        String Nom = null;
         String GPU;
         String CPU;
         String HDD;
@@ -423,9 +424,15 @@ try {
         String NomEquipement;
         String Mac;
         String Marque;
-        boolean power;
+        int IdEquipement;
+        int IdOs;
+        int IdOrdinateur;
+        boolean Power;
+        String NomOs;
+        String Version;
         ArrayList<Ordinateur> ordinateur;
         ordinateur = new ArrayList<>();
+        Os os;
         
         int IdSalle=0;
         
@@ -435,18 +442,26 @@ try {
             while(query.next()){
             IdSalle = query.getInt( "IdSalle" );
             }
-            resultat = st.executeQuery( "SELECT numero , etage, NombreOrdinateur FROM Salle S  WHERE IdSalle IN (SELECT IdSalle FROM ContenirSalle WHERE IdLocal='"+IdLocal+"' AND S.IdSalle=IdSalle) ;" );
-             
-
+            resultat = st.executeQuery( "SELECT * FROM ordinateur o, Equipement e, OS os  WHERE e.IdEquipement = o.IdOrdinateur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+" )" );
         while ( resultat.next() ) {
-     
-            //ordinateur.add(new Ordinateur ());
+            NomEquipement=resultat.getString("Nom");
+            Mac=resultat.getString("MAC");
+            Marque=resultat.getString("Marque");
+            Power=resultat.getBoolean("Power");
+            CPU=resultat.getString("CPU");
+            HDD=resultat.getString("HDD");
+            GPU=resultat.getString("GPU");
+            RAM=resultat.getString("RAM");
+            NomOs=resultat.getString("NomOs");
+            Version=resultat.getString("Version");
+            os = new Os (NomOs,Version);
+            ordinateur.add(new Ordinateur (NomEquipement,Mac,Marque,Power,os,RAM,CPU,GPU,HDD));
             }
    } catch (SQLException e) {
-                    System.out.println( "Erreur LocalSalle !" );
+                    System.out.println( "Erreur Recuperation Ordinateur !" );
         }
         return ordinateur;     
-}*/
+}
         
     public boolean VerifierOs(String nom, String version){
     ResultSet verif= null;

@@ -19,6 +19,7 @@ public class Test {
                        boolean TestOs;
                        ArrayList<Local> locaux = new ArrayList<>();
                        ArrayList<Salle> salle = new ArrayList<>();
+                       ArrayList<Ordinateur> ordi = new ArrayList<>();
                        MySql bdd = new MySql();
                        bdd.Connexion();
                        //bdd.AjoutSociete("Stri","Toulouse");
@@ -32,7 +33,9 @@ public class Test {
                        System.out.println(locaux);
                        salle=bdd.RecupererSalle("Amphi");
                        System.out.println(salle);
-                       System.out.println(societe);
+                       ordi = bdd.RecupererOrdinateur(202);
+                       System.out.println(ordi);
+                       
                        
 	}
 
