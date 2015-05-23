@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  */
 public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private Local loc;
+    private MySql bdd;
     private ArrayList<Salle> salles;
     private ArrayList<Routeur> routeurs;
     
@@ -247,9 +248,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
        
+        bdd=new MySql();
+        bdd.Connexion();
         Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
-        //bdd.ajouterLocal(so.getNom(),loc.getNom(), loc.getlocalisation());        
+        bdd.AjoutSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());        
         final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
           localButton2.setName(loc.getNom());
             gbc.gridy=positionY;

@@ -29,7 +29,7 @@ public class Routeur extends Equipement {
 	 * @param os
 	 * @param nombrePorts Le nombre de port du routeur
 	 */ 
-	public Routeur(String mac, String nom, String marque,
+	public Routeur(String nom, String mac, String marque,
 			boolean power, Os os, Integer nombrePorts) {
 		super(nom, mac, marque, power, os);
 		ordinateurs=new Ordinateur [nombrePorts];

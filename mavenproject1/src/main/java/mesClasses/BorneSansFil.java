@@ -25,9 +25,9 @@ public class BorneSansFil extends Equipement {
 	 * @param os
          * @see Equipement
 	 */
-	public BorneSansFil(String mac, String nom,
+	public BorneSansFil(String nom, String mac,
 			String marque, boolean power,Os os) {
-		super(mac, nom, marque, power,os);
+		super(nom, mac, marque, power,os);
 		tablettes=new ArrayList<Tablette>();
 	}
 	

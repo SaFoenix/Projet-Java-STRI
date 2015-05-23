@@ -24,6 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 import mesClasses.*;
 
 
@@ -33,6 +34,7 @@ import mesClasses.*;
  */
 public class Bureau extends javax.swing.JFrame {
    private Societe so;
+   private MySql bdd;
    private ArrayList<Local> locaux;
     JButton localButton;
     JPanel afficheLesLocaux;
@@ -134,14 +136,16 @@ public class Bureau extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        //bdd=new MySql();
-        /*bdd.Connexion();
+
+        bdd=new MySql();
+        bdd.Connexion();
         so=bdd.RecupererSociete("STRI");
-        /////Tom il manque loc=recupereLocal ????????????????????????
-        so.setLocaux(bdd.SocieteLocal("STRI"));*/
+        locaux = bdd.RecupererLocal(so.getNom());
+        so.setLocaux(locaux);
         /*test*/
-        so=new Societe("Stri", "Toulouse");
+        /*so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
+
         so.ajouterLocal("local2", "bordeaux");
         so.ajouterLocal("local3", "bordeaux");
         so.ajouterLocal("local4", "bordeaux");
@@ -151,9 +155,11 @@ public class Bureau extends javax.swing.JFrame {
     
         Routeur rout=new Routeur("fff","routeur" , "marqueRouter", true, os, 5);
         so.ajouterRouteurSalle(rout,2,0, "local1");
+
          Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
         so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
         locaux=so.getLocaux();
+        */
         /*init fenetre principale */
         setTitle("Societe "+so.getNom());
         setSize(960,960);
@@ -326,7 +332,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
       Local loc=new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-       // bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         
         final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
             localButton2.setName(loc.getNom());

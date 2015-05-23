@@ -47,7 +47,7 @@ public class Equipement {
      * @param power état de l'equipement, on ou off
      * @param os L'os de l'equipement
      */
-    public Equipement(String mac, String nom, String marque, boolean power, Os os) {
+    public Equipement(String nom, String mac, String marque, boolean power, Os os) {
         this.nom = nom;
         this.mac = mac;
         this.marque = marque;
