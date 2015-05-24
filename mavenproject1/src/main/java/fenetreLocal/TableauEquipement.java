@@ -28,7 +28,6 @@ public class TableauEquipement extends javax.swing.JPanel {
      */
     public TableauEquipement(Equipement equi) {
         equipement = equi;
-        //initComponents();
         if (equipement instanceof BorneSansFil) {
             columns = new String[]{"Nom", "Mac", "Marque", "Power", "NomOS", "Version"};
         } else if (equipement instanceof Routeur) {
