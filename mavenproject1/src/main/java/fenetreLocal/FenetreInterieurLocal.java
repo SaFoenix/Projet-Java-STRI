@@ -168,6 +168,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         barMenu = new javax.swing.JMenuBar();
         barMenuAjouter = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        menuAjouterRouteur = new javax.swing.JMenuItem();
+        menuAjouterBorne = new javax.swing.JMenuItem();
 
         SalleDialog.setMinimumSize(new java.awt.Dimension(420, 320));
 
@@ -293,6 +295,22 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         });
         barMenuAjouter.add(jMenuItem1);
 
+        menuAjouterRouteur.setText("Ajouter Routeur");
+        menuAjouterRouteur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAjouterRouteurActionPerformed(evt);
+            }
+        });
+        barMenuAjouter.add(menuAjouterRouteur);
+
+        menuAjouterBorne.setText("Ajouter Borne");
+        menuAjouterBorne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAjouterBorneActionPerformed(evt);
+            }
+        });
+        barMenuAjouter.add(menuAjouterBorne);
+
         barMenu.add(barMenuAjouter);
 
         setJMenuBar(barMenu);
@@ -341,6 +359,15 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         SalleDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_SalleCancelActionPerformed
 
+    
+    private void menuAjouterRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjouterRouteurActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuAjouterRouteurActionPerformed
+
+    private void menuAjouterBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjouterBorneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuAjouterBorneActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
     private javax.swing.JLabel CreationSalle;
@@ -357,5 +384,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menuAjouterBorne;
+    private javax.swing.JMenuItem menuAjouterRouteur;
     // End of variables declaration//GEN-END:variables
 }

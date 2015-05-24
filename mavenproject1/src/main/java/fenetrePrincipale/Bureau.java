@@ -145,7 +145,9 @@ public class Bureau extends javax.swing.JFrame {
          bdd.Connexion();
          so=bdd.RecupererSociete("STRI");
          locaux = bdd.RecupererLocal(so.getNom());
-         so.setLocaux(locaux);*/
+         so.setLocaux(locaux);
+        
+        */
         /*DEBUT test*/
         so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
