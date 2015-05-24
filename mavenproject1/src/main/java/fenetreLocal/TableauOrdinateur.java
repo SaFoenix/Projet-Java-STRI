@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.TableCellRenderer;
 import mesClasses.*;
 /**
  *
@@ -31,8 +34,9 @@ public class TableauOrdinateur extends javax.swing.JPanel {
         initialiseTableau();
         tableau=new JTable(data,columns){
             public boolean isCellEditable(int date,int colums){
-                System.out.println("date: "+date+" colums: "+colums);
-                if(colums==1 || colums==2) return false;//si mac on peut la changer
+                if(colums==1 || colums==2 || colums==8 || colums==9)  {
+                    return false;
+                }//si mac on peut la changer
                 return true;
             } 
             public Object getValueAt(int row, int col) {
@@ -59,13 +63,14 @@ public class TableauOrdinateur extends javax.swing.JPanel {
                                 break;
                         }
                     }                    
-                }                    
+                }
             }
-            public void addTableModelListener(TableModelListener l){
-                    
+            public void addTableModelListener(TableModelListener l) {
+
             }
-   
+
         };
+        tableau.getTableHeader().setReorderingAllowed(false);
         tableau.setPreferredScrollableViewportSize(new Dimension(600,300));
         tableau.setFillsViewportHeight(true);
         add(tableau);

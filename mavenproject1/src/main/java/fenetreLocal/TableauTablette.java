@@ -39,7 +39,6 @@ public class TableauTablette extends javax.swing.JPanel {
                 return true;
             } 
             public Object getValueAt(int row, int col) {
-                System.out.println("donnée: "+data[row][col]);
                  return data[row][col];
             }
             public void setValueAt(Object value,int row, int col){
