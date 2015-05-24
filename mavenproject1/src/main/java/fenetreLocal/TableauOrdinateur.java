@@ -33,7 +33,7 @@ public class TableauOrdinateur extends javax.swing.JPanel {
                 return false;
             }            
         };
-        tableau.setPreferredScrollableViewportSize(new Dimension(600,100));
+        tableau.setPreferredScrollableViewportSize(new Dimension(600,600));
         tableau.setFillsViewportHeight(true);
         add(tableau);
         JScrollPane jps=new JScrollPane(tableau);

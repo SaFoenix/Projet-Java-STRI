@@ -36,17 +36,19 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
          bdd.Connexion();*/
         this.loc = loc;
         salles = loc.getSalles();
-        initComponents();
-
+        initComponents();       
         setTitle(loc.getNom());
-        setSize(1350, 750);
+        setSize(1020,800);
         AfficheListeSalle.setBackground(Color.red);
         AfficheListeSalle.setLayout(new GridBagLayout());
+        
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
         afficheInformation = new javax.swing.JInternalFrame();
-
+        afficheInformation.setSize(600,600);
+        afficheInformation.setAutoscrolls(true);
+        
         initialisationMenuSalle();
 
         fenetreRouteur.setBackground(Color.yellow);
@@ -105,10 +107,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     remove(afficheInformation);
                     Ordinateur[] ordi = (rout.retournerOrdinateurs());
                     tabOrdinateur = new TableauOrdinateur(ordi);
-                    afficheInformation.add(tabOrdinateur, BorderLayout.CENTER);
+                    afficheInformation.add(tabOrdinateur, BorderLayout.EAST);
                     tabOrdinateur.setVisible(true);
                     afficheInformation.setVisible(true);
-                    add(afficheInformation, BorderLayout.CENTER);
+                    add(afficheInformation, BorderLayout.EAST);
                 }//fin actionPerf
             }
             );
@@ -132,10 +134,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     remove(afficheInformation);
                     ArrayList<Tablette> tablet = bo.getTablettes();
                     tabTablette = new TableauTablette(tablet);
-                    afficheInformation.add(tabTablette, BorderLayout.CENTER);
+                    afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
                     afficheInformation.setVisible(true);
-                    add(afficheInformation, BorderLayout.CENTER);
+                    add(afficheInformation, BorderLayout.EAST);
                 }//fin actionPerf
             }
             );

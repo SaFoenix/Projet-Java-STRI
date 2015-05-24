@@ -36,7 +36,7 @@ public class TableauTablette extends javax.swing.JPanel {
             }            
         };
         
-        tableau.setPreferredScrollableViewportSize(new Dimension(600,100));
+        tableau.setPreferredScrollableViewportSize(new Dimension(600,600));
         tableau.setFillsViewportHeight(true);
         add(tableau);
         JScrollPane jps=new JScrollPane(tableau);

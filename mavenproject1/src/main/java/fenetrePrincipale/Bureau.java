@@ -30,20 +30,21 @@ import javax.swing.JScrollPane;
 
 import mesClasses.*;
 
-
 /**
  *
  * @author guigui
  */
 public class Bureau extends javax.swing.JFrame {
-   private Societe so;
-   private MySql bdd;
-   private ArrayList<Local> locaux;
+
+    private Societe so;
+    private MySql bdd;
+    private ArrayList<Local> locaux;
     JButton localButton;
     JPanel afficheLesLocaux;
-    GridBagConstraints gbc=new GridBagConstraints();
-    int positionX=0;
-    int positionY=0;
+    GridBagConstraints gbc = new GridBagConstraints();
+    int positionX = 0;
+    int positionY = 0;
+
     /**
      * Creates new form Bureau
      */
@@ -98,56 +99,55 @@ public class Bureau extends javax.swing.JFrame {
         javax.swing.GroupLayout LocalDialogLayout = new javax.swing.GroupLayout(LocalDialog.getContentPane());
         LocalDialog.getContentPane().setLayout(LocalDialogLayout);
         LocalDialogLayout.setHorizontalGroup(
-            LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LocalDialogLayout.createSequentialGroup()
-                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LocalDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
-                            .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(LocalDialogLayout.createSequentialGroup()
-                                .addComponent(LocalOk)
-                                .addGap(18, 18, 18)
-                                .addComponent(LocalCancel))
-                            .addComponent(LocalName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(LocalLieu, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(LocalDialogLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(CreationLocal)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LocalDialogLayout.createSequentialGroup()
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(LocalDialogLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(NomLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                                                .addComponent(LieuLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(LocalDialogLayout.createSequentialGroup()
+                                                        .addComponent(LocalOk)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(LocalCancel))
+                                                .addComponent(LocalName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                                                .addComponent(LocalLieu, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addGroup(LocalDialogLayout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(CreationLocal)))
+                        .addContainerGap(35, Short.MAX_VALUE))
         );
         LocalDialogLayout.setVerticalGroup(
-            LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LocalDialogLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(CreationLocal)
-                .addGap(18, 18, 18)
-                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LocalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomLocal))
-                .addGap(18, 18, 18)
-                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LocalLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LieuLocal))
-                .addGap(18, 18, 18)
-                .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LocalCancel)
-                    .addComponent(LocalOk))
-                .addContainerGap(21, Short.MAX_VALUE))
+                LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LocalDialogLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(CreationLocal)
+                        .addGap(18, 18, 18)
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LocalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(NomLocal))
+                        .addGap(18, 18, 18)
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LocalLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LieuLocal))
+                        .addGap(18, 18, 18)
+                        .addGroup(LocalDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LocalCancel)
+                                .addComponent(LocalOk))
+                        .addContainerGap(21, Short.MAX_VALUE))
         );
 
 
-       /* bdd=new MySql();
-        bdd.Connexion();
-        so=bdd.RecupererSociete("STRI");
-        locaux = bdd.RecupererLocal(so.getNom());
-        so.setLocaux(locaux);*/
-        
+        /* bdd=new MySql();
+         bdd.Connexion();
+         so=bdd.RecupererSociete("STRI");
+         locaux = bdd.RecupererLocal(so.getNom());
+         so.setLocaux(locaux);*/
         /*DEBUT test*/
-        so=new Societe("Stri", "Toulouse");
+        so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
         so.ajouterLocal("local2", "bordeaux");
@@ -155,112 +155,113 @@ public class Bureau extends javax.swing.JFrame {
         so.ajouterLocal("local4", "bordeaux");
         so.ajouterSalle("local1", 0, 1, 1);
         so.ajouterSalle("local1", 0, 2, 2);
-        Os os=new Os("Widows",".1");
-    
-        Routeur rout=new Routeur("routeur","fff","marqueRouter", true, os, 10);
-        Routeur rout1=new Routeur("routeur","fffddd","marqueRouter", true, os, 10);
-        BorneSansFil bo=new BorneSansFil("bornes", "FFGG", "apple", true, os);
-        so.ajouterRouteurSalle(rout,2,0, "local1");
-        so.ajouterRouteurSalle(rout1,1,0, "local1");
-        so.ajouterBorneSansFil(bo,"local1", 2, 0);
-        
-        
-         Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi1=new Ordinateur("ordi1", "hguehf", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi2=new Ordinateur("ordi2", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi3=new Ordinateur("ordi3", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi4=new Ordinateur("ordi4", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi5=new Ordinateur("ordi5", "hguehfffdd", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-          Ordinateur ordi6=new Ordinateur("ordi6", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi7=new Ordinateur("ordi17", "hguehf", "wefer", true, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi8=new Ordinateur("ordi28", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi9=new Ordinateur("ordi39", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi10=new Ordinateur("ordi410", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi11=new Ordinateur("ordi511", "hguehfffdd", "wefer", true, os, "55gggo", "i7", "nvdia", "500go");
-         Tablette tab=new Tablette("nomT", "mac", "app", true, os, "50go", 2);
-         Tablette tab1=new Tablette("nomT", "mac1", "app", true, os, "50go", 2);
-         Tablette tab2=new Tablette("nomT", "mac2", "app", true, os, "50go", 2);
-         Tablette tab3=new Tablette("nomT", "mac3", "app", true, os, "50go", 2);
-         Tablette tab4=new Tablette("nomT", "mac4", "app", true, os, "50go", 2);
-         Tablette tab5=new Tablette("nomT", "mac5", "app", true, os, "50go", 2);
-         so.connecterTablette(tab, "local1", 2, 0, "FFGG");
-         so.connecterTablette(tab1, "local1", 2, 0, "FFGG");
-         so.connecterTablette(tab2, "local1", 2, 0, "FFGG");
-         so.connecterTablette(tab3, "local1", 2, 0, "FFGG");
-         so.connecterTablette(tab4, "local1", 2, 0, "FFGG");
-         so.connecterTablette(tab5, "local1", 2, 0, "FFGG");
-        so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi1,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi2,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi3,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi4,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi5,2, 0, "fff",  "local1");   
-          so.connecterOrdinateur(ordi6,1, 0, "fffddd",  "local1");
-        so.connecterOrdinateur(ordi7,1, 0, "fffddd",  "local1");
-        so.connecterOrdinateur(ordi8,1, 0, "fffddd",  "local1");
-        so.connecterOrdinateur(ordi9,1, 0, "fffddd",  "local1");
-        so.connecterOrdinateur(ordi10,1, 0, "fffddd",  "local1");
-        so.connecterOrdinateur(ordi11,1, 0, "fffddd",  "local1");   
-        
+        Os os = new Os("Widows", ".1");
+
+        Routeur rout = new Routeur("routeur", "fff", "marqueRouter", true, os, 10);
+        Routeur rout1 = new Routeur("routeur", "fffddd", "marqueRouter", true, os, 10);
+        BorneSansFil bo = new BorneSansFil("bornes", "FFGG", "apple", true, os);
+        so.ajouterRouteurSalle(rout, 2, 0, "local1");
+        so.ajouterRouteurSalle(rout1, 1, 0, "local1");
+        so.ajouterBorneSansFil(bo, "local1", 2, 0);
+
+        Ordinateur ordi = new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi1 = new Ordinateur("ordi1", "hguehf", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi2 = new Ordinateur("ordi2", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi3 = new Ordinateur("ordi3", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi4 = new Ordinateur("ordi4", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi5 = new Ordinateur("ordi5", "hguehfffdd", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi6 = new Ordinateur("ordi6", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi7 = new Ordinateur("ordi17", "hguehf", "wefer", true, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi8 = new Ordinateur("ordi28", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi9 = new Ordinateur("ordi39", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi10 = new Ordinateur("ordi410", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+        Ordinateur ordi11 = new Ordinateur("ordi511", "hguehfffdd", "wefer", true, os, "55gggo", "i7", "nvdia", "500go");
+        Tablette tab = new Tablette("nomT", "mac", "app", true, os, "50go", 2);
+        Tablette tab1 = new Tablette("nomT", "mac1", "app", true, os, "50go", 2);
+        Tablette tab2 = new Tablette("nomT", "mac2", "app", true, os, "50go", 2);
+        Tablette tab3 = new Tablette("nomT", "mac3", "app", true, os, "50go", 2);
+        Tablette tab4 = new Tablette("nomT", "mac4", "app", true, os, "50go", 2);
+        Tablette tab5 = new Tablette("nomT", "mac5", "app", true, os, "50go", 2);
+        so.connecterTablette(tab, "local1", 2, 0, "FFGG");
+        so.connecterTablette(tab1, "local1", 2, 0, "FFGG");
+        so.connecterTablette(tab2, "local1", 2, 0, "FFGG");
+        so.connecterTablette(tab3, "local1", 2, 0, "FFGG");
+        so.connecterTablette(tab4, "local1", 2, 0, "FFGG");
+        so.connecterTablette(tab5, "local1", 2, 0, "FFGG");
+        so.connecterOrdinateur(ordi, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi1, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi2, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi3, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi4, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi5, 2, 0, "fff", "local1");
+        so.connecterOrdinateur(ordi6, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi7, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi8, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi9, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi10, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");
         /*FIN TEST*/
         
-        locaux=so.getLocaux();
-        
+        locaux = so.getLocaux();
+
         /*init fenetre principale */
-        setTitle("Societe "+so.getNom());
-        setSize(960,960);
-        setVisible(true);    
+        setTitle("Societe " + so.getNom());
+        setSize(960, 960);
+        setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(true);
-         /*init bar menu*/  
-        JMenuBar menuBar =new JMenuBar();
+        setResizable(false);
+        /*init bar menu*/
+        JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        JMenu ajouter=new JMenu("Ajouter");
+        JMenu ajouter = new JMenu("Ajouter");
         menuBar.add(ajouter);
-        JMenuItem ajouterLocal=new JMenuItem("ajouter Local");
+        JMenuItem ajouterLocal = new JMenuItem("ajouter Local");
         ajouter.add(ajouterLocal);
         ajouterLocal.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LocalDialogActionPerformed(evt);
             }
-        });        
-               
+        });
+
         /*init menu local*/
-        afficheLesLocaux=new JPanel();
+        afficheLesLocaux = new JPanel();
         afficheLesLocaux.setBackground(Color.red);
         afficheLesLocaux.setLayout(new GridBagLayout());
-        gbc.insets=new Insets(5, 5, 5, 5);
-        gbc.gridx=0;
-        gbc.gridy=0;
-        initialiseInterface();        
-        add(afficheLesLocaux,BorderLayout.PAGE_START);  
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        initialiseInterface();
+        add(afficheLesLocaux, BorderLayout.PAGE_START);
     }
-    
-    public void initialiseInterface(){ 
-        for(Local loc:locaux){
-            final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
+
+    public void initialiseInterface() {
+        for (Local loc : locaux) {
+            final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
             localButton2.setName(loc.getNom());
-            gbc.gridy=positionY;
-            afficheLesLocaux.add(localButton2,gbc);
+            gbc.gridy = positionY;
+            afficheLesLocaux.add(localButton2, gbc);
             positionY++;
             localButton2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    System.out.println(localButton2.getName()); 
-                      Local loc=so.rechercherLocal(localButton2.getName());
-                     FenetreSecondaire f=new FenetreSecondaire(loc);
-                     f.setVisible(true);                  
-                    //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
-                   // setSize(1360, 760);
-                   /* FenetreInterieurLocal f = new FenetreInterieurLocal(loc);
-                    JDesktopPane bureau = new javax.swing.JDesktopPane();
-                    bureau.add(f);
-                    f.setVisible(true);*/
+                    evenementBoutonLocal(so, localButton2.getName());
                 }
-            });        
-        }   
+            });
+        }
     }
-   
+
+    private void evenementBoutonLocal(Societe so, String locNom) {
+        Local loc = so.rechercherLocal(locNom);
+        FenetreSecondaire f = new FenetreSecondaire(loc);
+        f.setVisible(true);
+                    //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
+        // setSize(1360, 760);
+                   /* FenetreInterieurLocal f = new FenetreInterieurLocal(loc);
+         JDesktopPane bureau = new javax.swing.JDesktopPane();
+         bureau.add(f);
+         f.setVisible(true);*/
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -375,30 +376,26 @@ public class Bureau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void LocalDialogActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void LocalDialogActionPerformed(java.awt.event.ActionEvent evt) {
         LocalDialog.setVisible(true);
         // TODO add your handling code here:
-    }        
+    }
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
-      Local loc=new Local(LocalName.getText(), LocalLieu.getText());
+        Local loc = new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
-        
-        final JButton localButton2=new JButton(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
-            localButton2.setName(loc.getNom());
-            gbc.gridy=positionY;
-            afficheLesLocaux.add(localButton2,gbc);
-            positionY++;
-            localButton2.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent arg0){  
-                    System.out.println(localButton2.getName());
-                    Local loc=so.rechercherLocal(localButton2.getName());
-                    FenetreSecondaire f=new FenetreSecondaire(loc);
-                    f.setVisible(true);
-                }
-                });
-            
+//        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
+        localButton2.setName(loc.getNom());
+        gbc.gridy = positionY;
+        afficheLesLocaux.add(localButton2, gbc);
+        positionY++;
+        localButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                evenementBoutonLocal(so, localButton2.getName());
+            }
+        });
+
         LocalName.setText("");
         LocalLieu.setText("");
         LocalDialog.setVisible(false);
@@ -411,7 +408,7 @@ public class Bureau extends javax.swing.JFrame {
         LocalLieu.setText("");
         LocalDialog.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_LocalCancelActionPerformed
-    
+
     private void LocalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LocalNameActionPerformed
@@ -454,7 +451,7 @@ public class Bureau extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CreationLocal;
     private javax.swing.JLabel LieuLocal;
