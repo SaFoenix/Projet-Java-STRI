@@ -145,7 +145,8 @@ public class Bureau extends javax.swing.JFrame {
         so=bdd.RecupererSociete("STRI");
         locaux = bdd.RecupererLocal(so.getNom());
         so.setLocaux(locaux);*/
-        /*test*/
+        
+        /*DEBUT test*/
         so=new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
@@ -157,20 +158,51 @@ public class Bureau extends javax.swing.JFrame {
         Os os=new Os("Widows",".1");
     
         Routeur rout=new Routeur("routeur","fff","marqueRouter", true, os, 10);
+        Routeur rout1=new Routeur("routeur","fffddd","marqueRouter", true, os, 10);
+        BorneSansFil bo=new BorneSansFil("bornes", "FFGG", "apple", true, os);
         so.ajouterRouteurSalle(rout,2,0, "local1");
-
+        so.ajouterRouteurSalle(rout1,1,0, "local1");
+        so.ajouterBorneSansFil(bo,"local1", 2, 0);
+        
+        
          Ordinateur ordi=new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi1=new Ordinateur("ordi", "hguehf", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi2=new Ordinateur("ordi", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi3=new Ordinateur("ordi", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi4=new Ordinateur("ordi", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-         Ordinateur ordi5=new Ordinateur("ordi", "hguehfffdd", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi1=new Ordinateur("ordi1", "hguehf", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi2=new Ordinateur("ordi2", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi3=new Ordinateur("ordi3", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi4=new Ordinateur("ordi4", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi5=new Ordinateur("ordi5", "hguehfffdd", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+          Ordinateur ordi6=new Ordinateur("ordi6", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi7=new Ordinateur("ordi17", "hguehf", "wefer", true, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi8=new Ordinateur("ordi28", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi9=new Ordinateur("ordi39", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi10=new Ordinateur("ordi410", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
+         Ordinateur ordi11=new Ordinateur("ordi511", "hguehfffdd", "wefer", true, os, "55gggo", "i7", "nvdia", "500go");
+         Tablette tab=new Tablette("nomT", "mac", "app", true, os, "50go", 2);
+         Tablette tab1=new Tablette("nomT", "mac1", "app", true, os, "50go", 2);
+         Tablette tab2=new Tablette("nomT", "mac2", "app", true, os, "50go", 2);
+         Tablette tab3=new Tablette("nomT", "mac3", "app", true, os, "50go", 2);
+         Tablette tab4=new Tablette("nomT", "mac4", "app", true, os, "50go", 2);
+         Tablette tab5=new Tablette("nomT", "mac5", "app", true, os, "50go", 2);
+         so.connecterTablette(tab, "local1", 2, 0, "FFGG");
+         so.connecterTablette(tab1, "local1", 2, 0, "FFGG");
+         so.connecterTablette(tab2, "local1", 2, 0, "FFGG");
+         so.connecterTablette(tab3, "local1", 2, 0, "FFGG");
+         so.connecterTablette(tab4, "local1", 2, 0, "FFGG");
+         so.connecterTablette(tab5, "local1", 2, 0, "FFGG");
         so.connecterOrdinateur(ordi,2, 0, "fff",  "local1");
         so.connecterOrdinateur(ordi1,2, 0, "fff",  "local1");
         so.connecterOrdinateur(ordi2,2, 0, "fff",  "local1");
         so.connecterOrdinateur(ordi3,2, 0, "fff",  "local1");
         so.connecterOrdinateur(ordi4,2, 0, "fff",  "local1");
-        so.connecterOrdinateur(ordi5,2, 0, "fff",  "local1");
+        so.connecterOrdinateur(ordi5,2, 0, "fff",  "local1");   
+          so.connecterOrdinateur(ordi6,1, 0, "fffddd",  "local1");
+        so.connecterOrdinateur(ordi7,1, 0, "fffddd",  "local1");
+        so.connecterOrdinateur(ordi8,1, 0, "fffddd",  "local1");
+        so.connecterOrdinateur(ordi9,1, 0, "fffddd",  "local1");
+        so.connecterOrdinateur(ordi10,1, 0, "fffddd",  "local1");
+        so.connecterOrdinateur(ordi11,1, 0, "fffddd",  "local1");   
+        
+        /*FIN TEST*/
         
         locaux=so.getLocaux();
         
@@ -191,8 +223,7 @@ public class Bureau extends javax.swing.JFrame {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LocalDialogActionPerformed(evt);
             }
-        });
-        
+        });        
                
         /*init menu local*/
         afficheLesLocaux=new JPanel();
@@ -218,8 +249,7 @@ public class Bureau extends javax.swing.JFrame {
                     System.out.println(localButton2.getName()); 
                       Local loc=so.rechercherLocal(localButton2.getName());
                      FenetreSecondaire f=new FenetreSecondaire(loc);
-                     f.setVisible(true);
-                  
+                     f.setVisible(true);                  
                     //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
                    // setSize(1360, 760);
                    /* FenetreInterieurLocal f = new FenetreInterieurLocal(loc);

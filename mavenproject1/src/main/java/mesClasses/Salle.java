@@ -64,11 +64,6 @@ public class Salle{
         routeurs = new ArrayList<Routeur>();
         bornes = new ArrayList<BorneSansFil>();
     }
-
-    public Salle(String text, String text0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @return the numero
      */

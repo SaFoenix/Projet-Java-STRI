@@ -22,10 +22,13 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private MySql bdd;
     private ArrayList<Salle> salles;
     GridBagConstraints gbc = new GridBagConstraints();
+    TableauOrdinateur tabOrdinateur;
+    TableauTablette tabTablette;
     int positionX = 0;
     int positionY = 0;
     private javax.swing.JInternalFrame afficheInformation;
-     /**
+
+    /**
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
@@ -34,7 +37,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         this.loc = loc;
         salles = loc.getSalles();
         initComponents();
-        
+
         setTitle(loc.getNom());
         setSize(1350, 750);
         AfficheListeSalle.setBackground(Color.red);
@@ -42,19 +45,20 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        afficheInformation  = new javax.swing.JInternalFrame();
-                                 
+        afficheInformation = new javax.swing.JInternalFrame();
+
         initialisationMenuSalle();
-        
+
         fenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
         add(AfficheListeSalle, BorderLayout.WEST);
         add(fenetreRouteur, BorderLayout.NORTH);
-       
+
     }
 
     public void initialisationMenuSalle() {
-        for (final Salle sa : salles) {
+        for (final Salle sa : salles) //phase cration bouton salle
+        {
             final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
             localButton2.setName(loc.getNom());
             gbc.gridy = positionY;
@@ -63,45 +67,82 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             localButton2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    remove(afficheInformation);
-                    fenetreRouteur.removeAll();
-                    ArrayList<Routeur> routeurs = sa.getRouteurs();
-                    ArrayList<BorneSansFil> bornes = sa.getBornes();
-                    int positionX = 0;
-                    int positionY = 0;
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    fenetreRouteur.setLayout(new GridBagLayout());
-                    gbc.insets = new Insets(5, 5, 5, 5);
-                    gbc.gridx = 0;
-
-                    for (final Routeur rout : routeurs) {
-                        final JButton bouton = new JButton("Mac: " + rout.getMac() + "/nom: " + rout.getNom());
-                        System.out.println(rout.toString());
-                        bouton.setName(rout.getMac());
-                        gbc.gridy = positionX;
-                        fenetreRouteur.add(bouton, gbc);
-                        positionX++;
-                        bouton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent arg0) {
-                             Ordinateur[] ordi = (rout.retournerOrdinateurs());                      
-                            TableauOrdinateur tab = new TableauOrdinateur(ordi);                                
-                            afficheInformation.add(tab,BorderLayout.CENTER);  
-                            tab.setVisible (true);
-                            afficheInformation.setVisible(false);
-                            afficheInformation.setVisible(true);   
-                            add(afficheInformation,BorderLayout.CENTER);
-                            }//fin actionPerf
-                        }
-                        );
-                    }
-                    setVisible(false);
-                    setVisible(true);
+                    actionMiseEnPlaceBouton(sa);
                 }//fin actionPerf
             }
             );
         }
     }//fin init
+
+    private void actionMiseEnPlaceBouton(Salle sa) {
+        remove(afficheInformation);
+        fenetreRouteur.removeAll();
+        ArrayList<Routeur> routeurs = sa.getRouteurs();
+        ArrayList<BorneSansFil> bornes = sa.getBornes();
+        int positionX = 0;
+        int positionY = 0;
+        GridBagConstraints gbc = new GridBagConstraints();
+        fenetreRouteur.setLayout(new GridBagLayout());
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        for (final Routeur rout : routeurs) {
+            final JButton bouton = new JButton("Mac: " + rout.getMac() + "/nom: " + rout.getNom());
+            bouton.setName(rout.getMac());
+            gbc.gridx = positionX;
+            fenetreRouteur.add(bouton, gbc);
+            positionX++;
+            bouton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                    afficheInformation.setVisible(false);
+                    if (tabOrdinateur != null) {
+                        afficheInformation.remove(tabOrdinateur);
+                    }
+                    if (tabTablette != null) {
+                        afficheInformation.remove(tabTablette);
+                    }
+                    remove(afficheInformation);
+                    Ordinateur[] ordi = (rout.retournerOrdinateurs());
+                    tabOrdinateur = new TableauOrdinateur(ordi);
+                    afficheInformation.add(tabOrdinateur, BorderLayout.CENTER);
+                    tabOrdinateur.setVisible(true);
+                    afficheInformation.setVisible(true);
+                    add(afficheInformation, BorderLayout.CENTER);
+                }//fin actionPerf
+            }
+            );
+        }
+        for (final BorneSansFil bo : bornes) {
+            final JButton bouton = new JButton("Mac: " + bo.getMac() + "/nom: " + bo.getNom());
+            bouton.setName(bo.getMac());
+            gbc.gridx = positionX;
+            fenetreRouteur.add(bouton, gbc);
+            positionX++;
+            bouton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                    afficheInformation.setVisible(false);
+                    if (tabTablette != null) {
+                        afficheInformation.remove(tabTablette);
+                    }
+                    if (tabOrdinateur != null) {
+                        afficheInformation.remove(tabOrdinateur);
+                    }
+                    remove(afficheInformation);
+                    ArrayList<Tablette> tablet = bo.getTablettes();
+                    tabTablette = new TableauTablette(tablet);
+                    afficheInformation.add(tabTablette, BorderLayout.CENTER);
+                    tabTablette.setVisible(true);
+                    afficheInformation.setVisible(true);
+                    add(afficheInformation, BorderLayout.CENTER);
+                }//fin actionPerf
+            }
+            );
+        }
+        setVisible(false);
+        setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -263,6 +304,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
+
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
 
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
@@ -276,17 +318,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         localButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                /* for (Routeur rout : routeurs) {
-                 if (rout != null) {
-                 Ordinateur[] ordi = (rout.retournerOrdinateurs());
-                 if (rout.getOrdinateurPresent() != 0) {
-                 TableauOrdinateur tab = new TableauOrdinateur(ordi);
-                 add(tab, BorderLayout.CENTER);
-                 setVisible(false);
-                 setVisible(true);
-                 }
-                 }
-                 }//fin for*/
+                actionMiseEnPlaceBouton(sa);
             }//fin action
         });
         NumeroSalle.setText("");

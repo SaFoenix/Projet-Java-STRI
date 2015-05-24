@@ -95,6 +95,14 @@ public class BorneSansFil extends Equipement {
 	}
         
         /**
+         * retourne les tablettes connectées à la borne
+         * @return tablettes
+         */
+        public ArrayList<Tablette> getTablettes(){
+            return tablettes;
+        }
+        
+        /**
          *Activer/Desactiver une tablette en cherchant l'adresse mac 
          * @param mac l'adresse mac de la tablette
          * @param power le nouvel état
