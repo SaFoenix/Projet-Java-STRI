@@ -24,10 +24,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     GridBagConstraints gbc = new GridBagConstraints();
     TableauOrdinateur tabOrdinateur;
     TableauTablette tabTablette;
+    TableauEquipement tabEquipement;
     int positionX = 0;
     int positionY = 0;
     private javax.swing.JInternalFrame afficheInformation;
-    
+    private javax.swing.JInternalFrame afficheInformationEquipementRacine;
 
     /**
      * Creates new form frame1
@@ -52,8 +53,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.gridy = 0;
         afficheInformation = new javax.swing.JInternalFrame();
         afficheInformation.setSize(600,300);
-        afficheInformation.setAutoscrolls(true);
-    
+        //afficheInformation.setAutoscrolls(true);
+        afficheInformationEquipementRacine=new javax.swing.JInternalFrame();
+        afficheInformationEquipementRacine.setSize(600,300);
         initialisationMenuSalle();
 
         fenetreRouteur.setBackground(Color.yellow);
@@ -85,6 +87,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         menuAjouterRouteur.setEnabled(true);
         menuAjouterBorne.setEnabled(true);
         remove(afficheInformation);
+        remove(afficheInformationEquipementRacine);
         fenetreRouteur.removeAll();
         ArrayList<Routeur> routeurs = sa.getRouteurs();
         ArrayList<BorneSansFil> bornes = sa.getBornes();
@@ -105,6 +108,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     menuAjouterOrdinateur.setEnabled(true);
+                    afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
                     if (tabOrdinateur != null) {
                         afficheInformation.remove(tabOrdinateur);
@@ -112,12 +116,21 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabTablette != null) {
                         afficheInformation.remove(tabTablette);
                     }
+                    if(tabEquipement!=null){
+                        afficheInformationEquipementRacine.remove(tabEquipement);
+                    }
+                    remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
+                    tabEquipement=new TableauEquipement(rout);
                     tabOrdinateur = new TableauOrdinateur(rout);
+                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
                     afficheInformation.add(tabOrdinateur, BorderLayout.EAST);
+                    tabEquipement.setVisible(true);
                     tabOrdinateur.setVisible(true);
                     afficheInformation.setVisible(true);
+                    afficheInformationEquipementRacine.setVisible(true);
                     add(afficheInformation, BorderLayout.EAST);
+                    add(afficheInformationEquipementRacine, BorderLayout.CENTER);
                 }//fin actionPerf
             }
             );
