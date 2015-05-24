@@ -899,7 +899,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_menuAjouterTabletteActionPerformed
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
-        Os os=new Os(NomOs.getText(), VersionOS.getText());//à creer lolo
+        /*Os os=new Os(NomOs.getText(), VersionOS.getText());
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), os, Integer.parseInt(PortRouteur.getText()));
         sa.ajouterRouteur(ro);
         // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
@@ -919,7 +919,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         NombreOrdinateurSalle.setText("");
         SalleDialog.setVisible(false);
         setVisible(false);
-        setVisible(true);        // TODO add your handling code here:
+        setVisible(true);*/
+        // TODO add your handling code here:
     }//GEN-LAST:event_OkRouteurActionPerformed
 
     
