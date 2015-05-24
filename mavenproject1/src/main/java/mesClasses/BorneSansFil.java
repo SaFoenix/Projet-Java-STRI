@@ -76,8 +76,8 @@ public class BorneSansFil extends Equipement {
      * @param power true/false pour activer/desactiver les tablettes
      */
 	public void activerDesactiverTablette(boolean power) {
-			for(Tablette tabl:tablettes)
-				tabl.activerDesactiverAppareil(power);
+            for(Tablette tabl:tablettes)
+		tabl.activerDesactiverAppareil(power);
 	}
 
        /**

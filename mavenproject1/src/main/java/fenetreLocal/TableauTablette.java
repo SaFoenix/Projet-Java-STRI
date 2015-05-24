@@ -59,7 +59,7 @@ public class TableauTablette extends javax.swing.JPanel {
                     
             }         
         };
-        
+        tableau.getTableHeader().setReorderingAllowed(false);
         tableau.setPreferredScrollableViewportSize(new Dimension(600,300));
         tableau.setFillsViewportHeight(true);
         add(tableau);

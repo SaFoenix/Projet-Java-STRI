@@ -80,7 +80,7 @@ public class TableauOrdinateur extends javax.swing.JPanel {
     
     public void initialiseTableau(){
         int i=0;
-        for(Ordinateur ordi:ordinateurs){        
+        for(Ordinateur ordi:ordinateurs){       
             
             if (ordi != null) {
                 int j = 0;
