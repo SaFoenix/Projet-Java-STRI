@@ -141,15 +141,31 @@ public class Bureau extends javax.swing.JFrame {
         );
 
 
-        /* bdd=new MySql();
+         bdd=new MySql();
          bdd.Connexion();
          so=bdd.RecupererSociete("STRI");
          locaux = bdd.RecupererLocal(so.getNom());
          so.setLocaux(locaux);
-        
-        */
+         for (Local loc : locaux){
+         ArrayList<Salle> salles;
+         salles = bdd.RecupererSalle(loc.getNom());
+         for (Salle sa : salles){
+         loc.ajouterSalle(sa.getNumero(),sa.getEtage(),sa.getNombreOrdinateur());
+         ArrayList<Routeur> routeurs;
+         routeurs = bdd.RecupererRouteur(sa.getNumero());
+            for (Routeur ro : routeurs){
+                sa.ajouterRouteur(ro);
+                ArrayList<Ordinateur> ordinateurs;
+                ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
+                for (Ordinateur ordi : ordinateurs){
+                    ro.connecterOrdinateur(ordi);
+                }
+            }
+         }
+         }
+       
         /*DEBUT test*/
-        so = new Societe("Stri", "Toulouse");
+        /*so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
         so.ajouterLocal("local2", "bordeaux");
@@ -201,7 +217,7 @@ public class Bureau extends javax.swing.JFrame {
         so.connecterOrdinateur(ordi8, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi9, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi10, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");
+        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");*/
         /*FIN TEST*/
         
         locaux = so.getLocaux();
@@ -385,7 +401,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc = new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-//        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;

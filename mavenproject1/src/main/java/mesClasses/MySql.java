@@ -547,4 +547,81 @@ try {
     return false;
     }
         
+    public void ModifierNom(String nom, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET Nom = '"+nom+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+    public void ModifierGpu(String gpu, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET gpu = '"+gpu+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+    public void ModifierCpu(String cpu, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET cpu = '"+cpu+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+    public void ModifierEtat(boolean etat, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET power = '"+etat+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+    public void ModifierRam(String ram, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET Nom = '"+ram+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+    public void ModifierHdd(String Hdd, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        try{
+            st=connexion.createStatement();
+            String sql=("UPDATE equipement SET Nom = '"+Hdd+"' WHERE Mac='"+mac+"'");
+            st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
 }

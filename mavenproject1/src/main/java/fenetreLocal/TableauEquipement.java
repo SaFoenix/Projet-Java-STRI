@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import mesClasses.BorneSansFil;
 import mesClasses.Equipement;
+import mesClasses.MySql;
 import mesClasses.Routeur;
 
 /**
@@ -22,7 +23,7 @@ public class TableauEquipement extends javax.swing.JPanel {
     private Equipement equipement;
     private String[] columns;
     private String[][] data;
-
+    private MySql bdd;
     /**
      * Creates new form TableauEquipement
      */
@@ -50,11 +51,13 @@ public class TableauEquipement extends javax.swing.JPanel {
             }
 
             public void setValueAt(Object value, int row, int col) {
+                bdd.Connexion();
                 if (col != 1) {
                     data[row][col] = (String) value;
                     switch (col) {
                         case 0:
                             equipement.setNom((String) value);
+                            bdd.ModifierNom(equipement.getNom(),equipement.getMac());
                             break;
                         case 3:
                             equipement.setPower(((String) value).equals("on"));
@@ -63,6 +66,7 @@ public class TableauEquipement extends javax.swing.JPanel {
                             } else if (equipement instanceof BorneSansFil) {
                                 ((BorneSansFil) equipement).activerDesactiverTablette(((String) value).equals("on"));
                             }
+                            bdd.ModifierEtat(equipement.isPower(),equipement.getMac());
                             break;
                     }
                 }

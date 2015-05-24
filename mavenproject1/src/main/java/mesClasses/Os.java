@@ -32,7 +32,7 @@ public class Os {
 	 * @param version la version de l'os
 	 * @param nomOs Le nom de l'os
 	 */
-	public Os(String version, String nomOs) {
+	public Os(String nomOs, String version) {
 		this.version = version;
 		this.nomOs = nomOs;
 	}
