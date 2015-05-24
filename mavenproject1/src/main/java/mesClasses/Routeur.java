@@ -104,7 +104,7 @@ public class Routeur extends Equipement {
     public void activerDesactiverOrdinateur(boolean power) {
         for (int i = 0; i < ordinateurs.length; i++) {
             if (ordinateurs[i] != null) {
-                ordinateurs[i].activerDesactiverAppareil(power);
+                ordinateurs[i].setPower(power);
             }
         }
     }

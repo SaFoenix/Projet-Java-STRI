@@ -22,6 +22,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private MySql bdd;
     private ArrayList<Salle> salles;
     private Salle salleTemp;
+    private Routeur routeurTemp;
     GridBagConstraints gbc = new GridBagConstraints();
     TableauOrdinateur tabOrdinateur;
     TableauTablette tabTablette;
@@ -109,6 +110,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             bouton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
+                    routeurTemp = rout;
                     menuAjouterOrdinateur.setEnabled(true);
                     afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
@@ -237,21 +239,23 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        NomOrdi = new javax.swing.JTextField();
+        MacOrdi = new javax.swing.JTextField();
+        NomOsOrdi = new javax.swing.JTextField();
+        MarqueOrdi = new javax.swing.JTextField();
+        PowerOrdi = new javax.swing.JTextField();
         OkOrdi = new javax.swing.JButton();
         CancelOrdi = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
+        CpuOrdi = new javax.swing.JTextField();
+        GpuOrdi = new javax.swing.JTextField();
+        RamOrdi = new javax.swing.JTextField();
+        HddOrdi = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        VersionOsOrdi = new javax.swing.JTextField();
         TabletteDialog = new javax.swing.JDialog();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -376,6 +380,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         CancelRouteur.setBackground(new java.awt.Color(255, 0, 0));
         CancelRouteur.setText("Annuler");
+        CancelRouteur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelRouteurActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Nom");
 
@@ -495,6 +504,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         CancelBorne.setBackground(new java.awt.Color(255, 0, 0));
         CancelBorne.setText("Annuler");
+        CancelBorne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBorneActionPerformed(evt);
+            }
+        });
 
         jLabel24.setText("Version OS");
 
@@ -574,17 +588,33 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         jLabel19.setText("MAC");
 
-        jLabel20.setText("OS");
+        jLabel20.setText("Nom OS");
 
         jLabel21.setText("Marque");
 
         jLabel22.setText("Power");
 
+        NomOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomOrdiActionPerformed(evt);
+            }
+        });
+
         OkOrdi.setBackground(new java.awt.Color(0, 255, 0));
         OkOrdi.setText("Valider");
+        OkOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkOrdiActionPerformed(evt);
+            }
+        });
 
         CancelOrdi.setBackground(new java.awt.Color(255, 0, 0));
         CancelOrdi.setText("Cancel");
+        CancelOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelOrdiActionPerformed(evt);
+            }
+        });
 
         jLabel35.setText("CPU");
 
@@ -594,55 +624,58 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         jLabel38.setText("HDD");
 
+        jLabel25.setText("Version OS");
+
         javax.swing.GroupLayout OrdinateurDialogLayout = new javax.swing.GroupLayout(OrdinateurDialog.getContentPane());
         OrdinateurDialog.getContentPane().setLayout(OrdinateurDialogLayout);
         OrdinateurDialogLayout.setHorizontalGroup(
             OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrdinateurDialogLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrdinateurDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addGap(0, 104, Short.MAX_VALUE)
-                        .addComponent(OkOrdi)
-                        .addGap(18, 18, 18)
-                        .addComponent(CancelOrdi)
-                        .addGap(9, 9, 9))
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(VersionOsOrdi))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OrdinateurDialogLayout.createSequentialGroup()
                         .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel18)
                             .addComponent(jLabel22))
                         .addGap(18, 18, 18)
                         .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField17)
-                            .addComponent(jTextField18)
-                            .addComponent(jTextField19)
-                            .addComponent(jTextField20))))
+                            .addComponent(PowerOrdi)
+                            .addComponent(CpuOrdi)
+                            .addComponent(GpuOrdi)
+                            .addComponent(RamOrdi)
+                            .addComponent(HddOrdi)
+                            .addComponent(MarqueOrdi)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OrdinateurDialogLayout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(OkOrdi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(CancelOrdi)
+                        .addGap(75, 75, 75))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OrdinateurDialogLayout.createSequentialGroup()
+                        .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18))
+                        .addGap(18, 18, 18)
+                        .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NomOrdi)
+                            .addComponent(MacOrdi)
+                            .addComponent(NomOsOrdi)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OrdinateurDialogLayout.createSequentialGroup()
+                        .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(163, 163, 163))
             .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabel17))
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel35))
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel36))
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel37))
-                    .addGroup(OrdinateurDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel38)))
+                .addGap(185, 185, 185)
+                .addComponent(jLabel17)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OrdinateurDialogLayout.setVerticalGroup(
@@ -653,44 +686,48 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NomOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MacOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NomOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(VersionOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MarqueOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PowerOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CpuOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GpuOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RamOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(HddOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(OrdinateurDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OkOrdi)
                     .addComponent(CancelOrdi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         TabletteDialog.setMinimumSize(new java.awt.Dimension(400, 500));
@@ -968,6 +1005,69 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_OkBorneActionPerformed
 
+    private void CancelRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelRouteurActionPerformed
+        NomBorne.setText("");
+        MacBorne.setText("");
+        MarqueBorne.setText("");
+        PowerBorne.setText("");
+        NomOsBorne.setText("");
+        VersionOsBorne.setText("");
+        BorneDialog.setVisible(false);
+        setVisible(false);
+        setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelRouteurActionPerformed
+
+    private void CancelBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBorneActionPerformed
+        NomBorne.setText("");
+        MacBorne.setText("");
+        MarqueBorne.setText("");
+        PowerBorne.setText("");
+        NomOsBorne.setText("");
+        VersionOsBorne.setText("");
+        BorneDialog.setVisible(false);
+        setVisible(false);
+        setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelBorneActionPerformed
+
+    private void OkOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkOrdiActionPerformed
+        Os osOrdi=new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
+        final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
+        routeurTemp.connecterOrdinateur(ordi);
+        actionMiseEnPlaceBouton(salleTemp);
+        MacOrdi.setText("");
+        NomOrdi.setText("");
+        MarqueOrdi.setText("");
+        PowerOrdi.setText("");
+        RamOrdi.setText("");
+        CpuOrdi.setText("");
+        HddOrdi.setText("");
+        GpuOrdi.setText("");
+        NomOsOrdi.setText("");
+        VersionOsOrdi.setText("");
+        OrdinateurDialog.setVisible(false);
+        setVisible(false);
+        setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_OkOrdiActionPerformed
+
+    private void NomOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomOrdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomOrdiActionPerformed
+
+    private void CancelOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelOrdiActionPerformed
+        MacOrdi.setText("");
+        NomOrdi.setText("");
+        MarqueOrdi.setText("");
+        PowerOrdi.setText("");
+        RamOrdi.setText("");
+        CpuOrdi.setText("");
+        HddOrdi.setText("");
+        GpuOrdi.setText("");
+        NomOsOrdi.setText("");
+        VersionOsOrdi.setText("");
+        OrdinateurDialog.setVisible(false);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_CancelOrdiActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
@@ -976,16 +1076,23 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton CancelOrdi;
     private javax.swing.JButton CancelRouteur;
     private javax.swing.JButton CancelTablette;
+    private javax.swing.JTextField CpuOrdi;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
+    private javax.swing.JTextField GpuOrdi;
+    private javax.swing.JTextField HddOrdi;
     private javax.swing.JTextField MacBorne;
+    private javax.swing.JTextField MacOrdi;
     private javax.swing.JTextField MacRouteur;
     private javax.swing.JTextField MarqueBorne;
+    private javax.swing.JTextField MarqueOrdi;
     private javax.swing.JTextField MarqueRouteur;
     private javax.swing.JMenuItem MenuAjouterSalle;
     private javax.swing.JTextField NomBorne;
+    private javax.swing.JTextField NomOrdi;
     private javax.swing.JTextField NomOs;
     private javax.swing.JTextField NomOsBorne;
+    private javax.swing.JTextField NomOsOrdi;
     private javax.swing.JTextField NomRouteur;
     private javax.swing.JTextField NombreOrdinateurSalle;
     private javax.swing.JTextField NumeroSalle;
@@ -996,7 +1103,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JDialog OrdinateurDialog;
     private javax.swing.JTextField PortRouteur;
     private javax.swing.JTextField PowerBorne;
+    private javax.swing.JTextField PowerOrdi;
     private javax.swing.JTextField PowerRouteur;
+    private javax.swing.JTextField RamOrdi;
     private javax.swing.JDialog RouteurDialog;
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
@@ -1004,6 +1113,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JDialog TabletteDialog;
     private javax.swing.JTextField VersionOs;
     private javax.swing.JTextField VersionOsBorne;
+    private javax.swing.JTextField VersionOsOrdi;
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JMenu barMenuAjouter;
     private javax.swing.JPanel fenetreRouteur;
@@ -1024,6 +1134,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1043,21 +1154,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JMenuItem menuAjouterBorne;
     private javax.swing.JMenuItem menuAjouterOrdinateur;

@@ -51,11 +51,15 @@ public class TableauEquipement extends javax.swing.JPanel {
 
             public void setValueAt(Object value, int row, int col) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 bdd.Connexion();
                 if (col != 1) {
                     data[row][col] = (String) value;
                     switch (col) {
 =======
+=======
+                if(col==1){
+>>>>>>> 02fc713bd2e4a9e7d2a63313a5ec19af3ccad7a5
                     data[row][col] = (String) value;                    
                     switch (row) {
 >>>>>>> d2f941b9c58b2ac60e274cfdc00d3e3d6e22d85d
@@ -73,6 +77,7 @@ public class TableauEquipement extends javax.swing.JPanel {
                             bdd.ModifierEtat(equipement.isPower(),equipement.getMac());
                             break;
                     }
+                }
             }
 
             public void addTableModelListener(TableModelListener l) {
