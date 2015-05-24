@@ -88,7 +88,7 @@ public class Equipement {
     public String getMarque() {
         return marque;
     }
-
+   
     /**
      * retourne l'etat de l'equipement
      *

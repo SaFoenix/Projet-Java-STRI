@@ -7,6 +7,7 @@ package fenetreLocal;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 import mesClasses.*;
 /**
  *
@@ -14,6 +15,7 @@ import mesClasses.*;
  */
 public class TableauOrdinateur extends javax.swing.JPanel {
     JTable tableau;
+    private Routeur routeur;
     private Ordinateur [] ordinateurs;
     private String[] columns={"Nom","Mac","Marque","Power","RAM","CPU","GPU","HDD","NomOS","Version"};
     private String[][] data;
@@ -22,18 +24,49 @@ public class TableauOrdinateur extends javax.swing.JPanel {
      * Creates new form Tableau
      * @param ordinateurs
      */
-    public TableauOrdinateur(Ordinateur [] ordinateurs) {
-       //initComponents();
-       this.ordinateurs=ordinateurs;        
+    public TableauOrdinateur(Routeur rout) {
+       routeur=rout;
+       this.ordinateurs=rout.retournerOrdinateurs();        
         data=new String [ordinateurs.length][columns.length];
-        //System.out.println("ligne: "+ordinateurs.length+" colonne: "+columns.length);
         initialiseTableau();
         tableau=new JTable(data,columns){
             public boolean isCellEditable(int date,int colums){
-                return false;
-            }            
+                System.out.println("date: "+date+" colums: "+colums);
+                if(colums==1 || colums==2) return false;//si mac on peut la changer
+                return true;
+            } 
+            public Object getValueAt(int row, int col) {
+                System.out.println("donnée: "+data[row][col]);
+                 return data[row][col];
+            }
+            public void setValueAt(Object value,int row, int col){
+                if(col!=1){
+                    Ordinateur ordi=routeur.rechercherOrdinateur(data[row][1]);
+                    if(ordi!=null){
+                        data[row][col]=(String) value;
+                        switch(col){
+                            case 0: ordi.setNom((String)value);
+                                break;
+                            case 3: ordi.setPower((((String)value).equals("on")));
+                                break;
+                            case 4: ordi.setRam((String)value); 
+                                break;
+                            case 5: ordi.setCpu((String)value);
+                                break;
+                            case 6:ordi.setGpu((String)value);
+                                break;
+                            case 7: ordi.setHdd((String)value);
+                                break;
+                        }
+                    }                    
+                }                    
+            }
+            public void addTableModelListener(TableModelListener l){
+                    
+            }
+   
         };
-        tableau.setPreferredScrollableViewportSize(new Dimension(600,600));
+        tableau.setPreferredScrollableViewportSize(new Dimension(600,300));
         tableau.setFillsViewportHeight(true);
         add(tableau);
         JScrollPane jps=new JScrollPane(tableau);

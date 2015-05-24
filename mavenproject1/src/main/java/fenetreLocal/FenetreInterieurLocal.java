@@ -46,9 +46,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         afficheInformation = new javax.swing.JInternalFrame();
-        afficheInformation.setSize(600,600);
+        afficheInformation.setSize(600,300);
         afficheInformation.setAutoscrolls(true);
-        
+    
         initialisationMenuSalle();
 
         fenetreRouteur.setBackground(Color.yellow);
@@ -105,8 +105,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                         afficheInformation.remove(tabTablette);
                     }
                     remove(afficheInformation);
-                    Ordinateur[] ordi = (rout.retournerOrdinateurs());
-                    tabOrdinateur = new TableauOrdinateur(ordi);
+                    tabOrdinateur = new TableauOrdinateur(rout);
                     afficheInformation.add(tabOrdinateur, BorderLayout.EAST);
                     tabOrdinateur.setVisible(true);
                     afficheInformation.setVisible(true);
@@ -132,8 +131,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                         afficheInformation.remove(tabOrdinateur);
                     }
                     remove(afficheInformation);
-                    ArrayList<Tablette> tablet = bo.getTablettes();
-                    tabTablette = new TableauTablette(tablet);
+                    tabTablette = new TableauTablette(bo);
                     afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
                     afficheInformation.setVisible(true);

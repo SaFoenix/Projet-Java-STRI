@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
+import mesClasses.BorneSansFil;
 import mesClasses.Tablette;
 
 /**
@@ -17,26 +19,49 @@ import mesClasses.Tablette;
  */
 public class TableauTablette extends javax.swing.JPanel {
     ArrayList<Tablette> tablettes;
+    BorneSansFil borne;
     JTable tableau;
     private String[] columns={"Nom","Mac","Marque","Power","Capacité","Modele","NomOS","Version"};
     private String[][] data;
     /**
      * Creates new form FenetreTablette
      */
-    public TableauTablette(ArrayList<Tablette> tablet) {
+    public TableauTablette(BorneSansFil bo) {
         //initComponents();
- 
-       this.tablettes=tablet;        
+        borne=bo;
+       this.tablettes=borne.getTablettes();        
         data=new String [tablettes.size()][columns.length];
-        //System.out.println("ligne: "+ordinateurs.length+" colonne: "+columns.length);
         initialiseTableau();
         tableau=new JTable(data,columns){
             public boolean isCellEditable(int date,int colums){
-                return false;
-            }            
+                System.out.println("date: "+date+" colums: "+colums);
+                if(colums==1 || colums==2 || colums==6 || colums==7 ||colums==4 || colums==5 ) return false;//si mac on peut la changer, marque, os
+                return true;
+            } 
+            public Object getValueAt(int row, int col) {
+                System.out.println("donnée: "+data[row][col]);
+                 return data[row][col];
+            }
+            public void setValueAt(Object value,int row, int col){
+                if(col!=1){
+                    Tablette tab=borne.rechercherTablette(data[row][1]);
+                    if(tab!=null){
+                        data[row][col]=(String) value;
+                        switch(col){
+                            case 0: tab.setNom((String)value);
+                                break;
+                            case 3: tab.setPower((((String)value).equals("on")));
+                                break;
+                        }
+                    }                    
+                }                    
+            }
+            public void addTableModelListener(TableModelListener l){
+                    
+            }         
         };
         
-        tableau.setPreferredScrollableViewportSize(new Dimension(600,600));
+        tableau.setPreferredScrollableViewportSize(new Dimension(600,300));
         tableau.setFillsViewportHeight(true);
         add(tableau);
         JScrollPane jps=new JScrollPane(tableau);
