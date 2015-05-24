@@ -19,7 +19,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private MySql bdd;
     private ArrayList<Salle> salles;
     private ArrayList<Routeur> routeurs;
-    
+    private ArrayList<BorneSansFil> bornes;
+    FenetreSalle fenetreSalle;
     JPanel afficheLesSalle,AfficheLesEquipements;
     GridBagConstraints gbc=new GridBagConstraints();
     int positionX=0;
@@ -28,6 +29,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
+       /* bdd=new MySql();
+        bdd.Connexion();*/
         this.loc=loc;
         salles=loc.getSalles();
         initComponents();
@@ -38,11 +41,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         gbc.gridx=0;
         gbc.gridy=0;
         initialisationMenuSalle();
-        //fenetreDynamique.setBackground(Color.blue);
         fenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
         add(AfficheListeSalle,BorderLayout.WEST); 
-        //add(FenetreDynamique,BorderLayout.CENTER);
         add(fenetreRouteur,BorderLayout.NORTH);
     }
     
@@ -56,10 +57,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             localButton2.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    Routeur rout = sa.rechercherRouteur("fff");
-                    if (rout != null) {
+                    /*routeurs=sa.getRouteurs();
+                    for(Routeur rout:routeurs)
+                    {                    
+                    if (rout != null) {                        
                         Ordinateur[] ordi = (rout.retournerOrdinateurs());
-                        System.out.println("ordi= " + ordi.length);
                         if (rout.getOrdinateurPresent()!=0) {                          
                             TableauOrdinateur tab = new TableauOrdinateur(ordi);                            
                             add(tab,BorderLayout.CENTER);
@@ -67,10 +69,19 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                             setVisible(true);
                          }
                     }
-                }
+                    }//fin for*/
+                    routeurs=sa.getRouteurs();
+                    bornes=sa.getBornes();
+                    fenetreSalle=new FenetreSalle(routeurs,bornes);
+                    add(fenetreSalle,BorderLayout.CENTER);
+                    setVisible(false);
+                    setVisible(true);
+                }//fin actionPerf
                 });            
         }   
     }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,22 +243,30 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
        
-        bdd=new MySql();
-        bdd.Connexion();
-        Salle sa=new Salle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
-        loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()),Integer.parseInt(EtageSalle.getText()),Integer.parseInt(NombreOrdinateurSalle.getText()));
-        bdd.AjoutSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());        
-        final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
-          localButton2.setName(loc.getNom());
-            gbc.gridy=positionY;
-            AfficheListeSalle.add(localButton2,gbc);
-            positionY++;
-            localButton2.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent arg0){  
-                   // FenetreDynamique
-                }
-                });            
+        final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
+        loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
+       // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
+        localButton2.setName(loc.getNom());
+        gbc.gridy = positionY;
+        AfficheListeSalle.add(localButton2, gbc);
+        positionY++;
+        localButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                for (Routeur rout : routeurs) {
+                    if (rout != null) {
+                        Ordinateur[] ordi = (rout.retournerOrdinateurs());
+                        if (rout.getOrdinateurPresent() != 0) {
+                            TableauOrdinateur tab = new TableauOrdinateur(ordi);
+                            add(tab, BorderLayout.CENTER);
+                            setVisible(false);
+                            setVisible(true);
+                        }
+                    }
+                }//fin for
+            }//fin action
+        });     
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
