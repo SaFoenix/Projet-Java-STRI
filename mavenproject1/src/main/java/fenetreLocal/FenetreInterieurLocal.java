@@ -46,7 +46,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         menuAjouterTablette.setEnabled(false);
         setTitle(loc.getNom());
         setSize(1020,800);
-        AfficheListeSalle.setBackground(Color.red);
+        AfficheListeSalle.setBackground(Color.white);
         AfficheListeSalle.setLayout(new GridBagLayout());
         
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -59,8 +59,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         afficheInformationEquipementRacine.setSize(600,300);
         initialisationMenuSalle();
 
-        fenetreRouteur.setBackground(Color.yellow);
-        AfficheListeSalle.setBackground(Color.red);
+        fenetreRouteur.setBackground(Color.white);
+        AfficheListeSalle.setBackground(Color.black);
         add(AfficheListeSalle, BorderLayout.WEST);
         add(fenetreRouteur, BorderLayout.NORTH);
 
@@ -362,7 +362,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24))
         );
 
-        RouteurDialog.setMinimumSize(new java.awt.Dimension(600, 400));
+        RouteurDialog.setMinimumSize(new java.awt.Dimension(700, 500));
 
         jLabel1.setText("Création routeur");
 
@@ -935,18 +935,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         Salle sa = null;
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
+<<<<<<< HEAD
         bdd.AjoutRouteur(sa.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
+=======
+>>>>>>> 42eebeb07553a50af5f425616eb670a4e8aaac1e
         actionMiseEnPlaceBouton(salleTemp);
-        /* localButton2.setName(loc.getNom()); 
-        gbc.gridy = positionY;
-        AfficheListeSalle.add(localButton2, gbc);
-        positionY++;
-        localButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                actionMiseEnPlaceBouton(sa);
-            }//fin action 
-        }); */
         NomRouteur.setText("");
         MacRouteur.setText("");
         NomOs.setText("");
@@ -963,18 +956,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         Os osBorne=new Os(NomOs.getText(), VersionOs.getText());
         final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
         salleTemp.ajouterBorneSansFil(bo);
-        // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
         actionMiseEnPlaceBouton(salleTemp);
-        /* localButton2.setName(loc.getNom()); 
-        gbc.gridy = positionY;
-        AfficheListeSalle.add(localButton2, gbc);
-        positionY++;
-        localButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                actionMiseEnPlaceBouton(sa);
-            }//fin action 
-        }); */
         NomBorne.setText("");
         MacBorne.setText("");
         MarqueBorne.setText("");

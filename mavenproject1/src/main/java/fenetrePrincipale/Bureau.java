@@ -243,7 +243,7 @@ public class Bureau extends javax.swing.JFrame {
 
         /*init menu local*/
         afficheLesLocaux = new JPanel();
-        afficheLesLocaux.setBackground(Color.red);
+        afficheLesLocaux.setBackground(Color.black);
         afficheLesLocaux.setLayout(new GridBagLayout());
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
