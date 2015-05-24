@@ -143,7 +143,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             positionX++;
             bouton.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent arg0) {
+                public void actionPerformed(ActionEvent arg0) {                    
+                    afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
                     if (tabTablette != null) {
                         afficheInformation.remove(tabTablette);
@@ -151,12 +152,21 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabOrdinateur != null) {
                         afficheInformation.remove(tabOrdinateur);
                     }
+                    if(tabEquipement!=null){
+                        afficheInformationEquipementRacine.remove(tabEquipement);
+                    }
+                    remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
                     tabTablette = new TableauTablette(bo);
+                    tabEquipement=new TableauEquipement(bo);
+                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
                     afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
+                    tabEquipement.setVisible(true);
                     afficheInformation.setVisible(true);
+                    afficheInformationEquipementRacine.setVisible(true);
                     add(afficheInformation, BorderLayout.EAST);
+                    add(afficheInformationEquipementRacine, BorderLayout.CENTER);
                 }//fin actionPerf
             }
             );
