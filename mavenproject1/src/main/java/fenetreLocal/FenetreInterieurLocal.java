@@ -4,85 +4,105 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
+
 import java.awt.*;
 import java.awt.event.*;
 import mesClasses.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
  * @author guigui
  */
 public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
+
     private Local loc;
     private MySql bdd;
     private ArrayList<Salle> salles;
-    private ArrayList<Routeur> routeurs;
-    private ArrayList<BorneSansFil> bornes;
-    FenetreSalle fenetreSalle;
-    JPanel afficheLesSalle,AfficheLesEquipements;
-    GridBagConstraints gbc=new GridBagConstraints();
-    int positionX=0;
-    int positionY=0;
-    /**
+    GridBagConstraints gbc = new GridBagConstraints();
+    int positionX = 0;
+    int positionY = 0;
+    private javax.swing.JInternalFrame afficheInformation;
+     /**
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
-       /* bdd=new MySql();
-        bdd.Connexion();*/
-        this.loc=loc;
-        salles=loc.getSalles();
+        /* bdd=new MySql();
+         bdd.Connexion();*/
+        this.loc = loc;
+        salles = loc.getSalles();
         initComponents();
-        setSize(1350,750);
+        
+        setTitle(loc.getNom());
+        setSize(1350, 750);
         AfficheListeSalle.setBackground(Color.red);
         AfficheListeSalle.setLayout(new GridBagLayout());
-        gbc.insets=new Insets(5, 5, 5, 5);
-        gbc.gridx=0;
-        gbc.gridy=0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        afficheInformation  = new javax.swing.JInternalFrame();
+                                 
         initialisationMenuSalle();
+        
         fenetreRouteur.setBackground(Color.yellow);
         AfficheListeSalle.setBackground(Color.red);
-        add(AfficheListeSalle,BorderLayout.WEST); 
-        add(fenetreRouteur,BorderLayout.NORTH);
+        add(AfficheListeSalle, BorderLayout.WEST);
+        add(fenetreRouteur, BorderLayout.NORTH);
+       
     }
-    
-    public void initialisationMenuSalle(){      
-       for(final Salle sa:salles){
-            final JButton localButton2=new JButton("numero "+sa.getNumero()+ "| etage: "+sa.getEtage());
+
+    public void initialisationMenuSalle() {
+        for (final Salle sa : salles) {
+            final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
             localButton2.setName(loc.getNom());
-            gbc.gridy=positionY;
-            AfficheListeSalle.add(localButton2,gbc);
+            gbc.gridy = positionY;
+            AfficheListeSalle.add(localButton2, gbc);
             positionY++;
-            localButton2.addActionListener(new ActionListener(){
+            localButton2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    /*routeurs=sa.getRouteurs();
-                    for(Routeur rout:routeurs)
-                    {                    
-                    if (rout != null) {                        
-                        Ordinateur[] ordi = (rout.retournerOrdinateurs());
-                        if (rout.getOrdinateurPresent()!=0) {                          
-                            TableauOrdinateur tab = new TableauOrdinateur(ordi);                            
-                            add(tab,BorderLayout.CENTER);
-                            setVisible(false);
-                            setVisible(true);
-                         }
+                    remove(afficheInformation);
+                    fenetreRouteur.removeAll();
+                    ArrayList<Routeur> routeurs = sa.getRouteurs();
+                    ArrayList<BorneSansFil> bornes = sa.getBornes();
+                    int positionX = 0;
+                    int positionY = 0;
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    fenetreRouteur.setLayout(new GridBagLayout());
+                    gbc.insets = new Insets(5, 5, 5, 5);
+                    gbc.gridx = 0;
+
+                    for (final Routeur rout : routeurs) {
+                        final JButton bouton = new JButton("Mac: " + rout.getMac() + "/nom: " + rout.getNom());
+                        System.out.println(rout.toString());
+                        bouton.setName(rout.getMac());
+                        gbc.gridy = positionX;
+                        fenetreRouteur.add(bouton, gbc);
+                        positionX++;
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent arg0) {
+                             Ordinateur[] ordi = (rout.retournerOrdinateurs());                      
+                            TableauOrdinateur tab = new TableauOrdinateur(ordi);                                
+                            afficheInformation.add(tab,BorderLayout.CENTER);  
+                            tab.setVisible (true);
+                            afficheInformation.setVisible(false);
+                            afficheInformation.setVisible(true);   
+                            add(afficheInformation,BorderLayout.CENTER);
+                            }//fin actionPerf
+                        }
+                        );
                     }
-                    }//fin for*/
-                    routeurs=sa.getRouteurs();
-                    bornes=sa.getBornes();
-                    fenetreSalle=new FenetreSalle(routeurs,bornes);
-                    add(fenetreSalle,BorderLayout.CENTER);
                     setVisible(false);
                     setVisible(true);
                 }//fin actionPerf
-                });            
-        }   
-    }
-    
-    
-    
+            }
+            );
+        }
+    }//fin init
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,7 +210,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24))
         );
 
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         AfficheListeSalle.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -202,7 +224,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         );
         AfficheListeSalleLayout.setVerticalGroup(
             AfficheListeSalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
         getContentPane().add(AfficheListeSalle, java.awt.BorderLayout.LINE_START);
@@ -211,7 +233,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         fenetreRouteur.setLayout(fenetreRouteurLayout);
         fenetreRouteurLayout.setHorizontalGroup(
             fenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1112, Short.MAX_VALUE)
+            .addGap(0, 1122, Short.MAX_VALUE)
         );
         fenetreRouteurLayout.setVerticalGroup(
             fenetreRouteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,10 +264,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-       
+
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-       // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
         final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;
@@ -254,19 +276,19 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         localButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                for (Routeur rout : routeurs) {
-                    if (rout != null) {
-                        Ordinateur[] ordi = (rout.retournerOrdinateurs());
-                        if (rout.getOrdinateurPresent() != 0) {
-                            TableauOrdinateur tab = new TableauOrdinateur(ordi);
-                            add(tab, BorderLayout.CENTER);
-                            setVisible(false);
-                            setVisible(true);
-                        }
-                    }
-                }//fin for
+                /* for (Routeur rout : routeurs) {
+                 if (rout != null) {
+                 Ordinateur[] ordi = (rout.retournerOrdinateurs());
+                 if (rout.getOrdinateurPresent() != 0) {
+                 TableauOrdinateur tab = new TableauOrdinateur(ordi);
+                 add(tab, BorderLayout.CENTER);
+                 setVisible(false);
+                 setVisible(true);
+                 }
+                 }
+                 }//fin for*/
             }//fin action
-        });     
+        });
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -274,7 +296,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(false);
         setVisible(true);
     }//GEN-LAST:event_SalleOkActionPerformed
- 
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         SalleDialog.setVisible(true);
         // TODO add your handling code here:

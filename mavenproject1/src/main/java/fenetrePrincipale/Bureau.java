@@ -5,8 +5,10 @@
  */
 package fenetrePrincipale;
 
+import fenetreLocal.FenetreInterieurLocal;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -199,8 +202,7 @@ public class Bureau extends javax.swing.JFrame {
         gbc.gridx=0;
         gbc.gridy=0;
         initialiseInterface();        
-        add(afficheLesLocaux,BorderLayout.PAGE_START);
-  
+        add(afficheLesLocaux,BorderLayout.PAGE_START);  
     }
     
     public void initialiseInterface(){ 
@@ -210,15 +212,22 @@ public class Bureau extends javax.swing.JFrame {
             gbc.gridy=positionY;
             afficheLesLocaux.add(localButton2,gbc);
             positionY++;
-            localButton2.addActionListener(new ActionListener(){
+            localButton2.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent arg0){  
-                    System.out.println(localButton2.getName());
-                    Local loc=so.rechercherLocal(localButton2.getName());
-                    FenetreSecondaire f=new FenetreSecondaire(loc);
-                    f.setVisible(true);
+                public void actionPerformed(ActionEvent arg0) {
+                    System.out.println(localButton2.getName()); 
+                      Local loc=so.rechercherLocal(localButton2.getName());
+                     FenetreSecondaire f=new FenetreSecondaire(loc);
+                     f.setVisible(true);
+                  
+                    //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
+                   // setSize(1360, 760);
+                   /* FenetreInterieurLocal f = new FenetreInterieurLocal(loc);
+                    JDesktopPane bureau = new javax.swing.JDesktopPane();
+                    bureau.add(f);
+                    f.setVisible(true);*/
                 }
-                });            
+            });        
         }   
     }
    
