@@ -141,6 +141,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             bouton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
+                    afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
                     if (tabTablette != null) {
                         afficheInformation.remove(tabTablette);
