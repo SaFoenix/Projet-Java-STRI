@@ -352,6 +352,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         OkRouteur.setBackground(new java.awt.Color(0, 255, 0));
         OkRouteur.setText("Valider");
+        OkRouteur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkRouteurActionPerformed(evt);
+            }
+        });
 
         CancelRouteur.setBackground(new java.awt.Color(255, 0, 0));
         CancelRouteur.setText("Annuler");
@@ -882,6 +887,29 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private void menuAjouterTabletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjouterTabletteActionPerformed
         TabletteDialog.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_menuAjouterTabletteActionPerformed
+
+    private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
+        final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText(), (OsRouteur.getText()), Integer.parseInt(PortRouteur.getText()));
+        sa.ajouterRouteur(ro);
+        // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
+        localButton2.setName(loc.getNom());
+        gbc.gridy = positionY;
+        AfficheListeSalle.add(localButton2, gbc);
+        positionY++;
+        localButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                actionMiseEnPlaceBouton(sa);
+            }//fin action
+        });
+        NumeroSalle.setText("");
+        EtageSalle.setText("");
+        NombreOrdinateurSalle.setText("");
+        SalleDialog.setVisible(false);
+        setVisible(false);
+        setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_OkRouteurActionPerformed
 
    /* private void localButton2ActionPerformed (java.awt.ActionEvent evt) {
         menuAjouterRouteur.setEnabled(true);
