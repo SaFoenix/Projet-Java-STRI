@@ -35,8 +35,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
-        /* bdd=new MySql();
-         bdd.Connexion();*/
+         bdd=new MySql();
+         bdd.Connexion();
         this.loc = loc;
         salles = loc.getSalles();
         initComponents();
@@ -881,7 +881,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-        // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
         final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;
@@ -932,9 +932,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
         Os osRouteur=new Os(NomOs.getText(), VersionOs.getText());
+        Salle sa = null;
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
-        // bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        bdd.AjoutRouteur(sa.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
         actionMiseEnPlaceBouton(salleTemp);
         /* localButton2.setName(loc.getNom()); 
         gbc.gridy = positionY;
