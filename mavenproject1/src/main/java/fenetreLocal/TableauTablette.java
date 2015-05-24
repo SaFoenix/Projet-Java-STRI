@@ -72,7 +72,7 @@ public class TableauTablette extends javax.swing.JPanel {
         for(Tablette tab:tablettes){        
             
             if (tab != null) {
-                System.out.println("ORdinateur tab: "+tab.toString());
+             
                 int j = 0;
                 data[i][j] = tab.getNom();
                 j++;

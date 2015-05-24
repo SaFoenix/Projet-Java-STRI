@@ -80,10 +80,9 @@ public class TableauOrdinateur extends javax.swing.JPanel {
     
     public void initialiseTableau(){
         int i=0;
-        for(Ordinateur ordi:ordinateurs){         
+        for(Ordinateur ordi:ordinateurs){        
             
             if (ordi != null) {
-                System.out.println("ORdinateur tab: "+ordi.toString());
                 int j = 0;
                 data[i][j] = ordi.getNom();
                 j++;
