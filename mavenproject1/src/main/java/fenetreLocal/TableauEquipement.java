@@ -28,13 +28,13 @@ public class TableauEquipement extends javax.swing.JPanel {
      */
     public TableauEquipement(Equipement equi) {
         equipement = equi;
-        initComponents();
-        data = new String[1][columns.length];
+        //initComponents();
         if (equipement instanceof BorneSansFil) {
             columns = new String[]{"Nom", "Mac", "Marque", "Power", "NomOS", "Version"};
         } else if (equipement instanceof Routeur) {
             columns = new String[]{"Nom", "Mac", "Marque", "Power", "Nombre de Port", "NomOS", "Version"};
         }
+        data = new String[1][columns.length];
         initialiseTableau();
         tableau = new JTable(data, columns) {
             public boolean isCellEditable(int date, int colums) {
@@ -73,7 +73,7 @@ public class TableauEquipement extends javax.swing.JPanel {
             }
         };
         tableau.getTableHeader().setReorderingAllowed(false);
-        tableau.setPreferredScrollableViewportSize(new Dimension(600, 300));
+        tableau.setPreferredScrollableViewportSize(new Dimension(300, 600));
         tableau.setFillsViewportHeight(true);
         add(tableau);
         JScrollPane jps = new JScrollPane(tableau);
