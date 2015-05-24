@@ -28,17 +28,17 @@ public class TableauEquipement extends javax.swing.JPanel {
      */
     public TableauEquipement(Equipement equi) {
         equipement = equi;
+        columns = new String[]{"",""};
         if (equipement instanceof BorneSansFil) {
-            columns = new String[]{"Nom", "Mac", "Marque", "Power", "NomOS", "Version"};
+             data = new String[6][2];
         } else if (equipement instanceof Routeur) {
-            columns = new String[]{"Nom", "Mac", "Marque", "Power", "Nombre de Port", "NomOS", "Version"};
-        }
-        data = new String[1][columns.length];
+             data = new String[7][2];
+        }       
+       
         initialiseTableau();
-        tableau = new JTable(data, columns) {
+        tableau = new JTable(data,columns) {
             public boolean isCellEditable(int date, int colums) {
-                System.out.println("date: " + date + " colums: " + colums);
-                if (colums == 1 || colums == 2 || colums == 5 || colums == 4) {
+               if (colums==0 || (colums==1&&date==1)|| (colums==1&&date==2) || (colums==1&&date==4) || (colums==1&&date==5)|| (colums==1&&date==6)) {
                     return false;//si mac on peut la changer, marque, os
                 }
                 return true;
@@ -49,9 +49,9 @@ public class TableauEquipement extends javax.swing.JPanel {
             }
 
             public void setValueAt(Object value, int row, int col) {
-                if (col != 1) {
-                    data[row][col] = (String) value;
-                    switch (col) {
+                if(col==1){
+                    data[row][col] = (String) value;                    
+                    switch (row) {
                         case 0:
                             equipement.setNom((String) value);
                             break;
@@ -79,25 +79,41 @@ public class TableauEquipement extends javax.swing.JPanel {
         add(jps);
     }
 
-    public void initialiseTableau() {
+    public void initialiseTableau() {        
         int i = 0;
-        int j = 0;
+        int j=0;
+        data[i][j] = "Nom";
+        i++;
+        data[i][j] ="Mac";
+        i++;
+        data[i][j] = "Marque";
+        i++;
+        data[i][j] = "Power";
+        i++;
+        if (equipement instanceof Routeur) {
+            data[i][j] = "Nombre de Port";
+            i++;
+        }
+        data[i][j] ="NomOS";
+        i++;
+        data[i][j] ="Version";
+        i=0;
+        j = 1;
         data[i][j] = equipement.getNom();
-        j++;
+         i++;
         data[i][j] = equipement.getMac();
-        j++;
+        i++;
         data[i][j] = equipement.getMarque();
-        j++;
+        i++;
         data[i][j] = (equipement.isPower() ? "on" : "off");
-        j++;
+        i++;
         if (equipement instanceof Routeur) {
             data[i][j] = ((Routeur) equipement).getNombrePorts().toString();
-            j++;
+            i++;
         }
         data[i][j] = (equipement.getOs().getNomOs());
-        j++;
+        i++;
         data[i][j] = (equipement.getOs().getVersion());
-
     }
 
     /**
