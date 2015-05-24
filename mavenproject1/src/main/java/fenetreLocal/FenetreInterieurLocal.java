@@ -932,13 +932,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
         Os osRouteur=new Os(NomOs.getText(), VersionOs.getText());
-        Salle sa = null;
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
-<<<<<<< HEAD
-        bdd.AjoutRouteur(sa.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
-=======
->>>>>>> 42eebeb07553a50af5f425616eb670a4e8aaac1e
+
+        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
+
         actionMiseEnPlaceBouton(salleTemp);
         NomRouteur.setText("");
         MacRouteur.setText("");
