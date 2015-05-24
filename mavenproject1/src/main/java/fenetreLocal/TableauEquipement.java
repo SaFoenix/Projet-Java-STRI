@@ -49,6 +49,7 @@ public class TableauEquipement extends javax.swing.JPanel {
             }
 
             public void setValueAt(Object value, int row, int col) {
+                if(col==1){
                     data[row][col] = (String) value;                    
                     switch (row) {
                         case 0:
@@ -63,6 +64,7 @@ public class TableauEquipement extends javax.swing.JPanel {
                             }
                             break;
                     }
+                }
             }
 
             public void addTableModelListener(TableModelListener l) {
