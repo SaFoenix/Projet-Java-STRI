@@ -915,7 +915,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-
+        if(NumeroSalle.getText()!=null && EtageSalle.getText() !=null && NombreOrdinateurSalle.getText()!=null){
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
@@ -930,6 +930,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 actionMiseEnPlaceBouton(sa);
             }//fin action
         });
+        }
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -968,7 +969,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_menuAjouterTabletteActionPerformed
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
-
+        if(NomRouteur.getText()!=null && MacRouteur.getText()!=null && MarqueRouteur.getText()!=null && PowerRouteur.getText()!=null && PortRouteur.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
         Os osRouteur=new Os(NomOs.getText(), VersionOs.getText());
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
@@ -976,6 +977,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
 
         actionMiseEnPlaceBouton(salleTemp);
+    }
         NomRouteur.setText("");
         MacRouteur.setText("");
         NomOs.setText("");
@@ -990,10 +992,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_OkRouteurActionPerformed
 
     private void OkBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkBorneActionPerformed
+        if(NomBorne.getText()!=null && MacBorne.getText()!=null && MarqueBorne.getText()!=null && PowerBorne.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
         Os osBorne=new Os(NomOs.getText(), VersionOs.getText());
         final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
         salleTemp.ajouterBorneSansFil(bo);
         actionMiseEnPlaceBouton(salleTemp);
+        }
         NomBorne.setText("");
         MacBorne.setText("");
         MarqueBorne.setText("");
