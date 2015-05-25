@@ -22,7 +22,7 @@ public class TableauOrdinateur extends javax.swing.JPanel {
     private Ordinateur [] ordinateurs;
     private String[] columns={"Nom","Mac","Marque","Power","RAM","CPU","GPU","HDD","NomOS","Version"};
     private String[][] data;
-    private MySql bdd;
+    private MySql bdd = new MySql();
     
     /**
      * Creates new form Tableau

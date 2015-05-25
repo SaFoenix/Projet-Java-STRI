@@ -220,7 +220,7 @@ public class Bureau extends javax.swing.JFrame {
         so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");*/
         /*FIN TEST*/
         
-        locaux = so.getLocaux();
+        //locaux = so.getLocaux();
 
         /*init fenetre principale */
         setTitle("Societe " + so.getNom());

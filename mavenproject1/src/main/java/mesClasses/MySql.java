@@ -473,7 +473,7 @@ try {
             }
             
             
-        resultat=st.executeQuery("SELECT * FROM Equipement e , Routeur r , Os os WHERE e.power=1 AND e.IdEquipement=r.IdRouteur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle=3) ");
+        resultat=st.executeQuery("SELECT * FROM Equipement e , Routeur r , Os os WHERE e.power=1 AND e.IdEquipement=r.IdRouteur AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+") ");
            while ( resultat.next() ) {
             NomEquipement=resultat.getString("Nom");
             Mac=resultat.getString("MAC");

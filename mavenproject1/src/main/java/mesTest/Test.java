@@ -28,15 +28,15 @@ public class Test {
                        //bdd.AjoutSalle("U2",202,1,15);
                        //bdd.AjoutRouteur(1, "RouteurSalle2" , "192.255.0.0" , "Cisco" ,"Linux","1.2.2", true ,5);
                        //bdd.AjoutOrdinateur(1,"Pierre","38.36.82.69" ,"Apple","Apple","Pro.2",true, "500", "400", "300", "500Go");
-                       /*societe=bdd.RecupererSociete("STRI");
+                       societe=bdd.RecupererSociete("STRI");
                        System.out.println(societe);
                        locaux=bdd.RecupererLocal("STRI");
                        System.out.println(locaux);
-                       salle=bdd.RecupererSalle("Amphi");
+                       salle=bdd.RecupererSalle("U2");
                        System.out.println(salle);
-                       routeur=bdd.RecupererRouteur(202);
+                       routeur=bdd.RecupererRouteur(1);
                        System.out.println(routeur);
-                       ordi = bdd.RecupererOrdinateur(202);
+                       /*ordi = bdd.RecupererOrdinateur(1);
                        System.out.println(ordi);*/
                        
                        

@@ -24,7 +24,7 @@ public class TableauTablette extends javax.swing.JPanel {
     JTable tableau;
     private String[] columns={"Nom","Mac","Marque","Power","Capacité","Modele","NomOS","Version"};
     private String[][] data;
-    private MySql bdd;
+    private MySql bdd = new MySql();
     /**
      * Creates new form FenetreTablette
      */
