@@ -18,7 +18,7 @@ import javax.swing.*;
 public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private Local loc;
-    private MySql bdd=new MySql();
+    private MySql bdd = new MySql();
     private ArrayList<Salle> salles;
     private Salle salleTemp;
     private Routeur routeurTemp;
@@ -35,7 +35,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
-        bdd=new MySql();
+        bdd = new MySql();
         bdd.Connexion();
         this.loc = loc;
         salles = loc.getSalles();
@@ -1199,27 +1199,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-<<<<<<< HEAD
-        if(NumeroSalle.getText()!="" && EtageSalle.getText() !="" && NombreOrdinateurSalle.getText()!=""){
-        final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-        loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
-        final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
-        localButton2.setName(loc.getNom());
-        gbc.gridy = positionY;
-        AfficheListeSalle.add(localButton2, gbc);
-        positionY++;
-        localButton2.addActionListener(new ActionListener() {
-            @Override
-        public void actionPerformed(ActionEvent arg0) {
-                actionMiseEnPlaceBouton(sa);
-            }//fin action
-        });
-=======
+
         if (NumeroSalle.getText() != "" && EtageSalle.getText() != "" && NombreOrdinateurSalle.getText() != "") {
             final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
             loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-//        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+            bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
             final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
             localButton2.setName(loc.getNom());
             gbc.gridy = positionY;
@@ -1231,7 +1215,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     actionMiseEnPlaceBouton(sa);
                 }//fin action
             });
->>>>>>> 031a6cc138b7b7260884906a6d83664e0a59299e
         }
         NumeroSalle.setText("");
         EtageSalle.setText("");
@@ -1275,17 +1258,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             Os osRouteur = new Os(NomOs.getText(), VersionOs.getText());
             final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
             salleTemp.ajouterRouteur(ro);
-
-<<<<<<< HEAD
-        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
-
-        actionMiseEnPlaceBouton(salleTemp);
-       }
-=======
-//        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
+            bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(), ro.getMac(), ro.getMarque(), osRouteur.getNomOs(), osRouteur.getVersion(), ro.isPower(), ro.getNombrePorts());
             actionMiseEnPlaceBouton(salleTemp);
         }
->>>>>>> 031a6cc138b7b7260884906a6d83664e0a59299e
         NomRouteur.setText("");
         MacRouteur.setText("");
         NomOs.setText("");
@@ -1301,11 +1276,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkBorneActionPerformed
 
-        if(NomBorne.getText()!="" && MacBorne.getText()!="" && MarqueBorne.getText()!="" && PowerBorne.getText()!="" && NomOs.getText()!="" &&VersionOs.getText()!=""){
-        Os osBorne=new Os(NomOsBorne.getText(), VersionOsBorne.getText());
-        final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
-        salleTemp.ajouterBorneSansFil(bo);
-        actionMiseEnPlaceBouton(salleTemp);
+        if (NomBorne.getText() != "" && MacBorne.getText() != "" && MarqueBorne.getText() != "" && PowerBorne.getText() != "" && NomOs.getText() != "" && VersionOs.getText() != "") {
+            Os osBorne = new Os(NomOsBorne.getText(), VersionOsBorne.getText());
+            final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
+            bdd.AjoutBorne(salleTemp.getNumero(),bo.getNom(),bo.getMac(),bo.getMarque(),osBorne.getNomOs(),osBorne.getVersion(),bo.isPower());
+            salleTemp.ajouterBorneSansFil(bo);
+            actionMiseEnPlaceBouton(salleTemp);
 
         }
         NomBorne.setText("");
@@ -1347,7 +1323,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         Os osOrdi = new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
         final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
         routeurTemp.connecterOrdinateur(ordi);
-        bdd.AjoutOrdinateur(salleTemp.getNumero(),ordi.getNom(),ordi.getMac(),ordi.getMarque(),osOrdi.getNomOs(),osOrdi.getVersion(),ordi.isPower(),ordi.getRam(),ordi.getCpu(),ordi.getGpu(),ordi.getHdd());
+        bdd.AjoutOrdinateur(salleTemp.getNumero(), ordi.getNom(), ordi.getMac(), ordi.getMarque(), osOrdi.getNomOs(), osOrdi.getVersion(), ordi.isPower(), ordi.getRam(), ordi.getCpu(), ordi.getGpu(), ordi.getHdd());
         actionMiseEnPlaceBouton(salleTemp);
         MacOrdi.setText("");
         NomOrdi.setText("");
@@ -1418,7 +1394,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void CancelSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelSureteActionPerformed
         SureteDialog.setVisible(false);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelSureteActionPerformed
 
@@ -1429,13 +1405,13 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_OkSureteActionPerformed
 
     private void OkTabletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkTabletteActionPerformed
-                // TODO add your handling code here:
+        bdd.AjoutTablette(salleTemp.getNumero(), tab.getMac() , , title, title, title, isClosed, title, title);
+// TODO add your handling code here:
     }//GEN-LAST:event_OkTabletteActionPerformed
 
     private void MacSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacSureteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MacSureteActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
