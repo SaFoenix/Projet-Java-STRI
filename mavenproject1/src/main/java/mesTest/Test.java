@@ -38,7 +38,7 @@ public class Test {
                        System.out.println(routeur);
                        /*ordi = bdd.RecupererOrdinateur(1);
                        System.out.println(ordi);*/
-                       
+                       bdd.ModifierNom("Testmodif", "1234" );
                        
 	}
 

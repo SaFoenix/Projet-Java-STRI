@@ -564,10 +564,18 @@ try {
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur = 0 ;
         try{
-            st=connexion.createStatement();
-            String sql=("UPDATE equipement SET gpu = '"+gpu+"' WHERE Mac='"+mac+"'");
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            String sql=("UPDATE ordinateur SET gpu = '"+gpu+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
+            
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
@@ -577,9 +585,18 @@ try {
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur=0;
         try{
             st=connexion.createStatement();
-            String sql=("UPDATE equipement SET cpu = '"+cpu+"' WHERE Mac='"+mac+"'");
+            
+            resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET cpu = '"+cpu+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
@@ -592,10 +609,11 @@ try {
         Statement st;
         try{
             st=connexion.createStatement();
-            String sql=("UPDATE equipement SET power = '"+etat+"' WHERE Mac='"+mac+"'");
+            String sql=("UPDATE equipement SET Power = "+etat+" WHERE MAC='"+mac+"'");
+            System.out.println(sql);
             st.executeUpdate(sql); 
         }catch (SQLException e){
-            System.out.println("VerifierOrdinateur!");
+            System.out.println("Erreur modif Power");
         }
     }
     
@@ -603,10 +621,19 @@ try {
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur = 0 ;
         try{
-            st=connexion.createStatement();
-            String sql=("UPDATE equipement SET Nom = '"+ram+"' WHERE Mac='"+mac+"'");
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET RAM = '"+ram+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
+            
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
@@ -616,9 +643,17 @@ try {
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur = 0 ;
         try{
-            st=connexion.createStatement();
-            String sql=("UPDATE equipement SET Nom = '"+Hdd+"' WHERE Mac='"+mac+"'");
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET HDD = '"+Hdd+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
