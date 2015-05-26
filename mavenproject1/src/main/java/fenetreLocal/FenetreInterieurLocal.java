@@ -1348,7 +1348,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkOrdiActionPerformed
         Os osOrdi = new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
-        final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
+        final Ordinateur ordi = new Ordinateur(NomOrdi.getText(), MacOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
         routeurTemp.connecterOrdinateur(ordi);
         actionMiseEnPlaceBouton(salleTemp);
         MacOrdi.setText("");
