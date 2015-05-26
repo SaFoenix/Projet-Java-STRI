@@ -1349,7 +1349,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkOrdiActionPerformed
         Os osOrdi = new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
-        final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
+        final Ordinateur ordi = new Ordinateur(NomOrdi.getText(), MacOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
         routeurTemp.connecterOrdinateur(ordi);
         bdd.AjoutOrdinateur(salleTemp.getNumero(), ordi.getNom(), ordi.getMac(), ordi.getMarque(), osOrdi.getNomOs(), osOrdi.getVersion(), ordi.isPower(), ordi.getRam(), ordi.getCpu(), ordi.getGpu(), ordi.getHdd());
         actionMiseEnPlaceBouton(salleTemp);
@@ -1394,6 +1394,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         UpdateNomOsOrdi.setText("");
         UpdateVersionOsOrdi.setText("");
         UpdateDialog.setVisible(false);
+         actionMiseEnPlaceBouton(salleTemp);
         // TODO add your handling code here:
     }//GEN-LAST:event_OkUpdateOrdiActionPerformed
 
@@ -1410,6 +1411,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         SupprMac.setText("");
         SupprDialog.setVisible(false);
         SureteDialog.setVisible(true);
+        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_OkSupprActionPerformed
 
@@ -1429,6 +1432,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private void OkSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkSureteActionPerformed
         SureteDialog.setVisible(false);
         salleTemp.suppr(jLabel47.getText());
+        actionMiseEnPlaceBouton(salleTemp);
         // TODO add your handling code here:
     }//GEN-LAST:event_OkSureteActionPerformed
 
