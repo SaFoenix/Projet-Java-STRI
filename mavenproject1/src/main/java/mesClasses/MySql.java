@@ -467,6 +467,8 @@ try {
         
         try {
             st=connexion.createStatement();
+             
+            
             query = st.executeQuery( "SELECT  IdSalle FROM Salle WHERE numero='"+numero+"';" );
             while(query.next()){
             IdSalle = query.getInt( "IdSalle" );

@@ -19,7 +19,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private Local loc;
-    //private MySql bdd;
+    private MySql bdd=new MySql();
     private ArrayList<Salle> salles;
     private Salle salleTemp;
     private Routeur routeurTemp;
@@ -36,8 +36,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
      * Creates new form frame1
      */
     public FenetreInterieurLocal(Local loc) {
-        // bdd=new MySql();
-        // bdd.Connexion();
+        bdd=new MySql();
+        bdd.Connexion();
         this.loc = loc;
         salles = loc.getSalles();
         initComponents();
@@ -918,7 +918,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
        // if(NumeroSalle.getText()!=null && EtageSalle.getText() !=null && NombreOrdinateurSalle.getText()!=null){
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
-//        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
         final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;
@@ -974,7 +974,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
 
-//        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
+        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
 
         actionMiseEnPlaceBouton(salleTemp);
     //}
@@ -1035,8 +1035,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkOrdiActionPerformed
         Os osOrdi=new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
+       /*rejouter truc pour la bdd */
+        //bdd.AjoutOrdinateur(salletemp.getNumero, title, title, title, title, title, isClosed, title, title, title, title);
         final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
         routeurTemp.connecterOrdinateur(ordi);
+        bdd.AjoutOrdinateur(salleTemp.getNumero(),ordi.getNom(),ordi.getMac(),ordi.getMarque(),osOrdi.getNomOs(),osOrdi.getVersion(),ordi.isPower(),ordi.getRam(),ordi.getCpu(),ordi.getGpu(),ordi.getHdd());
         actionMiseEnPlaceBouton(salleTemp);
         MacOrdi.setText("");
         NomOrdi.setText("");

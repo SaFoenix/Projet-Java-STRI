@@ -32,13 +32,13 @@ public class Test {
                        System.out.println(societe);
                        locaux=bdd.RecupererLocal("STRI");
                        System.out.println(locaux);
-                       salle=bdd.RecupererSalle("U2");
+                       salle=bdd.RecupererSalle("U3");
                        System.out.println(salle);
                        routeur=bdd.RecupererRouteur(1);
                        System.out.println(routeur);
                        /*ordi = bdd.RecupererOrdinateur(1);
                        System.out.println(ordi);*/
-                       bdd.ModifierNom("Testmodif", "1234" );
+                       //bdd.ModifierNom("Testmodif", "1234" );
                        
 	}
 

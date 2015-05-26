@@ -56,9 +56,10 @@ public class Local {
      * @return le salle recherchée ou null si non trouvée
      */
     public Salle rechercherSalle(Integer numero, Integer etage) {
+        System.out.println("etage="+etage+"  Test numro= "+numero);
         for (Salle salleRech : salles) {
             if ((salleRech.getEtage() == etage) && (salleRech.getNumero() == numero)) {
-                return salleRech;
+                   return salleRech;
             }
         }
         return null;
@@ -140,6 +141,7 @@ public class Local {
      * @param etage L'etage de la salle
      */
     public void ajouterRouteurSalle(Routeur rout, Integer numero, Integer etage) {
+        System.out.println("etage="+etage+"  numro= "+numero);
         Salle salle = rechercherSalle(numero, etage);
         if (salle != null) {
             salle.ajouterRouteur(rout);

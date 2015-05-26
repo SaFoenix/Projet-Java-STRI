@@ -66,7 +66,7 @@ public class Societe {
             System.out.println("Le local " + nomL + " n'existe pas. La salle, numero " + numero + ", etage " + etage + " n'a pas été ajoutée.");
             return;
         }
-        locRech.ajouterSalle(numero, nombreOrdi, etage);
+        /*Ici pAuvre gay */locRech.ajouterSalle(numero, etage, nombreOrdi);
     }
 
     /**
@@ -157,8 +157,9 @@ public class Societe {
      * @param nomL le nom du local où ajouter le routeur
      */
     public void ajouterRouteurSalle(Routeur rout, Integer etage, Integer numero, String nomL) {
+        System.out.println("etage="+etage+"  numro= "+numero);
         Local loc = rechercherLocal(nomL);
-        if (loc != null) {
+        if (loc != null){
             loc.ajouterRouteurSalle(rout, numero, etage);
         } else {
             System.out.println("Le local n'existe pas");
