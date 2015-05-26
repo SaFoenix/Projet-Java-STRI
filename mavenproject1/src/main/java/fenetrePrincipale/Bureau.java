@@ -131,7 +131,7 @@ public class Bureau extends javax.swing.JFrame {
                         .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        
+        /*
         bdd = new MySql();
         bdd.Connexion();
         so = bdd.RecupererSociete("STRI");
@@ -156,8 +156,8 @@ public class Bureau extends javax.swing.JFrame {
                 }
             }
         }
- 
-        /*DEBUT test*//*
+        */
+        /*DEBUT test*/
         so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
@@ -211,7 +211,7 @@ public class Bureau extends javax.swing.JFrame {
         so.connecterOrdinateur(ordi9, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi10, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");
-        */
+        
         /*FIN TEST*/
         
         locaux = so.getLocaux();
