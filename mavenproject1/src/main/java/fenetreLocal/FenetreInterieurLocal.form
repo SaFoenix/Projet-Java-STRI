@@ -736,6 +736,7 @@
                               <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -744,21 +745,22 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="CancelTablette" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTextField9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField11" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField12" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField13" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField14" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField15" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField16" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NomTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MacTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NomOsTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MarqueTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="PowerTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="CapaTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ModeleTablette" alignment="0" max="32767" attributes="0"/>
+                              <Component id="VersionOsTablette" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                           <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -770,44 +772,49 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NomTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="MacTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NomOsTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="VersionOsTablette" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="MarqueTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="PowerTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CapaTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ModeleTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="OkTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CancelTablette" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="OkTablette" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -830,7 +837,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel30">
           <Properties>
-            <Property name="text" type="java.lang.String" value="OS"/>
+            <Property name="text" type="java.lang.String" value="Nom OS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel31">
@@ -853,19 +860,22 @@
             <Property name="text" type="java.lang.String" value="Mod&#xe8;le"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField9">
+        <Component class="javax.swing.JTextField" name="NomTablette">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField11">
+        <Component class="javax.swing.JTextField" name="MacTablette">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MacTabletteActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField12">
+        <Component class="javax.swing.JTextField" name="NomOsTablette">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField13">
+        <Component class="javax.swing.JTextField" name="MarqueTablette">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField14">
+        <Component class="javax.swing.JTextField" name="PowerTablette">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField15">
+        <Component class="javax.swing.JTextField" name="CapaTablette">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField16">
+        <Component class="javax.swing.JTextField" name="ModeleTablette">
         </Component>
         <Component class="javax.swing.JButton" name="OkTablette">
           <Properties>
@@ -885,6 +895,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Annuler"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelTabletteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel48">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Version OS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="VersionOsTablette">
         </Component>
       </SubComponents>
     </Container>
