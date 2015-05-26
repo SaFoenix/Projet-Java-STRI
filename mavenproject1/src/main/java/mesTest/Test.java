@@ -21,6 +21,7 @@ public class Test {
                        ArrayList<Salle> salle = new ArrayList<>();
                        ArrayList<Ordinateur> ordi = new ArrayList<>();
                        ArrayList<Routeur> routeur = new ArrayList<>();
+                       ArrayList<BorneSansFil> borne = new ArrayList<>();
                        MySql bdd = new MySql();
                        bdd.Connexion();
                        //bdd.AjoutSociete("Stri","Toulouse");
@@ -36,10 +37,14 @@ public class Test {
                        System.out.println(salle);
                        routeur=bdd.RecupererRouteur(1);
                        System.out.println(routeur);
+                       borne=bdd.RecupererBorne(1);
+                       System.out.println(borne);
                        /*ordi = bdd.RecupererOrdinateur(1);
                        System.out.println(ordi);*/
+                       bdd.ModifierOs("ModifOs", "ModifVersion", "MacBo");
                        //bdd.ModifierNom("Testmodif", "1234" );
-                       
+                       //bdd.AjoutBorne(1,"Borne" ,"MacBorne", "Marque","Windows","1.2.3.4",true);
+                       //bdd.AjoutTablette(1,"Tablette1" ,"MacTablette", "Ipad" ,"MAcOs" , "1.1.1",true, "4","Petit" );
 	}
 
 }

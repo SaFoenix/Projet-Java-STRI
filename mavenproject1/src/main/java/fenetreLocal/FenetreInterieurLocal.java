@@ -1300,8 +1300,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 
     private void OkOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkOrdiActionPerformed
         Os osOrdi=new Os(NomOsOrdi.getText(), VersionOsOrdi.getText());
-       /*rejouter truc pour la bdd */
-        //bdd.AjoutOrdinateur(salletemp.getNumero, title, title, title, title, title, isClosed, title, title, title, title);
         final Ordinateur ordi = new Ordinateur(MacOrdi.getText(), NomOrdi.getText(), MarqueOrdi.getText(), PowerOrdi.getText().equalsIgnoreCase("on"), osOrdi, RamOrdi.getText(), CpuOrdi.getText(), GpuOrdi.getText(), HddOrdi.getText());
         routeurTemp.connecterOrdinateur(ordi);
         bdd.AjoutOrdinateur(salleTemp.getNumero(),ordi.getNom(),ordi.getMac(),ordi.getMarque(),osOrdi.getNomOs(),osOrdi.getVersion(),ordi.isPower(),ordi.getRam(),ordi.getCpu(),ordi.getGpu(),ordi.getHdd());
