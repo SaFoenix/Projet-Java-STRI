@@ -1392,6 +1392,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         UpdateNomOsOrdi.setText("");
         UpdateVersionOsOrdi.setText("");
         UpdateDialog.setVisible(false);
+         actionMiseEnPlaceBouton(salleTemp);
         // TODO add your handling code here:
     }//GEN-LAST:event_OkUpdateOrdiActionPerformed
 
@@ -1408,6 +1409,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         SupprMac.setText("");
         SupprDialog.setVisible(false);
         SureteDialog.setVisible(true);
+        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_OkSupprActionPerformed
 
@@ -1427,6 +1430,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private void OkSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkSureteActionPerformed
         SureteDialog.setVisible(false);
         salleTemp.suppr(jLabel47.getText());
+        actionMiseEnPlaceBouton(salleTemp);
         // TODO add your handling code here:
     }//GEN-LAST:event_OkSureteActionPerformed
 
