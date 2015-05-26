@@ -1307,10 +1307,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         if (NomBorne.getText() != "" && MacBorne.getText() != "" && MarqueBorne.getText() != "" && PowerBorne.getText() != "" && NomOs.getText() != "" && VersionOs.getText() != "") {
             Os osBorne = new Os(NomOsBorne.getText(), VersionOsBorne.getText());
             final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
-<<<<<<< HEAD
             bdd.AjoutBorne(salleTemp.getNumero(),bo.getNom(),bo.getMac(),bo.getMarque(),osBorne.getNomOs(),osBorne.getVersion(),bo.isPower());
-=======
->>>>>>> f260209c0317157dba2f1efa0395951b8e4ad3cd
             salleTemp.ajouterBorneSansFil(bo);
             actionMiseEnPlaceBouton(salleTemp);
 
@@ -1436,12 +1433,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_OkSureteActionPerformed
 
     private void OkTabletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkTabletteActionPerformed
-<<<<<<< HEAD
-        bdd.AjoutTablette(salleTemp.getNumero(), tab.getMac() , , title, title, title, isClosed, title, title);
+
 // TODO add your handling code here:
-=======
+
         Os osTab = new Os(NomOsTablette.getText(), VersionOsTablette.getText());
         final Tablette tab = new Tablette(NomTablette.getText(), MacTablette.getText(), MarqueTablette.getText(), PowerTablette.getText().equalsIgnoreCase("on"), osTab, CapaTablette.getText(), ModeleTablette.getText());
+        bdd.AjoutTablette(salleTemp.getNumero(), tab.getNom() , tab.getMac(),tab.getMarque(), osTab.getNomOs(),osTab.getVersion(),tab.isPower(), tab.getModele(),tab.getCapacite());
         borneTemp.connecterTablette(tab);
         actionMiseEnPlaceBouton(salleTemp);
         NomTablette.setText("");
@@ -1455,7 +1452,6 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         TabletteDialog.setVisible(false);
         setVisible(false);
         setVisible(true);                // TODO add your handling code here:
->>>>>>> f260209c0317157dba2f1efa0395951b8e4ad3cd
     }//GEN-LAST:event_OkTabletteActionPerformed
 
     private void MacSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacSureteActionPerformed

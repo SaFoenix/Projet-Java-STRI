@@ -786,12 +786,12 @@ try {
             while(resultat6.next()){
                idOs = resultat6.getInt("IdOs");
            }    
-        String sql4 = "UPDATE estinstaller VALUES IdOs="+idOs+" WHERE IdEquipement = "+IdEquipement+"";
+        String sql4 = "UPDATE estinstaller SET IdOs="+idOs+" WHERE IdEquipement = "+IdEquipement+"";
             st.executeUpdate(sql4);
        }else{
         String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
             st.executeUpdate(sql5);
-        String sql6 = "INSERT INTO estinstaller VALUES ("+idMax+","+idMaxOs+")";
+        String sql6 = "INSERT INTO estinstaller VALUES ("+IdEquipement+","+idMaxOs+")";
             st.executeUpdate(sql6); 
         }
         }
