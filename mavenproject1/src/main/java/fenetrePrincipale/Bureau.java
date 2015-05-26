@@ -5,28 +5,19 @@
  */
 package fenetrePrincipale;
 
-import fenetreLocal.FenetreInterieurLocal;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import mesClasses.*;
 
@@ -141,28 +132,31 @@ public class Bureau extends javax.swing.JFrame {
         );
 
 
-         bdd=new MySql();
-         bdd.Connexion();
-         so=bdd.RecupererSociete("STRI");
-         locaux = bdd.RecupererLocal(so.getNom());
-         so.setLocaux(locaux);
-         for (Local loc : locaux){
-         ArrayList<Salle> salles;
-         salles = bdd.RecupererSalle(loc.getNom());
-         for (Salle sa : salles){
-         loc.ajouterSalle(sa.getNumero(),sa.getEtage(),sa.getNombreOrdinateur());
-         ArrayList<Routeur> routeurs;
-         routeurs = bdd.RecupererRouteur(sa.getNumero());
-            for (Routeur ro : routeurs){
-                sa.ajouterRouteur(ro);
-                ArrayList<Ordinateur> ordinateurs;
-                ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
-                for (Ordinateur ordi : ordinateurs){
-                    ro.connecterOrdinateur(ordi);
+        bdd = new MySql();
+        bdd.Connexion();
+        so = bdd.RecupererSociete("STRI");
+        locaux = bdd.RecupererLocal(so.getNom());
+        for(Local loc:locaux){
+            so.ajouterLocal(loc.getNom(),loc.getlocalisation());
+        }
+        for (Local loc : locaux) {
+            ArrayList<Salle> salles;
+            salles = bdd.RecupererSalle(loc.getNom());
+            for (Salle sa : salles) {
+                so.ajouterSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+                
+                ArrayList<Routeur> routeurs;
+                routeurs = bdd.RecupererRouteur(sa.getNumero());
+                for (Routeur ro : routeurs) {
+                    sa.ajouterRouteur(ro);
+                    ArrayList<Ordinateur> ordinateurs;
+                    ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
+                    for (Ordinateur ordi : ordinateurs) {
+                        ro.connecterOrdinateur(ordi);
+                    }
                 }
             }
-         }
-         }
+        }
        
         /*DEBUT test*/
         /*so = new Societe("Stri", "Toulouse");

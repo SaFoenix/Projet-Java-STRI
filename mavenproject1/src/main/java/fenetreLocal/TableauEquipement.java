@@ -87,7 +87,7 @@ public class TableauEquipement extends javax.swing.JPanel {
         add(jps);
     }
 
-    public void initialiseTableau() {        
+    public void initialiseTableau(){        
         int i = 0;
         int j=0;
         data[i][j] = "Nom";
