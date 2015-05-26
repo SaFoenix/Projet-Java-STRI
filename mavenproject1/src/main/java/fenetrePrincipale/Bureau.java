@@ -28,7 +28,7 @@ import mesClasses.*;
 public class Bureau extends javax.swing.JFrame {
 
     private Societe so;
-    private MySql bdd;
+   // private MySql bdd;
     private ArrayList<Local> locaux;
     JButton localButton;
     JPanel afficheLesLocaux;
@@ -131,7 +131,7 @@ public class Bureau extends javax.swing.JFrame {
                         .addContainerGap(21, Short.MAX_VALUE))
         );
 
-
+        
         bdd = new MySql();
         bdd.Connexion();
         so = bdd.RecupererSociete("STRI");
@@ -143,23 +143,22 @@ public class Bureau extends javax.swing.JFrame {
             ArrayList<Salle> salles;
             salles = bdd.RecupererSalle(loc.getNom());
             for (Salle sa : salles) {
-                so.ajouterSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
-                
+                so.ajouterSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());                
                 ArrayList<Routeur> routeurs;
                 routeurs = bdd.RecupererRouteur(sa.getNumero());
                 for (Routeur ro : routeurs) {
-                    sa.ajouterRouteur(ro);
+                    so.ajouterRouteurSalle(ro,sa.getEtage(), sa.getNumero(), loc.getNom());
                     ArrayList<Ordinateur> ordinateurs;
                     ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
                     for (Ordinateur ordi : ordinateurs) {
-                        ro.connecterOrdinateur(ordi);
+                       so.connecterOrdinateur(ordi, sa.getEtage(), sa.getNumero(), ro.getMac(), loc.getNom());
                     }
                 }
             }
         }
-       
-        /*DEBUT test*/
-        /*so = new Societe("Stri", "Toulouse");
+ 
+        /*DEBUT test*//*
+        so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
         so.ajouterLocal("local2", "bordeaux");
@@ -211,10 +210,11 @@ public class Bureau extends javax.swing.JFrame {
         so.connecterOrdinateur(ordi8, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi9, 1, 0, "fffddd", "local1");
         so.connecterOrdinateur(ordi10, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");*/
+        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");
+        */
         /*FIN TEST*/
         
-        //locaux = so.getLocaux();
+        locaux = so.getLocaux();
 
         /*init fenetre principale */
         setTitle("Societe " + so.getNom());
@@ -395,7 +395,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc = new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+//        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
         final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;

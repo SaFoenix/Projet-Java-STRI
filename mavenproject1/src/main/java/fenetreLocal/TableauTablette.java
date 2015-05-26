@@ -24,7 +24,7 @@ public class TableauTablette extends javax.swing.JPanel {
     JTable tableau;
     private String[] columns={"Nom","Mac","Marque","Power","Capacité","Modele","NomOS","Version"};
     private String[][] data;
-    private MySql bdd = new MySql();
+    //private MySql bdd = new MySql();
     /**
      * Creates new form FenetreTablette
      */
@@ -44,17 +44,17 @@ public class TableauTablette extends javax.swing.JPanel {
                  return data[row][col];
             }
             public void setValueAt(Object value,int row, int col){
-                bdd.Connexion();
+//                bdd.Connexion();
                 if(col!=1){
                     Tablette tab=borne.rechercherTablette(data[row][1]);
                     if(tab!=null){
                         data[row][col]=(String) value;
                         switch(col){
                             case 0: tab.setNom((String)value);
-                                    bdd.ModifierNom(tab.getNom(),tab.getMac());
+//                                    bdd.ModifierNom(tab.getNom(),tab.getMac());
                                 break;
                             case 3: tab.setPower((((String)value).equals("on")));
-                                    bdd.ModifierEtat(tab.isPower(),tab.getMac());
+//                                    bdd.ModifierEtat(tab.isPower(),tab.getMac());
                                 break;
                         }
                     }                    
