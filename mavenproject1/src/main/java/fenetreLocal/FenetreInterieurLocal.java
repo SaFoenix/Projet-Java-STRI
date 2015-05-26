@@ -10,7 +10,6 @@ import java.awt.event.*;
 import mesClasses.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -24,6 +23,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private Salle salleTemp;
     private Routeur routeurTemp;
     GridBagConstraints gbc = new GridBagConstraints();
+    GridBagConstraints gbc1 = new GridBagConstraints();
     TableauOrdinateur tabOrdinateur;
     TableauTablette tabTablette;
     TableauEquipement tabEquipement;
@@ -58,17 +58,20 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         //afficheInformation.setAutoscrolls(true);
         afficheInformationEquipementRacine=new javax.swing.JInternalFrame();
         afficheInformationEquipementRacine.setSize(600,300);
+        afficheInformationEquipementRacine.setLayout(new GridBagLayout());
+        gbc1.insets = new Insets(5, 5, 5, 5);
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
         initialisationMenuSalle();
 
         fenetreRouteur.setBackground(Color.white);
         AfficheListeSalle.setBackground(Color.black);
         add(AfficheListeSalle, BorderLayout.WEST);
         add(fenetreRouteur, BorderLayout.NORTH);
-
     }
     
     public void initialisationMenuSalle() {
-        for (final Salle sa : salles) //phase cration bouton salle
+        for (final Salle sa : salles) //phase création bouton salle
         {
             final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
             localButton2.setName(loc.getNom());
@@ -133,6 +136,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     tabOrdinateur.setVisible(true);
                     afficheInformation.setVisible(true);
                     afficheInformationEquipementRacine.setVisible(true);
+                    afficheBoutonUpdateSuppr();
                     add(afficheInformation, BorderLayout.EAST);
                     add(afficheInformationEquipementRacine, BorderLayout.CENTER);
                 }//fin actionPerf
@@ -163,13 +167,14 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     remove(afficheInformation);
                     tabTablette = new TableauTablette(bo);
                     tabEquipement=new TableauEquipement(bo);
-                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
+                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.NORTH);
                     afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
                     tabEquipement.setVisible(true);
                     afficheInformation.setVisible(true);
                     afficheInformationEquipementRacine.setVisible(true);
-                    add(afficheInformation, BorderLayout.EAST);
+                    afficheBoutonUpdateSuppr();
+                    add(afficheInformation, BorderLayout.EAST);                    
                     add(afficheInformationEquipementRacine, BorderLayout.CENTER);
                 }//fin actionPerf
             }
@@ -179,6 +184,16 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(true);
     }
 
+    public void afficheBoutonUpdateSuppr(){
+        JButton updateOrdiButton2 = new JButton("Update");
+       JButton supprOrdiButton2 = new JButton("supprimer");
+       
+        updateOrdiButton2.setVisible(true);
+        afficheInformationEquipementRacine.add(updateOrdiButton2, BorderLayout.CENTER);
+       supprOrdiButton2.setVisible(true);
+        afficheInformationEquipementRacine.add(supprOrdiButton2, BorderLayout.SOUTH);
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

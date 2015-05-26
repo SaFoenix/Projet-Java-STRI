@@ -131,6 +131,7 @@ public class Bureau extends javax.swing.JFrame {
                         .addContainerGap(21, Short.MAX_VALUE))
         );
 
+
         /*
         bdd = new MySql();
         bdd.Connexion();
@@ -158,6 +159,7 @@ public class Bureau extends javax.swing.JFrame {
         }
         */
         /*DEBUT test*/
+
         so = new Societe("Stri", "Toulouse");
         so.ajouterLocal("local1", "bordeaux");
 
