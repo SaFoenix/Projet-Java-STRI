@@ -132,7 +132,7 @@ public class Bureau extends javax.swing.JFrame {
         );
 
         
-        bdd = new MySql();
+        /*bdd = new MySql();
         bdd.Connexion();
         so = bdd.RecupererSociete("STRI");
         locaux = bdd.RecupererLocal(so.getNom());
@@ -155,7 +155,7 @@ public class Bureau extends javax.swing.JFrame {
                     }
                 }
             }
-        }
+        }*/
  
         /*DEBUT test*//*
         so = new Societe("Stri", "Toulouse");
