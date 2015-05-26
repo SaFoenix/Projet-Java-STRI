@@ -156,6 +156,7 @@ public class Bureau extends javax.swing.JFrame {
                     }
                 }
             }
+<<<<<<< HEAD
         }
         */
         /*DEBUT test*/
