@@ -206,6 +206,13 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             );
          gbc1.gridy++;
         supprOrdiButton2.setVisible(true);
+           supprOrdiButton2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                  supprOrdiButton2ActionPerformed();
+                }//fin actionPerf
+            }
+            );
         afficheInformationEquipementRacinebis.add(supprOrdiButton2,gbc1);
         afficheInformationEquipementRacinebis.setVisible(true);
         afficheInformationEquipementRacine.add(afficheInformationEquipementRacinebis,BorderLayout.CENTER);
@@ -215,6 +222,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         UpdateDialog.setVisible(true);
     }
 
+    private void supprOrdiButton2ActionPerformed() {
+        SupprDialog.setVisible(true);
+    }    
 /**
  * This method is called from within the constructor to initialize the form.
  * WARNING: Do NOT modify this code. The content of this method is always
@@ -321,6 +331,18 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         jLabel41 = new javax.swing.JLabel();
         UpdateVersionOsOrdi = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
+        SupprDialog = new javax.swing.JDialog();
+        OkSuppr = new javax.swing.JButton();
+        CancelSuppr = new javax.swing.JButton();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        SupprMac = new javax.swing.JTextField();
+        SureteDialog = new javax.swing.JDialog();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        MacSurete = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         AfficheListeSalle = new javax.swing.JPanel();
         fenetreRouteur = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
@@ -960,6 +982,118 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        SupprDialog.setMinimumSize(new java.awt.Dimension(450, 300));
+
+        OkSuppr.setBackground(new java.awt.Color(0, 255, 0));
+        OkSuppr.setText("Valider");
+        OkSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkSupprActionPerformed(evt);
+            }
+        });
+
+        CancelSuppr.setBackground(new java.awt.Color(255, 0, 0));
+        CancelSuppr.setText("Cancel");
+        CancelSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelSupprActionPerformed(evt);
+            }
+        });
+
+        jLabel43.setText("Suppression");
+
+        jLabel44.setText("MAC");
+
+        javax.swing.GroupLayout SupprDialogLayout = new javax.swing.GroupLayout(SupprDialog.getContentPane());
+        SupprDialog.getContentPane().setLayout(SupprDialogLayout);
+        SupprDialogLayout.setHorizontalGroup(
+            SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SupprDialogLayout.createSequentialGroup()
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel44)
+                        .addGap(18, 18, 18)
+                        .addComponent(SupprMac, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel43))
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(OkSuppr)
+                        .addGap(46, 46, 46)
+                        .addComponent(CancelSuppr)))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        SupprDialogLayout.setVerticalGroup(
+            SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SupprDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43)
+                .addGap(53, 53, 53)
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(SupprMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelSuppr)
+                    .addComponent(OkSuppr))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+
+        jLabel45.setText("Êtes-vous sür de vouloir supprimer cet équipement?");
+
+        jLabel46.setText("MAC");
+
+        MacSurete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MacSureteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 255, 0));
+        jButton1.setText("Valider");
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setText("Annuler");
+
+        javax.swing.GroupLayout SureteDialogLayout = new javax.swing.GroupLayout(SureteDialog.getContentPane());
+        SureteDialog.getContentPane().setLayout(SureteDialogLayout);
+        SureteDialogLayout.setHorizontalGroup(
+            SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SureteDialogLayout.createSequentialGroup()
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SureteDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel45)
+                            .addGroup(SureteDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel46)
+                                .addGap(18, 18, 18)
+                                .addComponent(MacSurete, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(SureteDialogLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jButton1)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        SureteDialogLayout.setVerticalGroup(
+            SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SureteDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel45)
+                .addGap(27, 27, 27)
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(MacSurete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(143, Short.MAX_VALUE))
+        );
+
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1221,6 +1355,25 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelUpdateOrdiActionPerformed
 
+    private void OkSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkSupprActionPerformed
+        MacSurete.setText(SupprMac.getText());
+        SupprMac.setText("");
+        SupprDialog.setVisible(false);
+        SureteDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OkSupprActionPerformed
+
+    private void CancelSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelSupprActionPerformed
+        SupprMac.setText("");
+        SupprDialog.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelSupprActionPerformed
+
+    private void MacSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacSureteActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_MacSureteActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
@@ -1228,6 +1381,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton CancelBorne;
     private javax.swing.JButton CancelOrdi;
     private javax.swing.JButton CancelRouteur;
+    private javax.swing.JButton CancelSuppr;
     private javax.swing.JButton CancelTablette;
     private javax.swing.JButton CancelUpdateOrdi;
     private javax.swing.JTextField CpuOrdi;
@@ -1238,6 +1392,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField MacBorne;
     private javax.swing.JTextField MacOrdi;
     private javax.swing.JTextField MacRouteur;
+    private javax.swing.JTextField MacSurete;
     private javax.swing.JTextField MarqueBorne;
     private javax.swing.JTextField MarqueOrdi;
     private javax.swing.JTextField MarqueRouteur;
@@ -1253,6 +1408,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton OkBorne;
     private javax.swing.JButton OkOrdi;
     private javax.swing.JButton OkRouteur;
+    private javax.swing.JButton OkSuppr;
     private javax.swing.JButton OkTablette;
     private javax.swing.JButton OkUpdateOrdi;
     private javax.swing.JDialog OrdinateurDialog;
@@ -1265,6 +1421,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
+    private javax.swing.JDialog SupprDialog;
+    private javax.swing.JTextField SupprMac;
+    private javax.swing.JDialog SureteDialog;
     private javax.swing.JDialog TabletteDialog;
     private javax.swing.JDialog UpdateDialog;
     private javax.swing.JTextField UpdateMacOrdi;
@@ -1276,6 +1435,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JMenu barMenuAjouter;
     private javax.swing.JPanel fenetreRouteur;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1313,6 +1474,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

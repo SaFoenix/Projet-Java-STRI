@@ -280,6 +280,22 @@ public class Salle{
         }
     }
 
+        public void suppr(String mac) {
+        Routeur rout = rechercherRouteur(mac);
+        if (rout != null) {
+            routeurs.remove(rout);
+            return;
+        }
+        BorneSansFil bo = rechercherBorne(mac);
+        if (rout != null) {
+            bornes.remove(bo);
+            return;
+        }
+    
+    
+        }
+
+
     public ArrayList<Routeur> getRouteurs() {
         return routeurs;
     }

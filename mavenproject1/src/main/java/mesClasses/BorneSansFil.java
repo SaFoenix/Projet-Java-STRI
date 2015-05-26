@@ -53,10 +53,10 @@ public class BorneSansFil extends Equipement {
 	public void connecterTablette(Tablette nouvelleTablette){
 		Tablette tab=rechercherTablette(nouvelleTablette.getMac());
 		if(tab==null){
-			System.out.println("La tablette est connecté à la borne Wifi.");
+			System.out.println("La tablette est connectée à la borne Wifi.");
 			tablettes.add(nouvelleTablette);	
 		}
-		else System.out.println("La tablette est deja connecté à la borne Wifi.");
+		else System.out.println("La tablette est deja connectée à la borne Wifi.");
 	}
 	
         /**
