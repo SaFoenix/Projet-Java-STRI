@@ -7,19 +7,14 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
- * La classe Salle permet de définir une salle
- * informations: 
- * Identifiant de la salle 
- * L'etage de la salle
- * Le numero de la salle 
- * Le nombre d'ordinateur que peut contenir la salle 
- * La liste des routeurs 
- * La liste des bornes Wifi
+ * La classe Salle permet de définir une salle informations: Identifiant de la
+ * salle L'etage de la salle Le numero de la salle Le nombre d'ordinateur que
+ * peut contenir la salle La liste des routeurs La liste des bornes Wifi
  *
  * @author STRI_JAVA
  *
  */
-public class Salle{
+public class Salle {
 
     /**
      * L'identifiant de la salle
@@ -64,6 +59,7 @@ public class Salle{
         routeurs = new ArrayList<Routeur>();
         bornes = new ArrayList<BorneSansFil>();
     }
+
     /**
      * @return the numero
      */
@@ -100,7 +96,7 @@ public class Salle{
     }
 
     public String toString() {
-        String str = "Salle [Numero:" + numero+ " Salle : "+ etage + "]\n";
+        String str = "Salle [Numero:" + numero + " Salle : " + etage + "]\n";
         str += "\tnombreOrdinateur: " + nombreOrdinateur + "\n";
         str += "[Routeur]\n";
         for (Routeur rout : routeurs) {
@@ -275,26 +271,37 @@ public class Salle{
                         return;
                     }
                 }
-                System.out.println("L'équipement non trouvé.");
+                System.out.println("Equipement non trouvé.");
             }
         }
     }
 
-        public void suppr(String mac) {
+    public void suppr(String mac) {
         Routeur rout = rechercherRouteur(mac);
         if (rout != null) {
             routeurs.remove(rout);
             return;
         }
         BorneSansFil bo = rechercherBorne(mac);
-        if (rout != null) {
+        if (bo != null) {
             bornes.remove(bo);
             return;
         }
-    
-    
-        }
+        for (Routeur routIterateur : routeurs) {
+            if (routIterateur.supprimerOrdinateur(mac))
+                return;
+            }     
 
+        for(BorneSansFil bor : bornes) {
+            Tablette tab = bor.rechercherTablette(mac);
+            if (tab != null) {
+                bor.supprimerTablette(tab);
+                return;
+            }
+        }
+        System.out.println("Equipement non trouvé.");
+
+    }
 
     public ArrayList<Routeur> getRouteurs() {
         return routeurs;

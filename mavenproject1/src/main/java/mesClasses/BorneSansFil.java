@@ -115,5 +115,9 @@ public class BorneSansFil extends Equipement {
 			return true;
 		}
 		return false;
-	}	
+	}
+        
+        public void supprimerTablette(Tablette t){
+            tablettes.remove(t);
+        }
 }
