@@ -46,18 +46,18 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         menuAjouterOrdinateur.setEnabled(false);
         menuAjouterTablette.setEnabled(false);
         setTitle(loc.getNom());
-        setSize(1020,800);
+        setSize(1020, 800);
         AfficheListeSalle.setBackground(Color.white);
         AfficheListeSalle.setLayout(new GridBagLayout());
-        
+
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
         afficheInformation = new javax.swing.JInternalFrame();
-        afficheInformation.setSize(600,300);
+        afficheInformation.setSize(600, 300);
         //afficheInformation.setAutoscrolls(true);
-        afficheInformationEquipementRacine=new javax.swing.JInternalFrame();
-        afficheInformationEquipementRacine.setSize(600,300);
+        afficheInformationEquipementRacine = new javax.swing.JInternalFrame();
+        afficheInformationEquipementRacine.setSize(600, 300);
         initialisationMenuSalle();
 
         fenetreRouteur.setBackground(Color.white);
@@ -65,7 +65,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         add(AfficheListeSalle, BorderLayout.WEST);
         add(fenetreRouteur, BorderLayout.NORTH);
     }
-    
+
     public void initialisationMenuSalle() {
         for (final Salle sa : salles) //phase création bouton salle
         {
@@ -119,14 +119,14 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabTablette != null) {
                         afficheInformation.remove(tabTablette);
                     }
-                    if(tabEquipement!=null){
+                    if (tabEquipement != null) {
                         afficheInformationEquipementRacine.remove(tabEquipement);
                     }
                     remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
-                    tabEquipement=new TableauEquipement(rout);
+                    tabEquipement = new TableauEquipement(rout);
                     tabOrdinateur = new TableauOrdinateur(rout);
-                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
+                    afficheInformationEquipementRacine.add(tabEquipement, BorderLayout.WEST);
                     afficheInformation.add(tabOrdinateur, BorderLayout.EAST);
                     tabEquipement.setVisible(true);
                     tabOrdinateur.setVisible(true);
@@ -147,7 +147,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             positionX++;
             bouton.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent arg0) {                    
+                public void actionPerformed(ActionEvent arg0) {
                     afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
                     if (tabTablette != null) {
@@ -156,20 +156,20 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabOrdinateur != null) {
                         afficheInformation.remove(tabOrdinateur);
                     }
-                    if(tabEquipement!=null){
+                    if (tabEquipement != null) {
                         afficheInformationEquipementRacine.remove(tabEquipement);
                     }
                     remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
                     tabTablette = new TableauTablette(bo);
-                    tabEquipement=new TableauEquipement(bo);
-                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.NORTH);
+                    tabEquipement = new TableauEquipement(bo);
+                    afficheInformationEquipementRacine.add(tabEquipement, BorderLayout.NORTH);
                     afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
                     tabEquipement.setVisible(true);
                     afficheInformation.setVisible(true);
                     afficheInformationEquipementRacine.setVisible(true);
-                    add(afficheInformation, BorderLayout.EAST);                    
+                    add(afficheInformation, BorderLayout.EAST);
                     add(afficheInformationEquipementRacine, BorderLayout.CENTER);
                     pack();
                 }//fin actionPerf
@@ -180,22 +180,33 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(true);
     }
 
-    public void afficheBoutonUpdateSuppr(){
+    public void afficheBoutonUpdateSuppr() {
         JButton updateOrdiButton2 = new JButton("Update");
-       JButton supprOrdiButton2 = new JButton("supprimer");
-       
+        JButton supprOrdiButton2 = new JButton("supprimer");
         updateOrdiButton2.setVisible(true);
-        afficheInformationEquipementRacine.add(updateOrdiButton2, BorderLayout.CENTER);
-       supprOrdiButton2.setVisible(true);
-        afficheInformationEquipementRacine.add(supprOrdiButton2, BorderLayout.SOUTH);
+        afficheInformationEquipementRacine.add(updateOrdiButton2, BorderLayout.SOUTH);
+          updateOrdiButton2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                  updateOrdiButton2ActionPerformed();
+                }//fin actionPerf
+            }
+            );
+    
+        supprOrdiButton2.setVisible(true);
+        afficheInformationEquipementRacine.add(supprOrdiButton2);
     }
-   
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+
+    private void updateOrdiButton2ActionPerformed() {
+        UpdateDialog.setVisible(true);
+    }
+
+/**
+ * This method is called from within the constructor to initialize the form.
+ * WARNING: Do NOT modify this code. The content of this method is always
+ * regenerated by the Form Editor.
+ */
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -285,6 +296,17 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         jTextField16 = new javax.swing.JTextField();
         OkTablette = new javax.swing.JButton();
         CancelTablette = new javax.swing.JButton();
+        UpdateDialog = new javax.swing.JDialog();
+        OkUpdateOrdi = new javax.swing.JButton();
+        CancelUpdateOrdi = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        UpdateMacOrdi = new javax.swing.JTextField();
+        UpdateNomOsOrdi = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        UpdateVersionOsOrdi = new javax.swing.JTextField();
+        jLabel42 = new javax.swing.JLabel();
         AfficheListeSalle = new javax.swing.JPanel();
         fenetreRouteur = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
@@ -839,6 +861,91 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
+        UpdateDialog.setMinimumSize(new java.awt.Dimension(450, 300));
+
+        OkUpdateOrdi.setBackground(new java.awt.Color(0, 255, 0));
+        OkUpdateOrdi.setText("Valider");
+        OkUpdateOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkUpdateOrdiActionPerformed(evt);
+            }
+        });
+
+        CancelUpdateOrdi.setBackground(new java.awt.Color(255, 0, 0));
+        CancelUpdateOrdi.setText("Annuler");
+        CancelUpdateOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelUpdateOrdiActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Update");
+
+        jLabel39.setText("MAC*");
+
+        jLabel40.setText("Nom OS");
+
+        UpdateMacOrdi.setToolTipText("test");
+
+        jLabel41.setText("Version OS");
+
+        jLabel42.setText("*La MAC doit exister");
+
+        javax.swing.GroupLayout UpdateDialogLayout = new javax.swing.GroupLayout(UpdateDialog.getContentPane());
+        UpdateDialog.getContentPane().setLayout(UpdateDialogLayout);
+        UpdateDialogLayout.setHorizontalGroup(
+            UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UpdateDialogLayout.createSequentialGroup()
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(OkUpdateOrdi)
+                        .addGap(39, 39, 39)
+                        .addComponent(CancelUpdateOrdi))
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel26))
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39))
+                        .addGap(18, 18, 18)
+                        .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42)
+                            .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(UpdateMacOrdi, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                .addComponent(UpdateNomOsOrdi)
+                                .addComponent(UpdateVersionOsOrdi)))))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        UpdateDialogLayout.setVerticalGroup(
+            UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateDialogLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel26)
+                .addGap(18, 18, 18)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(UpdateMacOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(UpdateNomOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(UpdateVersionOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OkUpdateOrdi)
+                    .addComponent(CancelUpdateOrdi))
+                .addContainerGap())
+        );
+
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -924,9 +1031,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
-
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-       // if(NumeroSalle.getText()!=null && EtageSalle.getText() !=null && NombreOrdinateurSalle.getText()!=null){
+        if(NumeroSalle.getText()!="" && EtageSalle.getText() !="" && NombreOrdinateurSalle.getText()!=""){
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
 //        bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
@@ -937,11 +1043,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         positionY++;
         localButton2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
+        public void actionPerformed(ActionEvent arg0) {
                 actionMiseEnPlaceBouton(sa);
             }//fin action
         });
-       // }
+        }
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -980,7 +1086,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_menuAjouterTabletteActionPerformed
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
-        //if(NomRouteur.getText()!=null && MacRouteur.getText()!=null && MarqueRouteur.getText()!=null && PowerRouteur.getText()!=null && PortRouteur.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
+        if(NomRouteur.getText()!="" && MacRouteur.getText()!="" && MarqueRouteur.getText()!="" && PowerRouteur.getText()!="" && PortRouteur.getText()!="" && NomOs.getText()!="" &&VersionOs.getText()!=""){
         Os osRouteur=new Os(NomOs.getText(), VersionOs.getText());
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
@@ -988,7 +1094,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
 //        bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
 
         actionMiseEnPlaceBouton(salleTemp);
-    //}
+       }
         NomRouteur.setText("");
         MacRouteur.setText("");
         NomOs.setText("");
@@ -1003,12 +1109,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_OkRouteurActionPerformed
 
     private void OkBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkBorneActionPerformed
-       // if(NomBorne.getText()!=null && MacBorne.getText()!=null && MarqueBorne.getText()!=null && PowerBorne.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
+        if(NomBorne.getText()!="" && MacBorne.getText()!="" && MarqueBorne.getText()!="" && PowerBorne.getText()!="" && NomOs.getText()!="" &&VersionOs.getText()!=""){
         Os osBorne=new Os(NomOs.getText(), VersionOs.getText());
         final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
         salleTemp.ajouterBorneSansFil(bo);
         actionMiseEnPlaceBouton(salleTemp);
-       // }
+        }
         NomBorne.setText("");
         MacBorne.setText("");
         MarqueBorne.setText("");
@@ -1083,6 +1189,24 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
     }//GEN-LAST:event_CancelOrdiActionPerformed
 
+    private void OkUpdateOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkUpdateOrdiActionPerformed
+        
+        salleTemp.miseAJour(UpdateMacOrdi.getText(), new Os(UpdateNomOsOrdi.getText(), UpdateVersionOsOrdi.getText()));
+        UpdateMacOrdi.setText("");
+        UpdateNomOsOrdi.setText("");
+        UpdateVersionOsOrdi.setText("");
+        UpdateDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OkUpdateOrdiActionPerformed
+
+    private void CancelUpdateOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelUpdateOrdiActionPerformed
+        UpdateMacOrdi.setText("");
+        UpdateNomOsOrdi.setText("");
+        UpdateVersionOsOrdi.setText("");
+        UpdateDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelUpdateOrdiActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
@@ -1091,6 +1215,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton CancelOrdi;
     private javax.swing.JButton CancelRouteur;
     private javax.swing.JButton CancelTablette;
+    private javax.swing.JButton CancelUpdateOrdi;
     private javax.swing.JTextField CpuOrdi;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
@@ -1115,6 +1240,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton OkOrdi;
     private javax.swing.JButton OkRouteur;
     private javax.swing.JButton OkTablette;
+    private javax.swing.JButton OkUpdateOrdi;
     private javax.swing.JDialog OrdinateurDialog;
     private javax.swing.JTextField PortRouteur;
     private javax.swing.JTextField PowerBorne;
@@ -1126,6 +1252,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
     private javax.swing.JDialog TabletteDialog;
+    private javax.swing.JDialog UpdateDialog;
+    private javax.swing.JTextField UpdateMacOrdi;
+    private javax.swing.JTextField UpdateNomOsOrdi;
+    private javax.swing.JTextField UpdateVersionOsOrdi;
     private javax.swing.JTextField VersionOs;
     private javax.swing.JTextField VersionOsBorne;
     private javax.swing.JTextField VersionOsOrdi;
@@ -1150,6 +1280,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1163,7 +1294,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
