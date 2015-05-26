@@ -197,12 +197,12 @@ public class Bureau extends javax.swing.JFrame {
         Ordinateur ordi9 = new Ordinateur("ordi39", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
         Ordinateur ordi10 = new Ordinateur("ordi410", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
         Ordinateur ordi11 = new Ordinateur("ordi511", "hguehfffdd", "wefer", true, os, "55gggo", "i7", "nvdia", "500go");
-        Tablette tab = new Tablette("nomT", "mac", "app", true, os, "50go", 2);
-        Tablette tab1 = new Tablette("nomT", "mac1", "app", true, os, "50go", 2);
-        Tablette tab2 = new Tablette("nomT", "mac2", "app", true, os, "50go", 2);
-        Tablette tab3 = new Tablette("nomT", "mac3", "app", true, os, "50go", 2);
-        Tablette tab4 = new Tablette("nomT", "mac4", "app", true, os, "50go", 2);
-        Tablette tab5 = new Tablette("nomT", "mac5", "app", true, os, "50go", 2);
+        Tablette tab = new Tablette("nomT", "mac", "app", true, os, "50go", "2");
+        Tablette tab1 = new Tablette("nomT", "mac1", "app", true, os, "50go", "2");
+        Tablette tab2 = new Tablette("nomT", "mac2", "app", true, os, "50go", "2");
+        Tablette tab3 = new Tablette("nomT", "mac3", "app", true, os, "50go", "2");
+        Tablette tab4 = new Tablette("nomT", "mac4", "app", true, os, "50go", "2");
+        Tablette tab5 = new Tablette("nomT", "mac5", "app", true, os, "50go", "2");
         so.connecterTablette(tab, "local1", 2, 0, "FFGG");
         so.connecterTablette(tab1, "local1", 2, 0, "FFGG");
         so.connecterTablette(tab2, "local1", 2, 0, "FFGG");
