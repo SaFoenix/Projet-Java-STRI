@@ -6,6 +6,7 @@
 package fenetrePrincipale;
 import mesClasses.*;
 import fenetreLocal.*;
+import java.awt.Dimension;
 
 /**
  *
@@ -18,8 +19,11 @@ public class FenetreSecondaire extends javax.swing.JFrame{
      */
     public FenetreSecondaire(Local loc) {
         initComponents();
-        setTitle(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");
-        setSize(1020,800);
+        setTitle(loc.getNom() + " " + "[" + loc.getlocalisation()+ "]");       
+        
+    Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    setSize((int)tailleEcran.getWidth(),(int)tailleEcran.getHeight());
+  
         FenetreInterieurLocal f=new FenetreInterieurLocal(loc);
         bureau.add(f);
         

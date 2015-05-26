@@ -23,7 +23,7 @@ public class Tablette extends Equipement {
 	/**
 	 * le modele represente le modele de l'appareil
 	 */
-	private Integer modele;
+	private String modele;
 
 	/**
          * Le constructeur de Tablette
@@ -36,7 +36,7 @@ public class Tablette extends Equipement {
 	 * @param modele le modele de la tablette
 	 */
 	public Tablette(String nom, String mac, String marque,
-			boolean power, Os os, String capacite, Integer modele) {
+			boolean power, Os os, String capacite, String modele) {
 		super(nom, mac, marque, power, os);
 		this.capacite = capacite;
 		this.modele = modele;
@@ -52,7 +52,7 @@ public class Tablette extends Equipement {
 	/**
 	 * @return the modele
 	 */
-	public Integer getModele() {
+	public String getModele() {
 		return modele;
 	}
 
