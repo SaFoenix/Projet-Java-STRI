@@ -6,6 +6,7 @@
 package fenetreLocal;
 
 import java.awt.Dimension;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
@@ -121,9 +122,27 @@ public class TableauEquipement extends javax.swing.JPanel {
         }
         data[i][j] = (equipement.getOs().getNomOs());
         i++;
-        data[i][j] = (equipement.getOs().getVersion());
+        data[i][j] = (equipement.getOs().getVersion());        
     }
 
+     /* private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        Local loc = new Local(LocalName.getText(), LocalLieu.getText());
+        so.ajouterLocal(loc.getNom(), loc.getlocalisation());
+//        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
+        localButton2.setName(loc.getNom());
+        gbc.gridy = positionY;
+        afficheLesLocaux.add(localButton2, gbc);
+        positionY++;
+        localButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                evenementBoutonLocal(so, localButton2.getName());
+            }
+        });
+    */
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

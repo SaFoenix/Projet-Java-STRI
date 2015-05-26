@@ -10,7 +10,6 @@ import java.awt.event.*;
 import mesClasses.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -46,16 +45,17 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         menuAjouterOrdinateur.setEnabled(false);
         menuAjouterTablette.setEnabled(false);
         setTitle(loc.getNom());
-        setSize(1020,800);
+        setSize(1020, 800);
         AfficheListeSalle.setBackground(Color.white);
         AfficheListeSalle.setLayout(new GridBagLayout());
-        
+
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
         afficheInformation = new javax.swing.JInternalFrame();
-        afficheInformation.setSize(600,300);
+        afficheInformation.setSize(600, 300);
         //afficheInformation.setAutoscrolls(true);
+
         afficheInformationEquipementRacine=new javax.swing.JInternalFrame();
         afficheInformationEquipementRacine.setSize(600,300);
         initialisationMenuSalle();
@@ -64,11 +64,10 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         AfficheListeSalle.setBackground(Color.black);
         add(AfficheListeSalle, BorderLayout.WEST);
         add(fenetreRouteur, BorderLayout.NORTH);
-
     }
-    
+
     public void initialisationMenuSalle() {
-        for (final Salle sa : salles) //phase cration bouton salle
+        for (final Salle sa : salles) //phase création bouton salle
         {
             final JButton localButton2 = new JButton("numero " + sa.getNumero() + "| etage: " + sa.getEtage());
             localButton2.setName(loc.getNom());
@@ -120,21 +119,23 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabTablette != null) {
                         afficheInformation.remove(tabTablette);
                     }
-                    if(tabEquipement!=null){
+                    if (tabEquipement != null) {
                         afficheInformationEquipementRacine.remove(tabEquipement);
                     }
                     remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
-                    tabEquipement=new TableauEquipement(rout);
+                    tabEquipement = new TableauEquipement(rout);
                     tabOrdinateur = new TableauOrdinateur(rout);
-                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
+                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.NORTH);
                     afficheInformation.add(tabOrdinateur, BorderLayout.EAST);
                     tabEquipement.setVisible(true);
                     tabOrdinateur.setVisible(true);
                     afficheInformation.setVisible(true);
                     afficheInformationEquipementRacine.setVisible(true);
+                    afficheBoutonUpdateSuppr();
                     add(afficheInformation, BorderLayout.EAST);
                     add(afficheInformationEquipementRacine, BorderLayout.CENTER);
+                     pack();
                 }//fin actionPerf
             }
             );
@@ -147,7 +148,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
             positionX++;
             bouton.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent arg0) {                    
+                public void actionPerformed(ActionEvent arg0) {
                     afficheInformationEquipementRacine.setVisible(false);
                     afficheInformation.setVisible(false);
                     if (tabTablette != null) {
@@ -156,21 +157,24 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                     if (tabOrdinateur != null) {
                         afficheInformation.remove(tabOrdinateur);
                     }
-                    if(tabEquipement!=null){
+                    if (tabEquipement != null) {
                         afficheInformationEquipementRacine.remove(tabEquipement);
                     }
                     remove(afficheInformationEquipementRacine);
                     remove(afficheInformation);
                     tabTablette = new TableauTablette(bo);
-                    tabEquipement=new TableauEquipement(bo);
-                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.WEST);
+                    tabEquipement = new TableauEquipement(bo);
+                    afficheInformationEquipementRacine.add(tabEquipement,BorderLayout.NORTH);
                     afficheInformation.add(tabTablette, BorderLayout.EAST);
                     tabTablette.setVisible(true);
                     tabEquipement.setVisible(true);
                     afficheInformation.setVisible(true);
                     afficheInformationEquipementRacine.setVisible(true);
-                    add(afficheInformation, BorderLayout.EAST);
+                    afficheBoutonUpdateSuppr();
+                    add(afficheInformation, BorderLayout.EAST);          
+
                     add(afficheInformationEquipementRacine, BorderLayout.CENTER);
+                    pack();
                 }//fin actionPerf
             }
             );
@@ -179,12 +183,54 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         setVisible(true);
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+    public void afficheBoutonUpdateSuppr() {
+        javax.swing.JPanel afficheInformationEquipementRacinebis;
+        afficheInformationEquipementRacinebis=new javax.swing.JPanel();
+        afficheInformationEquipementRacinebis.setSize(10,10);        
+        GridBagConstraints gbc1 = new GridBagConstraints();
+        afficheInformationEquipementRacinebis.setLayout(new GridBagLayout());
+        gbc1.insets = new Insets(5, 5, 5, 5);
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
+        JButton updateOrdiButton2 = new JButton("Update");
+        JButton supprOrdiButton2 = new JButton("supprimer");
+        updateOrdiButton2.setVisible(true);
+        
+        afficheInformationEquipementRacinebis.add(updateOrdiButton2,gbc1);
+          updateOrdiButton2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                  updateOrdiButton2ActionPerformed();
+                }//fin actionPerf
+            }
+            );
+         gbc1.gridy++;
+        supprOrdiButton2.setVisible(true);
+           supprOrdiButton2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                  supprOrdiButton2ActionPerformed();
+                }//fin actionPerf
+            }
+            );
+        afficheInformationEquipementRacinebis.add(supprOrdiButton2,gbc1);
+        afficheInformationEquipementRacinebis.setVisible(true);
+        afficheInformationEquipementRacine.add(afficheInformationEquipementRacinebis,BorderLayout.CENTER);
+    }
+
+    private void updateOrdiButton2ActionPerformed() {
+        UpdateDialog.setVisible(true);
+    }
+
+    private void supprOrdiButton2ActionPerformed() {
+        SupprDialog.setVisible(true);
+    }    
+/**
+ * This method is called from within the constructor to initialize the form.
+ * WARNING: Do NOT modify this code. The content of this method is always
+ * regenerated by the Form Editor.
+ */
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -274,6 +320,29 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         jTextField16 = new javax.swing.JTextField();
         OkTablette = new javax.swing.JButton();
         CancelTablette = new javax.swing.JButton();
+        UpdateDialog = new javax.swing.JDialog();
+        OkUpdateOrdi = new javax.swing.JButton();
+        CancelUpdateOrdi = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        UpdateMacOrdi = new javax.swing.JTextField();
+        UpdateNomOsOrdi = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        UpdateVersionOsOrdi = new javax.swing.JTextField();
+        jLabel42 = new javax.swing.JLabel();
+        SupprDialog = new javax.swing.JDialog();
+        OkSuppr = new javax.swing.JButton();
+        CancelSuppr = new javax.swing.JButton();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        SupprMac = new javax.swing.JTextField();
+        SureteDialog = new javax.swing.JDialog();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        MacSurete = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         AfficheListeSalle = new javax.swing.JPanel();
         fenetreRouteur = new javax.swing.JPanel();
         barMenu = new javax.swing.JMenuBar();
@@ -828,6 +897,203 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
+        UpdateDialog.setMinimumSize(new java.awt.Dimension(450, 300));
+
+        OkUpdateOrdi.setBackground(new java.awt.Color(0, 255, 0));
+        OkUpdateOrdi.setText("Valider");
+        OkUpdateOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkUpdateOrdiActionPerformed(evt);
+            }
+        });
+
+        CancelUpdateOrdi.setBackground(new java.awt.Color(255, 0, 0));
+        CancelUpdateOrdi.setText("Annuler");
+        CancelUpdateOrdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelUpdateOrdiActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Update");
+
+        jLabel39.setText("MAC*");
+
+        jLabel40.setText("Nom OS");
+
+        UpdateMacOrdi.setToolTipText("test");
+
+        jLabel41.setText("Version OS");
+
+        jLabel42.setText("*La MAC doit exister");
+
+        javax.swing.GroupLayout UpdateDialogLayout = new javax.swing.GroupLayout(UpdateDialog.getContentPane());
+        UpdateDialog.getContentPane().setLayout(UpdateDialogLayout);
+        UpdateDialogLayout.setHorizontalGroup(
+            UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UpdateDialogLayout.createSequentialGroup()
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(OkUpdateOrdi)
+                        .addGap(39, 39, 39)
+                        .addComponent(CancelUpdateOrdi))
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel26))
+                    .addGroup(UpdateDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39))
+                        .addGap(18, 18, 18)
+                        .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42)
+                            .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(UpdateMacOrdi, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                .addComponent(UpdateNomOsOrdi)
+                                .addComponent(UpdateVersionOsOrdi)))))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        UpdateDialogLayout.setVerticalGroup(
+            UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateDialogLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel26)
+                .addGap(18, 18, 18)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(UpdateMacOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(UpdateNomOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(UpdateVersionOsOrdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(UpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OkUpdateOrdi)
+                    .addComponent(CancelUpdateOrdi))
+                .addContainerGap())
+        );
+
+        SupprDialog.setMinimumSize(new java.awt.Dimension(450, 300));
+
+        OkSuppr.setBackground(new java.awt.Color(0, 255, 0));
+        OkSuppr.setText("Valider");
+        OkSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkSupprActionPerformed(evt);
+            }
+        });
+
+        CancelSuppr.setBackground(new java.awt.Color(255, 0, 0));
+        CancelSuppr.setText("Cancel");
+        CancelSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelSupprActionPerformed(evt);
+            }
+        });
+
+        jLabel43.setText("Suppression");
+
+        jLabel44.setText("MAC");
+
+        javax.swing.GroupLayout SupprDialogLayout = new javax.swing.GroupLayout(SupprDialog.getContentPane());
+        SupprDialog.getContentPane().setLayout(SupprDialogLayout);
+        SupprDialogLayout.setHorizontalGroup(
+            SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SupprDialogLayout.createSequentialGroup()
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel44)
+                        .addGap(18, 18, 18)
+                        .addComponent(SupprMac, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel43))
+                    .addGroup(SupprDialogLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(OkSuppr)
+                        .addGap(46, 46, 46)
+                        .addComponent(CancelSuppr)))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        SupprDialogLayout.setVerticalGroup(
+            SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SupprDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43)
+                .addGap(53, 53, 53)
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(SupprMac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(SupprDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelSuppr)
+                    .addComponent(OkSuppr))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+
+        jLabel45.setText("Êtes-vous sür de vouloir supprimer cet équipement?");
+
+        jLabel46.setText("MAC");
+
+        MacSurete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MacSureteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 255, 0));
+        jButton1.setText("Valider");
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setText("Annuler");
+
+        javax.swing.GroupLayout SureteDialogLayout = new javax.swing.GroupLayout(SureteDialog.getContentPane());
+        SureteDialog.getContentPane().setLayout(SureteDialogLayout);
+        SureteDialogLayout.setHorizontalGroup(
+            SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SureteDialogLayout.createSequentialGroup()
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SureteDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel45)
+                            .addGroup(SureteDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel46)
+                                .addGap(18, 18, 18)
+                                .addComponent(MacSurete, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(SureteDialogLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jButton1)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        SureteDialogLayout.setVerticalGroup(
+            SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SureteDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel45)
+                .addGap(27, 27, 27)
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(MacSurete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addGroup(SureteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(143, Short.MAX_VALUE))
+        );
+
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -913,9 +1179,8 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSalleActionPerformed
 
-
     private void SalleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalleOkActionPerformed
-       // if(NumeroSalle.getText()!=null && EtageSalle.getText() !=null && NombreOrdinateurSalle.getText()!=null){
+        if(NumeroSalle.getText()!="" && EtageSalle.getText() !="" && NombreOrdinateurSalle.getText()!=""){
         final Salle sa = new Salle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         loc.ajouterSalle(Integer.parseInt(NumeroSalle.getText()), Integer.parseInt(EtageSalle.getText()), Integer.parseInt(NombreOrdinateurSalle.getText()));
         bdd.AjoutSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
@@ -926,11 +1191,11 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         positionY++;
         localButton2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
+        public void actionPerformed(ActionEvent arg0) {
                 actionMiseEnPlaceBouton(sa);
             }//fin action
         });
-       // }
+        }
         NumeroSalle.setText("");
         EtageSalle.setText("");
         NombreOrdinateurSalle.setText("");
@@ -969,7 +1234,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_menuAjouterTabletteActionPerformed
 
     private void OkRouteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkRouteurActionPerformed
-        //if(NomRouteur.getText()!=null && MacRouteur.getText()!=null && MarqueRouteur.getText()!=null && PowerRouteur.getText()!=null && PortRouteur.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
+        if(NomRouteur.getText()!="" && MacRouteur.getText()!="" && MarqueRouteur.getText()!="" && PowerRouteur.getText()!="" && PortRouteur.getText()!="" && NomOs.getText()!="" &&VersionOs.getText()!=""){
         Os osRouteur=new Os(NomOs.getText(), VersionOs.getText());
         final Routeur ro = new Routeur(NomRouteur.getText(), MacRouteur.getText(), MarqueRouteur.getText(), PowerRouteur.getText().equalsIgnoreCase("on"), osRouteur, Integer.parseInt(PortRouteur.getText()));
         salleTemp.ajouterRouteur(ro);
@@ -977,7 +1242,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         bdd.AjoutRouteur(salleTemp.getNumero(), ro.getNom(),ro.getMac(),ro.getMarque(),osRouteur.getNomOs(),osRouteur.getVersion(),ro.isPower(),ro.getNombrePorts());
 
         actionMiseEnPlaceBouton(salleTemp);
-    //}
+       }
         NomRouteur.setText("");
         MacRouteur.setText("");
         NomOs.setText("");
@@ -992,12 +1257,12 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_OkRouteurActionPerformed
 
     private void OkBorneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkBorneActionPerformed
-       // if(NomBorne.getText()!=null && MacBorne.getText()!=null && MarqueBorne.getText()!=null && PowerBorne.getText()!=null && NomOs.getText()!=null &&VersionOs.getText()!=null){
+        if(NomBorne.getText()!="" && MacBorne.getText()!="" && MarqueBorne.getText()!="" && PowerBorne.getText()!="" && NomOs.getText()!="" &&VersionOs.getText()!=""){
         Os osBorne=new Os(NomOs.getText(), VersionOs.getText());
         final BorneSansFil bo = new BorneSansFil(NomBorne.getText(), MacBorne.getText(), MarqueBorne.getText(), PowerBorne.getText().equalsIgnoreCase("on"), osBorne);
         salleTemp.ajouterBorneSansFil(bo);
         actionMiseEnPlaceBouton(salleTemp);
-       // }
+        }
         NomBorne.setText("");
         MacBorne.setText("");
         MarqueBorne.setText("");
@@ -1075,6 +1340,43 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
     }//GEN-LAST:event_CancelOrdiActionPerformed
 
+    private void OkUpdateOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkUpdateOrdiActionPerformed
+        
+        salleTemp.miseAJour(UpdateMacOrdi.getText(), new Os(UpdateNomOsOrdi.getText(), UpdateVersionOsOrdi.getText()));
+        UpdateMacOrdi.setText("");
+        UpdateNomOsOrdi.setText("");
+        UpdateVersionOsOrdi.setText("");
+        UpdateDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OkUpdateOrdiActionPerformed
+
+    private void CancelUpdateOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelUpdateOrdiActionPerformed
+        UpdateMacOrdi.setText("");
+        UpdateNomOsOrdi.setText("");
+        UpdateVersionOsOrdi.setText("");
+        UpdateDialog.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelUpdateOrdiActionPerformed
+
+    private void OkSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkSupprActionPerformed
+        MacSurete.setText(SupprMac.getText());
+        SupprMac.setText("");
+        SupprDialog.setVisible(false);
+        SureteDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OkSupprActionPerformed
+
+    private void CancelSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelSupprActionPerformed
+        SupprMac.setText("");
+        SupprDialog.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelSupprActionPerformed
+
+    private void MacSureteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacSureteActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_MacSureteActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AfficheListeSalle;
@@ -1082,7 +1384,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton CancelBorne;
     private javax.swing.JButton CancelOrdi;
     private javax.swing.JButton CancelRouteur;
+    private javax.swing.JButton CancelSuppr;
     private javax.swing.JButton CancelTablette;
+    private javax.swing.JButton CancelUpdateOrdi;
     private javax.swing.JTextField CpuOrdi;
     private javax.swing.JLabel CreationSalle;
     private javax.swing.JTextField EtageSalle;
@@ -1091,6 +1395,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField MacBorne;
     private javax.swing.JTextField MacOrdi;
     private javax.swing.JTextField MacRouteur;
+    private javax.swing.JTextField MacSurete;
     private javax.swing.JTextField MarqueBorne;
     private javax.swing.JTextField MarqueOrdi;
     private javax.swing.JTextField MarqueRouteur;
@@ -1106,7 +1411,9 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton OkBorne;
     private javax.swing.JButton OkOrdi;
     private javax.swing.JButton OkRouteur;
+    private javax.swing.JButton OkSuppr;
     private javax.swing.JButton OkTablette;
+    private javax.swing.JButton OkUpdateOrdi;
     private javax.swing.JDialog OrdinateurDialog;
     private javax.swing.JTextField PortRouteur;
     private javax.swing.JTextField PowerBorne;
@@ -1117,13 +1424,22 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JButton SalleCancel;
     private javax.swing.JDialog SalleDialog;
     private javax.swing.JButton SalleOk;
+    private javax.swing.JDialog SupprDialog;
+    private javax.swing.JTextField SupprMac;
+    private javax.swing.JDialog SureteDialog;
     private javax.swing.JDialog TabletteDialog;
+    private javax.swing.JDialog UpdateDialog;
+    private javax.swing.JTextField UpdateMacOrdi;
+    private javax.swing.JTextField UpdateNomOsOrdi;
+    private javax.swing.JTextField UpdateVersionOsOrdi;
     private javax.swing.JTextField VersionOs;
     private javax.swing.JTextField VersionOsBorne;
     private javax.swing.JTextField VersionOsOrdi;
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JMenu barMenuAjouter;
     private javax.swing.JPanel fenetreRouteur;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1142,6 +1458,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1155,7 +1472,15 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
