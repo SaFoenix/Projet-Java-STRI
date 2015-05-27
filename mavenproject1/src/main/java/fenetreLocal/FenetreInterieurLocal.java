@@ -1350,6 +1350,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
         UpdateNomOsOrdi.setText("");
         UpdateVersionOsOrdi.setText("");
         UpdateDialog.setVisible(false);
+        actionMiseEnPlaceBouton(salleTemp);
         // TODO add your handling code here:
     }//GEN-LAST:event_OkUpdateOrdiActionPerformed
 
