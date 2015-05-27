@@ -96,6 +96,7 @@ public class Salle {
     }
 
     public String toString() {
+
         String str = "Salle [Numero:" + numero + " Salle : " + etage + "]\n";
         str += "\tnombreOrdinateur: " + nombreOrdinateur + "\n";
         str += "[Routeur]\n";

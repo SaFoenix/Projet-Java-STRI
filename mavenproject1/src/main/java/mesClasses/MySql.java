@@ -275,7 +275,7 @@ try {
             st.executeUpdate(sql3);
             
             verificationOs=VerifierOs(os,versionOs);
-        resultat5 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
+            resultat5 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
             while ( resultat5.next() ) {
             idMaxOs = resultat5.getInt("max(IdOs)");
             idMaxOs+=1;
@@ -467,6 +467,8 @@ try {
         
         try {
             st=connexion.createStatement();
+             
+            
             query = st.executeQuery( "SELECT  IdSalle FROM Salle WHERE numero='"+numero+"';" );
             while(query.next()){
             IdSalle = query.getInt( "IdSalle" );
@@ -490,8 +492,101 @@ try {
         }
     return routeur;
     }
+    
+    public ArrayList<BorneSansFil> RecupererBorne(int numero){
         
-    public boolean VerifierOs(String nom, String version){
+        /*Information Equipement + Os*/
+        ResultSet resultat;
+        ResultSet query;
+        Statement st;
+        String NomEquipement;
+        String Mac;
+        String Marque;
+        boolean Power;
+        String NomOs;
+        String Version;
+        
+        //Information routeur : 
+
+        ArrayList<BorneSansFil> borne;
+        borne = new ArrayList<>();
+        int IdSalle=0;
+        Os os;
+        
+        try {
+            st=connexion.createStatement();
+             
+            query = st.executeQuery( "SELECT  IdSalle FROM Salle WHERE numero='"+numero+"';" );
+            while(query.next()){
+            IdSalle = query.getInt( "IdSalle" );
+            }
+            
+            
+        resultat=st.executeQuery("SELECT * FROM Equipement e , Borne b , Os os WHERE e.power=1 AND e.IdEquipement=b.IdBorne AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+") ");
+           while ( resultat.next() ) {
+            NomEquipement=resultat.getString("Nom");
+            Mac=resultat.getString("MAC");
+            Marque=resultat.getString("Marque");
+            Power=resultat.getBoolean("Power");
+            NomOs=resultat.getString("NomOs");
+            Version=resultat.getString("Version");
+            os = new Os (NomOs,Version);
+            borne.add(new BorneSansFil(NomEquipement,Mac,Marque,Power,os));
+           }
+        } catch (SQLException e) {
+                    System.out.println( "Erreur Recuperation Ordinateur !" );
+        }
+    return borne;
+    }
+        
+    public ArrayList<Tablette> RecupererTablette(int numero){
+        /*Information Equipement + Os*/
+        ResultSet resultat;
+        ResultSet query;
+        Statement st;
+        String NomEquipement;
+        String Mac;
+        String Marque;
+        boolean Power;
+        String NomOs;
+        String Version;
+        
+        /*Information ordinateur*/
+        String Capacite;
+        String Modele;
+        
+        ArrayList<Tablette> tablette;
+        tablette = new ArrayList<>();
+        Os os;
+        
+        int IdSalle=0;
+        
+        try {
+            st=connexion.createStatement();
+            query = st.executeQuery( "SELECT  IdSalle FROM Salle WHERE numero='"+numero+"';" );
+            while(query.next()){
+            IdSalle = query.getInt( "IdSalle" );
+            }
+            resultat = st.executeQuery( "SELECT * FROM tablette t, Equipement e, OS os  WHERE e.IdEquipement = t.IdTablette AND os.IdOs IN (SELECT IdOs FROM estinstaller WHERE e.IdEquipement = IdEquipement) AND e.IdEquipement IN (SELECT IdEquipement FROM contenirEquipement WHERE IdSalle="+IdSalle+") AND t.IdTablette IN (SELECT IdTablette FROM connecterborne)" );
+        while ( resultat.next() ) {
+            NomEquipement=resultat.getString("Nom");
+            Mac=resultat.getString("MAC");
+            Marque=resultat.getString("Marque");
+            Power=resultat.getBoolean("Power");
+            Capacite=resultat.getString("Capacite");
+            Modele=resultat.getString("Modele");
+            NomOs=resultat.getString("NomOs");
+            Version=resultat.getString("Version");
+            os = new Os (NomOs,Version);
+            tablette.add(new Tablette (NomEquipement,Mac,Marque,Power,os,Modele, Capacite));
+            }
+   } catch (SQLException e) {
+                    System.out.println( "Erreur Recuperation Ordinateur !" );
+        }
+        return tablette;     
+}
+    
+   public boolean VerifierOs(String nom, String version){
     ResultSet verif= null;
     Statement st;
     
@@ -519,7 +614,7 @@ try {
     return false;
     }
     
-    public boolean VerifierEquipement(String mac){
+   public boolean VerifierEquipement(String mac){
     ResultSet verif= null;
     Statement st;
     int equipementok =0 ; 
@@ -547,7 +642,7 @@ try {
     return false;
     }
         
-    public void ModifierNom(String nom, String mac){
+   public void ModifierNom(String nom, String mac){
         
         ResultSet resultat;
         Statement st;
@@ -560,68 +655,286 @@ try {
         }
     }
     
-    public void ModifierGpu(String gpu, String mac){
+   public void ModifierGpu(String gpu, String mac){
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur = 0 ;
+        try{
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            String sql=("UPDATE ordinateur SET gpu = '"+gpu+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
+            st.executeUpdate(sql); 
+            
+        }catch (SQLException e){
+            System.out.println("VerifierOrdinateur!");
+        }
+    }
+    
+   public void ModifierCpu(String cpu, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        int IdOrdinateur=0;
         try{
             st=connexion.createStatement();
-            String sql=("UPDATE equipement SET gpu = '"+gpu+"' WHERE Mac='"+mac+"'");
+            
+            resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET cpu = '"+cpu+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
     }
     
-    public void ModifierCpu(String cpu, String mac){
+   public void ModifierEtat(boolean etat, String mac){
         
         ResultSet resultat;
         Statement st;
         try{
             st=connexion.createStatement();
-            String sql=("UPDATE equipement SET cpu = '"+cpu+"' WHERE Mac='"+mac+"'");
+            String sql=("UPDATE equipement SET Power = "+etat+" WHERE MAC='"+mac+"'");
+            System.out.println(sql);
             st.executeUpdate(sql); 
+        }catch (SQLException e){
+            System.out.println("Erreur modif Power");
+        }
+    }
+    
+   public void ModifierRam(String ram, String mac){
+        
+        ResultSet resultat;
+        Statement st;
+        int IdOrdinateur = 0 ;
+        try{
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET RAM = '"+ram+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
+            st.executeUpdate(sql); 
+            
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
     }
     
-    public void ModifierEtat(boolean etat, String mac){
+   public void ModifierHdd(String Hdd, String mac){
         
         ResultSet resultat;
         Statement st;
+        int IdOrdinateur = 0 ;
         try{
-            st=connexion.createStatement();
-            String sql=("UPDATE equipement SET power = '"+etat+"' WHERE Mac='"+mac+"'");
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdOrdinateur FROM ordinateur , equipement WHERE MAC = '"+mac+"' ");
+            
+            while(resultat.next())
+            {
+                IdOrdinateur = resultat.getInt("IdOrdinateur");
+            }
+            
+            String sql=("UPDATE ordinateur SET HDD = '"+Hdd+"' WHERE IdOrdinateur='"+IdOrdinateur+"'");
             st.executeUpdate(sql); 
         }catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
     }
-    
-    public void ModifierRam(String ram, String mac){
+   
+   public void ModifierOs(String os, String versionOs ,String mac){
         
         ResultSet resultat;
+        ResultSet resultat5;
+        ResultSet resultat6;
         Statement st;
-        try{
-            st=connexion.createStatement();
-            String sql=("UPDATE equipement SET Nom = '"+ram+"' WHERE Mac='"+mac+"'");
-            st.executeUpdate(sql); 
-        }catch (SQLException e){
+        int idMaxOs=0;
+        int idOs=0;
+        int idMax=0;
+        int IdEquipement = 0;
+        boolean verificationOs;
+        try
+        {
+             st=connexion.createStatement();
+             resultat=st.executeQuery("SELECT IdEquipement FROM equipement WHERE MAC = '"+mac+"' ");
+            while(resultat.next())
+            {
+                IdEquipement = resultat.getInt("IdEquipement");
+            }
+                        
+            verificationOs=VerifierOs(os,versionOs);
+            resultat5 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
+            while ( resultat5.next() ) {
+            idMaxOs = resultat5.getInt("max(IdOs)");
+            idMaxOs+=1;
+            }
+        if(verificationOs!=true){
+        resultat6=st.executeQuery("SELECT IdOs FROM os WHERE NomOs='"+os+"'AND Version='"+versionOs+"'");
+            while(resultat6.next()){
+               idOs = resultat6.getInt("IdOs");
+           }    
+        String sql4 = "UPDATE estinstaller SET IdOs="+idOs+" WHERE IdEquipement = "+IdEquipement+"";
+            st.executeUpdate(sql4);
+       }else{
+        String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
+            st.executeUpdate(sql5);
+        String sql6 = "UPDATE estinstaller SET IdOs="+idMaxOs+" WHERE IdEquipement="+IdEquipement+"";
+            st.executeUpdate(sql6); 
+        }
+        }
+        catch (SQLException e){
             System.out.println("VerifierOrdinateur!");
         }
-    }
-    
-    public void ModifierHdd(String Hdd, String mac){
-        
-        ResultSet resultat;
+     
+   }
+   
+   public void AjoutBorne(int numeroSalle, String nom , String mac , String marque, String os , String versionOs, boolean power){
+        ResultSet resultat1;
+        ResultSet resultat2;
+        ResultSet resultat3;
+        ResultSet resultat4;
         Statement st;
-        try{
+        int idSalle=0;
+        int idMax=0;
+        int idMaxOs = 0 ; 
+        int idOs = 0 ; 
+        boolean verificationE;
+        boolean verificationOs;
+        try {
             st=connexion.createStatement();
-            String sql=("UPDATE equipement SET Nom = '"+Hdd+"' WHERE Mac='"+mac+"'");
-            st.executeUpdate(sql); 
-        }catch (SQLException e){
-            System.out.println("VerifierOrdinateur!");
+            verificationE=VerifierEquipement(mac);
+            if(verificationE!=true){
+                System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
+            }else{
+            resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat1.next() ) {
+            idMax = resultat1.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+            
+        String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+            
+        String sqlBorne="INSERT INTO borne VALUES ("+idMax+")";
+            st.executeUpdate(sqlBorne);
+            
+        resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat2.next()){
+            idSalle=resultat2.getInt("IdSalle");
+            }
+        String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
+            st.executeUpdate(sql2);   
+            
+        verificationOs=VerifierOs(os,versionOs);
+        resultat3 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
+            while ( resultat3.next() ) {
+            idMaxOs = resultat3.getInt("max(IdOs)");
+            idMaxOs+=1;
+            }
+        if(verificationOs!=true){
+            resultat4=st.executeQuery("SELECT IdOs FROM os WHERE NomOs='"+os+"'AND Version='"+versionOs+"'");
+            while(resultat4.next()){
+               idOs = resultat4.getInt("IdOs");
+           }    
+            String sql3 = "INSERT INTO estinstaller VALUES ("+idMax+","+idOs+")";
+            st.executeUpdate(sql3);
+       }else{
+           String sql4 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
+            st.executeUpdate(sql4);
+            String sql5 = "INSERT INTO estinstaller VALUES ("+idMax+","+idMaxOs+")";
+            st.executeUpdate(sql5);
+       }
+       }
+}catch (SQLException e) {
+            System.out.println("Erreur Ajout Routeur");
+        }
+        
+    }
+   
+   public void AjoutTablette(int numeroSalle , String nom , String mac , String marque,String os , String versionOs , boolean power, String modele,String capacite ){
+        ResultSet resultat1;
+        ResultSet resultat2;
+        ResultSet resultat3;
+        
+        ResultSet resultat5;
+        ResultSet resultat6;
+        
+        Statement st;
+        int idSalle=0;
+        int idMax=0;
+        int idMaxOs=0;
+        int idBorne=0;
+       
+        int idOs=0;
+        boolean verification;
+        boolean verificationOs;
+        try {
+            st=connexion.createStatement();
+            verification=VerifierEquipement(mac);
+            if(verification!=true){
+                System.out.println("Erreur, l'addresse MAC : "+mac+" existe deja");
+            }else{
+        resultat1 = st.executeQuery( "SELECT  max(idEquipement)  FROM Equipement;" );
+            while ( resultat1.next() ) {
+            idMax = resultat1.getInt("max(idEquipement)");
+            idMax+=1;
+            }
+        String sql="INSERT INTO equipement VALUES ("+idMax+",'"+nom+"','"+mac+"','"+marque+"',"+power+");";
+            st.executeUpdate(sql);
+            
+        String sqlTablette="INSERT INTO tablette VALUES ("+idMax+",'"+modele+"','"+capacite+"')";
+            st.executeUpdate(sqlTablette);
+            
+        resultat2 = st.executeQuery( "SELECT IdSalle FROM Salle WHERE numero="+numeroSalle+"" );
+            while (resultat2.next()){
+            idSalle=resultat2.getInt("IdSalle");
+            }
+            String sql2 ="INSERT INTO Contenirequipement VALUES ("+idSalle+","+idMax+")";
+            st.executeUpdate(sql2);
+            
+        resultat3 = st.executeQuery( "SELECT IdBorne FROM borne  WHERE IdBorne IN (SELECT IdEquipement FROM contenirequipement WHERE IdSalle="+idSalle+" )  " );    
+        while (resultat3.next()){
+            idBorne=resultat3.getInt("IdBorne");
+            }
+            String sql3 ="INSERT INTO connecterborne VALUES ("+idBorne+","+idMax+")";
+            st.executeUpdate(sql3);
+            
+            verificationOs=VerifierOs(os,versionOs);
+        resultat5 = st.executeQuery( "SELECT  max(IdOs)  FROM os;" );
+            while ( resultat5.next() ) {
+            idMaxOs = resultat5.getInt("max(IdOs)");
+            idMaxOs+=1;
+            }
+        if(verificationOs!=true){
+        resultat6=st.executeQuery("SELECT IdOs FROM os WHERE NomOs='"+os+"'AND Version='"+versionOs+"'");
+            while(resultat6.next()){
+               idOs = resultat6.getInt("IdOs");
+           }    
+        String sql4 = "INSERT INTO estinstaller VALUES ("+idMax+","+idOs+")";
+            st.executeUpdate(sql4);
+       }else{
+        String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
+            st.executeUpdate(sql5);
+        String sql6 = "INSERT INTO estinstaller VALUES ("+idMax+","+idMaxOs+")";
+            st.executeUpdate(sql6);
+       }
+        }
+        } 
+        catch (SQLException e) {
+            System.out.println("Erreur Ajout ordinateur");
         }
     }
 }
