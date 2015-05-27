@@ -1390,6 +1390,7 @@ public class FenetreInterieurLocal extends javax.swing.JInternalFrame {
     private void OkUpdateOrdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkUpdateOrdiActionPerformed
 
         salleTemp.miseAJour(UpdateMacOrdi.getText(), new Os(UpdateNomOsOrdi.getText(), UpdateVersionOsOrdi.getText()));
+        bdd.ModifierOs(UpdateNomOsOrdi.getText(), UpdateVersionOsOrdi.getText(), UpdateMacOrdi.getText());
         UpdateMacOrdi.setText("");
         UpdateNomOsOrdi.setText("");
         UpdateVersionOsOrdi.setText("");

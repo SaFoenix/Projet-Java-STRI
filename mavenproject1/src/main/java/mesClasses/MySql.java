@@ -578,7 +578,7 @@ try {
             NomOs=resultat.getString("NomOs");
             Version=resultat.getString("Version");
             os = new Os (NomOs,Version);
-            //tablette.add(new Tablette (NomEquipement,Mac,Marque,Power,os,Modele, Capacite));
+            tablette.add(new Tablette (NomEquipement,Mac,Marque,Power,os,Modele, Capacite));
             }
    } catch (SQLException e) {
                     System.out.println( "Erreur Recuperation Ordinateur !" );
@@ -791,7 +791,7 @@ try {
        }else{
         String sql5 = "INSERT INTO os VALUES ("+idMaxOs+",'"+os+"','"+versionOs+"')";
             st.executeUpdate(sql5);
-        String sql6 = "INSERT INTO estinstaller VALUES ("+IdEquipement+","+idMaxOs+")";
+        String sql6 = "UPDATE estinstaller SET IdOs="+idMaxOs+" WHERE IdEquipement="+IdEquipement+"";
             st.executeUpdate(sql6); 
         }
         }

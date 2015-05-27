@@ -131,130 +131,75 @@ public class Bureau extends javax.swing.JFrame {
                         .addContainerGap(21, Short.MAX_VALUE))
         );
 
-
-        
         bdd = new MySql();
         bdd.Connexion();
         so = bdd.RecupererSociete("STRI");
         locaux = bdd.RecupererLocal(so.getNom());
-        for(Local loc:locaux){
-            so.ajouterLocal(loc.getNom(),loc.getlocalisation());
+        for (Local loc : locaux) {
+            so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         }
         for (Local loc : locaux) {
             ArrayList<Salle> salles;
             salles = bdd.RecupererSalle(loc.getNom());
             for (Salle sa : salles) {
-                so.ajouterSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
-                System.out.println("etage="+sa.getEtage()+" ooooo numro= "+sa.getNumero());
+                so.ajouterSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+
                 ArrayList<Routeur> routeurs;
                 routeurs = bdd.RecupererRouteur(sa.getNumero());
                 for (Routeur ro : routeurs) {
-                    System.out.println("ooooo numro= "+sa.getNumero());
-                    so.ajouterRouteurSalle(ro,sa.getEtage(),sa.getNumero() , loc.getNom());
+
+                    so.ajouterRouteurSalle(ro, sa.getEtage(), sa.getNumero(), loc.getNom());
                     ArrayList<Ordinateur> ordinateurs;
                     ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
                     for (Ordinateur ordi : ordinateurs) {
-                       so.connecterOrdinateur(ordi, sa.getEtage(), sa.getNumero(), ro.getMac(), loc.getNom());
+                        so.connecterOrdinateur(ordi, sa.getEtage(), sa.getNumero(), ro.getMac(), loc.getNom());
                     }
                 }
+                ArrayList<BorneSansFil> bornes = bdd.RecupererBorne(sa.getNumero());
+                for (BorneSansFil botemp : bornes) {
+                    so.ajouterBorneSansFil(botemp, loc.getNom(), sa.getEtage(), sa.getNumero());
+                    ArrayList<Tablette> tablettes;
+                    tablettes = bdd.RecupererTablette(sa.getNumero());
+                    for (Tablette tab : tablettes) {
+                        so.connecterTablette(tab, loc.getNom(), sa.getEtage(), sa.getNumero(), botemp.getMac());
+                    }
+                }
+
             }
 
+            locaux = so.getLocaux();
+
+            /*init fenetre principale */
+            setTitle("Societe " + so.getNom());
+            setSize(960, 960);
+            setVisible(true);
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setResizable(false);
+            /*init bar menu*/
+            JMenuBar menuBar = new JMenuBar();
+            setJMenuBar(menuBar);
+            JMenu ajouter = new JMenu("Ajouter");
+            menuBar.add(ajouter);
+            JMenuItem ajouterLocal = new JMenuItem("ajouter Local");
+            ajouter.add(ajouterLocal);
+            ajouterLocal.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    LocalDialogActionPerformed(evt);
+                }
+            });
+
+            /*init menu local*/
+            afficheLesLocaux = new JPanel();
+            afficheLesLocaux.setBackground(Color.black);
+            afficheLesLocaux.setLayout(new GridBagLayout());
+            gbc.insets = new Insets(5, 5, 5, 5);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            initialiseInterface();
+            add(afficheLesLocaux, BorderLayout.PAGE_START);
         }
-
-        System.out.println(so);
-        
-        /*DEBUT test*//*
-
-    
-        /*DEBUT test*/
-            /*
-        so = new Societe("Stri", "Toulouse");
-        so.ajouterLocal("local1", "bordeaux");
-
-        so.ajouterLocal("local2", "bordeaux");
-        so.ajouterLocal("local3", "bordeaux");
-        so.ajouterLocal("local4", "bordeaux");
-        so.ajouterSalle("local1", 0, 1, 1);
-        so.ajouterSalle("local1", 0, 2, 2);
-        Os os = new Os("Widows", ".1");
-
-        Routeur rout = new Routeur("routeur", "fff", "marqueRouter", true, os, 10);
-        Routeur rout1 = new Routeur("routeur", "fffddd", "marqueRouter", true, os, 10);
-        BorneSansFil bo = new BorneSansFil("bornes", "FFGG", "apple", true, os);
-        so.ajouterRouteurSalle(rout, 2, 0, "local1");
-        so.ajouterRouteurSalle(rout1, 1, 0, "local1");
-        so.ajouterBorneSansFil(bo, "local1", 2, 0);
-
-        Ordinateur ordi = new Ordinateur("ordi", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi1 = new Ordinateur("ordi1", "hguehf", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi2 = new Ordinateur("ordi2", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi3 = new Ordinateur("ordi3", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi4 = new Ordinateur("ordi4", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi5 = new Ordinateur("ordi5", "hguehfffdd", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi6 = new Ordinateur("ordi6", "hgueh", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi7 = new Ordinateur("ordi17", "hguehf", "wefer", true, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi8 = new Ordinateur("ordi28", "hguehff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi9 = new Ordinateur("ordi39", "hguehfff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi10 = new Ordinateur("ordi410", "hguehfffff", "wefer", false, os, "55go", "i7", "nvdia", "500go");
-        Ordinateur ordi11 = new Ordinateur("ordi511", "hguehfffdd", "wefer", true, os, "55gggo", "i7", "nvdia", "500go");
-        Tablette tab = new Tablette("nomT", "mac", "app", true, os, "50go", "2");
-        Tablette tab1 = new Tablette("nomT", "mac1", "app", true, os, "50go", "2");
-        Tablette tab2 = new Tablette("nomT", "mac2", "app", true, os, "50go", "2");
-        Tablette tab3 = new Tablette("nomT", "mac3", "app", true, os, "50go", "2");
-        Tablette tab4 = new Tablette("nomT", "mac4", "app", true, os, "50go", "2");
-        Tablette tab5 = new Tablette("nomT", "mac5", "app", true, os, "50go", "2");
-        so.connecterTablette(tab, "local1", 2, 0, "FFGG");
-        so.connecterTablette(tab1, "local1", 2, 0, "FFGG");
-        so.connecterTablette(tab2, "local1", 2, 0, "FFGG");
-        so.connecterTablette(tab3, "local1", 2, 0, "FFGG");
-        so.connecterTablette(tab4, "local1", 2, 0, "FFGG");
-        so.connecterTablette(tab5, "local1", 2, 0, "FFGG");
-        so.connecterOrdinateur(ordi, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi1, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi2, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi3, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi4, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi5, 2, 0, "fff", "local1");
-        so.connecterOrdinateur(ordi6, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi7, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi8, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi9, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi10, 1, 0, "fffddd", "local1");
-        so.connecterOrdinateur(ordi11, 1, 0, "fffddd", "local1");*/
-        
-        /*FIN TEST*/
-        
-        locaux = so.getLocaux();
-
-        /*init fenetre principale */
-        setTitle("Societe " + so.getNom());
-        setSize(960, 960);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        /*init bar menu*/
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
-        JMenu ajouter = new JMenu("Ajouter");
-        menuBar.add(ajouter);
-        JMenuItem ajouterLocal = new JMenuItem("ajouter Local");
-        ajouter.add(ajouterLocal);
-        ajouterLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocalDialogActionPerformed(evt);
-            }
-        });
-
-        /*init menu local*/
-        afficheLesLocaux = new JPanel();
-        afficheLesLocaux.setBackground(Color.black);
-        afficheLesLocaux.setLayout(new GridBagLayout());
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        initialiseInterface();
-        add(afficheLesLocaux, BorderLayout.PAGE_START);
     }
+    
 
     public void initialiseInterface() {
         for (Local loc : locaux) {
@@ -276,7 +221,7 @@ public class Bureau extends javax.swing.JFrame {
         Local loc = so.rechercherLocal(locNom);
         FenetreSecondaire f = new FenetreSecondaire(loc);
         f.setVisible(true);
-                    //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
+        //setTitle(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
         // setSize(1360, 760);
                    /* FenetreInterieurLocal f = new FenetreInterieurLocal(loc);
          JDesktopPane bureau = new javax.swing.JDesktopPane();
@@ -405,7 +350,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc = new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(), loc.getNom(), loc.getlocalisation());
         final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;
