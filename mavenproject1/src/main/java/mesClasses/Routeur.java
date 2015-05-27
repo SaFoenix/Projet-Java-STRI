@@ -37,6 +37,7 @@ public class Routeur extends Equipement {
 	}
 
 	/**
+         * Retourne le nombre de ports
 	 * @return the nombrePorts
 	 */
 	public Integer getNombrePorts() {
@@ -57,6 +58,7 @@ public class Routeur extends Equipement {
 		}		
 		return -1;
 	}
+        
 	/**
          * connecter un ordinateur
          * @param ordi ordinateur à ajouter au routeur

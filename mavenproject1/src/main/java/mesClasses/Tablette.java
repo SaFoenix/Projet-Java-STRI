@@ -43,6 +43,7 @@ public class Tablette extends Equipement {
 	}
 
 	/**
+         * Retourne la capacité de l'os
 	 * @return the capacite
 	 */
 	public String getCapacite() {
@@ -50,6 +51,7 @@ public class Tablette extends Equipement {
 	}
 
 	/**
+         * retourne le modele
 	 * @return the modele
 	 */
 	public String getModele() {

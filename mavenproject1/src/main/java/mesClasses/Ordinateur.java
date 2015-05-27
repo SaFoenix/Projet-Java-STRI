@@ -16,9 +16,21 @@ package mesClasses;
  *
  */
 public class Ordinateur extends Equipement {
-	private String ram;
+    /**
+     * La ram de l'ordinateur
+     */
+	private String ram; 
+        /**
+         *Le cpu de l'ordinateur 
+         */
 	private String cpu;
+        /**
+         * Le gpu de l'ordinateur
+         */
 	private String gpu;
+        /**
+         * La capacité du disque dur de l'ordinateur
+         */
 	private String hdd;
       
 	/**
@@ -106,8 +118,7 @@ public class Ordinateur extends Equipement {
     /**
      *
      * @return
-     */
-    
+     */    
 	@Override
 	public String toString() {
 		String str=super.toString();

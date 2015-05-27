@@ -26,11 +26,12 @@ public class Societe {
      */
     private String nom;
     /**
-     * La localisation
+     * La localisation de la societe
      */
     private String localisation;
     /**
      * La liste des locaux appartenant la societe
+     * @see Local
      */
     private ArrayList<Local> locaux;
 
@@ -45,13 +46,7 @@ public class Societe {
         this.localisation = localisation;
         locaux = new ArrayList<Local>();
     }
-    /**
-     * modifie l'identifiant de la société pour la bdd
-     * @param idSociete l'identifiant de la societe
-     */
-    public void setIdSociete(int idSociete){
-        this.idSociete=idSociete;
-    }
+    
     /**
      * ajoute une salle à un local
      *
@@ -59,6 +54,7 @@ public class Societe {
      * @param numero Le numero de la salle
      * @param etage L'étage de la salle
      * @param nombreOrdi Le nombre d'ordi de la salle
+     * @see Salle
      */
     public void ajouterSalle(String nomL, Integer numero, Integer etage, Integer nombreOrdi) {
         Local locRech = rechercherLocal(nomL);
@@ -66,7 +62,7 @@ public class Societe {
             System.out.println("Le local " + nomL + " n'existe pas. La salle, numero " + numero + ", etage " + etage + " n'a pas été ajoutée.");
             return;
         }
-        locRech.ajouterSalle(numero, nombreOrdi, etage);
+        locRech.ajouterSalle(numero, etage, nombreOrdi);
     }
 
     /**
@@ -74,9 +70,9 @@ public class Societe {
      *
      * @param nomL Le nom du local à rechercher
      * @return Le local recherché ou null si non trouvé
+     * @see Local
      */
     public Local rechercherLocal(String nomL) {
-
         for (Local locRech : locaux) {
             if (locRech.getNom().equalsIgnoreCase(nomL)) {
                 return locRech;
@@ -86,7 +82,7 @@ public class Societe {
     }
 
     /**
-     *
+     *Ajouter un local à une société
      * @param nomL Le nom du local à rechercher
      * @param localisation La localisation de la societe
      */
@@ -157,8 +153,9 @@ public class Societe {
      * @param nomL le nom du local où ajouter le routeur
      */
     public void ajouterRouteurSalle(Routeur rout, Integer etage, Integer numero, String nomL) {
+        System.out.println("etage="+etage+"  numro= "+numero);
         Local loc = rechercherLocal(nomL);
-        if (loc != null) {
+        if (loc != null){
             loc.ajouterRouteurSalle(rout, numero, etage);
         } else {
             System.out.println("Le local n'existe pas");
@@ -271,10 +268,18 @@ public class Societe {
     }
     
     /**
-     * 
-     * @param locaux 
+     * Modifie la lise de locaux de la société
+     * @param locaux La liste des locaux de la societe
      */
     public void setLocaux(ArrayList<Local> locaux){
         this.locaux=locaux;
+    }
+
+    /**
+     * Modifie l'identifiant de la societe
+     * @param IdSociete 
+     */
+    void setIdSociete(int IdSociete) {
+        idSociete=IdSociete;
     }
 }

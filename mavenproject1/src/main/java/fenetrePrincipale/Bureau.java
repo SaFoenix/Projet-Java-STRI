@@ -23,7 +23,7 @@ import mesClasses.*;
 
 /**
  *
- * @author guigui
+ * @author STRI_JAVA
  */
 public class Bureau extends javax.swing.JFrame {
 
@@ -131,27 +131,37 @@ public class Bureau extends javax.swing.JFrame {
                         .addContainerGap(21, Short.MAX_VALUE))
         );
 
-
         bdd = new MySql();
         bdd.Connexion();
         so = bdd.RecupererSociete("STRI");
         locaux = bdd.RecupererLocal(so.getNom());
-        for(Local loc:locaux){
-            so.ajouterLocal(loc.getNom(),loc.getlocalisation());
+        for (Local loc : locaux) {
+            so.ajouterLocal(loc.getNom(), loc.getlocalisation());
         }
         for (Local loc : locaux) {
             ArrayList<Salle> salles;
             salles = bdd.RecupererSalle(loc.getNom());
             for (Salle sa : salles) {
-                so.ajouterSalle(loc.getNom(),sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());                
+                so.ajouterSalle(loc.getNom(), sa.getNumero(), sa.getEtage(), sa.getNombreOrdinateur());
+
                 ArrayList<Routeur> routeurs;
                 routeurs = bdd.RecupererRouteur(sa.getNumero());
                 for (Routeur ro : routeurs) {
-                    so.ajouterRouteurSalle(ro,sa.getEtage(), sa.getNumero(), loc.getNom());
+
+                    so.ajouterRouteurSalle(ro, sa.getEtage(), sa.getNumero(), loc.getNom());
                     ArrayList<Ordinateur> ordinateurs;
                     ordinateurs = bdd.RecupererOrdinateur(sa.getNumero());
                     for (Ordinateur ordi : ordinateurs) {
-                       so.connecterOrdinateur(ordi, sa.getEtage(), sa.getNumero(), ro.getMac(), loc.getNom());
+                        so.connecterOrdinateur(ordi, sa.getEtage(), sa.getNumero(), ro.getMac(), loc.getNom());
+                    }
+                }
+                ArrayList<BorneSansFil> bornes = bdd.RecupererBorne(sa.getNumero());
+                for (BorneSansFil botemp : bornes) {
+                    so.ajouterBorneSansFil(botemp, loc.getNom(), sa.getEtage(), sa.getNumero());
+                    ArrayList<Tablette> tablettes;
+                    tablettes = bdd.RecupererTablette(sa.getNumero());
+                    for (Tablette tab : tablettes) {
+                        so.connecterTablette(tab, loc.getNom(), sa.getEtage(), sa.getNumero(), botemp.getMac());
                     }
                 }
             }
@@ -331,7 +341,7 @@ public class Bureau extends javax.swing.JFrame {
     private void LocalOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalOkActionPerformed
         Local loc = new Local(LocalName.getText(), LocalLieu.getText());
         so.ajouterLocal(loc.getNom(), loc.getlocalisation());
-        bdd.AjoutLocal(so.getNom(),loc.getNom(), loc.getlocalisation());
+        bdd.AjoutLocal(so.getNom(), loc.getNom(), loc.getlocalisation());
         final JButton localButton2 = new JButton(loc.getNom() + " " + "[" + loc.getlocalisation() + "]");
         localButton2.setName(loc.getNom());
         gbc.gridy = positionY;

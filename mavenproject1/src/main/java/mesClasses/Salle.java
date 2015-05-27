@@ -4,12 +4,11 @@
 package mesClasses;
 
 import java.util.ArrayList;
-import javax.swing.JPanel;
 
 /**
  * La classe Salle permet de définir une salle informations: Identifiant de la
- * salle L'etage de la salle Le numero de la salle Le nombre d'ordinateur que
- * peut contenir la salle La liste des routeurs La liste des bornes Wifi
+ * salle, L'etage de la salle, Le numero de la salle, Le nombre d'ordinateur que
+ * peut contenir la salle, La liste des routeurs, La liste des bornes Wifi
  *
  * @author STRI_JAVA
  *
@@ -50,7 +49,7 @@ public class Salle {
      *
      * @param numero le numero de la salle
      * @param etage l'etage de la salle
-     * @param nombreOrdinateur Le nombre de la salle
+     * @param nombreOrdinateur Le nombre d'ordinateur que peut contenir la salle
      */
     public Salle(Integer numero, Integer etage, Integer nombreOrdinateur) {
         this.numero = numero;
@@ -61,6 +60,7 @@ public class Salle {
     }
 
     /**
+     * Retroune le numero de la salle
      * @return the numero
      */
     public Integer getNumero() {
@@ -68,6 +68,7 @@ public class Salle {
     }
 
     /**
+     * Retourne le nombre d'ordinateur présent dans la salle
      * @return the nombreOdinateur
      */
     public Integer getNombreOrdinateur() {
@@ -75,6 +76,7 @@ public class Salle {
     }
 
     /**
+     * modifie le nombre d'ordinateur présent dans la salle
      * @param nombreOrdinateur the nombreOrdinateur to set
      */
     public void setNombreOrdinateur(Integer nombreOrdinateur) {
@@ -82,6 +84,7 @@ public class Salle {
     }
 
     /**
+     * Retourne l'identifiant de la salle
      * @return the idSalle
      */
     public Integer getIdSalle() {
@@ -89,6 +92,7 @@ public class Salle {
     }
 
     /**
+     * Retourne l'etage de la salle
      * @return the etage
      */
     public Integer getEtage() {
@@ -110,7 +114,7 @@ public class Salle {
     }
 
     /**
-     * ajouter un routeur
+     * ajouter un routeur à la liste des routeurs de la salle
      *
      * @param rout le routeur à ajouter
      */
@@ -303,10 +307,17 @@ public class Salle {
 
     }
 
+    /**
+     * Retourne la liste des routeurs de la salle
+     * @return routeurs la liste des routeurs de la salle
+     */
     public ArrayList<Routeur> getRouteurs() {
         return routeurs;
     }
-
+/**
+ * Retourne la liste des bornes dans la salle
+ * @return la liste des bornes dans la salle
+ */
     public ArrayList<BorneSansFil> getBornes() {
         return bornes;
     }

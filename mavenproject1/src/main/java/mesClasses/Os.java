@@ -38,6 +38,7 @@ public class Os {
 	}
 
 	/**
+         * Retourne la version de l'os
 	 * @return the version
 	 */
 	public String getVersion() {
@@ -45,6 +46,7 @@ public class Os {
 	}
 
 	/**
+         * Modifie la version de l'os
 	 * @param version the version to set
 	 */
 	public void setVersion(String version) {
@@ -52,6 +54,7 @@ public class Os {
 	}
 
 	/**
+         * Retourne le nom de L'os
 	 * @return the nomOs
 	 */
 	public String getNomOs() {
@@ -59,6 +62,7 @@ public class Os {
 	}
 
 	/**
+         * Modifie le nom de l'os
 	 * @param nomOs the nomOs to set
 	 */
 	public void setNomOs(String nomOs) {

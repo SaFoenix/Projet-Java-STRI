@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 package fenetreLocal;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.TableCellRenderer;
 import mesClasses.*;
 /**
  *
- * @author guigui
+ * @author JAVA
  */
 public class TableauOrdinateur extends javax.swing.JPanel {
     JTable tableau;
@@ -22,11 +19,10 @@ public class TableauOrdinateur extends javax.swing.JPanel {
     private Ordinateur [] ordinateurs;
     private String[] columns={"Nom","Mac","Marque","Power","RAM","CPU","GPU","HDD","NomOS","Version"};
     private String[][] data;
-    //private MySql bdd = new MySql();
+    private MySql bdd = new MySql();
     
     /**
      * Creates new form Tableau
-     * @param ordinateurs
      */
     public TableauOrdinateur(Routeur rout) {
        routeur=rout;
@@ -41,35 +37,35 @@ public class TableauOrdinateur extends javax.swing.JPanel {
                 return true;
             } 
             public Object getValueAt(int row, int col) {
-             //   bdd.Connexion();
                 System.out.println("donnée: "+data[row][col]);
                  return data[row][col];
             }
             public void setValueAt(Object value,int row, int col){
                 if(col!=1){
+                    bdd.Connexion();
                     Ordinateur ordi=routeur.rechercherOrdinateur(data[row][1]);
                     if(ordi!=null){
                         data[row][col]=(String) value;
                         switch(col){
                             case 0: 
                                 ordi.setNom((String)value);
-//                                bdd.ModifierNom(ordi.getNom(),ordi.getMac());
+                                bdd.ModifierNom(ordi.getNom(),ordi.getMac());
                                 break;
                             case 3: 
                                 ordi.setPower((((String)value).equals("on")));
-//                                bdd.ModifierEtat(ordi.isPower(),ordi.getMac());
+                                bdd.ModifierEtat(ordi.isPower(),ordi.getMac());
                                 break;
                             case 4: ordi.setRam((String)value); 
-//                                    bdd.ModifierRam(ordi.getRam(),ordi.getMac());
+                                    bdd.ModifierRam(ordi.getRam(),ordi.getMac());
                                 break;
                             case 5: ordi.setCpu((String)value);
-//                                    bdd.ModifierCpu(ordi.getCpu(),ordi.getMac());
+                                    bdd.ModifierCpu(ordi.getCpu(),ordi.getMac());
                                 break;
                             case 6:ordi.setGpu((String)value);
-                   //                bdd.ModifierGpu(ordi.getGpu(),ordi.getMac());
+                                   bdd.ModifierGpu(ordi.getGpu(),ordi.getMac());
                                 break;
                             case 7: ordi.setHdd((String)value);
-                  //                  bdd.ModifierHdd(ordi.getHdd(),ordi.getMac());
+                                    bdd.ModifierHdd(ordi.getHdd(),ordi.getMac());
                                 break;
                         }
                     }                    
@@ -90,8 +86,7 @@ public class TableauOrdinateur extends javax.swing.JPanel {
     
     public void initialiseTableau(){
         int i=0;
-        for(Ordinateur ordi:ordinateurs){       
-            
+        for(Ordinateur ordi:ordinateurs){      
             if (ordi != null) {
                 int j = 0;
                 data[i][j] = ordi.getNom();
