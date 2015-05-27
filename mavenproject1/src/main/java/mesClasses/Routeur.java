@@ -144,4 +144,14 @@ public class Routeur extends Equipement {
     public Ordinateur [] retournerOrdinateurs(){
         return ordinateurs;
     }
+
+    public boolean supprimerOrdinateur(String mac) {
+        for (int i = 0; i < ordinateurs.length; i++) {
+            if (ordinateurs[i] != null && ordinateurs[i].getMac().equalsIgnoreCase(mac)) {
+                ordinateurs[i]=null;
+                return true;
+            }
+        }
+        return false;
+    }
 }

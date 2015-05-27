@@ -10,7 +10,7 @@ import java.awt.Dimension;
 
 /**
  *
- * @author guigui
+ * @author STRI_Java
  */
 public class FenetreSecondaire extends javax.swing.JFrame{
     /**
